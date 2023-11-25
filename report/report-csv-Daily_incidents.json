@@ -130,6 +130,7 @@
 	"runningRoles": null,
 	"runningUser": "",
 	"scheduled": false,
+	"scheduledEntryGuid": "",
 	"sections": [
 		{
 			"autoPageBreak": false,
