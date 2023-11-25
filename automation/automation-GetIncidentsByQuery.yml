@@ -337,5 +337,5 @@ subtype: python3
 system: true
 tags:
 - ml
-timeout: 60µs
+timeout: 16h40m0s
 type: python
