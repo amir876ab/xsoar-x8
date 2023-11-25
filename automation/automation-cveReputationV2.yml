@@ -110,5 +110,5 @@ system: true
 tags:
 - cve
 - reputation
-timeout: 2.4µs
+timeout: 40m0s
 type: python
