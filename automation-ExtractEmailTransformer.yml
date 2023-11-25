@@ -1,0 +1,59 @@
+args:
+- description: the input value.
+  isArray: true
+  name: value
+  required: true
+comment: Extracts email addresses from the given value.
+commonfields:
+  id: ExtractEmailTransformer
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.1.0
+    itemVersion: 1.2.35
+    packID: FiltersAndTransformers
+    packName: Filters And Transformers
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+engineinfo: {}
+mainengineinfo: {}
+name: ExtractEmailTransformer
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('ExtractEmailTransformer', 'start', __line__())
+  ### pack version: 1.2.35
+
+
+
+
+  def main():
+      try:
+          return_results(extract(argToList(demisto.args().get('value'))))
+      except Exception as error:
+          return_error(str(error), error)
+
+
+  def extract(values: list[str]) -> list[str]:
+      list_results = []
+      for val in values:
+          list_results.extend(re.findall(emailRegex, (val or '').lower()))
+      return list_results
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('ExtractEmailTransformer', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- transformer
+type: python
