@@ -231,12 +231,12 @@
 		"widget": null,
 		"wizard": null
 	},
+	"created": "2020-08-02T11:28:20Z",
 	"currentVersion": "1.32.41",
 	"definitionId": "",
 	"dependencies": {},
 	"deprecated": false,
 	"description": "The base pack for Cortex XSOAR.",
-	"disabledMonthly": false,
 	"downloads": 135321,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "6.0.0",
@@ -255,6 +255,7 @@
 		"common"
 	],
 	"legacy": true,
+	"modules": [],
 	"name": "Base",
 	"packID": "Base",
 	"packName": "",
@@ -276,11 +277,11 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Core",
-		"Trending"
+		"Trending",
+		"Core"
 	],
 	"toServerVersion": "",
-	"updated": "2023-11-23T20:21:46Z",
+	"updated": "2023-11-02T22:26:38Z",
 	"useCases": [],
 	"version": -1,
 	"versionInfo": "6780549",
