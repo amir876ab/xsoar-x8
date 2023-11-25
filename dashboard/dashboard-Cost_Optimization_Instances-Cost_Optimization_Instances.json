@@ -22,7 +22,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "metrics",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -60,7 +59,6 @@
 				],
 				"query": "type:integration",
 				"shouldCommit": false,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -82,7 +80,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "metrics",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -156,7 +153,6 @@
 				"query": "type:integration",
 				"shouldCommit": false,
 				"size": 5,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -178,7 +174,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "metrics",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -257,7 +252,6 @@
 				"query": "type:integration",
 				"shouldCommit": false,
 				"size": 5,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -279,7 +273,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "metrics",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -353,7 +346,6 @@
 				"query": "type:integration",
 				"shouldCommit": false,
 				"size": 5,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -375,7 +367,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "metrics",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -454,7 +445,6 @@
 				"query": "type:integration",
 				"shouldCommit": false,
 				"size": 5,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -476,7 +466,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "metrics",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -516,7 +505,6 @@
 				"query": "type:integration",
 				"shouldCommit": false,
 				"size": 5,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -538,7 +526,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "metrics",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -642,7 +629,9 @@
 				"query": "type:integration",
 				"sequenceNumber": 29457222,
 				"shouldCommit": false,
-				"sizeInBytes": 0,
+				"sortValues": [
+					"598774"
+				],
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
