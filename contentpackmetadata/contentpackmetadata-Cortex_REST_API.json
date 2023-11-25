@@ -250,6 +250,7 @@
 		"widget": null,
 		"wizard": null
 	},
+	"created": "2020-07-15T08:20:12Z",
 	"currentVersion": "1.3.37",
 	"definitionId": "",
 	"dependencies": {
@@ -263,7 +264,6 @@
 	},
 	"deprecated": false,
 	"description": "Use Demisto REST APIs",
-	"disabledMonthly": false,
 	"downloads": 48610,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
@@ -291,6 +291,7 @@
 		"Core REST API"
 	],
 	"legacy": true,
+	"modules": [],
 	"name": "Cortex REST API",
 	"packID": "DemistoRESTAPI",
 	"packName": "",
@@ -315,7 +316,7 @@
 		"Trending"
 	],
 	"toServerVersion": "",
-	"updated": "2023-11-22T22:09:19Z",
+	"updated": "2023-09-21T19:22:38Z",
 	"useCases": [],
 	"version": -1,
 	"versionInfo": "6389447",
