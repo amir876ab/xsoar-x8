@@ -1264,6 +1264,7 @@
 		"widget": null,
 		"wizard": null
 	},
+	"created": "2020-07-27T15:13:05Z",
 	"currentVersion": "2.1.11",
 	"definitionId": "",
 	"dependencies": {
@@ -1305,7 +1306,6 @@
 	},
 	"deprecated": false,
 	"description": "Manage Palo Alto Networks Firewall and Panorama. Use this pack to manage Prisma Access through Panorama. For more information see Panorama documentation.",
-	"disabledMonthly": false,
 	"downloads": 43088,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
@@ -1335,6 +1335,7 @@
 		"DNS Sinkhole"
 	],
 	"legacy": true,
+	"modules": [],
 	"name": "PAN-OS by Palo Alto Networks",
 	"packID": "PAN-OS",
 	"packName": "",
@@ -1361,7 +1362,7 @@
 		"Trending"
 	],
 	"toServerVersion": "",
-	"updated": "2023-11-16T10:23:38Z",
+	"updated": "2023-10-25T09:32:02Z",
 	"useCases": [],
 	"version": -1,
 	"versionInfo": "6699754",
