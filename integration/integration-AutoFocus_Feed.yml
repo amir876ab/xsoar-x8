@@ -168,6 +168,8 @@ script:
     name: autofocus-get-indicators
   dockerimage: demisto/python3:3.10.12.68714
   feed: true
+  nativeimage:
+  - "8.3"
   runonce: false
   script: |
     register_module_line('AutoFocus Feed', 'start', __line__())
