@@ -1,0 +1,969 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 3.5.30
+    packID: Phishing
+    packName: Phishing
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: "This playbook provides a basic response to phishing incidents, including:\n-
+  Calculating reputation for all indicators\n- Extracting indicators from email attachments\n-
+  Calculating severity for the incident based on indicator reputation\n- Updating
+  the reporting user about investigation status\n- Enabling manual incident remediation
+  \n\nThis updated playbook uses:\n  1) Incident fields instead of labels\n  2) The
+  \"Process Email - Core v2\" playbook"
+id: Phishing - Core v2
+inputs:
+- description: Whether the user wants the Rasterize integration to produce images
+    of URLs involved in the incident. If "True", screenshots are taken.
+  key: GetURLScreenshots
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "True"
+name: Phishing - Core v2
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 86854b0b-87ed-4b88-8f38-bb3adf91d7a8
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 86854b0b-87ed-4b88-8f38-bb3adf91d7a8
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      body:
+        simple: |-
+          Thank you for reporting the suspicious email, which we are actively investigating. Please do not interact with this email, such as opening or replying, until you hear back from the security team.
+
+          Sincerely,
+          Cortex XSOAR's Security Team
+      subject:
+        simple: '[Status Update]: ${incident.name}'
+      to:
+        complex:
+          accessor: emailfrom
+          root: incident
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sends an email to the user who reported the phishing email, informing
+        them that the email was received and is being investigated.
+      id: 5f36e515-65e9-429d-8301-d92fa6213b44
+      iscommand: true
+      name: Acknowledge email
+      script: '|||send-mail'
+      type: regular
+      version: -1
+    taskid: 5f36e515-65e9-429d-8301-d92fa6213b44
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 890,
+          "y": 210
+        }
+      }
+  "6":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      url:
+        complex:
+          accessor: Data
+          root: URL
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: true
+    task:
+      brand: ""
+      description: Uses the Rasterize integration to create screenshots (images) of
+        the URLs involved in the incident.
+      id: db01be5f-cbab-4682-8e89-2f831e1aaa32
+      iscommand: true
+      name: Get screenshots of URLs
+      script: '|||rasterize'
+      tags:
+      - url_screenshots
+      type: regular
+      version: -1
+    taskid: db01be5f-cbab-4682-8e89-2f831e1aaa32
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 180,
+          "y": 1100
+        }
+      }
+  "7":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Rasterize
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              simple: inputs.GetURLScreenshots
+          operator: isEqualString
+          right:
+            value:
+              simple: "True"
+      - - left:
+            iscontext: true
+            value:
+              simple: URL
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether URLs exist in context, whether the user opted to
+        get screenshots of URLs in the playbook's "GetURLScreenshots" input, and whether
+        the Rasterize integration is enabled.
+      id: 7035c9c1-4160-4192-8824-aa88c65b6f24
+      iscommand: false
+      name: Can URL screenshots be taken?
+      type: condition
+      version: -1
+    taskid: 7035c9c1-4160-4192-8824-aa88c65b6f24
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 920
+        }
+      }
+  "8":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: DBotScore
+                transformers:
+                - operator: uniq
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "11"
+      "yes":
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether there is at least one indicator with a DBotScore.
+      id: 8f974bbb-ecc3-420a-8843-6f3d211d2816
+      iscommand: false
+      name: Are there indicators with scores?
+      type: condition
+      version: -1
+    taskid: 8f974bbb-ecc3-420a-8843-6f3d211d2816
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1270
+        }
+      }
+  "9":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: Score
+                    operator: greaterThan
+                    right:
+                      value:
+                        simple: "2"
+                root: DBotScore
+                transformers:
+                - operator: uniq
+          operator: isExists
+      label: High
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: Score
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: "2"
+                root: DBotScore
+                transformers:
+                - operator: uniq
+          operator: isExists
+      label: Medium
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: Score
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: "1"
+                root: DBotScore
+                transformers:
+                - operator: uniq
+          operator: isExists
+      label: Low
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "14"
+      High:
+      - "13"
+      Low:
+      - "11"
+      Medium:
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Determines the severity of the incident based on the score that was assigned to the indicators involved. The indicators are found in the DBotScore context key.
+
+        The severity level is determined by the highest score given to any of the indicators:
+        High - if there is a score higher than 2
+        Medium - if there is a score that is equal to 2
+        Low - if there is a score that is equal to 1
+      id: d2d03a4b-2f05-4779-852c-5ab55e6bd437
+      iscommand: false
+      name: How severe is the incident?
+      type: condition
+      version: -1
+    taskid: d2d03a4b-2f05-4779-852c-5ab55e6bd437
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1500
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      severity:
+        simple: low
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Sets the incident severity to "low".
+      id: 00bdfe51-d590-4c7f-8500-1c9fc9d90a4f
+      iscommand: true
+      name: Set incident severity to "low"
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 00bdfe51-d590-4c7f-8500-1c9fc9d90a4f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -20,
+          "y": 1760
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      severity:
+        simple: medium
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Sets the incident severity to "medium".
+      id: ef829abf-fbf5-4e73-894f-4cf9c89d3d4d
+      iscommand: true
+      name: Set incident severity to "medium"
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: ef829abf-fbf5-4e73-894f-4cf9c89d3d4d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1760
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      severity:
+        simple: high
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Sets the incident severity to "high".
+      id: 98b10f75-163a-4fa3-8f18-84f0c5c63322
+      iscommand: true
+      name: Set incident severity to "high"
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 98b10f75-163a-4fa3-8f18-84f0c5c63322
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 1760
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Pauses the playbook so the analyst can investigate the incident
+        and manually resume the playbook when necessary.
+      id: 7a672d8e-c040-4735-8885-b0bea150d5b6
+      iscommand: false
+      name: Manually investigate the incident
+      type: regular
+      version: -1
+    taskid: 7a672d8e-c040-4735-8885-b0bea150d5b6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1930
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      Benign:
+      - "17"
+      Malicious:
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Pauses the playbook so the analyst can decide whether the investigated
+        email is malicious or benign.
+      id: c175a884-7f18-4e6a-85ee-d2ad13a0fc2d
+      iscommand: false
+      name: Is the email malicious or benign?
+      type: condition
+      version: -1
+    taskid: c175a884-7f18-4e6a-85ee-d2ad13a0fc2d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 2100
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      body:
+        simple: |-
+          After investigating the email you sent, we determined that the email is malicious. We appreciate your continued attention to suspicious emails.
+
+          Sincerely,
+          Your security team
+      subject:
+        simple: '[Status Update]: ${incident.name}'
+      to:
+        complex:
+          accessor: labels.Email/from
+          root: incident
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sends an email to the user who reported the phishing email informing
+        them that the email is malicious.
+      id: 3d5a299b-7128-4113-8fd2-702db6b0b2f9
+      iscommand: true
+      name: Update user that the email is malicious
+      script: '|||send-mail'
+      type: regular
+      version: -1
+    taskid: 3d5a299b-7128-4113-8fd2-702db6b0b2f9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 830,
+          "y": 2290
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      body:
+        simple: |-
+          After investigating the email you sent, we determined that the email is benign. We appreciate your continued attention to suspicious emails.
+
+          Sincerely,
+          Your security team
+      subject:
+        simple: '[Status Update]: ${incident.name}'
+      to:
+        complex:
+          accessor: labels.Email/from
+          root: incident
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sends an email to the user who reported the phishing email, informing
+        them that the email is benign.
+      id: 37203136-b3d7-4ede-831f-b71660e02078
+      iscommand: true
+      name: Update user that the email is benign
+      script: '|||send-mail'
+      type: regular
+      version: -1
+    taskid: 37203136-b3d7-4ede-831f-b71660e02078
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 70,
+          "y": 2290
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Pauses the playbook so the analyst can manually remediate the incident
+        and manually resume the playbook.
+      id: f0dbc4bc-78d2-4d92-8d7c-78a9ca37fbad
+      iscommand: false
+      name: Manually remediate the incident
+      tags:
+      - manual
+      type: regular
+      version: -1
+    taskid: f0dbc4bc-78d2-4d92-8d7c-78a9ca37fbad
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 830,
+          "y": 2470
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Closes the current incident.
+      id: 69e68557-84c7-418d-876f-1b9d55d99b7f
+      iscommand: true
+      name: Close investigation
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: 69e68557-84c7-418d-876f-1b9d55d99b7f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 2660
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      File:
+        complex:
+          root: File
+          transformers:
+          - operator: uniq
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Extracts indicators from a file.
+        Supported file types:
+        - CSV
+        - PDF
+        - TXT
+        - HTM, HTML
+        - DOC, DOCX
+        - PPT
+        - PPTX
+        - RTF
+        - XLS
+        - XLSX
+        - XML
+      id: 518db03b-4d9a-4dd2-8dcd-a07e78d630ef
+      iscommand: false
+      name: Extract Indicators From File - Generic v2
+      playbookId: Extract Indicators From File - Generic v2
+      type: playbook
+      version: -1
+    taskid: 518db03b-4d9a-4dd2-8dcd-a07e78d630ef
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 750
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "23"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Email:
+        complex:
+          accessor: emailto
+          root: incident
+      EmailCC:
+        complex:
+          accessor: emailcc
+          root: incident
+      EmailFormat:
+        complex:
+          accessor: emailformat
+          root: incident
+      EmailFrom:
+        complex:
+          accessor: emailfrom
+          root: incident
+      EmailHeaders:
+        complex:
+          accessor: phishingreporteremailheaders
+          root: incident
+      EmailHtml:
+        complex:
+          accessor: emailhtml
+          root: incident
+      EmailSubject:
+        complex:
+          accessor: emailsubject
+          root: incident
+      EmailText:
+        complex:
+          accessor: emailbody
+          root: incident
+      File:
+        complex:
+          root: File
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Adds email details to the relevant context entities and handles
+        the case where original emails are attached.
+      id: 06c88f1d-eb49-4e0c-8939-a2b2b2630ad3
+      iscommand: false
+      name: Process Email - Core v2
+      playbookId: Process Email - Core v2
+      type: playbook
+      version: -1
+    taskid: 06c88f1d-eb49-4e0c-8939-a2b2b2630ad3
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 210
+        }
+      }
+  "23":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: HTML
+                root: Email
+          operator: isExists
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Rasterize
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "21"
+      "yes":
+      - "24"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if the email that was received is HTML-formatted and whether
+        the Rasterize integration is enabled.
+      id: 56e057ee-35bc-4385-8747-456e80ca7fa9
+      iscommand: false
+      name: Can an image of the email be rendered?
+      type: condition
+      version: -1
+    taskid: 56e057ee-35bc-4385-8747-456e80ca7fa9
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 390
+        }
+      }
+  "24":
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      htmlBody:
+        complex:
+          accessor: HTML
+          root: Email
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: true
+    task:
+      brand: ""
+      description: Creates a visual image of the email (if the email is HTML-formatted).
+      id: 1f4908fc-2741-41a7-8ef3-98a3496f81d6
+      iscommand: true
+      name: Render HTML to an image
+      script: '|||rasterize-email'
+      tags:
+      - email_html_image
+      type: regular
+      version: -1
+    taskid: 1f4908fc-2741-41a7-8ef3-98a3496f81d6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 130,
+          "y": 570
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "23_21_#default#": 0.34,
+      "23_24_yes": 0.3,
+      "7_6_yes": 0.44,
+      "7_8_#default#": 0.51,
+      "8_11_#default#": 0.73
+    },
+    "paper": {
+      "dimensions": {
+        "height": 2705,
+        "width": 1320,
+        "x": -20,
+        "y": 50
+      }
+    }
+  }
