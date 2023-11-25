@@ -1,0 +1,125 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"dashboard"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": [
+			{
+				"name": "Threat Intelligence Feeds"
+			},
+			{
+				"name": "Cost Optimization Instances"
+			},
+			{
+				"name": "Troubleshooting Instances"
+			},
+			{
+				"name": "Troubleshooting Playbooks"
+			},
+			{
+				"name": "Incidents"
+			},
+			{
+				"name": "My Dashboard"
+			},
+			{
+				"name": "Cost Optimization Playbooks"
+			},
+			{
+				"name": "API Execution Metrics"
+			},
+			{
+				"name": "SLA"
+			},
+			{
+				"name": "My Threat Landscape"
+			}
+		],
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": null,
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "1.3.7",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.33",
+			"name": "Base"
+		},
+		"CommonWidgets": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.2.31",
+			"name": "Common Widgets"
+		}
+	},
+	"deprecated": false,
+	"description": "Frequently used dashboards pack.",
+	"disabledMonthly": false,
+	"downloads": 15091,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "CommonDashboards",
+	"installMessage": "",
+	"integrations": [],
+	"itemVersion": "1.3.7",
+	"keywords": [],
+	"legacy": true,
+	"name": "Common Dashboards",
+	"packID": "CommonDashboards",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-09-10T20:45:18Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6319909",
+	"videos": []
+}
