@@ -22,6 +22,9 @@ enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: GetTasksWithSections
+nativeimage:
+- "8.3"
+- "8.4"
 outputs:
 - contextPath: Tasks
   description: The entire task object
