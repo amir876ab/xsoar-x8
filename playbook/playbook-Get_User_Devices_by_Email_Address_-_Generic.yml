@@ -495,6 +495,8 @@ tasks:
       - "4"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: GSuiteAdmin
@@ -631,6 +633,8 @@ tasks:
       - "11"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: jamf v2
@@ -793,6 +797,8 @@ tasks:
       - "17"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: ServiceNow v2
@@ -1225,6 +1231,8 @@ tasks:
       - "27"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: Active Directory Query v2
@@ -1975,6 +1983,8 @@ tasks:
       - "45"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: Microsoft Graph API
