@@ -22,7 +22,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "scripts",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -56,7 +55,6 @@
 				],
 				"query": "RSSWidget",
 				"shouldCommit": false,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -78,7 +76,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "indicators",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -138,7 +135,6 @@
 				"query": "type:File and (verdict:Malicious or verdict:Suspicious) and incident.id:*",
 				"shouldCommit": false,
 				"size": 10,
-				"sizeInBytes": 0,
 				"sort": [
 					{
 						"asc": false,
@@ -167,7 +163,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "indicators",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -225,7 +220,6 @@
 				"query": "type:\"Attack Pattern\" and (verdict:Malicious or verdict:Suspicious) and incident.id:*",
 				"shouldCommit": false,
 				"size": 10,
-				"sizeInBytes": 0,
 				"sort": [
 					{
 						"asc": false,
@@ -254,7 +248,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "indicators",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -292,7 +285,6 @@
 				],
 				"query": "(verdict:Malicious or verdict:Suspicious) and incident.id:*",
 				"shouldCommit": false,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -314,7 +306,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "indicators",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -379,7 +370,6 @@
 				"query": "incident.id:* and expirationStatus:active and (verdict:Malicious or verdict:Suspicious or verdict:Unknown)",
 				"shouldCommit": false,
 				"size": 10,
-				"sizeInBytes": 0,
 				"sort": [
 					{
 						"asc": false,
