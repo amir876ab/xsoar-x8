@@ -1,4 +1,5 @@
 {
+	"XDRBuiltInField": false,
 	"aliasTo": "",
 	"aliases": null,
 	"associatedToAll": true,
@@ -22,6 +23,7 @@
 	"group": 2,
 	"hidden": false,
 	"id": "indicator_implementationlanguages",
+	"ipVersion": "",
 	"isReadOnly": false,
 	"itemVersion": "3.3.89",
 	"locked": false,
@@ -37,6 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
+	"pretty_name": "Implementation Languages",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
@@ -64,6 +67,7 @@
 		"x86-32",
 		"x86-64"
 	],
+	"selectValuesMap": null,
 	"sla": 0,
 	"system": false,
 	"systemAssociatedTypes": null,
