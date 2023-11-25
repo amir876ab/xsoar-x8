@@ -156,5 +156,5 @@ scripttarget: 0
 subtype: python3
 system: true
 tags: []
-timeout: 480ns
+timeout: 8m0s
 type: python
