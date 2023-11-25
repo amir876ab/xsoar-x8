@@ -1716,6 +1716,8 @@ tasks:
       - "45"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: Cortex Core - IR
