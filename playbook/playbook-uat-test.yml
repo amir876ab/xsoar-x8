@@ -51,18 +51,21 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
     note: false
     quietmode: 0
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      id: 60b787f2-ed62-4364-865c-523b871ef4ba
+      id: 435a4643-3a3c-4a2e-858a-3c08d861378f
       iscommand: false
       name: Untitled Task
       type: regular
       version: -1
-    taskid: 60b787f2-ed62-4364-865c-523b871ef4ba
+    taskid: 435a4643-3a3c-4a2e-858a-3c08d861378f
     timertriggers: []
     type: regular
     view: |-
@@ -72,15 +75,42 @@ tasks:
           "y": 380
         }
       }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0b0f01e9-0f27-41f8-80d0-f68f17c19780
+      iscommand: false
+      name: Untitled Task
+      type: regular
+      version: -1
+    taskid: 0b0f01e9-0f27-41f8-80d0-f68f17c19780
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 570
+        }
+      }
 version: -1
 view: |-
   {
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 425,
-        "width": 380,
-        "x": 450,
+        "height": 615,
+        "width": 390,
+        "x": 440,
         "y": 50
       }
     }
