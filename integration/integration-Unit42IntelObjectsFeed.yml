@@ -152,6 +152,8 @@ script:
     name: unit42intel-objects-feed-get-indicators
   dockerimage: demisto/python3:3.10.13.72123
   feed: true
+  nativeimage:
+  - "8.3"
   runonce: false
   script: |
     register_module_line('Unit42IntelObjectsFeed', 'start', __line__())
