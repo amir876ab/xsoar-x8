@@ -1,0 +1,220 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "verified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"classifier",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Hello World Script.",
+				"name": "HelloWorldScript",
+				"tags": [
+					"helloworld"
+				]
+			}
+		],
+		"classifier": [
+			{
+				"description": "Maps incoming Hello World alert fields.",
+				"id": "HelloWorld-mapper",
+				"name": "Hello World - Incoming Mapper"
+			},
+			{
+				"description": "Classifies Hello World alerts.",
+				"id": "HelloWorld",
+				"name": "Hello World - Classification"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "Hello World ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Hello World Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Hello World Status",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Hello World Alert",
+				"playbook": "Handle Hello World Alert",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Gets indicators from the feed.",
+						"name": "helloworld-get-indicators"
+					}
+				],
+				"description": "This is the Feed Hello World integration for getting started with your feed integration.",
+				"id": "HelloWorld Feed",
+				"name": "HelloWorld Feed (Community Contribution)"
+			},
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "Hello command - prints hello to anyone.",
+						"name": "helloworld-say-hello"
+					},
+					{
+						"description": "Lists the example alerts as it would be fetched from the API.",
+						"name": "helloworld-alert-list"
+					},
+					{
+						"description": "Example of creating a new item in the API.",
+						"name": "helloworld-alert-note-create"
+					},
+					{
+						"description": "Return IP information and reputation.",
+						"name": "ip"
+					}
+				],
+				"description": "This is the Hello World integration for getting started.",
+				"id": "HelloWorld",
+				"name": "HelloWorld (Community Contribution)"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "Hello World Alert"
+			}
+		],
+		"list": null,
+		"playbook": [
+			{
+				"description": "Deprecated. No available replacement.",
+				"name": "HelloWorld Scan"
+			},
+			{
+				"description": "This is a playbook which will handle the alerts coming from the Hello World service",
+				"name": "Handle Hello World Alert"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "2.0.0",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.35",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.4.5",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.12.29",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.87",
+			"name": "Common Types"
+		}
+	},
+	"deprecated": false,
+	"description": "This is the Hello World integration for getting started.",
+	"disabledMonthly": false,
+	"downloads": 18258,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree"
+	],
+	"id": "HelloWorld",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/HelloWorld/HelloWorld_image.png",
+			"name": "HelloWorld"
+		},
+		{
+			"imagePath": "content/packs/HelloWorld/HelloWorldFeed_image.png",
+			"name": "HelloWorld Feed"
+		}
+	],
+	"itemVersion": "2.0.0",
+	"keywords": [],
+	"legacy": true,
+	"name": "HelloWorld",
+	"packID": "HelloWorld",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "This content pack provides the Feed Hello World integration for getting started with your feed integration and the Hello World integration that imports events as incidents.\n\nThe purpose of this pack is to learn how to build a Cortex XSOAR content pack.\n\n## What does this pack do?\n\n- Returns domain information and reputation.\n- Retrieves alert extra data by ID.\n- Retrieves scan status in context or as a file (default) for a scan.\n- Starts a scan on an asset.\n- Retrieves scan status for one or more scan IDs.\n- Searches HelloWorld alerts.\n- Updates the status for an alert.\n- Returns IP information and reputation.\n\nAs part of this pack, you get an out-of-the-box automation, classifiers, incident fields and a Hello World layout. In addition there are two playbooks:\n- A playbook that will handle the alerts coming from the Hello World service.\n- A playbook that simulates a vulnerability scan using the \"HelloWorld\" sample integration. It's used to demonstrate how to use the GenericPolling mechanism to run jobs that take several seconds or minutes to complete.",
+	"searchRank": 0,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "community",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"TIM",
+		"Getting Started"
+	],
+	"toServerVersion": "",
+	"updated": "2023-11-23T10:21:46Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6476675",
+	"videos": []
+}
