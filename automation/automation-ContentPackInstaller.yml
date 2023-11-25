@@ -426,5 +426,5 @@ system: true
 tags:
 - configuration
 - Content Management
-timeout: 600ns
+timeout: 10m0s
 type: python
