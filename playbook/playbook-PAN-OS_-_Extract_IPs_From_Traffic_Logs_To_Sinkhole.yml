@@ -484,6 +484,8 @@ tasks:
       - "85"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: Panorama
