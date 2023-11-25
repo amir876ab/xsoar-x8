@@ -1,0 +1,390 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.3.14
+    packID: Gmail
+    packName: Gmail
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: "This v2 playbook uses the reporter's email headers to retrieve the original
+  email. This decreases the number of tasks to retrieve the original email. \nUse
+  this playbook to retrieve the original email using the Gmail integration, including
+  headers and attachments.\nNote: You must have the necessary Google Apps Domain-Wide
+  Delegation of Authority permissions in your Gmail service to execute global search.\n"
+id: Get Original Email - Gmail v2
+inputs:
+- description: The original email message ID to retrieve. Holds the value of the "Message-ID"
+    header of the original email and not Gmail's internal ID of the message.
+  key: MessageID
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The email address of the authenticated user to fetch the original email
+    for. For gmail, the authenticated user.
+  key: UserID
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Get Original Email - Gmail v2
+outputs:
+- contextPath: Email
+  description: The email object
+  type: string
+- contextPath: Email.To
+  description: The email recipient.
+  type: string
+- contextPath: Email.From
+  description: The email sender.
+  type: string
+- contextPath: Email.CC
+  description: The email CC address.
+  type: string
+- contextPath: Email.BCC
+  description: The email BCC address.
+  type: string
+- contextPath: Email.HTML
+  description: The HTML of the email.
+  type: string
+- contextPath: Email.Body
+  description: The email text body.
+  type: string
+- contextPath: Email.Headers
+  description: The email headers.
+  type: string
+- contextPath: Email.Subject
+  description: The email subject.
+  type: string
+- contextPath: File
+  description: The original attachments.
+  type: string
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d8403573-b211-4d44-885c-a365045c61a2
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: d8403573-b211-4d44-885c-a365045c61a2
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 280,
+          "y": 1540
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "3"
+      "yes":
+      - "17"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      brandname:
+        simple: Gmail
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if an integration brand is available. Otherwise returns
+        'no'.
+      id: 77fd3720-3d21-4ffb-8f78-e6b62e5a5eb6
+      iscommand: false
+      name: Is Gmail enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: 77fd3720-3d21-4ffb-8f78-e6b62e5a5eb6
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 280,
+          "y": 1690
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 185c00fb-4375-4607-8b99-7538c88315bc
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 185c00fb-4375-4607-8b99-7538c88315bc
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 280,
+          "y": 2720
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    reputationcalc: 2
+    scriptarguments:
+      query:
+        simple: Rfc822msgid:${inputs.MessageID}
+      user-id:
+        complex:
+          root: inputs.UserID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Gmail
+      description: Searches for Gmail records of a specified Google user.
+      id: 8e8c940f-71fd-456e-8f11-fd6a450616c9
+      iscommand: true
+      name: Retrieve the Original email from Gmail
+      script: Gmail|||gmail-search
+      type: regular
+      version: -1
+    taskid: 8e8c940f-71fd-456e-8f11-fd6a450616c9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 280,
+          "y": 2100
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: ID
+                root: Gmail
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "15"
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Verifies there is a Gmail email object in the context.
+      id: ea7b5d02-8ad9-435f-849b-d8aa29f18cdc
+      iscommand: false
+      name: Was the original email retrieved?
+      type: condition
+      version: -1
+    taskid: ea7b5d02-8ad9-435f-849b-d8aa29f18cdc
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 510,
+          "y": 2280
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    reputationcalc: 2
+    scriptarguments:
+      message-id:
+        complex:
+          accessor: ID
+          root: Gmail
+      user-id:
+        complex:
+          accessor: Mailbox
+          root: Gmail
+      user-key:
+        complex:
+          accessor: Mailbox
+          root: OriginalEmail
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Gmail
+      description: Retrieves the attachments of the original email from Gmail.
+      id: 9384d956-2f69-4882-852d-6c86a0060ee3
+      iscommand: true
+      name: Get attachments of the original email
+      script: Gmail|||gmail-get-attachments
+      type: regular
+      version: -1
+    taskid: 9384d956-2f69-4882-852d-6c86a0060ee3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 280,
+          "y": 2450
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      key:
+        simple: Email
+      value:
+        simple: '${Gmail={Subject: val[''Subject''], To: val[''To''], From: val[''From''],
+          Text: val[''Body''], HTML: val[''Html''], Headers: val[''Headers''], CC:
+          val[''CC''], BCC: val[''BCC'']}}'
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sets the playbook outputs to context.
+      id: 7d541973-de31-41bd-89ae-70c3869b01de
+      iscommand: false
+      name: Set output
+      script: Set
+      type: regular
+      version: -1
+    taskid: 7d541973-de31-41bd-89ae-70c3869b01de
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 737.5,
+          "y": 2450
+        }
+      }
+  "17":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.MessageID
+          operator: isNotEmpty
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.UserID
+          operator: isNotEmpty
+      label: Inputs-Exist
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      Inputs-Exist:
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Verifies the playbook inputs.
+      id: 67c1298f-d944-4a7f-83db-45f260e9977d
+      iscommand: false
+      name: Verify Playbook Inputs
+      type: condition
+      version: -1
+    taskid: 67c1298f-d944-4a7f-83db-45f260e9977d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 280,
+          "y": 1890
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1245,
+        "width": 837.5,
+        "x": 280,
+        "y": 1540
+      }
+    }
+  }
