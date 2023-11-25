@@ -62,5 +62,5 @@ scripttarget: 0
 system: true
 tags:
 - Utility
-timeout: 900ns
+timeout: 15m0s
 type: javascript
