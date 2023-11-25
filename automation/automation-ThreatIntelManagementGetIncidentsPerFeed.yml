@@ -23,6 +23,8 @@ dockerimage: demisto/python3:3.10.12.63474
 engineinfo: {}
 mainengineinfo: {}
 name: ThreatIntelManagementGetIncidentsPerFeed
+nativeimage:
+- "8.3"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
