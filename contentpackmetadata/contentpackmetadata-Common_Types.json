@@ -13,7 +13,8 @@
 		"indicatorfield",
 		"reputation",
 		"classifier",
-		"layoutscontainer"
+		"layoutscontainer",
+		"layoutrule"
 	],
 	"contentItems": {
 		"automation": null,
@@ -3202,6 +3203,30 @@
 			}
 		],
 		"integration": null,
+		"layoutrule": [
+			{
+				"description": "",
+				"fromversion": "5.0.0",
+				"id": "Indicator_Feed_layout_rule",
+				"layout_id": "Indicator Feed",
+				"marketplaces": [
+					"marketplacev2"
+				],
+				"name": "Indicator Feed Layout Rule",
+				"toversion": ""
+			},
+			{
+				"description": "",
+				"fromversion": "5.0.0",
+				"id": "Vulnerability_layout_rule",
+				"layout_id": "Vulnerability",
+				"marketplaces": [
+					"marketplacev2"
+				],
+				"name": "Vulnerability Layout Rule",
+				"toversion": ""
+			}
+		],
 		"layoutscontainer": [
 			{
 				"description": "IP Indicator Layout",
@@ -3488,6 +3513,7 @@
 		"widget": null,
 		"wizard": null
 	},
+	"created": "2020-07-26T20:01:30Z",
 	"currentVersion": "3.3.89",
 	"definitionId": "",
 	"dependencies": {
@@ -3872,7 +3898,6 @@
 	},
 	"deprecated": false,
 	"description": "This Content Pack will get you up and running in no-time and provide you with the most commonly used incident \u0026 indicator fields and types.",
-	"disabledMonthly": false,
 	"downloads": 91933,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
@@ -4129,6 +4154,7 @@
 	"itemVersion": "3.3.89",
 	"keywords": [],
 	"legacy": true,
+	"modules": [],
 	"name": "Common Types",
 	"packID": "CommonTypes",
 	"packName": "",
@@ -4151,11 +4177,11 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Trending",
-		"Partner Spotlight"
+		"Partner Spotlight",
+		"Trending"
 	],
 	"toServerVersion": "",
-	"updated": "2023-11-21T22:06:03Z",
+	"updated": "2023-11-02T22:23:26Z",
 	"useCases": [],
 	"version": -1,
 	"versionInfo": "6780549",
