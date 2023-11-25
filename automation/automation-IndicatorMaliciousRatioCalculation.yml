@@ -209,5 +209,5 @@ subtype: python3
 system: true
 tags:
 - ml
-timeout: 300ns
+timeout: 5m0s
 type: python
