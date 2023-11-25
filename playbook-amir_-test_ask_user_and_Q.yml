@@ -1,0 +1,278 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 7d008369-d635-4898-868f-74223581994c
+inputs: []
+name: amir -test ask user and Q
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7739ed3e-5bec-40f3-8c96-8d3f24602844
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 7739ed3e-5bec-40f3-8c96-8d3f24602844
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    form:
+      description: ""
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: is this o.k?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: ""
+        type: shortText
+      sender: ""
+      title: show me the bug!!!??
+      totalanswers: 0
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: 'yes - no Q playbook '
+      cc: null
+      format: ""
+      methods:
+      - email
+      subject:
+        simple: 'show me the bug please '
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        simple: amr876@gmail.com
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 2
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 47de4ac5-97eb-457a-8a54-7c180a7f135e
+      iscommand: false
+      name: yes - no Q
+      type: collection
+      version: -1
+    taskid: 47de4ac5-97eb-457a-8a54-7c180a7f135e
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 430,
+          "y": 460
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: 'testing amir - reply = yes '
+      cc: null
+      format: ""
+      methods:
+      - email
+      replyOptions:
+      - "Yes"
+      - "No"
+      subject:
+        simple: please reply to this mail - YES ( amir testing)
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        simple: amir876@gmail.com
+    nexttasks:
+      "Yes":
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      using:
+        simple: Gmail_instance_dev
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Extract user's response from EmailAskUser reply. Returns the first
+        textual response line of the provided entry that contains the reply body.
+        Use ${lastCompletedTaskEntries} to analyze the previous playbook task containing
+        the user's reply.
+      id: 0e656d0d-114d-48e2-8ebc-6e85e0976ef2
+      iscommand: false
+      name: condition - ask user
+      type: condition
+      version: -1
+    taskid: 0e656d0d-114d-48e2-8ebc-6e85e0976ef2
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 240
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      value:
+        simple: 'done '
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 0b972774-21ff-4302-8dc9-ddd64d183f63
+      iscommand: false
+      name: success
+      script: Print
+      type: regular
+      version: -1
+    taskid: 0b972774-21ff-4302-8dc9-ddd64d183f63
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 650
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5e7ec7a1-dd7d-466e-86aa-db84cff34a5d
+      iscommand: false
+      name: ytytytyt
+      type: regular
+      version: -1
+    taskid: 5e7ec7a1-dd7d-466e-86aa-db84cff34a5d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 430,
+          "y": 850
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1561a248-e9e1-4ae9-8982-120b04c4a534
+      iscommand: false
+      name: Untitled Taskrwewe
+      type: regular
+      version: -1
+    taskid: 1561a248-e9e1-4ae9-8982-120b04c4a534
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 420,
+          "y": 1130
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1175,
+        "width": 410,
+        "x": 420,
+        "y": 50
+      }
+    }
+  }
