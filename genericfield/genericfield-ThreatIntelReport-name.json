@@ -1,4 +1,5 @@
 {
+	"XDRBuiltInField": false,
 	"aliasTo": "",
 	"aliases": null,
 	"associatedToAll": true,
@@ -20,6 +21,7 @@
 	"group": 4,
 	"hidden": false,
 	"id": "generic_ThreatIntelReport_name",
+	"ipVersion": "",
 	"isReadOnly": false,
 	"itemVersion": "",
 	"locked": false,
@@ -35,6 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
+	"pretty_name": "Name",
 	"propagationLabels": [
 		"all"
 	],
@@ -42,6 +45,7 @@
 	"runScriptAfterUpdate": false,
 	"script": "",
 	"selectValues": null,
+	"selectValuesMap": null,
 	"sla": 0,
 	"system": true,
 	"systemAssociatedTypes": null,
