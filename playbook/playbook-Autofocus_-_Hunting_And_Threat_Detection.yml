@@ -394,6 +394,8 @@ tasks:
       - "158"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: AutoFocus V2
