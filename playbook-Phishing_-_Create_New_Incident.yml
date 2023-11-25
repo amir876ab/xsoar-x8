@@ -1,0 +1,154 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 3.5.30
+    packID: Phishing
+    packName: Phishing
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook take arguments which will be used to create a new phishing
+  incident. It is needed for scenarios such as creating several incidents based on
+  values stored in the context. In such scenarios, the playbook can be looped.
+id: Phishing - Create New Incident
+inputs:
+- description: The value for the Incident Name field.
+  key: IncidentName
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The value for the Reported Email Message ID field.
+  key: ReportedEmailMessageID
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The value for the EntryIDs field.
+  key: EntryIDs
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Phishing - Create New Incident
+outputs:
+- contextPath: CreatedIncidentID
+  description: ID of the created incident.
+  type: string
+quiet: true
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 99a2b008-f2fe-41ad-8452-07bfc306bda6
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 99a2b008-f2fe-41ad-8452-07bfc306bda6
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 60
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      entryIDs:
+        complex:
+          root: inputs.EntryIDs
+      name:
+        complex:
+          root: inputs.IncidentName
+      reportedemailmessageid:
+        complex:
+          root: inputs.ReportedEmailMessageID
+      type:
+        simple: Phishing
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.create.inc
+      id: 1847a486-b4a0-4649-8243-ccd47af1f68e
+      iscommand: true
+      name: Create New Incident
+      script: Builtin|||createNewIncident
+      type: regular
+      version: -1
+    taskid: 1847a486-b4a0-4649-8243-ccd47af1f68e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 200
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 10f15187-648e-4666-838f-b9f23339ba4a
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 10f15187-648e-4666-838f-b9f23339ba4a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 370
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 375,
+        "width": 380,
+        "x": 450,
+        "y": 60
+      }
+    }
+  }
