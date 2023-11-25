@@ -96,6 +96,8 @@ tasks:
       - "9"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: WildFire-v2
