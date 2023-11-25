@@ -179,6 +179,7 @@
 		"widget": null,
 		"wizard": null
 	},
+	"created": "2020-07-25T17:48:08Z",
 	"currentVersion": "2.1.15",
 	"definitionId": "",
 	"dependencies": {
@@ -186,21 +187,20 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.32.31",
+			"minVersion": "1.32.33",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.12.20",
+			"minVersion": "1.12.23",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "Use the Palo Alto Networks AutoFocus integration to distinguish the most\n  important threats from everyday commodity attacks.",
-	"disabledMonthly": false,
-	"downloads": 37722,
+	"downloads": 38106,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -238,6 +238,7 @@
 		"TIM"
 	],
 	"legacy": true,
+	"modules": [],
 	"name": "AutoFocus by Palo Alto Networks",
 	"packID": "AutoFocus",
 	"packName": "",
@@ -260,14 +261,14 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Threat Intelligence Management",
+		"TIM",
 		"Palo Alto Networks Products",
-		"TIM"
+		"Threat Intelligence Management"
 	],
 	"toServerVersion": "",
-	"updated": "2023-10-13T09:21:51Z",
+	"updated": "2023-09-14T09:37:08Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "6285754",
+	"versionInfo": "6319909",
 	"videos": []
 }
