@@ -22,7 +22,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "metrics",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -60,7 +59,6 @@
 				],
 				"query": "type:playbook",
 				"shouldCommit": false,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -82,7 +80,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "metrics",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -161,7 +158,6 @@
 				"query": "type:playbook",
 				"shouldCommit": false,
 				"size": 5,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -183,7 +179,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "metrics",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -221,7 +216,6 @@
 				],
 				"query": "type:playbook",
 				"shouldCommit": false,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -243,7 +237,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "tasks",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -316,7 +309,6 @@
 				],
 				"query": "automated:F",
 				"shouldCommit": false,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -338,7 +330,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "tasks",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -379,7 +370,6 @@
 				"query": "",
 				"shouldCommit": false,
 				"size": 5,
-				"sizeInBytes": 0,
 				"sort": [
 					{
 						"asc": false,
@@ -408,7 +398,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "metrics",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -489,7 +478,6 @@
 				"query": "type:playbook",
 				"shouldCommit": false,
 				"size": 5,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -511,7 +499,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "metrics",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -591,7 +578,6 @@
 				"query": "type:playbook",
 				"shouldCommit": false,
 				"size": 5,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
