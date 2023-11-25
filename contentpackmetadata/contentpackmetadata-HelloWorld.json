@@ -44,7 +44,7 @@
 		"incidentfield": [
 			{
 				"description": "",
-				"name": "Hello World ID",
+				"name": "Hello World Status",
 				"type": "shortText"
 			},
 			{
@@ -54,7 +54,7 @@
 			},
 			{
 				"description": "",
-				"name": "Hello World Status",
+				"name": "Hello World ID",
 				"type": "shortText"
 			}
 		],
@@ -70,18 +70,6 @@
 		],
 		"indicatorfield": null,
 		"integration": [
-			{
-				"category": "Data Enrichment \u0026 Threat Intelligence",
-				"commands": [
-					{
-						"description": "Gets indicators from the feed.",
-						"name": "helloworld-get-indicators"
-					}
-				],
-				"description": "This is the Feed Hello World integration for getting started with your feed integration.",
-				"id": "HelloWorld Feed",
-				"name": "HelloWorld Feed (Community Contribution)"
-			},
 			{
 				"category": "Utilities",
 				"commands": [
@@ -105,6 +93,18 @@
 				"description": "This is the Hello World integration for getting started.",
 				"id": "HelloWorld",
 				"name": "HelloWorld (Community Contribution)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Gets indicators from the feed.",
+						"name": "helloworld-get-indicators"
+					}
+				],
+				"description": "This is the Feed Hello World integration for getting started with your feed integration.",
+				"id": "HelloWorld Feed",
+				"name": "HelloWorld Feed (Community Contribution)"
 			}
 		],
 		"layoutscontainer": [
@@ -116,12 +116,12 @@
 		"list": null,
 		"playbook": [
 			{
-				"description": "Deprecated. No available replacement.",
-				"name": "HelloWorld Scan"
-			},
-			{
 				"description": "This is a playbook which will handle the alerts coming from the Hello World service",
 				"name": "Handle Hello World Alert"
+			},
+			{
+				"description": "Deprecated. No available replacement.",
+				"name": "HelloWorld Scan"
 			}
 		],
 		"report": null,
@@ -129,6 +129,7 @@
 		"widget": null,
 		"wizard": null
 	},
+	"created": "2020-09-23T17:36:09Z",
 	"currentVersion": "2.0.0",
 	"definitionId": "",
 	"dependencies": {
@@ -163,7 +164,6 @@
 	},
 	"deprecated": false,
 	"description": "This is the Hello World integration for getting started.",
-	"disabledMonthly": false,
 	"downloads": 18258,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
@@ -186,6 +186,7 @@
 	"itemVersion": "2.0.0",
 	"keywords": [],
 	"legacy": true,
+	"modules": [],
 	"name": "HelloWorld",
 	"packID": "HelloWorld",
 	"packName": "",
@@ -208,11 +209,11 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"TIM",
-		"Getting Started"
+		"Getting Started",
+		"TIM"
 	],
 	"toServerVersion": "",
-	"updated": "2023-11-23T10:21:46Z",
+	"updated": "2023-10-01T09:29:42Z",
 	"useCases": [],
 	"version": -1,
 	"versionInfo": "6476675",
