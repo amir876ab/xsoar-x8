@@ -342,6 +342,7 @@
 		],
 		"wizard": null
 	},
+	"created": "2020-09-23T17:48:33Z",
 	"currentVersion": "2.6.11",
 	"definitionId": "",
 	"dependencies": {
@@ -349,35 +350,34 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.32.31",
+			"minVersion": "1.32.40",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.4.2",
+			"minVersion": "2.4.13",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.12.22",
+			"minVersion": "1.12.38",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.3.86",
+			"minVersion": "3.3.88",
 			"name": "Common Types"
 		}
 	},
 	"deprecated": false,
 	"description": "Analyze suspicious hashes, URLs, domains and IP addresses",
-	"disabledMonthly": false,
-	"downloads": 32308,
+	"downloads": 33579,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -413,6 +413,7 @@
 	"itemVersion": "2.6.11",
 	"keywords": [],
 	"legacy": true,
+	"modules": [],
 	"name": "VirusTotal",
 	"packID": "VirusTotal",
 	"packName": "",
@@ -435,13 +436,14 @@
 		"url": "https://www.virustotal.com"
 	},
 	"tags": [
+		"TIM",
 		"Featured",
-		"TIM"
+		"Free Enricher"
 	],
 	"toServerVersion": "",
-	"updated": "2023-10-30T19:29:13Z",
+	"updated": "2023-10-30T19:31:41Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "6285754",
+	"versionInfo": "6746892",
 	"videos": []
 }
