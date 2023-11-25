@@ -23,6 +23,8 @@ enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: PublishThreatIntelReport
+nativeimage:
+- "8.3"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
