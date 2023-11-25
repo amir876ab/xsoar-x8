@@ -1,4 +1,5 @@
 {
+	"XDRBuiltInField": false,
 	"aliasTo": "",
 	"aliases": null,
 	"associatedToAll": true,
@@ -34,6 +35,7 @@
 	"group": 2,
 	"hidden": false,
 	"id": "indicator_description",
+	"ipVersion": "",
 	"isReadOnly": false,
 	"itemVersion": "3.3.89",
 	"locked": false,
@@ -49,11 +51,13 @@
 		"all"
 	],
 	"placeholder": "",
+	"pretty_name": "Description",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
 	"script": "",
 	"selectValues": null,
+	"selectValuesMap": null,
 	"sla": 0,
 	"system": false,
 	"systemAssociatedTypes": null,
