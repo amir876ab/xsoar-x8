@@ -1,0 +1,83 @@
+args:
+- description: The single indicator value to check
+  name: value
+  required: true
+comment: Get the overall score for the indicator as calculated by DBot.
+commonfields:
+  id: GetIndicatorDBotScoreFromCache
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.12.39
+    packID: CommonScripts
+    packName: Common Scripts
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: GetIndicatorDBotScoreFromCache
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('GetIndicatorDBotScoreFromCache', 'start', __line__())
+  ### pack version: 1.12.39
+
+
+
+
+  def main():
+      value = demisto.args().get("value", None)
+
+      res = demisto.executeCommand("getIndicator", {"value": value})
+
+      if len(res[0]["Contents"]) > 0:
+          data = res[0]["Contents"][0]
+          score = data["score"]
+          vendor = "XSOAR"
+          reliability = data.get("aggregatedReliability")
+          indicatorType = data["indicator_type"]
+          expirationStatus = False if data.get("expirationStatus") == "active" else True
+
+          dbotscore = {
+              "Indicator": value,
+              "Type": indicatorType,
+              "Vendor": vendor,
+              "Score": score,
+              "Reliability": reliability,
+              "Expired": expirationStatus
+          }
+
+          md = tableToMarkdown("Indicator", dbotscore)
+
+          entry = {
+              "Type": entryTypes["note"],
+              "ReadableContentsFormat": formats['markdown'],
+              "ContentsFormat": formats["json"],
+              "Contents": dbotscore,
+              "EntryContext": {"DBotScoreCache": dbotscore},
+              "HumanReadable": md
+          }
+
+          return_results(entry)
+
+      else:
+          return_results(f"Could not find {value} in cache")
+
+
+  if __name__ == "__builtin__" or __name__ == "builtins":
+      main()
+
+  register_module_line('GetIndicatorDBotScoreFromCache', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags: []
+type: python
