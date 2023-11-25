@@ -1,0 +1,447 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 3.5.30
+    packID: Phishing
+    packName: Phishing
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: The "Spear Phishing Investigation" playbook is designed to detect patterns
+  that indicates a spear phishing attempt by the attacker.
+id: Spear Phishing Investigation
+inputs:
+- description: Results of the domain squatting investigation.
+  key: DomainSquattingResults
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    A comma-separated or list of keywords to search in the email body.
+    for example: name of the organization finance app that the attacker might impost to.
+  key: KeywordsToSearch
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The phishing mail body.
+  key: MailBody
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Spear Phishing Investigation
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 56356c32-2608-4402-893d-b35280351a2a
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 56356c32-2608-4402-893d-b35280351a2a
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a3bf8786-d0c4-47a6-8a51-c116123b39e4
+      iscommand: false
+      name: Domain Squatting
+      type: title
+      version: -1
+    taskid: a3bf8786-d0c4-47a6-8a51-c116123b39e4
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 170,
+          "y": 200
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 310fa350-ca1a-4dd7-8352-d302c4ab60ff
+      iscommand: false
+      name: Keywords Search
+      type: title
+      version: -1
+    taskid: 310fa350-ca1a-4dd7-8352-d302c4ab60ff
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 730,
+          "y": 200
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.DomainSquattingResults
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 40ab5b82-b0fb-4e24-89d8-db5077fdfc4f
+      iscommand: false
+      name: Did DomainSquatting occur?
+      type: condition
+      version: -1
+    taskid: 40ab5b82-b0fb-4e24-89d8-db5077fdfc4f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 170,
+          "y": 330
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      domainsquattingresult:
+        complex:
+          root: inputs.DomainSquattingResults
+          transformers:
+          - operator: uniq
+          - args:
+              delimiter:
+                value:
+                  simple: '@'
+              fields:
+                value:
+                  simple: "2"
+            operator: Cut
+          - args:
+              prefix:
+                value:
+                  simple: The attacker used the domain **
+              suffix: {}
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: '** which looks like another domain involved in this incident.'
+            operator: concat
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 4bc3e5e8-ba44-4bfe-8ccd-14ac4cf7737f
+      iscommand: true
+      name: Save Domain-Squatting result to incident field
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 4bc3e5e8-ba44-4bfe-8ccd-14ac4cf7737f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -80,
+          "y": 500
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4451884f-d282-4519-8d98-f99098f618f1
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 4451884f-d282-4519-8d98-f99098f618f1
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 1010
+        }
+      }
+  "6":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.KeywordsToSearch
+          operator: isNotEmpty
+          right:
+            value: {}
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.MailBody
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c68376e6-38f2-4d3f-89c3-01e1540d3a85
+      iscommand: false
+      name: Has list of keywords and email body?
+      type: condition
+      version: -1
+    taskid: c68376e6-38f2-4d3f-89c3-01e1540d3a85
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 730,
+          "y": 330
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      contextKey:
+        simple: KeyWordsFound
+      data:
+        complex:
+          root: inputs.MailBody
+      regex:
+        complex:
+          root: inputs.KeywordsToSearch
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Extracts regex data from the provided text. The script support
+        groups and looping.
+      id: 6981fc14-899c-4f81-8f19-27e1f0a54f8b
+      iscommand: false
+      name: Search if keywords exist
+      script: MatchRegexV2
+      type: regular
+      version: -1
+    taskid: 6981fc14-899c-4f81-8f19-27e1f0a54f8b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 930,
+          "y": 510
+        }
+      }
+  "17":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: KeyWordsFound
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: db9e774b-dacd-416d-82e6-38cc237565c8
+      iscommand: false
+      name: Has results?
+      type: condition
+      version: -1
+    taskid: db9e774b-dacd-416d-82e6-38cc237565c8
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 930,
+          "y": 670
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      emailkeywordsfound:
+        complex:
+          root: KeyWordsFound
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: d12e22c4-df08-46c1-84b6-b780c7cb17cc
+      iscommand: true
+      name: Set keywords found to layout
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: d12e22c4-df08-46c1-84b6-b780c7cb17cc
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 930,
+          "y": 840
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "17_5_#default#": 0.42,
+      "3_5_#default#": 0.17,
+      "6_5_#default#": 0.16
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1025,
+        "width": 1390,
+        "x": -80,
+        "y": 50
+      }
+    }
+  }
