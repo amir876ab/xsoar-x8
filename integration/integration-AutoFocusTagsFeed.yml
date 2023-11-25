@@ -151,6 +151,8 @@ script:
     name: autofocus-tags-feed-get-indicators
   dockerimage: demisto/python3:3.10.10.49934
   feed: true
+  nativeimage:
+  - "8.3"
   runonce: false
   script: |
     register_module_line('AutoFocusTagsFeed', 'start', __line__())
