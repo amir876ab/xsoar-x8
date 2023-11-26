@@ -14,7 +14,7 @@
 	"formatScript": "ExtractAttackPattern",
 	"fromServerVersion": "6.2.0",
 	"id": "Attack Pattern",
-	"itemVersion": "3.3.89",
+	"itemVersion": "3.3.92",
 	"layout": "STIX Attack Pattern",
 	"legacyNames": [
 		"STIX Attack Pattern"
