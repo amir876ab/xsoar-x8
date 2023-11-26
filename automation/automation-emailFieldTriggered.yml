@@ -6,7 +6,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.39
+    itemVersion: 1.12.47
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -25,7 +25,7 @@ pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  // pack version: 1.12.39
+  // pack version: 1.12.47
   var users = executeCommand('getUsers', {});
   var email;
   for (var i = 0; i < users[0].Contents.length; i++) {
