@@ -16,7 +16,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.32.41
+    itemVersion: 1.32.47
     packID: Base
     packName: Base
     packPropagationLabels:
@@ -33,7 +33,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('HighlightWords', 'start', __line__())
-  ### pack version: 1.32.41
+  ### pack version: 1.32.47
 
 
 
