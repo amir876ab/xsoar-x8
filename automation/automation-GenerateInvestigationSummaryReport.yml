@@ -18,7 +18,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.39
+    itemVersion: 1.12.47
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -41,7 +41,7 @@ pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  // pack version: 1.12.39
+  // pack version: 1.12.47
   return executeCommand("generateSummaryReport", {name: args.name, type: args.type, incidentId: args.incidentId})
 scripttarget: 0
 system: true
