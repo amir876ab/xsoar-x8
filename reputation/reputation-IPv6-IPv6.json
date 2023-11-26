@@ -191,7 +191,7 @@
 	"formatScript": "VerifyIPv6Indicator",
 	"fromServerVersion": "5.5.0",
 	"id": "IPv6",
-	"itemVersion": "3.3.89",
+	"itemVersion": "3.3.92",
 	"layout": "ipRep",
 	"legacyNames": null,
 	"locked": false,
