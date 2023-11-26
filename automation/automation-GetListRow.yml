@@ -27,7 +27,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.39
+    itemVersion: 1.12.47
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -35,7 +35,7 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.65389
+dockerimage: demisto/python3:3.10.13.80593
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
@@ -61,7 +61,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('GetListRow', 'start', __line__())
-  ### pack version: 1.12.39
+  ### pack version: 1.12.47
 
 
 
@@ -82,7 +82,8 @@ script: |
 
 
   def list_to_headers_and_lines(list_data, list_separator: str):
-      lines_and_headers = [line.split(list_separator) for line in list_data.split('\n')]
+      lines_and_headers = [(line.replace("\r", "") if line.endswith("\r") else line).split(list_separator)
+                           for line in list_data.split('\n')]
       headers = lines_and_headers[0]
       return headers, lines_and_headers[1:]
 
