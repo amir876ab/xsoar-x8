@@ -9,7 +9,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 1.3.37
+    itemVersion: 1.3.38
     packID: DemistoRESTAPI
     packName: Cortex REST API
     packPropagationLabels:
@@ -22,9 +22,6 @@ enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: GetTasksWithSections
-nativeimage:
-- "8.3"
-- "8.4"
 outputs:
 - contextPath: Tasks
   description: The entire task object
@@ -70,7 +67,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('GetTasksWithSections', 'start', __line__())
-  ### pack version: 1.3.37
+  ### pack version: 1.3.38
 
   import copy
   from itertools import chain
