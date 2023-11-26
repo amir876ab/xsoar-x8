@@ -25,7 +25,7 @@
 	"id": "incident_dpoemailaddress",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.12.39",
+	"itemVersion": "1.12.47",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "DPO E-mail Address",
