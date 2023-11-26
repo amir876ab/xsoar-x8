@@ -297,6 +297,16 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
+      description: |-
+        Calculate and assign the incident severity based on the highest returned severity level from the following calculations:
+
+        - DBotScores of indicators
+        - Critical assets
+        - Email authenticity
+        - Current incident severity
+        - Microsoft Headers
+        - Risky users (XDR)
+        - Risky hosts (XDR).
       id: dfb3f612-e38a-43c1-8214-310a8e18524e
       iscommand: false
       name: Calculate Severity - Generic v2
@@ -421,6 +431,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
+      description: Enrich entities using one or more integrations.
       id: 8decff13-01bc-4535-8bde-62157f3d7c66
       iscommand: false
       name: Entity Enrichment - Generic v3
