@@ -28,7 +28,7 @@
 	"id": "indicator_geocountry",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.89",
+	"itemVersion": "3.3.92",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Geo Country",
