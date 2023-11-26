@@ -7,7 +7,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 1.3.37
+    itemVersion: 1.3.38
     packID: DemistoRESTAPI
     packName: Cortex REST API
     packPropagationLabels:
@@ -19,15 +19,12 @@ dockerimage: demisto/python3:3.10.12.63474
 engineinfo: {}
 mainengineinfo: {}
 name: SetIRProceduresMarkdown
-nativeimage:
-- "8.3"
-- "8.4"
 pswd: ""
 runas: DBotRole
 runonce: false
 script: |
   register_module_line('SetIRProceduresMarkdown', 'start', __line__())
-  ### pack version: 1.3.37
+  ### pack version: 1.3.38
 
 
   SECTIONS_TO_KEEP = ('Threat Hunting', 'Mitigation', 'Remediation', 'Eradication')
