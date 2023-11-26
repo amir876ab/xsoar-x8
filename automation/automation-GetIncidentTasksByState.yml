@@ -1,10 +1,10 @@
 args:
 - default: true
-  description: Incident ID to get tasks from
+  description: Incident ID to get tasks from.
   name: inc_id
   required: true
 - description: 'Comma separated list of states. Possible values: New, InProgress,
-    Completed, Waiting, Error, Skipped, Blocked (leave empty to get all tasks)'
+    Completed, Waiting, Error, Skipped, Blocked (leave empty to get all tasks).'
   name: states
 comment: Get all tasks for specific incident by the given state.
 commonfields:
@@ -14,7 +14,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.3.37
+    itemVersion: 1.3.38
     packID: DemistoRESTAPI
     packName: Cortex REST API
     packPropagationLabels:
@@ -28,52 +28,53 @@ mainengineinfo: {}
 name: GetIncidentTasksByState
 outputs:
 - contextPath: Tasks
-  description: The entire task object
+  description: The entire task object.
 - contextPath: Tasks.id
-  description: Task ID
+  description: Task ID.
   type: string
 - contextPath: Tasks.name
-  description: Task name
+  description: Task name.
   type: string
 - contextPath: Tasks.type
-  description: The type of the task (regular, condition, title, playbook, start)
+  description: The type of the task (regular, condition, title, playbook, start).
   type: string
 - contextPath: Tasks.owner
-  description: Task owner
+  description: Task owner.
   type: string
 - contextPath: Tasks.state
   description: Task state (inprogress, Completed, WillNotBeExecuted, Error, Waiting,
-    Blocked, and empty string for not started)
+    Blocked, and empty string for not started).
   type: string
 - contextPath: Tasks.scriptId
-  description: Task related script (empty if manual)
+  description: Task related script (empty if manual).
   type: string
 - contextPath: Tasks.startDate
-  description: Task start date
+  description: Task start date.
   type: unknown
 - contextPath: Tasks.completedDate
-  description: Task completed date
+  description: Task completed date.
   type: unknown
 - contextPath: Tasks.dueDate
-  description: Task due date (SLA)
+  description: Task due date (SLA).
   type: unknown
 - contextPath: Tasks.parentPlaybookID
-  description: Task parent playbook ID (in case the task is part of sub-playbook)
+  description: Task parent playbook ID (in case the task is part of sub-playbook).
   type: unknown
 - contextPath: Tasks.completedBy
-  description: Task completed by (username)
+  description: Task completed by (username).
   type: string
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  // pack version: 1.3.37
+  // pack version: 1.3.38
   var taskStates = {
       new: '',
       inprogress: 'inprogress',
       completed: 'Completed',
       waiting: 'Waiting',
       error: 'Error',
+      looperror: 'LoopError',
       skipped: 'WillNotBeExecuted',
       blocked: 'Blocked'
   };
@@ -107,8 +108,12 @@ script: |
   }
 
   function getStates(states) {
+      var input_states = states.split(",");
+      if (input_states.includes('error')) {
+          input_states = input_states.concat('loopError')
+      }
       var readyStates = {};
-      var splittedStates = states.split(",").forEach(function(state) {
+      input_states.forEach(function(state) {
           var systemState = taskStates[state.trim().toLowerCase()];
           if (systemState !== null && systemState !== undefined) {
            readyStates[systemState] = true;
