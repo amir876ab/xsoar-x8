@@ -14,7 +14,7 @@
 	"formatScript": "",
 	"fromServerVersion": "6.2.0",
 	"id": "Tool",
-	"itemVersion": "3.3.89",
+	"itemVersion": "3.3.92",
 	"layout": "STIX Tool",
 	"legacyNames": [
 		"STIX Tool"
