@@ -13,7 +13,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.35
+    itemVersion: 1.2.37
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -21,7 +21,7 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/py3-tools:1.0.0.77497
+dockerimage: demisto/py3-tools:1.0.0.80312
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
@@ -31,7 +31,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('jmespath', 'start', __line__())
-  ### pack version: 1.2.35
+  ### pack version: 1.2.37
 
 
   from typing import Union
