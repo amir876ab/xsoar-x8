@@ -77,7 +77,7 @@
 	"id": "indicator_dnsrecords",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.89",
+	"itemVersion": "3.3.92",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "DNS Records",
