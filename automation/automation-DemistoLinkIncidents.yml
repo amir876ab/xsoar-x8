@@ -21,7 +21,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.3.37
+    itemVersion: 1.3.38
     packID: DemistoRESTAPI
     packName: Cortex REST API
     packPropagationLabels:
@@ -41,7 +41,7 @@ pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  // pack version: 1.3.37
+  // pack version: 1.3.38
   var body = {
       id: args.masterID,
       otherIncidentsIDs: args.otherIDs.split(','),
