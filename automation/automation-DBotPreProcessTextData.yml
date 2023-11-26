@@ -97,7 +97,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.32.41
+    itemVersion: 1.32.47
     packID: Base
     packName: Base
     packPropagationLabels:
@@ -127,7 +127,7 @@ runas: DBotWeakRole
 runonce: true
 script: |
   register_module_line('DBotPreProcessTextData', 'start', __line__())
-  ### pack version: 1.32.41
+  ### pack version: 1.32.47
   # pylint: disable=no-member
   from collections import Counter
 
