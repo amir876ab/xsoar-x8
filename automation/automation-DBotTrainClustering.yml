@@ -104,7 +104,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.2.0
-    itemVersion: 1.32.41
+    itemVersion: 1.32.47
     packID: Base
     packName: Base
     packPropagationLabels:
@@ -121,7 +121,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('DBotTrainClustering', 'start', __line__())
-  ### pack version: 1.32.41
+  ### pack version: 1.32.47
 
 
 
