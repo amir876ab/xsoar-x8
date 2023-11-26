@@ -8,7 +8,7 @@
 	"hideSearch": false,
 	"id": "MITRE ATT\u0026CK v2",
 	"isCommon": true,
-	"itemVersion": "1.1.24",
+	"itemVersion": "1.1.25",
 	"layout": [
 		{
 			"forceRange": false,
