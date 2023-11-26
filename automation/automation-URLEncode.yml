@@ -24,7 +24,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.35
+    itemVersion: 1.2.37
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -42,7 +42,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('URLEncode', 'start', __line__())
-  ### pack version: 1.2.35
+  ### pack version: 1.2.37
 
 
   from urllib.parse import quote, unquote
