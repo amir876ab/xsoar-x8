@@ -111,7 +111,7 @@
 	"formatScript": "",
 	"fromServerVersion": "5.5.0",
 	"id": "registryKey",
-	"itemVersion": "3.3.89",
+	"itemVersion": "3.3.92",
 	"layout": "registryKey",
 	"legacyNames": null,
 	"locked": false,
