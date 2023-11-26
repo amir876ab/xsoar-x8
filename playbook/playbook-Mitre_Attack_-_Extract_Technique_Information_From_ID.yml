@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.2.0
-    itemVersion: 1.1.24
+    itemVersion: 1.1.25
     packID: FeedMitreAttackv2
     packName: MITRE ATT&CK
     packPropagationLabels:
