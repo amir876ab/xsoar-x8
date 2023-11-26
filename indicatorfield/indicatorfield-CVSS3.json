@@ -77,7 +77,7 @@
 	"id": "indicator_cvss3",
 	"ipVersion": "",
 	"isReadOnly": true,
-	"itemVersion": "3.3.89",
+	"itemVersion": "3.3.92",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "CVSS3",
