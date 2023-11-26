@@ -96,7 +96,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.2.35
+    itemVersion: 1.2.37
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -114,7 +114,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('TimeComponents', 'start', __line__())
-  ### pack version: 1.2.35
+  ### pack version: 1.2.37
 
 
   import re
