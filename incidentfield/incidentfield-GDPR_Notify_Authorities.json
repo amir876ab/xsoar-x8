@@ -25,7 +25,7 @@
 	"id": "incident_gdprnotifyauthorities",
 	"ipVersion": "",
 	"isReadOnly": true,
-	"itemVersion": "1.12.39",
+	"itemVersion": "1.12.47",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "GDPR Notify Authorities",
