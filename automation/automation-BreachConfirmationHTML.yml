@@ -5,7 +5,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.12.39
+    itemVersion: 1.12.47
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -23,7 +23,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('BreachConfirmationHTML', 'start', __line__())
-  ### pack version: 1.12.39
+  ### pack version: 1.12.47
 
 
 
