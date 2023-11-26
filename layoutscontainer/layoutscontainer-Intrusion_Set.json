@@ -302,6 +302,19 @@
 								"startCol": 0
 							},
 							{
+								"args": {},
+								"buttonClass": "secondary",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "6bc02be0-350c-11ee-9da7-693d42899c2b",
+								"index": 11,
+								"name": "Execute Intrusion Set hunt",
+								"scriptId": "HuntingFromIndicatorLayout",
+								"sectionItemType": "button",
+								"startCol": 0
+							},
+							{
 								"args": {
 									"field": {
 										"simple": "tags"
@@ -667,7 +680,7 @@
 			}
 		]
 	},
-	"itemVersion": "3.3.89",
+	"itemVersion": "3.3.92",
 	"locked": false,
 	"mobile": null,
 	"name": "Intrusion Set",
