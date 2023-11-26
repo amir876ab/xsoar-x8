@@ -1,17 +1,17 @@
 args:
 - default: true
-  description: The email address to check
+  description: The email address to check.
   name: email
   required: true
-- description: The domain list to check against for squatting (comma separated)
+- description: The domain list to check against for squatting (comma separated).
   isArray: true
   name: domain
   required: true
 - defaultValue: "3"
-  description: The similarity threshold
+  description: The similarity threshold.
   name: threshold
 comment: Check if an email address's domain is trying to squat other domain using
-  Levenshtein distance algorithm
+  Levenshtein distance algorithm.
 commonfields:
   id: EmailDomainSquattingReputation
   version: -1
@@ -19,7 +19,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.39
+    itemVersion: 1.12.47
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -32,44 +32,78 @@ mainengineinfo: {}
 name: EmailDomainSquattingReputation
 outputs:
 - contextPath: Account
-  description: 'A user account '
+  description: A user account.
 - contextPath: Account.Email
-  description: The account email object
+  description: The account email object.
 - contextPath: Account.Email.Username
-  description: The account email username
+  description: The account email username.
   type: string
 - contextPath: Account.Email.Address
-  description: The account email address
+  description: The account email address.
   type: string
 - contextPath: Account.Email.Domain
-  description: The account email domain
+  description: The account email domain.
   type: string
 - contextPath: Account.Email.Distance
-  description: The email address distance compare to the domains in query
+  description: The email address distance compare to the domains in query.
   type: number
 - contextPath: Account.Email.Distance.Domain
-  description: The compared domain
+  description: The compared domain.
   type: string
 - contextPath: Account.Email.Distance.Value
-  description: 'The distance between the email domain and the compared domain '
+  description: The distance between the email domain and the compared domain.
   type: number
 - contextPath: DBotScore.Indicator
-  description: The Indicator
+  description: The Indicator.
   type: string
 - contextPath: DBotScore.Type
-  description: The Indicator Type
+  description: The Indicator Type.
   type: string
 - contextPath: DBotScore.Vendor
-  description: The DBot score vendor
+  description: The DBot score vendor.
   type: string
 - contextPath: DBotScore.Score
-  description: The DBot score
+  description: The DBot score.
   type: number
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  // pack version: 1.12.39
+  // pack version: 1.12.47
+  function levenshtein(str1, str2) {
+      const len1 = str1.length;
+      const len2 = str2.length;
+
+      // Create a 2D array to store the edit distances
+      const matrix = new Array(len1 + 1);
+      for (let i = 0; i <= len1; i++) {
+        matrix[i] = new Array(len2 + 1);
+      }
+
+      // Initialize the matrix
+      for (let i = 0; i <= len1; i++) {
+        matrix[i][0] = i;
+      }
+
+      for (let j = 0; j <= len2; j++) {
+        matrix[0][j] = j;
+      }
+
+      // Fill in the matrix using dynamic programming
+      for (let i = 1; i <= len1; i++) {
+        for (let j = 1; j <= len2; j++) {
+          const cost = (str1[i - 1] === str2[j - 1]) ? 0 : 1;
+          matrix[i][j] = Math.min(
+            matrix[i - 1][j] + 1,       // Deletion
+            matrix[i][j - 1] + 1,       // Insertion
+            matrix[i - 1][j - 1] + cost // Substitution
+          );
+        }
+      }
+
+      // The final edit distance is in the bottom-right cell of the matrix
+      return matrix[len1][len2];
+  }
 
   var email = args.email;
   var domains = argToList(args.domain);
@@ -92,24 +126,16 @@ script: |
   };
 
   domains.forEach(function(domain){
-    if(domain) {
-        var resp = executeCommand("GetStringsDistance", {inputString: emailObj.Domain, compareString: domain.toLowerCase()});
-
-        if(isError(resp[0])){
-            return resp;
-        }
-
-        data = [dq(resp[0], "Contents.Distances")];
-        data.forEach(function(entry)
-        {
-            emailObj.Distance.push(
-                {
-                    Domain  : dq(entry,"StringB"),
-                    Value   : dq(entry,"LevenshteinDistance")
-                });
-        });
-    }
+      if(domain) {
+          let levenshteinForDomain = levenshtein(emailObj.Domain, domain.toLowerCase());
+          emailObj.Distance.push(
+              {
+                  Domain  : domain,
+                  Value   : levenshteinForDomain
+              });
+      }
   });
+
   var ec = {};
   var suspicious = dq(emailObj,"Distance(val.Value > 0 && val.Value < {0}).Value".format(threshold));
   var dbotScore = 0;
