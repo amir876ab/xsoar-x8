@@ -15,7 +15,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.39
+    itemVersion: 1.12.47
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -31,7 +31,7 @@ pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  // pack version: 1.12.39
+  // pack version: 1.12.47
   var lat = parseFloat(args.lat); var lng = parseFloat(args.lng); var address = args.address;
   if (isNaN(lat) || isNaN(lng)) {
     if (!address || address.trim().length === 0){
