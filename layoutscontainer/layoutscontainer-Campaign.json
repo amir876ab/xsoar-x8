@@ -263,6 +263,19 @@
 								"startCol": 0
 							},
 							{
+								"args": {},
+								"buttonClass": "secondary",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 22,
+								"id": "fcadbfd0-33b0-11ee-83bf-674adb4bd869",
+								"index": 8,
+								"name": "Execute Campaign Hunt",
+								"scriptId": "HuntingFromIndicatorLayout",
+								"sectionItemType": "button",
+								"startCol": 0
+							},
+							{
 								"args": {
 									"field": {
 										"simple": "tags"
@@ -327,7 +340,7 @@
 						"items": [
 							{
 								"dropEffect": "move",
-								"endCol": 4,
+								"endCol": 2,
 								"fieldId": "description",
 								"height": 106,
 								"id": "3a65d1d0-d17d-11ea-b39d-69849bf59ed7",
@@ -576,7 +589,7 @@
 			}
 		]
 	},
-	"itemVersion": "3.3.89",
+	"itemVersion": "3.3.92",
 	"locked": false,
 	"mobile": null,
 	"name": "Campaign",
