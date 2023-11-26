@@ -26,7 +26,7 @@
 	"id": "incident_managementnotification",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.12.39",
+	"itemVersion": "1.12.47",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Management Notification",
