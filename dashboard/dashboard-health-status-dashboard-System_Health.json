@@ -8,7 +8,7 @@
 	"hideSearch": false,
 	"id": "health-status-dashboard",
 	"isCommon": true,
-	"itemVersion": "1.32.41",
+	"itemVersion": "1.32.47",
 	"layout": [
 		{
 			"forceRange": false,
