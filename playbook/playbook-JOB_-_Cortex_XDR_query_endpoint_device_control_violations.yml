@@ -1,0 +1,416 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |2-
+    A job to periodically query Cortex XDR device control violations by a given timestamp in a relative date playbook input.
+    The collected data, if found, will be generated for a new incident.
+    You can configure the created new incident type in the playbook input and use the XDR Device Control Violations incident type to associate it with the response playbook.
+    The job includes an incident type with a dedicated layout to visualize the collected data.
+    To configure the job correctly:
+    1. Create a new recurring job.
+    2. Configure the recurring schedule.
+    3. Add a name.
+    4. Configure the type to XDR Device Control Violations.
+    5. Configure this playbook as the job playbook.
+    The scheduled run time and the timestamp relative date should be identical.
+    If the job recurs every 7 days, the timestamp should be 7 days as well.
+id: JOB - Cortex XDR query endpoint device control violations
+inputs:
+- description: |-
+    Timestamp in relative date format for query device control events
+    from Cortex XDR.
+    For example "1 day", "3 weeks".
+  key: TimeStamp
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: "The severity of the created incident when the device control events
+    were found.\nValid values are; \n   0 - Unknown\n   0.5 - Informational\n   1
+    - Low\n   2 - Medium\n   3 - High\n   4 - Critical"
+  key: Severity
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "1"
+- description: The desired incident type for the created incident when the device
+    control violations were found.
+  key: IncidentType
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: Cortex XDR Device Control Violations
+- description: The Endpoint ID to search for device control violations.
+  key: EndpointID
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The hostname of the endpoint to query for device control violations.
+  key: Hostname
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The IP address of the endpoint to query for device control violations.
+  key: IPAddress
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: JOB - Cortex XDR query endpoint device control violations
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ffe7dd30-7c4d-40c0-8734-468ae38cffe6
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: ffe7dd30-7c4d-40c0-8734-468ae38cffe6
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 110
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_ids:
+        complex:
+          root: inputs.EndpointID
+      hostname:
+        complex:
+          root: inputs.Hostname
+      ip_list:
+        complex:
+          root: inputs.IPAddress
+      timestamp_gte:
+        complex:
+          root: inputs.TimeStamp
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets a list of device control violations filtered by selected fields.
+        You can retrieve up to 100 violations.
+      id: 759e4939-75e9-4c60-8cb0-40d94fd5f232
+      iscommand: true
+      name: Get endpoint device control violations
+      script: '|||xdr-get-endpoint-device-control-violations'
+      type: regular
+      version: -1
+    taskid: 759e4939-75e9-4c60-8cb0-40d94fd5f232
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 250
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: EndpointViolations
+                root: PaloAltoNetworksXDR
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "11"
+      "yes":
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 180ab59c-d7fe-460d-8612-083c0816afd6
+      iscommand: false
+      name: Were device control violations found?
+      type: condition
+      version: -1
+    taskid: 180ab59c-d7fe-460d-8612-083c0816afd6
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 440
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 43feb7c2-573d-4f0c-8521-07955a671d29
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 43feb7c2-573d-4f0c-8521-07955a671d29
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 240,
+          "y": 1370
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      columns:
+        simple: Hostname,Username,IP,XDR endpoint ID,Violation type,Date,Product,Vendor
+      context_path:
+        simple: PaloAltoNetworksXDR.EndpointViolations
+      grid_id:
+        simple: xdrdevicecontrolviolations
+      keys:
+        simple: hostname,username,ip,endpoint_id,type,date,product,vendor
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Creates a grid table from items or key-value pairs.
+      id: d21ccce9-a4da-4018-8dd4-f0c5ec25a6a2
+      iscommand: false
+      name: Set device control grid
+      script: SetGridField
+      type: regular
+      version: -1
+    taskid: d21ccce9-a4da-4018-8dd4-f0c5ec25a6a2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 720
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      details:
+        simple: |2
+           An external device connected to the corporate network.
+          Device Control violation fetched from Cortex XDR with the Fetch device control violation Job.
+      name:
+        simple: Cortex XDR Device Control Violation
+      severity:
+        complex:
+          root: inputs.Severity
+      type:
+        complex:
+          root: inputs.IncidentType
+      usernames:
+        complex:
+          accessor: username
+          root: PaloAltoNetworksXDR.EndpointViolations.violations
+      xdrdevicecontrolviolations:
+        complex:
+          accessor: EndpointViolations
+          root: PaloAltoNetworksXDR
+      xdrhostcount:
+        complex:
+          accessor: hostname
+          root: PaloAltoNetworksXDR.EndpointViolations
+          transformers:
+          - operator: uniq
+          - operator: count
+      xdrusercount:
+        complex:
+          accessor: username
+          root: PaloAltoNetworksXDR.EndpointViolations
+          transformers:
+          - operator: uniq
+          - operator: count
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.create.inc
+      id: beef8861-2f9d-4a70-810f-ffae2e09eb80
+      iscommand: true
+      name: Create New Incident
+      script: Builtin|||createNewIncident
+      type: regular
+      version: -1
+    taskid: beef8861-2f9d-4a70-810f-ffae2e09eb80
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1030
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: 200c5756-b13d-48b9-8100-277a9fd35507
+      iscommand: true
+      name: Close job
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: 200c5756-b13d-48b9-8100-277a9fd35507
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1200
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      xdrhostcount:
+        complex:
+          accessor: hostname
+          root: PaloAltoNetworksXDR.EndpointViolations
+          transformers:
+          - operator: uniq
+          - operator: count
+      xdrusercount:
+        complex:
+          accessor: username
+          root: PaloAltoNetworksXDR.EndpointViolations
+          transformers:
+          - operator: uniq
+          - operator: count
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 9f84a3cd-4791-492b-899c-da8e19549b4b
+      iscommand: true
+      name: Count involved users and hosts
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 9f84a3cd-4791-492b-899c-da8e19549b4b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 870
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "2_11_#default#": 0.19
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1325,
+        "width": 590,
+        "x": 240,
+        "y": 110
+      }
+    }
+  }
