@@ -1,0 +1,237 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Maps outgoing Cortex XDR incidents fields.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Cortex XDR - IR-out-mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "6.0.4",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"Cortex XDR Incident": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"assigned_user_mail": {
+					"simple": "xdrassigneduseremail"
+				},
+				"assigned_user_pretty_name": {
+					"simple": "xdrassigneduserprettyname"
+				},
+				"manual_severity": {
+					"complex": {
+						"filters": [],
+						"root": "severity",
+						"transformers": [
+							{
+								"args": {
+									"limit": {
+										"isContext": false
+									},
+									"replaceWith": {
+										"isContext": false,
+										"value": {
+											"simple": "low"
+										}
+									},
+									"toReplace": {
+										"isContext": false,
+										"value": {
+											"simple": "1"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {
+										"isContext": false
+									},
+									"replaceWith": {
+										"isContext": false,
+										"value": {
+											"simple": "medium"
+										}
+									},
+									"toReplace": {
+										"isContext": false,
+										"value": {
+											"simple": "2"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {
+										"isContext": false
+									},
+									"replaceWith": {
+										"isContext": false,
+										"value": {
+											"simple": "high"
+										}
+									},
+									"toReplace": {
+										"isContext": false,
+										"value": {
+											"simple": "3"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {
+										"isContext": false
+									},
+									"replaceWith": {
+										"isContext": false,
+										"value": {
+											"simple": "high"
+										}
+									},
+									"toReplace": {
+										"isContext": false,
+										"value": {
+											"simple": "4"
+										}
+									}
+								},
+								"operator": "replace"
+							}
+						]
+					}
+				},
+				"resolve_comment": {
+					"simple": "xdrresolvecomment"
+				},
+				"status": {
+					"simple": "xdrstatusv2"
+				}
+			}
+		},
+		"dbot_classification_incident_type_all": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"assigned_user_mail": {
+					"simple": "xdrassigneduseremail"
+				},
+				"manual_severity": {
+					"complex": {
+						"filters": [],
+						"root": "severity",
+						"transformers": [
+							{
+								"args": {
+									"limit": {
+										"isContext": false
+									},
+									"replaceWith": {
+										"isContext": false,
+										"value": {
+											"simple": "low"
+										}
+									},
+									"toReplace": {
+										"isContext": false,
+										"value": {
+											"simple": "1"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {
+										"isContext": false
+									},
+									"replaceWith": {
+										"isContext": false,
+										"value": {
+											"simple": "medium"
+										}
+									},
+									"toReplace": {
+										"isContext": false,
+										"value": {
+											"simple": "2"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {
+										"isContext": false
+									},
+									"replaceWith": {
+										"isContext": false,
+										"value": {
+											"simple": "high"
+										}
+									},
+									"toReplace": {
+										"isContext": false,
+										"value": {
+											"simple": "3"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {
+										"isContext": false
+									},
+									"replaceWith": {
+										"isContext": false,
+										"value": {
+											"simple": "high"
+										}
+									},
+									"toReplace": {
+										"isContext": false,
+										"value": {
+											"simple": "4"
+										}
+									}
+								},
+								"operator": "replace"
+							}
+						]
+					}
+				},
+				"resolve_comment": {
+					"simple": "closeNotes"
+				}
+			}
+		}
+	},
+	"name": "Cortex XDR - Outgoing Mapper",
+	"nameRaw": "Cortex XDR - Outgoing Mapper",
+	"packID": "CortexXDR",
+	"packName": "Cortex XDR by Palo Alto Networks",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-outgoing",
+	"unclassifiedCases": null,
+	"version": -1
+}
