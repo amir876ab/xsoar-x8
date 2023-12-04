@@ -1,0 +1,972 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.3.8
+    packID: ShiftManagement
+    packName: Shift Management
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook is used to set up shift handover meetings with all the accompanying processes such as creating an online meeting, creating a notification in a integrated chat app (for example Slack), creating a SOC manager briefing, and creating a display of the active incidents, team members who are on-call, and team members who are out of the office.
+  By modifying the playbook inputs you can decide whether to activate the Assign Active Incidents to Next Shift and whether a user who is out of the office will be taken into consideration.
+id: Shift handover
+inputs:
+- description: "Yes - If you want the playbook to reassign active incidents to on-call
+    users. The playbook will take into consideration users that are out of the office.\nNo-
+    If you do not want to reassign active incidents to on-call users. The current
+    incident owner will remain. \n"
+  key: AssignActiveIncidentsToNextShift
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "Yes"
+- description: "The name of channel that will be created in your messaging app for
+    the shift handover.\nThe name of the channel should not contain uppercase or special
+    characters. If you want to use an existing channel, add that name here. Currently
+    this input supports only two integrations: Microsoft Teams and Slack V2.   "
+  key: 'AppChannelName '
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The message to send for the handover to your messaging app channel
+    that you created.
+  key: 'AppMessage '
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: Hi, please join the shift handover meeting.
+- description: If the Shift manager briefing section is left empty when a new shift
+    handover incident is opened, an email will be sent to this address to request
+    a shift manager briefing.
+  key: SOCManagerEmail
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The incident field that will provide the shift manager briefing for
+    the layout.
+  key: 'ShiftManagerBriefing '
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${incident.shiftmanagerbriefing}
+- description: If using Microsoft Teams, provide your Microsoft team name. This input
+    is mandatory for Microsoft Teams.
+  key: TeamName
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Shift handover
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "30"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 73f17db6-3b7d-4e7f-8f12-966f3efdcb0e
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 73f17db6-3b7d-4e7f-8f12-966f3efdcb0e
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": -1040
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d8ec2809-c7b5-45e6-8596-68c55e30392f
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: d8ec2809-c7b5-45e6-8596-68c55e30392f
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 2740
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      similarIncidentFields:
+        simple: type
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Finds similar incidents by common incident keys, labels, custom fields, or context keys.
+        It's highly recommended to use incident keys if possible (e.g., "type" for the same incident type).
+        For best performance, it's recommended to avoid using context keys if possible (for example, if the value also appears in a label key, use label).
+      id: de8073a7-2c08-421a-87d3-6fcb7f70c362
+      iscommand: false
+      name: Find similar incidents
+      script: FindSimilarIncidents
+      type: regular
+      version: -1
+    taskid: de8073a7-2c08-421a-87d3-6fcb7f70c362
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": -475
+        }
+      }
+  "7":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: similarIncident
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "18"
+      "yes":
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 94a1ff3b-36df-4ab4-8b9a-71d9a7a77991
+      iscommand: false
+      name: Found similar incidents?
+      type: condition
+      version: -1
+    taskid: 94a1ff3b-36df-4ab4-8b9a-71d9a7a77991
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": -250
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      closeNotes:
+        simple: Created a new incident.
+      id:
+        complex:
+          accessor: rawId
+          root: similarIncident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: 9c8c9a00-b552-4178-8ea7-2fdf55284b23
+      iscommand: true
+      name: Close previous change shift incident
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: 9c8c9a00-b552-4178-8ea7-2fdf55284b23
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 750,
+          "y": 180
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      IncidentSearchQuery:
+        simple: '-status:closed -category:job -type:"Shift handover" '
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "This playbook reassigns Active Incidents to the current users
+        on call. It requires shift management to be set up.  The playbook can be run
+        as a job a few minutes after the scheduled shift change time.\n\nYou can update
+        the playbook input with a different search query, if required.  Will branch
+        if there are no incidents that match the query and no users on call. \n\nCases
+        will not be assigned to users that defined OOO (by OutOfOffice automation)."
+      id: 08864099-a628-4e01-8a4b-06407dc5e336
+      iscommand: false
+      name: Assign Active Incidents to Next Shift V2
+      playbookId: Assign Active Incidents to Next Shift V2
+      type: playbook
+      version: -1
+    taskid: 08864099-a628-4e01-8a4b-06407dc5e336
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 150,
+          "y": 1090
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      assignAll:
+        simple: "true"
+      oncall:
+        simple: "true"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Assign an analyst to an incident if the user is not on PTO, OOO, or otherwise unavailable.
+        Users can use the OutOfOffice automation to add or remove themselves from the out of office list.
+      id: d06c1f1e-a055-4abe-84ff-18307641a09d
+      iscommand: false
+      name: 'Assign shift handover incident to all analysts '
+      script: AssignAnalystToIncidentOOO
+      type: regular
+      version: -1
+    taskid: d06c1f1e-a055-4abe-84ff-18307641a09d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 2560
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This playbook is used to create an online meeting for shift handover.
+        Currently, this playbook supports Zoom.
+      id: f6c06d18-7e35-41d1-8fcf-6aebfeedb16d
+      iscommand: false
+      name: Set up a Shift handover meeting
+      playbookId: Set up a Shift handover meeting
+      type: playbook
+      version: -1
+    taskid: f6c06d18-7e35-41d1-8fcf-6aebfeedb16d
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1560
+        }
+      }
+  "18":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.AssignActiveIncidentsToNextShift
+          operator: isEqualString
+          right:
+            value:
+              simple: "Yes"
+      label: "yes"
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "28"
+      "yes":
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 73afa9d0-3661-4483-8a6f-8622b36d789e
+      iscommand: false
+      name: Assign Active Incidents to Next Shift?
+      type: condition
+      version: -1
+    taskid: 73afa9d0-3661-4483-8a6f-8622b36d789e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 730
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "31"
+      - "22"
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a082446c-172a-43b5-8215-850d933a2bc9
+      iscommand: false
+      name: Set up handover
+      type: title
+      version: -1
+    taskid: a082446c-172a-43b5-8215-850d933a2bc9
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1280
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "26"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a80646cc-327f-4cc1-805a-6867452cbd8e
+      iscommand: false
+      name: OOO users
+      type: title
+      version: -1
+    taskid: a80646cc-327f-4cc1-805a-6867452cbd8e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1130,
+          "y": 1420
+        }
+      }
+  "24":
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "25"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: OOOusers
+      value:
+        complex:
+          accessor: OOO List
+          root: lists
+          transformers:
+          - operator: ParseJSON
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 6ecfa720-5c3e-44b2-8daf-f451a2a67c12
+      iscommand: false
+      name: 'Set OOO users to context '
+      script: Set
+      type: regular
+      version: -1
+    taskid: 6ecfa720-5c3e-44b2-8daf-f451a2a67c12
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1240,
+          "y": 1850
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      columns:
+        simple: User name,Off until, Added by
+      context_path:
+        simple: OOOusers
+      grid_id:
+        simple: outofftheoffice
+      keys:
+        simple: user,offuntil,addedby
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Creates a grid table from items or key-value pairs.
+      id: f46df130-6dd8-4d8a-87c7-d131cd9d53ed
+      iscommand: false
+      name: Set OOO users grid to layout
+      script: SetGridField
+      type: regular
+      version: -1
+    taskid: f46df130-6dd8-4d8a-87c7-d131cd9d53ed
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1240,
+          "y": 2050
+        }
+      }
+  "26":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: lists.OOO List
+          operator: StringContainsArray
+          right:
+            value:
+              simple: offuntil
+      label: "yes"
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "13"
+      "yes":
+      - "24"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d505b300-1716-49db-861a-dd56cfa2e56f
+      iscommand: false
+      name: Are there OOO users?
+      type: condition
+      version: -1
+    taskid: d505b300-1716-49db-861a-dd56cfa2e56f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1130,
+          "y": 1560
+        }
+      }
+  "27":
+    continueonerrortype: ""
+    id: "27"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Retrieves users that are currently out of office.
+      id: 61e1375b-0419-4b19-804a-ee861d967685
+      iscommand: false
+      name: Get OOO users and clean OOO list
+      script: GetUsersOOO
+      type: regular
+      version: -1
+    taskid: 61e1375b-0419-4b19-804a-ee861d967685
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": -670
+        }
+      }
+  "28":
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "29"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      query:
+        simple: ${inputs.IncidentSearchQuery}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Searches Cortex XSOAR incidents.
+      id: 826aa6e4-1259-44ea-85f7-187b161301ca
+      iscommand: false
+      name: Search for Incidents
+      script: SearchIncidentsV2
+      type: regular
+      version: -1
+    taskid: 826aa6e4-1259-44ea-85f7-187b161301ca
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 660,
+          "y": 930
+        }
+      }
+  "29":
+    continueonerrortype: ""
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      columns:
+        simple: Incident ID,Incident name,Incident owner,Link to incident
+      context_path:
+        simple: foundIncidents
+      grid_id:
+        simple: shiftopenincidents
+      keys:
+        simple: id,name,owner,incidentLink
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Creates a grid table from items or key-value pairs.
+      id: 0beb2ecd-fc46-44f9-800f-125b89ffdd7f
+      iscommand: false
+      name: Add open incidents to layout
+      script: SetGridField
+      type: regular
+      version: -1
+    taskid: 0beb2ecd-fc46-44f9-800f-125b89ffdd7f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 660,
+          "y": 1090
+        }
+      }
+  "30":
+    continueonerrortype: ""
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "27"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      appchannelname:
+        simple: ${inputs.AppChannelName }
+      appmessage:
+        simple: ${inputs.AppMessage }
+      teamname:
+        simple: ${inputs.TeamName}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 26c61842-7348-4d51-8c9f-bfa1915a552f
+      iscommand: true
+      name: 'Set apps Channel, team name and message to incident field '
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 26c61842-7348-4d51-8c9f-bfa1915a552f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": -865
+        }
+      }
+  "31":
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "32"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f3a0509a-80f7-4b6d-825f-4ae3a9a161a2
+      iscommand: false
+      name: Get SOC manager briefing
+      type: title
+      version: -1
+    taskid: f3a0509a-80f7-4b6d-825f-4ae3a9a161a2
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -160,
+          "y": 1420
+        }
+      }
+  "32":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: 'inputs.ShiftManagerBriefing '
+          operator: isEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "32"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "35"
+      "yes":
+      - "33"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0fc09a7d-5e23-4554-8c99-6e3e4bab7a3d
+      iscommand: false
+      name: Should get notification by Email?
+      type: condition
+      version: -1
+    taskid: 0fc09a7d-5e23-4554-8c99-6e3e4bab7a3d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -160,
+          "y": 1560
+        }
+      }
+  "33":
+    continueonerrortype: ""
+    form:
+      description: Enter the URL and provide the briefing for the team.
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: What is your briefing for the team?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: longText
+      sender: ""
+      title: SOC manager briefing
+      totalanswers: 0
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Enter the URL and submit your briefing for the SOC team.
+      cc: null
+      defaultOption: "Yes"
+      format: ""
+      methods:
+      - email
+      replyOptions:
+      - "Yes"
+      - "No"
+      subject:
+        simple: Briefing for the SOC team
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        simple: ${inputs.SOCManagerEmail}
+    nexttasks:
+      '#none#':
+      - "34"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      execution-timeout:
+        simple: "0"
+    separatecontext: false
+    skipunavailable: false
+    sla:
+      days: 0
+      hours: 0
+      minutes: 0
+      weeks: 0
+    task:
+      brand: ""
+      id: f0eefd3d-efad-4d44-80e3-41da27a713cb
+      iscommand: false
+      name: Get notification
+      type: collection
+      version: -1
+    taskid: f0eefd3d-efad-4d44-80e3-41da27a713cb
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": -450,
+          "y": 1740
+        }
+      }
+  "34":
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "35"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      shiftmanagerbriefing:
+        simple: ${SOC manager briefing.Answers.0}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 4c8871e0-9c90-4758-846b-d09c156c67f2
+      iscommand: true
+      name: Set SOC manager briefing for the team
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 4c8871e0-9c90-4758-846b-d09c156c67f2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -450,
+          "y": 1955
+        }
+      }
+  "35":
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 498546cd-483a-4643-8204-181d8de9c66e
+      iscommand: false
+      name: 'Manager briefing completed '
+      type: title
+      version: -1
+    taskid: 498546cd-483a-4643-8204-181d8de9c66e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -160,
+          "y": 2220
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "18_28_#default#": 0.58,
+      "26_24_yes": 0.64,
+      "32_35_#default#": 0.72
+    },
+    "paper": {
+      "dimensions": {
+        "height": 3845,
+        "width": 2070,
+        "x": -450,
+        "y": -1040
+      }
+    }
+  }
