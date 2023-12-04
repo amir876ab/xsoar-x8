@@ -1,0 +1,197 @@
+{
+	"cacheVersn": 0,
+	"definitionId": "",
+	"fromDate": "0001-01-01T00:00:00Z",
+	"fromDateLicense": "0001-01-01T00:00:00Z",
+	"fromServerVersion": "6.2.0",
+	"hidePivot": false,
+	"hideSearch": false,
+	"id": "Cortex XDR Events Grouping",
+	"isCommon": true,
+	"itemVersion": "6.0.4",
+	"layout": [
+		{
+			"forceRange": false,
+			"h": 4,
+			"i": "8cc4ac20-b35a-11eb-9e54-7d1db5554075",
+			"id": "8cc4ac20-b35a-11eb-9e54-7d1db5554075",
+			"reflectDimensions": false,
+			"w": 3,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "scripts",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": null,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "ccf4d070-47f3-4559-8563-a63240f17f74",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-05-12T19:45:01.180666801Z",
+				"name": "Cortex XDR Grouping - Summary",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"returnWidgetType": "summary",
+					"tableColumns": []
+				},
+				"prevName": "Cortex XDR Grouping - Summary",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "DBotGroupXDRIncidents",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "text"
+			},
+			"x": 0,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "cf432d50-b95f-11eb-bc3c-579f145ea812",
+			"id": "cf432d50-b95f-11eb-bc3c-579f145ea812",
+			"reflectDimensions": false,
+			"w": 12,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "scripts",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": null,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "c89bc765-50a9-479f-88e5-d256e09788c5",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-05-20T11:37:39.727893798Z",
+				"name": "Cortex XDR Grouping - Incidents",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"returnWidgetType": "incidents",
+					"tableColumns": []
+				},
+				"prevName": "Cortex XDR Grouping - Incidents",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "DBotGroupXDRIncidents",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "text"
+			},
+			"x": 0,
+			"y": 4
+		},
+		{
+			"forceRange": false,
+			"h": 4,
+			"i": "f59d1400-b970-11eb-83d5-2b88253a452b",
+			"id": "f59d1400-b970-11eb-83d5-2b88253a452b",
+			"reflectDimensions": false,
+			"w": 9,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "Widget imported",
+				"dataType": "scripts",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": null,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "5827f988-df26-42a5-8c46-18b3af444702",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-05-20T13:40:36.181876171Z",
+				"name": "Cortex XDR Groups - Scatter",
+				"packID": "",
+				"packName": "",
+				"params": {},
+				"prevName": "Cortex XDR Groups - Scatter",
+				"primaryTerm": 5,
+				"propagationLabels": [
+					"all"
+				],
+				"query": "DBotGroupXDRIncidents",
+				"sequenceNumber": 16475647,
+				"shouldCommit": true,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 4,
+				"widgetType": "scatter"
+			},
+			"x": 3,
+			"y": 0
+		}
+	],
+	"locked": false,
+	"modulePage": false,
+	"name": "Cortex XDR Events Grouping",
+	"owner": "",
+	"packID": "CortexXDR",
+	"packName": "Cortex XDR by Palo Alto Networks",
+	"packPropagationLabels": [
+		"all"
+	],
+	"period": {
+		"by": "",
+		"byFrom": "days",
+		"byTo": "",
+		"field": "",
+		"fromValue": null,
+		"toValue": null
+	},
+	"propagationLabels": [],
+	"system": true,
+	"toDate": "0001-01-01T00:00:00Z",
+	"toServerVersion": "",
+	"version": -1
+}
