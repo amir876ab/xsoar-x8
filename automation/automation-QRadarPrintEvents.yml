@@ -1,0 +1,68 @@
+comment: This script prints the events fetched from the offense in a table format.
+commonfields:
+  id: QRadarPrintEvents
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 2.4.41
+    packID: QRadar
+    packName: IBM QRadar
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.4.30607
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: QRadarPrintEvents
+nativeimage:
+- "8.3"
+- "8.4"
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('QRadarPrintEvents', 'start', __line__())
+  ### pack version: 2.4.41
+
+
+  import json
+
+
+  MAX_EVENTS = 10
+
+
+  def main():
+      try:
+          incident = demisto.incident()
+          events = incident.get('CustomFields', {}).get('events', {})
+          if not events:
+              return CommandResults()
+          title = f'Offense Events (Showing first {MAX_EVENTS})'
+          if isinstance(events, list):
+              events_arr = []
+              for event in events:
+                  events_arr.append(json.loads(event))
+              markdown = tableToMarkdown(title, events_arr[:MAX_EVENTS], headers=events_arr[0].keys())
+          else:
+              markdown = tableToMarkdown(title, json.loads(events)[:MAX_EVENTS])
+
+          return CommandResults(readable_output=markdown)
+      except Exception as exp:
+          return_error('could not parse QRadar events', error=exp)
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      return_results(main())
+
+  register_module_line('QRadarPrintEvents', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- dynamic-section
+type: python
