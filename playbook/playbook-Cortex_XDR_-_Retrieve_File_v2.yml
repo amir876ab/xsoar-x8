@@ -1,0 +1,397 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.10.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook retrieves files from selected endpoints. You can retrieve up to 20 files, from 10 endpoints.
+  Inputs for this playbook are:
+  - A comma-separated list of endpoint IDs.
+  - A comma-separated list of file paths for your operating system, either Windows, Linux, or Mac. At least one file path is required.
+id: Cortex XDR - Retrieve File v2
+inputs:
+- description: A comma-separated list of endpoint IDs.
+  key: endpoint_ids
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: "A comma-separated list of file paths in any platform. It can be used
+    instead of the macOS/Windows/Linux file paths. \nThe order of the files path list
+    must be parallel to the endpoints list order. Therefore, the first file path in
+    the list is related to the first endpoint ID and so on."
+  key: file_path
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    A comma-separated list of Windows paths.
+    Enter at least one path for either Windows, Linux, or Mac.
+  key: windows_file_paths
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    A comma-separated list Linux paths.
+    Enter at least one path for either Windows, Linux, or Mac.
+  key: linux_file_paths
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    A comma-separated list of Mac paths.
+    Enter at least one path for either Windows, Linux, or Mac.
+  key: mac_file_paths
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Cortex XDR - Retrieve File v2
+outputs:
+- contextPath: File
+  description: Retrieve the file details command results.
+- contextPath: File.Name
+  description: The full file name (including the file extension).
+  type: String
+- contextPath: File.EntryID
+  description: The ID for locating the file in the War Room.
+  type: String
+- contextPath: File.Size
+  description: The size of the file in bytes.
+  type: Number
+- contextPath: File.MD5
+  description: The MD5 hash of the file.
+  type: String
+- contextPath: File.SHA1
+  description: The SHA1 hash of the file.
+  type: String
+- contextPath: File.SHA256
+  description: The SHA256 hash of the file.
+  type: String
+- contextPath: File.SHA512
+  description: The SHA512 hash of the file.
+  type: String
+- contextPath: File.Extension
+  description: The file extension. For example, 'xls'.
+  type: String
+- contextPath: File.Type
+  description: The file type, as determined by libmagic (same as displayed in the
+    file entries).
+  type: String
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 808eba1f-6338-4e14-865b-28fa19ae0a2e
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 808eba1f-6338-4e14-865b-28fa19ae0a2e
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_ids:
+        complex:
+          root: inputs.endpoint_ids
+          transformers:
+          - operator: uniq
+      generic_file_path:
+        complex:
+          root: inputs.file_path
+          transformers:
+          - operator: uniq
+      interval_in_seconds:
+        simple: "60"
+      linux_file_paths:
+        complex:
+          root: inputs.linux_file_paths
+          transformers:
+          - operator: uniq
+      mac_file_paths:
+        complex:
+          root: inputs.mac_file_paths
+          transformers:
+          - operator: uniq
+      timeout_in_seconds:
+        simple: "600"
+      windows_file_paths:
+        complex:
+          root: inputs.windows_file_paths
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieves files from selected endpoints. You can retrieve up to
+        20 files, from no more than 10 endpoints. At least one endpoint ID and one
+        file path are necessary in order to run the command. After running this command,
+        you can use the xdr-action-status-get command with returned action_id, to
+        check the action status.
+      id: 7cb1327a-ad50-4f2d-8a36-27848573df25
+      iscommand: true
+      name: Retrieve files
+      script: '|||xdr-file-retrieve'
+      type: regular
+      version: -1
+    taskid: 7cb1327a-ad50-4f2d-8a36-27848573df25
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 395
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a2712ae7-1100-4545-85a7-43770ff6fbd7
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: a2712ae7-1100-4545-85a7-43770ff6fbd7
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1095
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              simple: PaloAltoNetworksXDR.RetrievedFiles.status
+          operator: isNotExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if the link to the file is ready.
+      id: 069bc12b-b96b-47ef-86dd-c000cdc518b6
+      iscommand: false
+      name: Retrieve file finished
+      type: condition
+      version: -1
+    taskid: 069bc12b-b96b-47ef-86dd-c000cdc518b6
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 750
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: Missing files from the retrieve task. Please check the `Retrieve file
+          details` task outputs for more information.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message.
+      id: 4cf4d095-c993-4db8-8064-f64e2090ba24
+      iscommand: false
+      name: Print Error message
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 4cf4d095-c993-4db8-8064-f64e2090ba24
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 10,
+          "y": 920
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      action_id:
+        complex:
+          accessor: action_id
+          root: PaloAltoNetworksXDR.RetrievedFiles
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: View the file retrieved by the xdr-retrieve-files command according
+        to the action ID. Before running this command, you can use the xdr-action-status-get
+        command to check if this action completed successfully.
+      id: 69b1c551-71fe-4973-8d28-36bf4cce68f0
+      iscommand: true
+      name: Retrieve file details
+      script: '|||xdr-retrieve-file-details'
+      type: regular
+      version: -1
+    taskid: 69b1c551-71fe-4973-8d28-36bf4cce68f0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 565
+        }
+      }
+  "8":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.file_path
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              simple: inputs.windows_file_paths
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              simple: inputs.linux_file_paths
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              simple: inputs.mac_file_paths
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "4"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e5d73a46-72d1-4e69-854e-3e28963904ff
+      iscommand: false
+      name: Is there any file path to retrieve?
+      type: condition
+      version: -1
+    taskid: e5d73a46-72d1-4e69-854e-3e28963904ff
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 200
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "5_6_#default#": 0.68
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1110,
+        "width": 635,
+        "x": 10,
+        "y": 50
+      }
+    }
+  }
