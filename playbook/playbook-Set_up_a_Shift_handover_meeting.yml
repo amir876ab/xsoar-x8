@@ -1,0 +1,235 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.3.8
+    packID: ShiftManagement
+    packName: Shift Management
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook is used to create an online meeting for shift handover.
+  Currently, this playbook supports Zoom.
+id: Set up a Shift handover meeting
+inputs:
+- description: The user account for Zoom integration.
+  key: User
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The topic for the Zoom meeting.
+  key: Topic
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: SOC shift handover meeting
+name: Set up a Shift handover meeting
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 57b0a60b-c623-4e18-82b1-b91734699376
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 57b0a60b-c623-4e18-82b1-b91734699376
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -50
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      topic:
+        simple: ${inputs.Topic}
+      user:
+        simple: ${inputs.User}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Create a new Zoom meeting (scheduled or instant).
+      id: ae952a46-097b-429f-8e23-bf92efe8caf4
+      iscommand: true
+      name: 'Create Zoom meeting '
+      script: '|||zoom-create-meeting'
+      type: regular
+      version: -1
+    taskid: ae952a46-097b-429f-8e23-bf92efe8caf4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 770,
+          "y": 340
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 15738744-cd56-4acf-898c-4c12d7d3b997
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 15738744-cd56-4acf-898c-4c12d7d3b997
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 900
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      tojointhemeeting:
+        complex:
+          accessor: join_url
+          root: Zoom.Meeting
+          transformers:
+          - args:
+              prefix:
+                value:
+                  simple: '[Press here]('
+              suffix:
+                value:
+                  simple: )
+            operator: concat
+      tostartthemeeting:
+        complex:
+          accessor: start_url
+          root: Zoom.Meeting
+          transformers:
+          - args:
+              prefix:
+                value:
+                  simple: '[Press here]('
+              suffix:
+                value:
+                  simple: )
+            operator: concat
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 09e5b0a6-ea0c-4b1d-844d-f2015d2d00d6
+      iscommand: true
+      name: Set Zoom links to layout
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 09e5b0a6-ea0c-4b1d-844d-f2015d2d00d6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 770,
+          "y": 540
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "3"
+      "yes":
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      brandname:
+        simple: Zoom
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if integration brand is available. Otherwise returns
+        'no'
+      id: 75e608e4-53b7-4d06-8019-d3f15185d5d2
+      iscommand: false
+      name: 'Is Zoom enabled '
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: 75e608e4-53b7-4d06-8019-d3f15185d5d2
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 110
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1015,
+        "width": 700,
+        "x": 450,
+        "y": -50
+      }
+    }
+  }
