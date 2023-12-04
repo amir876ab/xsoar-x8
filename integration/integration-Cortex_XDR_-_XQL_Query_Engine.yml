@@ -1,0 +1,2564 @@
+category: Endpoint
+commonfields:
+  id: Cortex XDR - XQL Query Engine
+  version: -1
+configuration:
+- defaultvalue: https://example.com/
+  display: Server URL
+  name: url
+  required: true
+  section: Connect
+  type: 0
+- display: ""
+  displaypassword: API Key ID
+  hiddenusername: true
+  name: apikey_id
+  required: true
+  section: Connect
+  type: 9
+- display: ""
+  displaypassword: API Key
+  hiddenusername: true
+  name: apikey
+  required: true
+  section: Connect
+  type: 9
+- advanced: true
+  display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  section: Connect
+  type: 8
+- advanced: true
+  display: Use system proxy settings
+  name: proxy
+  required: false
+  section: Connect
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Cortex XDR - XQL Query Engine enables you to run XQL queries on your
+  data sources.
+detaileddescription: |-
+  ## Palo Alto Networks Cortex XDR - XQL Query Engine
+  Cortex XDR is the world's first detection and response app that natively integrates network, endpoint, and cloud data to stop sophisticated attacks.
+  XQL Query Engine enables you to run XQL queries on your data sources.
+
+  ### Generate an API Key and API Key ID
+
+  1. In your Cortex XDR platform, go to **Settings**.
+
+  2. Click the **+New Key** button in the top right corner.
+
+  3. Generate a key of type **Advanced**.
+
+  4. Copy and paste the key.
+
+  5. From the ID column, copy the Key ID.
+
+  ### URL
+  1. In your Cortex XDR platform, go to **Settings**.
+  2. Click the **Copy URL** button in the top right corner.
+
+  ### Note
+  If you choose to use the credentials from XSOAR credential manager, create two credentials, one for the api-key and one for the api-key-id, then enter the key in the password field.
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/cortex-xdr---xql-query-engine)
+display: Cortex XDR - XQL Query Engine
+image: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAAyCAYAAACXpx/YAAAACXBIWXMAAAsSAAALEgHS3X78AAAD6klEQVR4nO2cS24bMQyGyaL75AbJCeo5QIH6BnVPkOkN3BPER8gN4tzA3XQbB+gBHHTbRbzq1kH3ZaGA4ygUNaPxxBOA4AcIqPWgHv9QosZOkYjAscs719Y2LrBxXGDjuMDGcYGN4wIbxwU2jgtsHBfYOC6wcVxg47jAxnGBjeMCG+f9W04PEacAENIDES2TCs7wNR77+2BEPAeABQBcRNl3RDRNKjuDGdWDEbEGgCsAOEkKnaPQW2BErHhbPY2ydwCwJqJN0uCluNdJQf/+Q79VUiAgonWS+WyjEuMvIRwjDwPs7OL14eMpJrGfm2+YGyLOAeAPAPwloh9Jb1HlogQAQaAwAGpJD5otfiC0dksuW/LnYH+u2SiwpaVg91SxsVbqdqXFQDtr0bYW5cFJKlEniLsR9eZc9hsA/gHAL22d9ja0TKWT4olkbMgHYxNPhs9kWZ4Ic4DAT7YUG28ucMm8owd/7xBR2UdOH7R1alLJFh06+STybnhyQbhz3kJmAHCmbDG1yH8MdbXtKGICACsWs4tvvDDNw1ixdzR9TsJ2KLbsJY8/5jL6951Snt3ymS3bzZHMl4gWHHQ2Aed+3ogoA9EbIqqjtj8z/SSdZBMvVvwEPQnaUn+m5MmnUPME+SQ3aarUlR5cUifpU2nTq77iwYmH9jj+5BrJneFg210ePBOf6zbPI6JVkpl64VVSI8+swHM0kgBGqfPanLPXSTrv+MEzOWCbcFa8Y94rOhTTK4pui0xbeLFtE9EuXzWhM1oODwwixjYrcQ175G3v2JyJbb7hrmPrbpjyUSOPs2nPNXtBL4FDyD6ksyMxaTE7eIFGRIthTnjHqw8dRte7aLkw86RGN9u4BgcVpWTv1RH37CVbkf+d44USG69BeBuHSuoMFDveEVxw+UF0CbxkL2i4DOcMX77jAZ6GQSCidtbJbb3PYEu21jkvYsViN3wecnaNBSLOhLhhvb+Idb8+WGQt8hIRnryQxxH1Wl7EC9vLC70WRa8y48lG0XxN2rX1lUuvEEUfcg+uxHj3LzuUMuIgNxlHW2otFCLJztSUaS9fdOyEMFLgdY8XHdPSRWtLYwusjDN5GBXnKJpLn2tS4+VLRFxxhzMlUt3yZHNRdmh3G30ObW8RsYkwm3M5bLFXHdeKHZ+58ed4rBt+zxtfxxYF23VsUztqNPqc77LuQuQtZbzA6w7iWAtHZF0aOI72dWFHIOFfFx6J0X7RwV75VQQPjhWB4Vnkit9lOyPwpn/h7z/ZOT7+XzgYx39VaRwX2DgusHFcYOO4wMZxgY3jAhvHBTaOC2wcF9g4LrBxXGDjuMDGcYEtAwD/AbjPSozwVJX9AAAAAElFTkSuQmCC
+name: Cortex XDR - XQL Query Engine
+script:
+  commands:
+  - arguments:
+    - description: String of the XQL query. By default up to 100 results are returned.
+        To retrieve more results, enter a custom limit in the query.
+      name: query
+      required: true
+    - description: 'Time in relative date or range format (for example: "1 day", "3
+        weeks ago", "between 2021-01-01 12:34:56 +02:00 and 2021-02-01 12:34:56 +02:00").
+        The default is the last 24 hours.'
+      name: time_frame
+    - description: |-
+        List of strings used for running APIs on local and Managed Security tenants. Valid values:
+        For single tenant (local tenant) query, enter a single-item list with your tenant_id. Additional valid values are, empty list ([]) or null (default).
+        For multi-tenant investigations (Managed Security parent who investigate children and\or local), enter a multi-item list with the required tenant_id. List of IDs can contain the parent, children, or both parent and children.
+      isArray: true
+      name: tenant_id
+    - description: Interval in seconds between each poll.
+      name: interval_in_seconds
+    - defaultValue: "20"
+      description: The maximum number of returned fields per result.
+      name: max_fields
+    - description: The name of the query.
+      name: query_name
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: If set to 'true' and the query returns more than 1000 results,
+        it will be extracted as JSON data to context instead of being returned as
+        a .gz file. If set to 'false' and the query returns more than 1000 results,
+        it will return the .gz file without extracting the results to context.
+      name: parse_result_file_to_context
+      predefined:
+      - "true"
+      - "false"
+    description: |-
+      Execute an XQL query and retrieve results of an executed XQL query API. The command will be executed every 10 seconds until results are retrieved or until a timeout error is raised.
+      When more than 1000 results are retrieved, the command will return a compressed gzipped JSON format file,
+      unless the argument 'parse_result_file_to_context' is set to true and then the results will be extracted to the context.
+    name: xdr-xql-generic-query
+    outputs:
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.execution_id
+      description: An integer representing a unique ID of a successful XQL query execution.
+        The execution_id value can be passed to the  xdr-xql-get-query-results command.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.query_name
+      description: The given name of the query.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.status
+      description: |-
+        String representing the status of the API call; SUCCESS, FAIL, or PENDING.
+        For multi-tenant queries, PARTIAL_SUCCESS means that at least one tenant failed to execute the query. Only partial results are available.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.number_of_results
+      description: Integer representing the number of results returned.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.query_cost
+      description: |-
+        Floating number representing the number of query units collected for this API. For example, {"local_tenant_id": 0.01}.
+        For multi-tenant queries, the field displays a value per child tenant. For example, {"tenant_id_1": 0.01, "tenant_id_2": 2.3}.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.remaining_quota
+      description: Floating number representing the number of query units available
+        for you to use.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results._time
+      description: Result time.
+      type: Date
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.agent_hostname
+      description: The agent host name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.agent_ip_addresses
+      description: The agent IP addresses.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.mac
+      description: Host MAC address.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_effective_username
+      description: Parent user name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_process_image_name
+      description: The name of the process that initiated the activity.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_process_image_path
+      description: Path of the initiating process.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_process_command_line
+      description: Command line arguments of the initiator.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_process_os_pid
+      description: Initiator process ID.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_process_image_sha256
+      description: The SHA256 value of the initiator.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_process_signature_vendor
+      description: Initiator signer.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_process_signature_status
+      description: 'Signing status of the initiator. Possible values: Unsigned, Signed,
+        Invalid Signature, and Unknown.'
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_process_image_name
+      description: The name of the process that initiated the causality chain.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_process_image_path
+      description: Causality group owner path of the initiating process.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_process_command_line
+      description: Command line arguments of the causality group owner.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_process_os_pid
+      description: Causality group owner process ID.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_process_image_sha256
+      description: The SHA256 value of the causality group owner.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_process_signature_vendor
+      description: Causality group owner signer.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_process_signature_status
+      description: 'Signing status of the causality group owner. Possible values:
+        Unsigned, Signed, Invalid Signature, and Unknown.'
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_type
+      description: The type of the causality group owner.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.os_actor_process_image_name
+      description: The name of the operating system that initiated the activity.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.os_actor_process_image_path
+      description: Operating system parent path.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.os_actor_process_command_line
+      description: Command line arguments of the operating system parent.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.os_actor_process_os_pid
+      description: Operating system parent process ID.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.action_remote_process_image_sha256
+      description: The SHA256 value of the operating system parent.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results._vendor
+      description: The result vendor.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results._product
+      description: The result product.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.agent_install_type
+      description: Initiator install type.
+      type: String
+    polling: true
+  - arguments: []
+    description: Retrieve the amount of query quota available and used.
+    name: xdr-xql-get-quota
+    outputs:
+    - contextPath: PaloAltoNetworksXQL.Quota.license_quota
+      description: Amount of daily quota allocated to your tenant based on your license
+        type and size.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.Quota.additional_purchased_quota
+      description: Amount of query quota purchased.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.Quota.used_quota
+      description: Amount of query quota used over the past 24 hours.
+      type: Number
+  - arguments:
+    - description: Integer representing the unique execution ID generated by the response
+        to start an XQL query API.
+      name: query_id
+      required: true
+    - defaultValue: "20"
+      description: The maximum number of returned fields per result.
+      name: max_fields
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: If set to 'true' and the query returns more than 1000 results,
+        it will be extracted as JSON data to context instead of being returned as
+        a .gz file. If set to 'false' and the query returns more than 1000 results,
+        it will return the .gz file without extracting the results to context.
+      name: parse_result_file_to_context
+      predefined:
+      - "true"
+      - "false"
+    description: |-
+      Retrieve results of an executed XQL query API. The command will be executed every 10 seconds until results are retrieved or until a timeout error is raised.
+      When more than 1000 results are retrieved, the command will return a compressed gzipped JSON format file,
+      unless the argument 'parse_result_file_to_context' is set to true and then the results will be extracted to the context.
+    name: xdr-xql-get-query-results
+    outputs:
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.execution_id
+      description: An integer representing a unique ID of a successful XQL query execution.
+        The execution_id value can be passed to the xdr-xql-get-query-results command.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.query_name
+      description: The given name of the query.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.status
+      description: |-
+        String representing the status of the API call; SUCCESS, FAIL, or PENDING.
+        For multi-tenant queries, PARTIAL_SUCCESS means that at least one tenant failed to execute the query. Only partial results are available.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.number_of_results
+      description: Integer representing the number of results returned.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.query_cost
+      description: |-
+        Floating number representing the number of query units collected for this API. For example, {"local_tenant_id": 0.01}.
+        For multi-tenant queries, the field displays a value per child tenant. For example, {"tenant_id_1": 0.01, "tenant_id_2": 2.3}.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.remaining_quota
+      description: Floating number representing the number of query units available
+        for you to use.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results._time
+      description: Result time.
+      type: Date
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.agent_hostname
+      description: The agent host name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.agent_ip_addresses
+      description: The agent IP addresses.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.mac
+      description: Host MAC address.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_effective_username
+      description: Parent user name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_process_image_name
+      description: The name of the process that initiated the activity.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_process_image_path
+      description: Path of the initiating process.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_process_command_line
+      description: Command line arguments of the initiator.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_process_os_pid
+      description: Initiator process ID.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_process_image_sha256
+      description: The SHA256 value of the initiator.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_process_signature_vendor
+      description: Initiator signer.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.actor_process_signature_status
+      description: 'Signing status of the initiator. Possible values: Unsigned, Signed,
+        Invalid Signature, and Unknown.'
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_process_image_name
+      description: The name of the process that initiated the causality chain.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_process_image_path
+      description: Causality group owner path of the initiating process.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_process_command_line
+      description: Command line arguments of the causality group owner.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_process_os_pid
+      description: Causality group owner process ID.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_process_image_sha256
+      description: The SHA256 value of the causality group owner.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_process_signature_vendor
+      description: Causality group owner signer.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_process_signature_status
+      description: 'Signing status of the causality group owner. Possible values:
+        Unsigned, Signed, Invalid Signature, and Unknown.'
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.causality_actor_type
+      description: The type of the causality group owner.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.os_actor_process_image_name
+      description: The name of the operating system that initiated the activity.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.os_actor_process_image_path
+      description: Operating system parent path.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.os_actor_process_command_line
+      description: Command line arguments of the operating system parent.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.os_actor_process_os_pid
+      description: Operating system parent process ID.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.action_remote_process_image_sha256
+      description: The SHA256 value of the operating system parent.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results._vendor
+      description: The result vendor.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results._product
+      description: The result product.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.GenericQuery.results.agent_install_type
+      description: Initiator install type.
+      type: String
+    polling: true
+  - arguments:
+    - description: XDR endpoint ID to run the query on.
+      isArray: true
+      name: endpoint_id
+    - description: SHA256 file to run the query on.
+      isArray: true
+      name: file_sha256
+      required: true
+    - description: Extra fields to add to the query results.
+      isArray: true
+      name: extra_fields
+    - description: 'Time in relative date or range format (for example: "1 day", "3
+        weeks ago", "between 2021-01-01 12:34:56 +02:00 and 2021-02-01 12:34:56 +02:00").
+        The default is the last 24 hours.'
+      name: time_frame
+    - defaultValue: "100"
+      description: "Integer representing the maximum number of results to return.
+        For example:\nIf limit = 100 and the query produced 1,000 results, only the
+        first 100 results will be returned.\nIf limit = 100 and the query produced
+        50 results, only 50 results will be returned.\nIf limit=5000, 5,000 results
+        are returned.\nIf limit=null or empty (default) up to 100 results are returned. "
+      name: limit
+    - description: |-
+        List of strings used for running APIs on local and Managed Security tenants. Valid values:
+
+        For single tenant (local tenant) query, enter a single-item list with your tenant_id. Additional valid values are, empty list ([]) or null (default).
+
+        For multi-tenant investigations (Managed Security parent who investigate children and\or local), enter a multi-item list with the required tenant_id. List of IDs can contain the parent, children, or both parent and children.
+      isArray: true
+      name: tenant_id
+    - description: The name of the query.
+      name: query_name
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: If set to 'true' and the query returns more than 1000 results,
+        it will be extracted as JSON data to context instead of being returned as
+        a .gz file. If set to 'false' and the query returns more than 1000 results,
+        it will return the .gz file without extracting the results to context.
+      name: parse_result_file_to_context
+      predefined:
+      - "true"
+      - "false"
+    description: Query file events by the SHA256 file.
+    name: xdr-xql-file-event-query
+    outputs:
+    - contextPath: PaloAltoNetworksXQL.FileEvent.query_name
+      description: The given name of the query.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileEvent.execution_id
+      description: An integer representing a unique ID of a successful XQL query execution.
+        The execution_id value can be passed to the xdr-xql-get-query-results command.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileEvent.status
+      description: |-
+        String representing the status of the API call; SUCCESS, FAIL, or PENDING.
+        For multi-tenant queries, PARTIAL_SUCCESS means that at least one tenant failed to execute the query. Only partial results are available.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileEvent.number_of_results
+      description: Integer representing the number of results returned.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.FileEvent.query_cost
+      description: |-
+        Floating number representing the number of query units collected for this API. For example, {"local_tenant_id": 0.01}.
+        For multi-tenant queries, the field displays a value per child tenant. For example, {"tenant_id_1": 0.01, "tenant_id_2": 2.3}.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.FileEvent.remaining_quota
+      description: Floating number representing the number of query units available
+        for you to use.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.FileEvent.results.agent_hostname
+      description: The agent host name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileEvent.results.agent_ip_addresses
+      description: The agent IP addresses.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileEvent.results.agent_id
+      description: Endpoint ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileEvent.results.action_file_path
+      description: File path of the action.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileEvent.results.action_file_sha256
+      description: SHA256 hash value of the file.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileEvent.results.actor_process_file_create_time
+      description: Initiator file create time.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileEvent.results._vendor
+      description: The result vendor.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileEvent.results._time
+      description: Result time.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileEvent.results.insert_timestamp
+      description: Result insert timestamp.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileEvent.results._product
+      description: The result product.
+      type: String
+    polling: true
+  - arguments:
+    - description: XDR endpoint ID to run the query on.
+      isArray: true
+      name: endpoint_id
+    - description: The SHA256 hash of the primary involved process to search on the
+        XDR dataset.
+      isArray: true
+      name: process_sha256
+      required: true
+    - description: Extra fields to add to the query results.
+      isArray: true
+      name: extra_fields
+    - description: 'Time in relative date or range format (for example: "1 day", "3
+        weeks ago", "between 2021-01-01 12:34:56 +02:00 and 2021-02-01 12:34:56 +02:00").
+        The default is the last 24 hours.'
+      name: time_frame
+    - defaultValue: "100"
+      description: "Integer representing the maximum number of results to return.
+        For example:\nIf limit = 100 and the query produced 1,000 results, only the
+        first 100 results will be returned.\nIf limit = 100 and the query produced
+        50 results, only 50 results will be returned.\nIf limit=5000, 5,000 results
+        are returned.\nIf limit=null or empty (default) up to 100 results are returned. "
+      name: limit
+    - description: |-
+        List of strings used for running APIs on local and Managed Security tenants. Valid values:
+
+        For single tenant (local tenant) query, enter a single-item list with your tenant_id. Additional valid values are, empty list ([]) or null (default).
+
+        For multi-tenant investigations (Managed Security parent who investigate children and\or local), enter a multi-item list with the required tenant_id. List of IDs can contain the parent, children, or both parent and children.
+      isArray: true
+      name: tenant_id
+    - description: The name of the query.
+      name: query_name
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: If set to 'true' and the query returns more than 1000 results,
+        it will be extracted as JSON data to context instead of being returned as
+        a .gz file. If set to 'false' and the query returns more than 1000 results,
+        it will return the .gz file without extracting the results to context.
+      name: parse_result_file_to_context
+      predefined:
+      - "true"
+      - "false"
+    description: Query process events by the SHA256 process.
+    name: xdr-xql-process-event-query
+    outputs:
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.query_name
+      description: The given name of the query.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.execution_id
+      description: An integer representing a unique ID of a successful XQL query execution.
+        The execution_id value can be passed to the  xdr-xql-get-query-results command.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.status
+      description: |-
+        String representing the status of the API call; SUCCESS, FAIL, or PENDING.
+        For multi-tenant queries, PARTIAL_SUCCESS means that at least one tenant failed to execute the query. Only partial results are available.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.number_of_results
+      description: Integer representing the number of results returned.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.query_cost
+      description: |-
+        Floating number representing the number of query units collected for this API. For example, {"local_tenant_id": 0.01}.
+        For multi-tenant queries, the field displays a value per child tenant. For example, {"tenant_id_1": 0.01, "tenant_id_2": 2.3}.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.remaining_quota
+      description: Floating number representing the number of query units available
+        for you to use.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.agent_hostname
+      description: The agent host name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.agent_ip_addresses
+      description: The agent IP addresses.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.agent_id
+      description: Endpoint ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.action_process_image_sha256
+      description: Target SHA256 process.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.action_process_image_name
+      description: Target process name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.action_process_image_path
+      description: Target process image path.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.action_process_instance_id
+      description: Target process instance ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.action_process_causality_id
+      description: Target process causality ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.action_process_signature_vendor
+      description: Process execution signer.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.action_process_signature_product
+      description: Process signature product.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.action_process_image_command_line
+      description: Target process command line.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.actor_process_image_name
+      description: The name of the process that initiated the activity.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.actor_process_image_path
+      description: Path of the initiating process.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.actor_process_instance_id
+      description: Initiator instance ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.actor_process_causality_id
+      description: Initiator causality ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results._vendor
+      description: The result vendor.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results._time
+      description: Result time.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results.insert_timestamp
+      description: Result insert timestamp.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessEvent.results._product
+      description: The result product.
+      type: String
+    polling: true
+  - arguments:
+    - description: XDR endpoint ID to run the query on.
+      isArray: true
+      name: endpoint_id
+    - description: SHA256 DLL module to search on the XDR dataset.
+      isArray: true
+      name: loaded_module_sha256
+      required: true
+    - description: Extra fields to add to the query results.
+      isArray: true
+      name: extra_fields
+    - description: 'Time in relative date or range format (for example: "1 day", "3
+        weeks ago", "between 2021-01-01 12:34:56 +02:00 and 2021-02-01 12:34:56 +02:00").
+        The default is the last 24 hours.'
+      name: time_frame
+    - defaultValue: "100"
+      description: "Integer representing the maximum number of results to return.
+        For example:\nIf limit = 100 and the query produced 1,000 results, only the
+        first 100 results will be returned.\nIf limit = 100 and the query produced
+        50 results, only 50 results will be returned.\nIf limit=5000, 5,000 results
+        are returned.\nIf limit=null or empty (default) up to 100 results are returned. "
+      name: limit
+    - description: |-
+        List of strings used for running APIs on local and Managed Security tenants. Valid values:
+
+        For single tenant (local tenant) query, enter a single-item list with your tenant_id. Additional valid values are, empty list ([]) or null (default).
+
+        For multi-tenant investigations (Managed Security parent who investigate children and\or local), enter a multi-item list with the required tenant_id. List of IDs can contain the parent, children, or both parent and children.
+      isArray: true
+      name: tenant_id
+    - description: The name of the query.
+      name: query_name
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: If set to 'true' and the query returns more than 1000 results,
+        it will be extracted as JSON data to context instead of being returned as
+        a .gz file. If set to 'false' and the query returns more than 1000 results,
+        it will return the .gz file without extracting the results to context.
+      name: parse_result_file_to_context
+      predefined:
+      - "true"
+      - "false"
+    description: Query DLL module events by the SHA256 DLL.
+    name: xdr-xql-dll-module-query
+    outputs:
+    - contextPath: PaloAltoNetworksXQL.DllModule.query_name
+      description: The given name of the query.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.execution_id
+      description: An integer representing a unique ID of a successful XQL query execution.
+        The execution_id value can be passed to the  xdr-xql-get-query-results command.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.status
+      description: |-
+        String representing the status of the API call; SUCCESS, FAIL, or PENDING.
+        For multi-tenant queries, PARTIAL_SUCCESS means that at least one tenant failed to execute the query. Only partial results are available.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.number_of_results
+      description: Integer representing the number of results returned.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.DllModule.query_cost
+      description: |-
+        Floating number representing the number of query units collected for this API. For example, {"local_tenant_id": 0.01}.
+        For multi-tenant queries, the field displays a value per child tenant. For example, {"tenant_id_1": 0.01, "tenant_id_2": 2.3}.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.DllModule.remaining_quota
+      description: Floating number representing the number of query units available
+        for you to use.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.DllModule.results.agent_hostname
+      description: The agent host name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results.agent_ip_addresses
+      description: The agent IP addresses.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results.agent_id
+      description: Endpoint ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results.actor_effective_username
+      description: Parent user name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results.action_module_sha256
+      description: Action SHA256 module.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results.action_module_path
+      description: Action module path.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results.action_module_file_info
+      description: Action module file information.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results.action_module_file_create_time
+      description: Action module file create time.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results.actor_process_image_name
+      description: The name of the process that initiated the activity.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results.actor_process_image_path
+      description: Path of the initiating process.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results.actor_process_command_line
+      description: Command line arguments of the initiator.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results.actor_process_image_sha256
+      description: The SHA256 value of the initiator.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results.actor_process_instance_id
+      description: Initiator instance ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results.actor_process_causality_id
+      description: Initiator causality ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results._vendor
+      description: The result vendor.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results._time
+      description: Result time.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results.insert_timestamp
+      description: Result insert timestamp.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DllModule.results._product
+      description: The result product.
+      type: String
+    polling: true
+  - arguments:
+    - description: XDR endpoint ID to run the query on.
+      isArray: true
+      name: endpoint_id
+    - description: Source IP of the network connection query.
+      isArray: true
+      name: local_ip
+    - description: Destination IP of the network connection query.
+      isArray: true
+      name: remote_ip
+      required: true
+    - description: Destination port of the network connection query.
+      isArray: true
+      name: port
+    - description: Extra fields to add to the query results.
+      isArray: true
+      name: extra_fields
+    - description: 'Time in relative date or range format (for example: "1 day", "3
+        weeks ago", "between 2021-01-01 12:34:56 +02:00 and 2021-02-01 12:34:56 +02:00").
+        The default is the last 24 hours.'
+      name: time_frame
+    - defaultValue: "100"
+      description: "Integer representing the maximum number of results to return.
+        For example:\nIf limit = 100 and the query produced 1,000 results, only the
+        first 100 results will be returned.\nIf limit = 100 and the query produced
+        50 results, only 50 results will be returned.\nIf limit=5000, 5,000 results
+        are returned.\nIf limit=null or empty (default) up to 100 results are returned. "
+      name: limit
+    - description: |-
+        List of strings used for running APIs on local and Managed Security tenants. Valid values:
+
+        For single tenant (local tenant) query, enter a single-item list with your tenant_id. Additional valid values are, empty list ([]) or null (default).
+
+        For multi-tenant investigations (Managed Security parent who investigate children and\or local), enter a multi-item list with the required tenant_id. List of IDs can contain the parent, children, or both parent and children.
+      isArray: true
+      name: tenant_id
+    - description: The name of the query.
+      name: query_name
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: If set to 'true' and the query returns more than 1000 results,
+        it will be extracted as JSON data to context instead of being returned as
+        a .gz file. If set to 'false' and the query returns more than 1000 results,
+        it will return the .gz file without extracting the results to context.
+      name: parse_result_file_to_context
+      predefined:
+      - "true"
+      - "false"
+    description: Query network connections between a source IP, destination IP and
+      port.
+    name: xdr-xql-network-connection-query
+    outputs:
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.query_name
+      description: The given name of the query.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.execution_id
+      description: An integer representing a unique ID of a successful XQL query execution.
+        The execution_id value can be passed to the  xdr-xql-get-query-results command.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.status
+      description: |-
+        String representing the status of the API call; SUCCESS, FAIL, or PENDING.
+        For multi-tenant queries, PARTIAL_SUCCESS means that at least one tenant failed to execute the query. Only partial results are available.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.number_of_results
+      description: Integer representing the number of results returned.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.query_cost
+      description: |-
+        Floating number representing the number of query units collected for this API. For example, {"local_tenant_id": 0.01}.
+        For multi-tenant queries, the field displays a value per child tenant. For example, {"tenant_id_1": 0.01, "tenant_id_2": 2.3}.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.remaining_quota
+      description: Floating number representing the number of query units available
+        for you to use.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.agent_hostname
+      description: The agent host name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.agent_ip_addresses
+      description: The agent IP addresses.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.agent_id
+      description: Endpoint ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.actor_effective_username
+      description: Parent user name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.action_local_ip
+      description: Local IP.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.action_remote_ip
+      description: Remote IP.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.action_remote_port
+      description: Remote port.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.dst_action_external_hostname
+      description: External hostname.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.action_country
+      description: Action country.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.actor_process_image_name
+      description: The name of the process that initiated the activity.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.actor_process_image_path
+      description: Path of the initiating process.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.actor_process_command_line
+      description: Command line arguments of the initiator.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.actor_process_image_sha256
+      description: The SHA256 value of the initiator.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.actor_process_instance_id
+      description: Initiator instance ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.actor_process_causality_id
+      description: Initiator causality ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results._vendor
+      description: The result vendor.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results._time
+      description: Result time.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results.insert_timestamp
+      description: Result insert timestamp.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.NetworkConnection.results._product
+      description: The result product.
+      type: String
+    polling: true
+  - arguments:
+    - description: XDR endpoint ID to run the query on.
+      isArray: true
+      name: endpoint_id
+    - description: 'Registry key name to search (for example: HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Print\Environments\Windows
+        x64\Drivers\Version-3\Remote Desktop Easy Print).'
+      isArray: true
+      name: reg_key_name
+      required: true
+    - description: Extra fields to add to the query results.
+      isArray: true
+      name: extra_fields
+    - description: 'Time in relative date or range format (for example: "1 day", "3
+        weeks ago", "between 2021-01-01 12:34:56 +02:00 and 2021-02-01 12:34:56 +02:00").
+        The default is the last 24 hours.'
+      name: time_frame
+    - defaultValue: "100"
+      description: "Integer representing the maximum number of results to return.
+        For example:\nIf limit = 100 and the query produced 1,000 results, only the
+        first 100 results will be returned.\nIf limit = 100 and the query produced
+        50 results, only 50 results will be returned.\nIf limit=5000, 5,000 results
+        are returned.\nIf limit=null or empty (default) up to 100 results are returned. "
+      name: limit
+    - description: |-
+        List of strings used for running APIs on local and Managed Security tenants. Valid values:
+
+        For single tenant (local tenant) query, enter a single-item list with your tenant_id. Additional valid values are, empty list ([]) or null (default).
+
+        For multi-tenant investigations (Managed Security parent who investigate children and\or local), enter a multi-item list with the required tenant_id. List of IDs can contain the parent, children, or both parent and children.
+      isArray: true
+      name: tenant_id
+    - description: The name of the query.
+      name: query_name
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: If set to 'true' and the query returns more than 1000 results,
+        it will be extracted as JSON data to context instead of being returned as
+        a .gz file. If set to 'false' and the query returns more than 1000 results,
+        it will return the .gz file without extracting the results to context.
+      name: parse_result_file_to_context
+      predefined:
+      - "true"
+      - "false"
+    description: Query windows registry by registry key name.
+    name: xdr-xql-registry-query
+    outputs:
+    - contextPath: PaloAltoNetworksXQL.Registry.query_name
+      description: The given name of the query.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.execution_id
+      description: An integer representing a unique ID of a successful XQL query execution.
+        The execution_id value can be passed to the  xdr-xql-get-query-results command.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.status
+      description: |-
+        String representing the status of the API call; SUCCESS, FAIL, or PENDING.
+        For multi-tenant queries, PARTIAL_SUCCESS means that at least one tenant failed to execute the query. Only partial results are available.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.number_of_results
+      description: Integer representing the number of results returned.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.Registry.query_cost
+      description: |-
+        Floating number representing the number of query units collected for this API. For example, {"local_tenant_id": 0.01}.
+        For multi-tenant queries, the field displays a value per child tenant. For example, {"tenant_id_1": 0.01, "tenant_id_2": 2.3}.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.Registry.remaining_quota
+      description: Floating number representing the number of query units available
+        for you to use.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.Registry.results.agent_hostname
+      description: The agent host name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.results.agent_ip_addresses
+      description: The agent IP addresses.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.results.agent_id
+      description: Endpoint ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.results.agent_os_type
+      description: Host operating system.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.results.agent_os_sub_type
+      description: Agent operating system subtype.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.results.event_type
+      description: Event type.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.results.event_sub_type
+      description: Event subtype.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.results.action_registry_key_name
+      description: Registry key name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.results.action_registry_value_name
+      description: Registry value name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.results.action_registry_data
+      description: Registry data.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.results._vendor
+      description: The result vendor.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.results._time
+      description: Result time.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.results.insert_timestamp
+      description: Result insert timestamp.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.Registry.results._product
+      description: The result product.
+      type: String
+    polling: true
+  - arguments:
+    - description: XDR endpoint ID to run the query on.
+      isArray: true
+      name: endpoint_id
+    - description: 'event log ID to search. - Windows: Event ID of the event-log -
+        Linux: For action_evtlog_source = AuthLog, one of the following: 0 = Unknown
+        1 = Successful Login 2 = Failed Login 3 = Failed Password (Same as failed
+        login, but should include a username) 4 = Logout.'
+      isArray: true
+      name: event_id
+      required: true
+    - description: Extra fields to add to the query results.
+      isArray: true
+      name: extra_fields
+    - description: 'Time in relative date or range format (for example: "1 day", "3
+        weeks ago", "between 2021-01-01 12:34:56 +02:00 and 2021-02-01 12:34:56 +02:00").
+        The default is the last 24 hours.'
+      name: time_frame
+    - defaultValue: "100"
+      description: "Integer representing the maximum number of results to return.
+        For example:\nIf limit = 100 and the query produced 1,000 results, only the
+        first 100 results will be returned.\nIf limit = 100 and the query produced
+        50 results, only 50 results will be returned.\nIf limit=5000, 5,000 results
+        are returned.\nIf limit=null or empty (default) up to 100 results are returned. "
+      name: limit
+    - description: |-
+        List of strings used for running APIs on local and Managed Security tenants. Valid values:
+
+        For single tenant (local tenant) query, enter a single-item list with your tenant_id. Additional valid values are, empty list ([]) or null (default).
+
+        For multi-tenant investigations (Managed Security parent who investigate children and\or local), enter a multi-item list with the required tenant_id. List of IDs can contain the parent, children, or both parent and children.
+      isArray: true
+      name: tenant_id
+    - description: The name of the query.
+      name: query_name
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: If set to 'true' and the query returns more than 1000 results,
+        it will be extracted as JSON data to context instead of being returned as
+        a .gz file. If set to 'false' and the query returns more than 1000 results,
+        it will return the .gz file without extracting the results to context.
+      name: parse_result_file_to_context
+      predefined:
+      - "true"
+      - "false"
+    description: Query event logs by event ID.
+    name: xdr-xql-event-log-query
+    outputs:
+    - contextPath: PaloAltoNetworksXQL.EventLog.query_name
+      description: The given name of the query.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.execution_id
+      description: An integer representing a unique ID of a successful XQL query execution.
+        The execution_id value can be passed to the  xdr-xql-get-query-results command.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.status
+      description: |-
+        String representing the status of the API call; SUCCESS, FAIL, or PENDING.
+        For multi-tenant queries, PARTIAL_SUCCESS means that at least one tenant failed to execute the query. Only partial results are available.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.number_of_results
+      description: Integer representing the number of results returned.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.EventLog.query_cost
+      description: |-
+        Floating number representing the number of query units collected for this API. For example, {"local_tenant_id": 0.01}.
+        For multi-tenant queries, the field displays a value per child tenant. For example, {"tenant_id_1": 0.01, "tenant_id_2": 2.3}.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.EventLog.remaining_quota
+      description: Floating number representing the number of query units available
+        for you to use.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.EventLog.results.agent_hostname
+      description: The agent host name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.results.agent_ip_addresses
+      description: The agent IP addresses.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.results.agent_id
+      description: Endpoint ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.results.agent_os_type
+      description: Host operating system.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.results.agent_os_sub_type
+      description: Agent operating system subtype.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.results.action_evtlog_event_id
+      description: Event log ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.results.event_type
+      description: Event type.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.results.event_sub_type
+      description: Event subtype.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.results.action_evtlog_message
+      description: Event log message.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.results.action_evtlog_provider_name
+      description: Event log provider name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.results._vendor
+      description: The result vendor.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.results._time
+      description: Result time.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.results.insert_timestamp
+      description: Result insert timestamp.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.EventLog.results._product
+      description: The result product.
+      type: String
+    polling: true
+  - arguments:
+    - description: XDR endpoint ID to run the query on.
+      isArray: true
+      name: endpoint_id
+    - description: Query by external domain name.
+      isArray: true
+      name: external_domain
+    - description: Query by DNS query.
+      isArray: true
+      name: dns_query
+    - description: Extra fields to add to the query results.
+      isArray: true
+      name: extra_fields
+    - description: 'Time in relative date or range format (for example: "1 day", "3
+        weeks ago", "between 2021-01-01 12:34:56 +02:00 and 2021-02-01 12:34:56 +02:00").
+        The default is the last 24 hours.'
+      name: time_frame
+    - defaultValue: "100"
+      description: "Integer representing the maximum number of results to return.
+        For example:\nIf limit = 100 and the query produced 1,000 results, only the
+        first 100 results will be returned.\nIf limit = 100 and the query produced
+        50 results, only 50 results will be returned.\nIf limit=5000, 5,000 results
+        are returned.\nIf limit=null or empty (default) up to 100 results are returned. "
+      name: limit
+    - description: |-
+        List of strings used for running APIs on local and Managed Security tenants. Valid values:
+
+        For single tenant (local tenant) query, enter a single-item list with your tenant_id. Additional valid values are, empty list ([]) or null (default).
+
+        For multi-tenant investigations (Managed Security parent who investigate children and\or local), enter a multi-item list with the required tenant_id. List of IDs can contain the parent, children, or both parent and children.
+      isArray: true
+      name: tenant_id
+    - description: The name of the query.
+      name: query_name
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: If set to 'true' and the query returns more than 1000 results,
+        it will be extracted as JSON data to context instead of being returned as
+        a .gz file. If set to 'false' and the query returns more than 1000 results,
+        it will return the .gz file without extracting the results to context.
+      name: parse_result_file_to_context
+      predefined:
+      - "true"
+      - "false"
+    description: Query by DNS query or domain name.
+    name: xdr-xql-dns-query
+    outputs:
+    - contextPath: PaloAltoNetworksXQL.DNS.query_name
+      description: The given name of the query.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.execution_id
+      description: An integer representing a unique ID of a successful XQL query execution.
+        The execution_id value can be passed to the  xdr-xql-get-query-results command.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.status
+      description: |-
+        String representing the status of the API call; SUCCESS, FAIL, or PENDING.
+        For multi-tenant queries, PARTIAL_SUCCESS means that at least one tenant failed to execute the query. Only partial results are available.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.number_of_results
+      description: Integer representing the number of results returned.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.DNS.query_cost
+      description: |-
+        Floating number representing the number of query units collected for this API. For example, {"local_tenant_id": 0.01}.
+        For multi-tenant queries, the field displays a value per child tenant. For example, {"tenant_id_1": 0.01, "tenant_id_2": 2.3}.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.DNS.remaining_quota
+      description: Floating number representing the number of query units available
+        for you to use.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.DNS.results.agent_hostname
+      description: The agent host name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.agent_ip_addresses
+      description: The agent IP addresses.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.agent_id
+      description: Endpoint ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.agent_os_type
+      description: Host operating system.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.agent_os_sub_type
+      description: Agent operating system subtype.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.action_local_ip
+      description: Local IP address.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.action_remote_ip
+      description: Remote IP address.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.action_remote_port
+      description: Remote port.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.dst_action_external_hostname
+      description: External hostname.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.dns_query_name
+      description: DNS query name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.action_app_id_transitions
+      description: List of application IDs action, actual activities that took place
+        and recorded by the agent.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.action_total_download
+      description: Total downloads.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.action_total_upload
+      description: Total uploads.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.action_country
+      description: Action country.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.action_as_data
+      description: The action as data.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.os_actor_process_image_path
+      description: Operating system parent path.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.os_actor_process_command_line
+      description: Command line arguments of the operating system parent.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.os_actor_process_instance_id
+      description: Initiator instance ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.os_actor_process_causality_id
+      description: Initiator causality ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results._vendor
+      description: The result vendor.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results._time
+      description: Result time.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results.insert_timestamp
+      description: Result insert timestamp.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.DNS.results._product
+      description: The result product.
+      type: String
+    polling: true
+  - arguments:
+    - description: XDR endpoint ID to run the query on.
+      isArray: true
+      name: endpoint_id
+    - description: SHA256 file to search on the XDR dataset.
+      isArray: true
+      name: file_sha256
+    - description: File path to search on the XDR dataset.
+      isArray: true
+      name: file_path
+    - description: Extra fields to add to the query results.
+      isArray: true
+      name: extra_fields
+    - description: 'Time in relative date or range format (for example: "1 day", "3
+        weeks ago", "between 2021-01-01 12:34:56 +02:00 and 2021-02-01 12:34:56 +02:00").
+        The default is the last 24 hours.'
+      name: time_frame
+    - defaultValue: "100"
+      description: "Integer representing the maximum number of results to return.
+        For example:\nIf limit = 100 and the query produced 1,000 results, only the
+        first 100 results will be returned.\nIf limit = 100 and the query produced
+        50 results, only 50 results will be returned.\nIf limit=5000, 5,000 results
+        are returned.\nIf limit=null or empty (default) up to 100 results are returned. "
+      name: limit
+    - description: |-
+        List of strings used for running APIs on local and Managed Security tenants. Valid values:
+
+        For single tenant (local tenant) query, enter a single-item list with your tenant_id. Additional valid values are, empty list ([]) or null (default).
+
+        For multi-tenant investigations (Managed Security parent who investigate children and\or local), enter a multi-item list with the required tenant_id. List of IDs can contain the parent, children, or both parent and children.
+      isArray: true
+      name: tenant_id
+    - description: The name of the query.
+      name: query_name
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: If set to 'true' and the query returns more than 1000 results,
+        it will be extracted as JSON data to context instead of being returned as
+        a .gz file. If set to 'false' and the query returns more than 1000 results,
+        it will return the .gz file without extracting the results to context.
+      name: parse_result_file_to_context
+      predefined:
+      - "true"
+      - "false"
+    description: Search for the process that wrote the given file, by its SHA256 or
+      file path.
+    name: xdr-xql-file-dropper-query
+    outputs:
+    - contextPath: PaloAltoNetworksXQL.FileDropper.query_name
+      description: The given name of the query.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.execution_id
+      description: An integer representing a unique ID of a successful XQL query execution.
+        The execution_id value can be passed to the  xdr-xql-get-query-results command.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.status
+      description: |-
+        String representing the status of the API call; SUCCESS, FAIL, or PENDING.
+        For multi-tenant queries, PARTIAL_SUCCESS means that at least one tenant failed to execute the query. Only partial results are available.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.number_of_results
+      description: Integer representing the number of results returned.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.FileDropper.query_cost
+      description: |-
+        Floating number representing the number of query units collected for this API. For example, {"local_tenant_id": 0.01}.
+        For multi-tenant queries, the field displays a value per child tenant. For example, {"tenant_id_1": 0.01, "tenant_id_2": 2.3}.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.FileDropper.remaining_quota
+      description: Floating number representing the number of query units available
+        for you to use.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.agent_hostname
+      description: The agent host name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.agent_ip_addresses
+      description: The agent IP addresses.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.agent_id
+      description: Endpoint ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.action_file_sha256
+      description: SHA256 hash value of the file.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.action_file_path
+      description: File path of the action.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.actor_process_image_name
+      description: The name of the process that initiated the activity.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.actor_process_image_path
+      description: Path of the initiating process.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.actor_process_command_line
+      description: Command line arguments of the initiator.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.actor_process_signature_vendor
+      description: Initiator signer.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.actor_process_signature_product
+      description: Initiator product.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.actor_process_image_sha256
+      description: The SHA256 value of the initiator.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.actor_primary_normalized_user
+      description: Normalized user.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.os_actor_process_image_path
+      description: Operating system parent path.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.os_actor_process_command_line
+      description: Command line arguments of the operating system parent.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.os_actor_process_signature_vendor
+      description: Operating system parent signer.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.os_actor_process_signature_product
+      description: Operating system parent signer product.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.os_actor_process_image_sha256
+      description: The SHA256 value of the operating system parent.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.os_actor_effective_username
+      description: Operating system parent user name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.causality_actor_remote_host
+      description: Remote host.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.causality_actor_remote_ip
+      description: remote IP.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results._vendor
+      description: The result vendor.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results._time
+      description: Result time.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results.insert_timestamp
+      description: Result insert timestamp.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.FileDropper.results._product
+      description: The result product.
+      type: String
+    polling: true
+  - arguments:
+    - description: XDR endpoint ID to run the query on.
+      isArray: true
+      name: endpoint_id
+    - description: Process instance ID to search on the XDR dataset.
+      isArray: true
+      name: process_instance_id
+      required: true
+    - description: Extra fields to add to the query results.
+      isArray: true
+      name: extra_fields
+    - description: 'Time in relative date or range format (for example: "1 day", "3
+        weeks ago", "between 2021-01-01 12:34:56 +02:00 and 2021-02-01 12:34:56 +02:00").
+        The default is the last 24 hours.'
+      name: time_frame
+    - defaultValue: "100"
+      description: "Integer representing the maximum number of results to return.
+        For example:\nIf limit = 100 and the query produced 1,000 results, only the
+        first 100 results will be returned.\nIf limit = 100 and the query produced
+        50 results, only 50 results will be returned.\nIf limit=5000, 5,000 results
+        are returned.\nIf limit=null or empty (default) up to 100 results are returned. "
+      name: limit
+    - description: |-
+        List of strings used for running APIs on local and Managed Security tenants. Valid values:
+
+        For single tenant (local tenant) query, enter a single-item list with your tenant_id. Additional valid values are, empty list ([]) or null (default).
+
+        For multi-tenant investigations (Managed Security parent who investigate children and\or local), enter a multi-item list with the required tenant_id. List of IDs can contain the parent, children, or both parent and children.
+      isArray: true
+      name: tenant_id
+    - description: The name of the query.
+      name: query_name
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: If set to 'true' and the query returns more than 1000 results,
+        it will be extracted as JSON data to context instead of being returned as
+        a .gz file. If set to 'false' and the query returns more than 1000 results,
+        it will return the .gz file without extracting the results to context.
+      name: parse_result_file_to_context
+      predefined:
+      - "true"
+      - "false"
+    description: Search for network connection created by a given process instance
+      ID.
+    name: xdr-xql-process-instance-network-activity-query
+    outputs:
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.query_name
+      description: The given name of the query.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.execution_id
+      description: An integer representing a unique ID of a successful XQL query execution.
+        The execution_id value can be passed to the  xdr-xql-get-query-results command.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.status
+      description: |-
+        String representing the status of the API call; SUCCESS, FAIL, or PENDING.
+        For multi-tenant queries, PARTIAL_SUCCESS means that at least one tenant failed to execute the query. Only partial results are available.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.number_of_results
+      description: Integer representing the number of results returned.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.query_cost
+      description: |-
+        Floating number representing the number of query units collected for this API. For example, {"local_tenant_id": 0.01}.
+        For multi-tenant queries, the field displays a value per child tenant. For example, {"tenant_id_1": 0.01, "tenant_id_2": 2.3}.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.remaining_quota
+      description: Floating number representing the number of query units available
+        for you to use.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.agent_hostname
+      description: The agent host name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.agent_ip_addresses
+      description: The agent IP addresses.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.agent_id
+      description: Endpoint ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.action_local_ip
+      description: Local IP address.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.action_remote_ip
+      description: Remote IP address.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.action_remote_port
+      description: Remote port.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.dst_action_external_hostname
+      description: External hostname.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.dns_query_name
+      description: DNS query name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.action_app_id_transitions
+      description: List of application IDs action, actual activities that took place
+        and recorded by the agent.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.action_total_download
+      description: Total downloads.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.action_total_upload
+      description: Total uploads.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.action_country
+      description: Action country.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.action_as_data
+      description: The action as data.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.actor_process_image_sha256
+      description: The SHA256 value of the initiator.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.actor_process_image_name
+      description: The name of the process that initiated the activity.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.actor_process_image_path
+      description: Path of the initiating process.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.actor_process_signature_vendor
+      description: Initiator signer.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.actor_process_signature_product
+      description: Initiator product.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.actor_causality_id
+      description: CID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.actor_process_image_command_line
+      description: Image command line.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.actor_process_instance_id
+      description: Initiator instance ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results._vendor
+      description: The result vendor.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results._time
+      description: Result time.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results.insert_timestamp
+      description: Result insert timestamp.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessInstanceNetworkActivity.results._product
+      description: The result product.
+      type: String
+    polling: true
+  - arguments:
+    - description: XDR endpoint ID to run the query on.
+      isArray: true
+      name: endpoint_id
+    - description: Process causality ID to search on the XDR dataset.
+      isArray: true
+      name: process_causality_id
+      required: true
+    - description: Extra fields to add to the query results.
+      isArray: true
+      name: extra_fields
+    - description: 'Time in relative date or range format (for example: "1 day", "3
+        weeks ago", "between 2021-01-01 12:34:56 +02:00 and 2021-02-01 12:34:56 +02:00").
+        The default is the last 24 hours.'
+      name: time_frame
+    - defaultValue: "100"
+      description: "Integer representing the maximum number of results to return.
+        For example:\nIf limit = 100 and the query produced 1,000 results, only the
+        first 100 results will be returned.\nIf limit = 100 and the query produced
+        50 results, only 50 results will be returned.\nIf limit=5000, 5,000 results
+        are returned.\nIf limit=null or empty (default) up to 100 results are returned. "
+      name: limit
+    - description: |-
+        List of strings used for running APIs on local and Managed Security tenants. Valid values:
+
+        For single tenant (local tenant) query, enter a single-item list with your tenant_id. Additional valid values are, empty list ([]) or null (default).
+
+        For multi-tenant investigations (Managed Security parent who investigate children and\or local), enter a multi-item list with the required tenant_id. List of IDs can contain the parent, children, or both parent and children.
+      isArray: true
+      name: tenant_id
+    - description: The name of the query.
+      name: query_name
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: If set to 'true' and the query returns more than 1000 results,
+        it will be extracted as JSON data to context instead of being returned as
+        a .gz file. If set to 'false' and the query returns more than 1000 results,
+        it will return the .gz file without extracting the results to context.
+      name: parse_result_file_to_context
+      predefined:
+      - "true"
+      - "false"
+    description: Search for network connection created by a given process causality
+      ID.
+    name: xdr-xql-process-causality-network-activity-query
+    outputs:
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.query_name
+      description: The given name of the query.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.execution_id
+      description: An integer representing a unique ID of a successful XQL query execution.
+        The execution_id value can be passed to the  xdr-xql-get-query-results command.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.status
+      description: |-
+        String representing the status of the API call; SUCCESS, FAIL, or PENDING.
+        For multi-tenant queries, PARTIAL_SUCCESS means that at least one tenant failed to execute the query. Only partial results are available.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.number_of_results
+      description: Integer representing the number of results returned.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.query_cost
+      description: |-
+        Floating number representing the number of query units collected for this API. For example, {"local_tenant_id": 0.01}.
+        For multi-tenant queries, the field displays a value per child tenant. For example, {"tenant_id_1": 0.01, "tenant_id_2": 2.3}.
+      type: Unknown
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.remaining_quota
+      description: Floating number representing the number of query units available
+        for you to use.
+      type: Number
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.agent_hostname
+      description: The agent host name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.agent_ip_addresses
+      description: The agent IP addresses.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.agent_id
+      description: Endpoint ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.action_local_ip
+      description: Local IP address.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.action_remote_ip
+      description: Remote IP address.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.action_remote_port
+      description: Remote port.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.dst_action_external_hostname
+      description: External hostname.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.dns_query_name
+      description: DNS query name.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.action_app_id_transitions
+      description: List of application IDs action, actual activities that took place
+        and recorded by the agent.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.action_total_download
+      description: Total downloads.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.action_total_upload
+      description: Total uploads.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.action_country
+      description: Action country.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.action_as_data
+      description: The action as data.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.actor_process_image_sha256
+      description: The SHA256 value of the initiator.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.actor_process_image_name
+      description: The name of the process that initiated the activity.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.actor_process_image_path
+      description: Path of the initiating process.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.actor_process_signature_vendor
+      description: Initiator signer.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.actor_process_signature_product
+      description: Initiator product.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.actor_causality_id
+      description: CID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.actor_process_image_command_line
+      description: Image command line.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.actor_process_instance_id
+      description: Initiator instance ID.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results._vendor
+      description: The result vendor.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results._time
+      description: Result time.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results.insert_timestamp
+      description: Result insert timestamp.
+      type: String
+    - contextPath: PaloAltoNetworksXQL.ProcessCausalityNetworkActivity.results._product
+      description: The result product.
+      type: String
+    polling: true
+  dockerimage: demisto/python3:3.10.13.80014
+  nativeimage:
+  - "8.3"
+  - "8.4"
+  runonce: false
+  script: |
+    register_module_line('Cortex XDR - XQL Query Engine', 'start', __line__())
+    ### pack version: 6.0.4
+
+
+    import copy
+    import gzip
+    import hashlib
+    import secrets
+    import string
+    from typing import Any, Dict, Tuple
+
+    import urllib3
+
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()  # pylint: disable=no-member
+
+    ''' CONSTANTS '''
+
+    DATE_FORMAT = '%Y-%m-%dT%H:%M:%SZ'  # ISO8601 format with UTC, default in XSOAR
+    DEFAULT_LIMIT = 100
+
+    ''' CLIENT CLASS '''
+
+
+    class Client(BaseClient):
+        """Client class to interact with the service API
+
+        This Client implements API calls, and does not contain any XSOAR logic.
+        Should only do requests and return data.
+        It inherits from BaseClient defined in CommonServer Python.
+        Most calls use _http_request() that handles proxy, SSL verification, etc.
+        For this  implementation, no special attributes defined
+        """
+
+        def start_xql_query(self, data: dict) -> str:
+            res = self._http_request(method='POST', url_suffix='/xql/start_xql_query', json_data=data)
+            execution_id = res.get('reply', "")
+            return execution_id
+
+        def get_xql_query_results(self, data: dict) -> dict:
+            res = self._http_request(method='POST', url_suffix='/xql/get_query_results', json_data=data)
+            query_results = res.get('reply', "")
+            return query_results
+
+        def get_query_result_stream(self, data: dict) -> bytes:
+            res = self._http_request(method='POST', url_suffix='/xql/get_query_results_stream', json_data=data,
+                                     resp_type='response')
+            return res.content
+
+        def get_xql_quota(self, data: dict) -> dict:
+            res = self._http_request(method='POST', url_suffix='/xql/get_quota', json_data=data)
+            return res
+
+
+    # =========================================== Built-In Queries Helpers ===========================================#
+
+
+    def wrap_list_items_in_double_quotes(string_of_argument: str):
+        """receive a string of arguments and return a string with each argument wrapped in double quotes.
+        example:
+            string_of_argument: '12345678, 87654321'
+            output: '"12345678","87654321"'
+            string_of_argument: ''
+            output: '""'
+
+        Args:
+            string_of_argument (str): The string s of_argument to format.
+
+        Returns:
+            str: The new formatted string
+        """
+        if not string_of_argument:
+            string_of_argument = ''
+        list_of_args = argToList(string_of_argument) if string_of_argument != '' else ['']
+        return ','.join(f'"{item}"' for item in list_of_args)
+
+
+    def get_file_event_query(endpoint_ids: str, args: dict) -> str:
+        """Create the file event query.
+
+        Args:
+            endpoint_ids (str): The endpoint IDs to use.
+            args (dict): The arguments to pass to the query.
+
+        Returns: The created query.
+            str: The created query.
+        """
+        file_sha256_list = args.get('file_sha256', '')
+        if not file_sha256_list:
+            raise DemistoException('Please provide a file_sha256 argument.')
+        file_sha256_list = wrap_list_items_in_double_quotes(file_sha256_list)
+        return f'''dataset = xdr_data | filter agent_id in ({endpoint_ids}) and event_type = FILE and action_file_sha256
+     in ({file_sha256_list})| fields agent_hostname, agent_ip_addresses, agent_id, action_file_path, action_file_sha256,
+     actor_process_file_create_time'''
+
+
+    def get_process_event_query(endpoint_ids: str, args: dict) -> str:
+        """Create the process event query.
+
+        Args:
+            endpoint_ids (str): The endpoint IDs to use.
+            args (dict): The arguments to pass to the query.
+
+        Returns:
+            str: The created query.
+        """
+        process_sha256_list = args.get('process_sha256', '')
+        if not process_sha256_list:
+            raise DemistoException('Please provide a process_sha256 argument.')
+        process_sha256_list = wrap_list_items_in_double_quotes(process_sha256_list)
+        return f'''dataset = xdr_data | filter agent_id in ({endpoint_ids}) and event_type = PROCESS and
+     action_process_image_sha256 in ({process_sha256_list}) | fields agent_hostname, agent_ip_addresses, agent_id,
+     action_process_image_sha256, action_process_image_name,action_process_image_path, action_process_instance_id,
+     action_process_causality_id, action_process_signature_vendor, action_process_signature_product,
+     action_process_image_command_line, actor_process_image_name, actor_process_image_path, actor_process_instance_id,
+     actor_process_causality_id'''
+
+
+    def get_dll_module_query(endpoint_ids: str, args: dict) -> str:
+        """Create the DLL module query.
+
+        Args:
+            endpoint_ids (str): The endpoint IDs to use.
+            args (dict): The arguments to pass to the query.
+
+        Returns:
+            str: The created query.
+        """
+        loaded_module_sha256 = args.get('loaded_module_sha256', '')
+        if not loaded_module_sha256:
+            raise DemistoException('Please provide a loaded_module_sha256 argument.')
+        loaded_module_sha256 = wrap_list_items_in_double_quotes(loaded_module_sha256)
+        return f'''dataset = xdr_data | filter agent_id in ({endpoint_ids}) and event_type = LOAD_IMAGE and
+     action_module_sha256 in ({loaded_module_sha256})| fields agent_hostname, agent_ip_addresses, agent_id,
+     actor_effective_username, action_module_sha256, action_module_path, action_module_file_info,
+     action_module_file_create_time, actor_process_image_name, actor_process_image_path, actor_process_command_line,
+     actor_process_image_sha256, actor_process_instance_id, actor_process_causality_id'''
+
+
+    def get_network_connection_query(endpoint_ids: str, args: dict) -> str:
+        """Create the network connection query.
+
+        Args:
+            endpoint_ids (str): The endpoint IDs to use.
+            args (dict): The arguments to pass to the query.
+
+        Returns:
+            str: The created query.
+        """
+        remote_ip_list = args.get('remote_ip', '')
+        if not remote_ip_list:
+            raise DemistoException('Please provide a remote_ip argument.')
+        remote_ip_list = wrap_list_items_in_double_quotes(remote_ip_list)
+        local_ip_filter = ''
+        if args.get('local_ip'):
+            local_ip_list = wrap_list_items_in_double_quotes(args.get('local_ip', ''))
+            local_ip_filter = f'and action_local_ip in({local_ip_list})'
+        port_list = args.get('port')
+        port_list_filter = f'and action_remote_port in({port_list})' if port_list else ''
+        return f'''dataset = xdr_data | filter agent_id in ({endpoint_ids}) and event_type = STORY
+     {local_ip_filter} and action_remote_ip in({remote_ip_list}) {port_list_filter}|
+     fields agent_hostname, agent_ip_addresses, agent_id, actor_effective_username, action_local_ip, action_remote_ip,
+     action_remote_port, dst_action_external_hostname, action_country, actor_process_image_name, actor_process_image_path,
+     actor_process_command_line, actor_process_image_sha256, actor_process_instance_id, actor_process_causality_id'''
+
+
+    def get_registry_query(endpoint_ids: str, args: dict) -> str:
+        """Create the registry query.
+
+        Args:
+            endpoint_ids (str): The endpoint IDs to use.
+            args (dict): The arguments to pass to the query.
+
+        Returns:
+            str: The created query.
+        """
+        reg_key_name = args.get('reg_key_name', '')
+        if not reg_key_name:
+            raise DemistoException('Please provide a reg_key_name argument.')
+        reg_key_name = wrap_list_items_in_double_quotes(reg_key_name)
+        return f'''dataset = xdr_data | filter agent_id in ({endpoint_ids}) and event_type = REGISTRY and
+     action_registry_key_name in ({reg_key_name}) | fields agent_hostname, agent_id, agent_ip_addresses, agent_os_type,
+     agent_os_sub_type, event_type, event_sub_type, action_registry_key_name, action_registry_value_name,
+     action_registry_data'''
+
+
+    def get_event_log_query(endpoint_ids: str, args: dict) -> str:
+        """Create the event log query.
+
+        Args:
+            endpoint_ids (str): The endpoint IDs to use.
+            args (dict): The arguments to pass to the query.
+
+        Returns:
+            str: The created query.
+        """
+        event_id = args.get('event_id', '')
+        if not event_id:
+            raise DemistoException('Please provide a event_id argument.')
+        return f'''dataset = xdr_data | filter agent_id in ({endpoint_ids}) and event_type = EVENT_LOG and
+     action_evtlog_event_id in ({event_id}) | fields agent_hostname, agent_id, agent_ip_addresses, agent_os_type,
+     agent_os_sub_type, action_evtlog_event_id, event_type, event_sub_type, action_evtlog_message,
+     action_evtlog_provider_name'''
+
+
+    def get_dns_query(endpoint_ids: str, args: dict) -> str:
+        """Create the DNS query.
+
+        Args:
+            endpoint_ids (str): The endpoint IDs to use.
+            args (dict): The arguments to pass to the query.
+
+        Returns:
+            str: The created query.
+        """
+        if not args.get('external_domain') and not args.get('dns_query'):
+            raise DemistoException('Please provide at least one of the external_domain, dns_query arguments.')
+        external_domain_list = wrap_list_items_in_double_quotes(args.get('external_domain', ''))
+        dns_query_list = wrap_list_items_in_double_quotes(args.get('dns_query', ''))
+        return f'''dataset = xdr_data | filter (agent_id in ({endpoint_ids}) and event_type = STORY) and
+     (dst_action_external_hostname in ({external_domain_list}) or dns_query_name in ({dns_query_list}))| fields
+     agent_hostname, agent_id, agent_ip_addresses, agent_os_type, agent_os_sub_type, action_local_ip, action_remote_ip,
+     action_remote_port, dst_action_external_hostname, dns_query_name, action_app_id_transitions, action_total_download,
+     action_total_upload, action_country, action_as_data, os_actor_process_image_path, os_actor_process_command_line,
+     os_actor_process_instance_id, os_actor_process_causality_id'''
+
+
+    def get_file_dropper_query(endpoint_ids: str, args: dict) -> str:
+        """Create the file dropper query.
+
+        Args:
+            endpoint_ids (str): The endpoint IDs to use.
+            args (dict): The arguments to pass to the query.
+
+        Returns:
+            str: The created query.
+        """
+        if not args.get('file_path') and not args.get('file_sha256'):
+            raise DemistoException('Please provide at least one of the file_path, file_sha256 arguments.')
+        file_path_list = wrap_list_items_in_double_quotes(args.get('file_path', ''))
+        file_sha256_list = wrap_list_items_in_double_quotes(args.get('file_sha256', ''))
+
+        return f'''dataset = xdr_data | filter (agent_id in ({endpoint_ids}) and event_type = FILE and event_sub_type in (
+     FILE_WRITE, FILE_RENAME)) and (action_file_path in ({file_path_list}) or action_file_sha256 in ({file_sha256_list})) |
+     fields agent_hostname, agent_ip_addresses, agent_id, action_file_sha256, action_file_path, actor_process_image_name,
+     actor_process_image_path, actor_process_image_path, actor_process_command_line, actor_process_signature_vendor,
+     actor_process_signature_product, actor_process_image_sha256, actor_primary_normalized_user,
+     os_actor_process_image_path, os_actor_process_command_line, os_actor_process_signature_vendor,
+     os_actor_process_signature_product, os_actor_process_image_sha256, os_actor_effective_username,
+     causality_actor_remote_host,causality_actor_remote_ip'''
+
+
+    def get_process_instance_network_activity_query(endpoint_ids: str, args: dict) -> str:
+        """Create the process instance networks activity query.
+
+        Args:
+            endpoint_ids (str): The endpoint IDs to use.
+            args (dict): The arguments to pass to the query.
+
+        Returns:
+            str: The created query.
+        """
+        process_instance_id_list = args.get('process_instance_id', '')
+        if not process_instance_id_list:
+            raise DemistoException('Please provide a process_instance_id argument.')
+        process_instance_id_list = wrap_list_items_in_double_quotes(process_instance_id_list)
+        return f'''dataset = xdr_data | filter agent_id in ({endpoint_ids}) and event_type = NETWORK and
+     actor_process_instance_id in ({process_instance_id_list}) | fields agent_hostname, agent_ip_addresses, agent_id,
+     action_local_ip, action_remote_ip, action_remote_port, dst_action_external_hostname, dns_query_name,
+     action_app_id_transitions, action_total_download, action_total_upload, action_country, action_as_data,
+     actor_process_image_sha256, actor_process_image_name , actor_process_image_path, actor_process_signature_vendor,
+     actor_process_signature_product, actor_causality_id, actor_process_image_command_line, actor_process_instance_id'''
+
+
+    def get_process_causality_network_activity_query(endpoint_ids: str, args: dict) -> str:
+        """Create the process causality network activity query.
+
+        Args:
+            endpoint_ids (str): The endpoint IDs to use.
+            args (dict): The arguments to pass to the query.
+
+        Returns:
+            str: The created query.
+        """
+        process_causality_id_list = args.get('process_causality_id', '')
+        if not process_causality_id_list:
+            raise DemistoException('Please provide a process_causality_id argument.')
+        process_causality_id_list = wrap_list_items_in_double_quotes(process_causality_id_list)
+
+        return f'''dataset = xdr_data | filter agent_id in ({endpoint_ids}) and event_type = NETWORK
+     and actor_process_causality_id in ({process_causality_id_list}) | fields agent_hostname, agent_ip_addresses,agent_id,
+     action_local_ip, action_remote_ip, action_remote_port, dst_action_external_hostname,dns_query_name,
+     action_app_id_transitions, action_total_download, action_total_upload, action_country,action_as_data,
+     actor_process_image_sha256, actor_process_image_name , actor_process_image_path,actor_process_signature_vendor,
+     actor_process_signature_product, actor_causality_id,actor_process_image_command_line, actor_process_instance_id'''
+
+
+    # =========================================== Helper Functions ===========================================#
+
+
+    def convert_timeframe_string_to_json(time_to_convert: str) -> Dict[str, int]:
+        """Convert a timeframe string to a json requred for XQL queries.
+
+        Args:
+            time_to_convert (str): The time frame string to convert (supports seconds, minutes, hours, days, months, years, between).
+
+        Returns:
+            dict: The timeframe parameters in JSON.
+        """
+        try:
+            time_to_convert_lower = time_to_convert.strip().lower()
+            if time_to_convert_lower.startswith('between '):
+                tokens = time_to_convert_lower[len('between '):].split(' and ')
+                if len(tokens) == 2:
+                    time_from = dateparser.parse(tokens[0], settings={'TIMEZONE': 'UTC'})
+                    time_to = dateparser.parse(tokens[1], settings={'TIMEZONE': 'UTC'})
+                    assert time_from is not None and time_to is not None
+                    return {'from': int(time_from.timestamp()) * 1000, 'to': int(time_to.timestamp()) * 1000}
+            else:
+                relative = dateparser.parse(time_to_convert, settings={'TIMEZONE': 'UTC'})
+                now_date = datetime.utcnow()
+                assert now_date is not None and relative is not None
+                return {'relativeTime': int((now_date - relative).total_seconds()) * 1000}
+
+            raise ValueError(f'Invalid timeframe: {time_to_convert}')
+        except Exception as exc:
+            raise DemistoException(f'Please enter a valid time frame (seconds, minutes, hours, days, weeks, months, '
+                                   f'years, between).\n{str(exc)}')
+
+
+    def start_xql_query(client: Client, args: Dict[str, Any]) -> str:
+        """Execute an XQL query.
+
+        Args:
+            client (Client): The XDR Client.
+            args (dict): The arguments to pass to the API call.
+
+        Returns:
+            str: The query execution ID.
+        """
+        query = args.get('query', '')
+        if not query:
+            raise ValueError('query is not specified')
+
+        if 'limit' not in query:  # if user did not provide a limit in the query, we will use the default one.
+            query = f'{query} \n| limit {str(DEFAULT_LIMIT)}'
+        data: Dict[str, Any] = {
+            'request_data': {
+                'query': query,
+            }
+        }
+        time_frame = args.get('time_frame')
+        if time_frame:
+            data['request_data']['timeframe'] = convert_timeframe_string_to_json(time_frame)
+        # The arg is called 'tenant_id', but to avoid BC we will also support 'tenant_ids'.
+        tenant_ids = argToList(args.get('tenant_id') or args.get('tenant_ids'))
+        if tenant_ids:
+            data['request_data']['tenants'] = tenant_ids
+        # call the client function and get the raw response
+        execution_id = client.start_xql_query(data)
+        return execution_id
+
+
+    def get_xql_query_results(client: Client, args: dict) -> Tuple[dict, Optional[bytes]]:
+        """Retrieve results of an executed XQL query API. returns the general response and
+        a file data if the query has more than 1000 results.
+
+        Args:
+            client (Client): The XDR Client.
+            args (dict): The arguments to pass to the API call.
+
+        Returns:
+            dict: The query results.
+        """
+
+        query_id = args.get('query_id')
+        if not query_id:
+            raise ValueError('query ID is not specified')
+        data = {
+            'request_data': {
+                'query_id': query_id,
+                'pending_flag': True,
+                'format': 'json',
+            }
+        }
+
+        # Call the Client function and get the raw response
+        response = client.get_xql_query_results(data)
+        response['execution_id'] = query_id
+        results = response.get('results', {})
+        stream_id = results.get('stream_id')
+        if stream_id:
+            file_data = get_query_result_stream(client, stream_id)
+            return response, file_data
+        response['results'] = results.get('data')
+        return response, None
+
+
+    def get_query_result_stream(client: Client, stream_id: str) -> bytes:
+        """Retrieve XQL query results with more than 1000 results.
+
+        Args:
+            client (Client): The XDR Client.
+            stream_id (str): The stream ID of the query.
+
+        Returns:
+            bytes: The query results.
+        """
+
+        if not stream_id:
+            raise ValueError('stream_id is not specified')
+        data = {
+            'request_data': {
+                'stream_id': stream_id,
+                'is_gzip_compressed': True,
+            }
+        }
+        # Call the Client function and get the raw response
+        return client.get_query_result_stream(data)
+
+
+    def format_item(item_to_format: Any) -> Any:
+        """
+            Format the given item to the correct format.
+
+        Args:
+            item_to_format (Any): Item to format.
+
+        Returns:
+            Any: Formatted item.
+        """
+        mapper = {
+            'FALSE': False,
+            'TRUE': True,
+            'NULL': None,
+        }
+        return mapper[item_to_format] if item_to_format in mapper else item_to_format
+
+
+    def is_empty(item_to_check: Any) -> bool:
+        """
+            Checks if a given item is empty or not
+
+        Args:
+            item_to_check (Any): The item to check.
+
+        Returns:
+            bool: True if empty, False otherwise.
+        """
+
+        return item_to_check is not False and not item_to_check
+
+
+    def handle_timestamp_item(item_to_convert: Any) -> Union[Any, str]:
+        """
+            Try to convert a given value to datestring.
+
+        Args:
+            item_to_convert (Any): The item to convert.
+
+        Returns:
+            Union[Any, str]: The converted timestamp if convert was successful, otherwise return the original item.
+        """
+
+        try:
+            return timestamp_to_datestring(item_to_convert)
+        except Exception:  # cannot convert item
+            return item_to_convert
+
+
+    def format_results(list_to_format: list, remove_empty_fields: bool = True) -> list:
+        """
+        Recursively format a list of dictionaries and remove empty lists, empty dicts, or None elements from it if desired.
+
+        Args:
+            list_to_format (list): Input list to format.
+            remove_empty_fields (bool): True if the user wants to remove the empty fields.
+
+        Returns:
+            list: Formatted list.
+        """
+
+        def format_dict(item_to_format: Any) -> Any:
+
+            if not isinstance(item_to_format, (dict, list)):  # recursion stopping condition, formatting field
+                return format_item(item_to_format)
+
+            elif isinstance(item_to_format, list):
+                return [v for v in (format_dict(v) for v in item_to_format) if v]
+            else:
+                new_dict = {}
+                for key, value in item_to_format.items():
+                    formatted_res = format_dict(value)
+                    if is_empty(formatted_res) and remove_empty_fields:
+                        continue  # do not add item to the new dict
+                    if 'time' in key:
+                        new_dict[key] = handle_timestamp_item(formatted_res)
+                    else:
+                        new_dict[key] = formatted_res
+                return new_dict
+
+        for i, item in enumerate(list_to_format):
+            list_to_format[i] = format_dict(item)
+
+        return list_to_format
+
+
+    def get_outputs_prefix(command_name: str) -> str:
+        """
+        Get the correct output output prefix.
+
+        Args:
+            command_name (str): The executed command.
+
+        Returns:
+            str: The output prefix.
+        """
+
+        if command_name in GENERIC_QUERY_COMMANDS:
+            return 'PaloAltoNetworksXQL.GenericQuery'
+        else:  # built in command
+            query_name = BUILT_IN_QUERY_COMMANDS[command_name].get('name')
+            return f'PaloAltoNetworksXQL.{query_name}'
+
+
+    def get_nonce() -> str:
+        """
+        Generate a 64 bytes random string.
+
+        Returns:
+            str: The 64 bytes random string.
+        """
+        return "".join([secrets.choice(string.ascii_letters + string.digits) for _ in range(64)])
+
+
+    def remove_query_id_from_integration_context(query_id: str):
+        """
+        Remove the given query_id from the integration context.
+
+        Args:
+            query_id (str): The query ID to remove.
+        """
+        if query_id:
+            integration_context = get_integration_context()
+            integration_context.pop(query_id, None)
+            set_integration_context(integration_context)
+
+
+    # ========================================== Generic Query ===============================================#
+
+
+    def test_module(client: Client, args: Dict[str, Any]) -> str:
+        """Tests API connectivity and authentication'
+
+        Returning 'ok' indicates that the integration works like it is supposed to.
+        Connection to the service is successful.
+        Raises exceptions if something goes wrong.
+
+        Args:
+            client (Client): The XDR Client.
+            args (dict): The arguments to pass to the API call.
+
+        Returns:
+            str: 'ok' if test passed, anything else will fail the test.
+        """
+
+        try:
+            client.get_xql_quota({'request_data': {}})
+            return 'ok'
+        except Exception as err:
+            if any(error in str(err) for error in ['Forbidden', 'Authorization', 'Unauthorized']):
+                raise DemistoException('Authorization failed, make sure API Key is correctly set')
+            elif 'Not Found' in str(err):
+                raise DemistoException('Authorization failed, make sure the URL is correct')
+            else:
+                raise err
+
+
+    def start_xql_query_polling_command(client: Client, args: dict) -> Union[CommandResults, list]:
+        """Execute an XQL query as a scheduled command.
+
+        Args:
+            client (Client): The XDR Client.
+            args (dict): The arguments to pass to the API call.
+
+        Returns:
+            CommandResults: The command results.
+        """
+        if not (query_name := args.get('query_name')):
+            raise DemistoException('Please provide a query name')
+        execution_id = start_xql_query(client, args)
+        if not execution_id:
+            raise DemistoException('Failed to start query\n')
+        args['query_id'] = execution_id
+        # the query data is being saved in the integration context for the next scheduled command command.
+        try:
+            set_to_integration_context_with_retries({
+                execution_id: {
+                    'query': args.get('query'),
+                    'time_frame': args.get('time_frame'),
+                    'command_name': demisto.command(),
+                    'query_name': query_name,
+                }
+            })
+            return get_xql_query_results_polling_command(client, args)
+        except Exception:
+            remove_query_id_from_integration_context(execution_id)
+            raise
+
+
+    def get_xql_query_results_polling_command(client: Client, args: dict) -> Union[CommandResults, list]:
+        """Retrieve results of an executed XQL query API executes as a scheduled command.
+
+        Args:
+            client (Client): The XDR Client.
+            args (dict): The arguments to pass to the API call.
+
+        Returns:
+            Union[CommandResults, dict]: The command results.
+        """
+        # get the query data either from the integration context (if its not the first run) or from the given args.
+        query_id = args.get('query_id', '')
+        parse_result_file_to_context = argToBoolean(args.get('parse_result_file_to_context', 'false'))
+        integration_context, _ = get_integration_context_with_version()
+        command_data_raw = integration_context.get(query_id, args)
+        command_data = json.loads(command_data_raw) if isinstance(command_data_raw, str)\
+            else integration_context.get(query_id, args)
+        command_name = command_data.get('command_name', demisto.command())
+        interval_in_secs = int(args.get('interval_in_seconds', 10))
+        max_fields = arg_to_number(args.get('max_fields', 20))
+        if max_fields is None:
+            raise DemistoException('Please provide a valid number for max_fields argument.')
+        outputs, file_data = get_xql_query_results(client, args)  # get query results with query_id
+        outputs.update({'query_name': command_data.get('query_name', '')})
+        outputs_prefix = get_outputs_prefix(command_name)
+        command_results = CommandResults(outputs_prefix=outputs_prefix, outputs_key_field='execution_id', outputs=outputs,
+                                         raw_response=copy.deepcopy(outputs))
+        # if there are more than 1000 results
+        if file_data:
+            if not parse_result_file_to_context:
+                #  Extracts the results into a file only
+                file = fileResult(filename="results.gz", data=file_data)
+                command_results.readable_output = 'More than 1000 results were retrieved, see the compressed gzipped file below.'
+                remove_query_id_from_integration_context(query_id)
+                return [file, command_results]
+            else:
+                # Parse the results to context:
+                data = gzip.decompress(file_data).decode()
+                outputs['results'] = [json.loads(line) for line in data.split("\n") if len(line) > 0]
+
+        # if status is pending, in versions above 6.2.0, the command will be called again in the next run until success.
+        if outputs.get('status') == 'PENDING':
+            if not is_demisto_version_ge('6.2.0'):  # only 6.2.0 version and above support polling command.
+                remove_query_id_from_integration_context(query_id)
+                return command_results
+            scheduled_command = ScheduledCommand(command='xdr-xql-get-query-results', next_run_in_seconds=interval_in_secs,
+                                                 args=args, timeout_in_seconds=600)
+            command_results.scheduled_command = scheduled_command
+            command_results.readable_output = 'Query is still running, it may take a little while...'
+            return command_results
+
+        results_to_format = outputs.pop('results')
+        # create Human Readable output
+        query = command_data.get('query', '')
+        time_frame = command_data.get('time_frame')
+        extra_for_human_readable = ({'query': query, 'time_frame': time_frame})
+        outputs.update(extra_for_human_readable)
+        command_results.readable_output = tableToMarkdown('General Information', outputs,
+                                                          headerTransform=string_to_table_header,
+                                                          removeNull=True)
+        [outputs.pop(key) for key in list(extra_for_human_readable.keys())]
+
+        # if no fields were given in the query then the default fields are returned (without empty fields).
+        if results_to_format:
+            formatted_list = format_results(results_to_format, remove_empty_fields=False) \
+                if 'fields' in query else format_results(results_to_format)
+            if formatted_list and command_name == 'xdr-xql-generic-query' and len(formatted_list[0].keys()) > max_fields:
+                raise DemistoException('The number of fields per result has exceeded the maximum number of allowed fields, '
+                                       'please select specific fields in the query or increase the maximum number of '
+                                       'allowed fields.')
+            outputs.update({'results': formatted_list})
+            command_results.outputs = outputs
+
+        command_results.readable_output += tableToMarkdown('Data Results', outputs.get('results'),
+                                                           headerTransform=string_to_table_header)
+        remove_query_id_from_integration_context(query_id)
+        return command_results
+
+
+    def get_xql_quota_command(client: Client, args: Dict[str, Any]) -> CommandResults:
+        """Retrieve the amount of query quota available and used.
+
+        Args:
+            client (Client): The XDR Client.
+            args (dict): The arguments to pass to the API call.
+
+        Returns:
+            dict: The quota results.
+        """
+
+        data: dict = {
+            'request_data': {
+            }
+        }
+        # Call the Client function and get the raw response
+        result = client.get_xql_quota(data).get('reply', {})
+        readable_output = tableToMarkdown('Quota Results', result, headerTransform=string_to_table_header, removeNull=True)
+        return CommandResults(
+            outputs_prefix='PaloAltoNetworksXQL.Quota',
+            outputs_key_field='',
+            outputs=result,
+            readable_output=readable_output
+        )
+
+
+    # =========================================== Built-In Queries ===========================================#
+
+    def get_built_in_query_results_polling_command(client: Client, args: dict) -> Union[CommandResults, list]:
+        """Retrieve results of a built in XQL query, execute as a scheduled command.
+
+        Args:
+            client (Client): The XDR Client.
+            args (dict): The arguments to pass to the API call.
+
+        Returns:
+            Union[CommandResults, dict]: The command results.
+        """
+        # build query, if no endpoint_id was given, the query will search in every endpoint_id (*).
+        endpoint_id_list = wrap_list_items_in_double_quotes(args.get('endpoint_id', '*'))
+        built_in_func = BUILT_IN_QUERY_COMMANDS.get(demisto.command(), {}).get('func')
+        query = built_in_func(endpoint_id_list, args) if callable(built_in_func) else ''
+
+        # add extra fields to query
+        extra_fields = argToList(args.get('extra_fields', []))
+        if extra_fields:
+            extra_fields_list = ", ".join(str(e) for e in extra_fields)
+            query = f'{query}, {extra_fields_list}'
+
+        # add limit to query
+        if 'limit' in args:
+            query = f"{query} | limit {args.get('limit')}"
+
+        query_args = {
+            'query': query,
+            'query_name': args.get('query_name'),
+            'tenants': argToList(args.get('tenants', [])),
+            'time_frame': args.get('time_frame', '')
+        }
+        return start_xql_query_polling_command(client, query_args)
+
+
+    ''' MAIN FUNCTION '''
+
+    # COMMAND CONSTANTS
+
+    BUILT_IN_QUERY_COMMANDS = {
+        'xdr-xql-file-event-query': {
+            'func': get_file_event_query,
+            'name': 'FileEvent',
+        },
+        'xdr-xql-process-event-query': {
+            'func': get_process_event_query,
+            'name': 'ProcessEvent',
+        },
+        'xdr-xql-dll-module-query': {
+            'func': get_dll_module_query,
+            'name': 'DllModule',
+        },
+        'xdr-xql-network-connection-query': {
+            'func': get_network_connection_query,
+            'name': 'NetworkConnection',
+        },
+        'xdr-xql-registry-query': {
+            'func': get_registry_query,
+            'name': 'Registry',
+        },
+        'xdr-xql-event-log-query': {
+            'func': get_event_log_query,
+            'name': 'EventLog',
+        },
+        'xdr-xql-dns-query': {
+            'func': get_dns_query,
+            'name': 'DNS',
+        },
+        'xdr-xql-file-dropper-query': {
+            'func': get_file_dropper_query,
+            'name': 'FileDropper',
+        },
+        'xdr-xql-process-instance-network-activity-query': {
+            'func': get_process_instance_network_activity_query,
+            'name': 'ProcessInstanceNetworkActivity',
+        },
+        'xdr-xql-process-causality-network-activity-query': {
+            'func': get_process_causality_network_activity_query,
+            'name': 'ProcessCausalityNetworkActivity',
+        },
+    }
+
+    GENERIC_QUERY_COMMANDS = {
+        'test-module': test_module,
+        'xdr-xql-generic-query': start_xql_query_polling_command,
+        'xdr-xql-get-query-results': get_xql_query_results_polling_command,
+        'xdr-xql-get-quota': get_xql_quota_command,
+    }
+
+
+    def main() -> None:
+        """main function, parses params and runs command functions
+        """
+        args = demisto.args()
+        params = demisto.params()
+        # using two different credentials object as they both fields need to be encrypted
+        apikey = params.get('apikey', {}).get('password', '')
+        apikey_id = params.get('apikey_id', {}).get('password', '')
+        if not apikey:
+            raise DemistoException('Missing API Key. Fill in a valid key in the integration configuration.')
+        if not apikey_id:
+            raise DemistoException('Missing API Key ID. Fill in a valid key ID in the integration configuration.')
+        base_url = urljoin(params['url'], '/public_api/v1')
+        verify_cert = not params.get('insecure', False)
+        proxy = params.get('proxy', False)
+        command = demisto.command()
+        demisto.debug(f'Command being called is {command}')
+        try:
+            # generate a 64 bytes random string
+            nonce = get_nonce()
+            # get the current timestamp as milliseconds.
+            timestamp = str(int(datetime.now(timezone.utc).timestamp()) * 1000)
+            # generate the auth key:
+            auth_key = f'{apikey}{nonce}{timestamp}'.encode("utf-8")
+            # convert to bytes object and calculate sha256
+            api_key_hash = hashlib.sha256(auth_key).hexdigest()  # lgtm [py/weak-sensitive-data-hashing]
+
+            # generate HTTP call headers
+            headers = {
+                "x-xdr-timestamp": timestamp,
+                "x-xdr-nonce": nonce,
+                "x-xdr-auth-id": apikey_id,
+                "Authorization": api_key_hash,
+            }
+
+            client = Client(
+                base_url=base_url,
+                verify=verify_cert,
+                headers=headers,
+                proxy=proxy,
+            )
+            if command in GENERIC_QUERY_COMMANDS:
+                return_results(GENERIC_QUERY_COMMANDS[command](client, args))
+            elif command in BUILT_IN_QUERY_COMMANDS:
+                return_results(get_built_in_query_results_polling_command(client, args))
+            else:
+                raise NotImplementedError(f'Command {command} does not exist.')
+
+        # Log exceptions and return errors
+        except Exception as e:
+            return_error(f'Failed to execute {command} command.\nError: {str(e)}')
+
+
+    ''' ENTRY POINT '''
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('Cortex XDR - XQL Query Engine', 'end', __line__())
+  subtype: python3
+  type: python
+sectionorder:
+- Connect
+- Collect
+system: true
