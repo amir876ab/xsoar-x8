@@ -1,0 +1,193 @@
+{
+	"author": "ZeroFox",
+	"authorImage": "content/packs/ZeroFox/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"classifier"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "",
+				"id": "ZeroFox Mapping",
+				"name": "ZeroFox Mapping"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Fetches an alert by ID.",
+						"name": "zerofox-get-alert"
+					},
+					{
+						"description": "Assigns an alert to a user.",
+						"name": "zerofox-alert-user-assignment"
+					},
+					{
+						"description": "Closes an alert.",
+						"name": "zerofox-close-alert"
+					},
+					{
+						"description": "Requests a takedown of a specified alert.",
+						"name": "zerofox-alert-request-takedown"
+					},
+					{
+						"description": "Adds tags to and or removes tags from a specified alert.",
+						"name": "zerofox-modify-alert-tags"
+					},
+					{
+						"description": "Returns alerts that match user-defined or default filters and parameters. By default, no filters are applied and the results are sorted by timestamp.",
+						"name": "zerofox-list-alerts"
+					},
+					{
+						"description": "Creates a new entity associated with the company of the authorized user.",
+						"name": "zerofox-create-entity"
+					},
+					{
+						"description": "Cancels a takedown of a specified alert.",
+						"name": "zerofox-alert-cancel-takedown"
+					},
+					{
+						"description": "Opens an alert.",
+						"name": "zerofox-open-alert"
+					},
+					{
+						"description": "Lists all entities associated with the company of the authorized user.",
+						"name": "zerofox-list-entities"
+					},
+					{
+						"description": "Shows a table of all entity type names and IDs in the War Room.",
+						"name": "zerofox-get-entity-types"
+					},
+					{
+						"description": "Shows a table of all policy type names and IDs in the War Room.",
+						"name": "zerofox-get-policy-types"
+					},
+					{
+						"description": "Modify the notes of a specified alert.",
+						"name": "zerofox-modify-alert-notes"
+					},
+					{
+						"description": "Submits potential threats into the ZF alert registry for disruption.",
+						"name": "zerofox-submit-threat"
+					},
+					{
+						"description": "Looks for a given domain in Zerofox's CTI feeds",
+						"name": "zerofox-search-compromised-domain"
+					},
+					{
+						"description": "Looks for a given email in ZeroFox's CTI feeds",
+						"name": "zerofox-search-compromised-email"
+					},
+					{
+						"description": "Looks for malicious ips in ZeroFox's CTI feeds",
+						"name": "zerofox-search-malicious-ip"
+					},
+					{
+						"description": "Looks for registered hashes in ZeroFox's CTI feeds",
+						"name": "zerofox-search-malicious-hash"
+					},
+					{
+						"description": "Looks for registered exploits in ZeroFox's CTI feeds.",
+						"name": "zerofox-search-exploits"
+					}
+				],
+				"description": "Cloud-based SaaS to detect risks found on social media and digital channels.",
+				"id": "ZeroFox",
+				"name": "ZeroFox (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:45:07Z",
+	"currentVersion": "1.2.2",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.43",
+			"name": "Base"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.90",
+			"name": "Common Types"
+		}
+	},
+	"deprecated": false,
+	"description": "Cloud-based SaaS to detect risks found on social media and digital channels.",
+	"downloads": 1659,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "ZeroFox",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/ZeroFox/ZeroFox_image.png",
+			"name": "ZeroFox"
+		}
+	],
+	"itemVersion": "1.2.2",
+	"keywords": [],
+	"legacy": true,
+	"modules": [],
+	"name": "ZeroFox",
+	"packID": "ZeroFox",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Note: Support for this Pack moved to the partner on JULY, 28, 2023.\nPlease contact the partner directly via the support link on the right.\n\n# ZeroFox\n\nZeroFOX, a leading cybersecurity firm specializing in digital risk protection, enhances the platform's capability to monitor and counter threats from various online platforms including social media, mobile apps, and the broader web. Through this integration, users can leverage ZeroFOX's expertise in identifying threats like phishing attacks, information leaks, and account compromises, all within the unified Cortex XSOAR environment, ensuring a holistic and agile approach to digital security\n\n### What does this pack do?\n\n- Mirror incidents between XSOAR incidents and ZeroFox alerts.\n- Allow to request takedowns over threats.\n- Allow to submit threats.\n- Look up compromised assets in our CTI Feeds\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "integration-support@zerofox.com",
+		"url": "https://www.zerofox.com/contact-us/"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-11-21T10:32:23Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6864790",
+	"videos": []
+}
