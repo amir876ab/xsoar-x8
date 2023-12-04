@@ -1,0 +1,59 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "Cortex XDR Incident",
+	"definitionId": "",
+	"description": "Classifies Cortex XDR incidents.",
+	"feed": false,
+	"fromServerVersion": "6.5.0",
+	"id": "Cortex XDR Incident Handler - Classifier",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "6.0.4",
+	"keyTypeMap": {
+		"FirstSSOAccess": "Cortex XDR Incident",
+		"Malware": "Malware Investigation and Response",
+		"PortScan": "Cortex XDR Incident",
+		"RDPBruteForce": "Cortex XDR Incident",
+		"XDR Incident": "Cortex XDR Incident"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Cortex XDR Incident Handler - Classifier",
+	"nameRaw": "Cortex XDR Incident Handler - Classifier",
+	"packID": "CortexXDR",
+	"packName": "Cortex XDR by Palo Alto Networks",
+	"packPropagationLabels": [
+		"all"
+	],
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"complex": {
+			"filters": [],
+			"root": ".",
+			"transformers": [
+				{
+					"args": {
+						"dt": {
+							"isContext": false,
+							"value": {
+								"simple": ".=val \u0026\u0026 val.description.toLowerCase().indexOf(\"port scan\") \u003e -1 ? \"PortScan\" : (val.description.toLowerCase().indexOf(\"rdp brute-force\") \u003e -1 ? \"RDPBruteForce\" : (val.description.toLowerCase().indexOf(\"first successful sso connection from a country in organization\") \u003e -1 ? \"FirstSSOAccess\" : (val.description.toLowerCase().indexOf(\"first sso access from asn in organization\") \u003e -1 ? \"FirstSSOAccess\" : (!val.file_artifacts || val.file_artifacts.length === 0 ? \"XDR Incident\" : \"Malware\"))))"
+							}
+						}
+					},
+					"operator": "DT"
+				}
+			]
+		}
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
