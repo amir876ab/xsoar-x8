@@ -1,0 +1,145 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"IT Services"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "IT Services",
+				"commands": [
+					{
+						"description": "Get assets.",
+						"name": "runzero-asset-search"
+					},
+					{
+						"description": "Bulk delete assets.",
+						"name": "runzero-asset-delete"
+					},
+					{
+						"description": "Get services.",
+						"name": "runzero-service-search"
+					},
+					{
+						"description": "Delete a service.",
+						"name": "runzero-service-delete"
+					},
+					{
+						"description": "Add a comment or override an existing asset comment.",
+						"name": "runzero-comment-add"
+					},
+					{
+						"description": "Add tag or tags to the asset.",
+						"name": "runzero-tag-add"
+					},
+					{
+						"description": "Get information about the API key used. Type, Limit, usage etc.",
+						"name": "runzero-quota-get"
+					},
+					{
+						"description": "Delete tags for specific asset.",
+						"name": "runzero-tag-delete"
+					},
+					{
+						"description": "Get all wireless LANs.",
+						"name": "runzero-wireless-lan-search"
+					},
+					{
+						"description": "Remove a wireless LAN.",
+						"name": "runzero-wireless-lan-delete"
+					}
+				],
+				"description": "RunZero is a network discovery and asset inventory\n platform that uncovers every network in use and identifies every device connected – without credentials.\n Scan your network and build your asset inventory in minutes.",
+				"id": "RunZero",
+				"name": "RunZero"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2023-02-01T12:34:08Z",
+	"currentVersion": "1.0.12",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.33",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "RunZero a network discovery and asset inventory solution.",
+	"downloads": 42,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "6.5.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "RunZero",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/RunZero/RunZero_image.png",
+			"name": "RunZero"
+		}
+	],
+	"itemVersion": "1.0.12",
+	"keywords": [
+		"Asset Management"
+	],
+	"legacy": true,
+	"modules": [],
+	"name": "RunZero",
+	"packID": "RunZero",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "RunZero is a network discovery and asset inventory platform that uncovers every network in use and identifies every device connected–without credentials. \nScan your network and build your asset inventory in minutes.\n## What does this pack do?\nThis pack includes the RunZero integration and RunZeroEventCollector integrations that do the following:\n### RunZero integration:\n- Get all assets from RunZero.\n- Search for specific asset using filters.\n- Delete a service.\n- Get all services from RunZero.\n- Search for specific service using filters.\n- Delete an asset.\n- Get all wireless LANs from RunZero.\n- Search for specific wireless LANs using filters.\n- Delete wireless LANs from RunZero.\n- Add or edit comment on an asset or service.\n- Add tags to an asset or service.\n- Remove tags from assets or services.\n\n\n### RunZeroEventCollector integration for XSIAM:\n- Fetches RunZero events.",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "6.5.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-09-06T19:33:43Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6319909",
+	"videos": []
+}
