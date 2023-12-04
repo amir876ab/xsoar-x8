@@ -1,0 +1,378 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+deprecated: true
+description: Deprecated. Use Cortex XDR - Retrieve File Playbook v2 instead.
+id: Cortex XDR - Retrieve File Playbook
+inputs:
+- description: A comma-separated list of endpoint IDs.
+  key: endpoint_ids
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: "A comma-separated list of file paths in any platform. It can be used
+    instead of the macOS/Windows/Linux file paths. \nThe order of the files path list
+    must be parallel to the endpoints list order. Therefore, the first file path in
+    the list is related to the first endpoint ID and so on."
+  key: file_path
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    A comma-separated list of Windows paths.
+    Enter at least one path for either Windows, Linux, or Mac.
+  key: windows_file_paths
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    A comma-separated list Linux paths.
+    Enter at least one path for either Windows, Linux, or Mac.
+  key: linux_file_paths
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    A comma-separated list of Mac paths.
+    Enter at least one path for either Windows, Linux, or Mac.
+  key: mac_file_paths
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Cortex XDR - Retrieve File Playbook
+outputs:
+- contextPath: File
+  description: Retrieve the file details command results.
+- contextPath: File.Name
+  description: The full file name (including the file extension).
+  type: String
+- contextPath: File.EntryID
+  description: The ID for locating the file in the War Room.
+  type: String
+- contextPath: File.Size
+  description: The size of the file in bytes.
+  type: Number
+- contextPath: File.MD5
+  description: The MD5 hash of the file.
+  type: String
+- contextPath: File.SHA1
+  description: The SHA1 hash of the file.
+  type: String
+- contextPath: File.SHA256
+  description: The SHA256 hash of the file.
+  type: String
+- contextPath: File.SHA512
+  description: The SHA512 hash of the file.
+  type: String
+- contextPath: File.Extension
+  description: The file extension. For example, 'xls'.
+  type: String
+- contextPath: File.Type
+  description: The file type, as determined by libmagic (same as displayed in the
+    file entries).
+  type: String
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 808eba1f-6338-4e14-865b-28fa19ae0a2e
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 808eba1f-6338-4e14-865b-28fa19ae0a2e
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_ids:
+        complex:
+          root: inputs.endpoint_ids
+      generic_file_path:
+        complex:
+          root: inputs.file_path
+      linux_file_paths:
+        complex:
+          root: inputs.linux_file_paths
+      mac_file_paths:
+        complex:
+          root: inputs.mac_file_paths
+      windows_file_paths:
+        complex:
+          root: inputs.windows_file_paths
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieves files from selected endpoints. You can retrieve up to
+        20 files, from no more than 10 endpoints. At least one endpoint ID and one
+        file path are necessary in order to run the command. After running this command,
+        you can use the xdr-action-status-get command with returned action_id, to
+        check the action status.
+      id: b5b9500b-4287-4ed4-85f7-8d65d06975d4
+      iscommand: true
+      name: xdr-retrieve-files
+      script: '|||xdr-file-retrieve'
+      type: regular
+      version: -1
+    taskid: b5b9500b-4287-4ed4-85f7-8d65d06975d4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Ids:
+        simple: ${PaloAltoNetworksXDR.RetrievedFiles.action_id}
+      Interval:
+        simple: "1"
+      PollingCommandArgName:
+        simple: action_id
+      PollingCommandName:
+        simple: xdr-action-status-get
+      Timeout:
+        simple: "10"
+      dt:
+        simple: PaloAltoNetworksXDR.GetActionStatus(val.status == "PENDING" || val.status
+          == "IN_PROGRESS" || val.status == "PENDING_ABORT" ).action_id
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Use this playbook as a sub-playbook to block execution of the master playbook until a remote action is complete.
+        This playbook implements polling by continuously running the command in Step \#2 until the operation completes.
+        The remote action should have the following structure:
+
+        1. Initiate the operation.
+        2. Poll to check if the operation completed.
+        3. (optional) Get the results of the operation.
+      id: 0cb9b5c1-4c47-42fc-860c-20385870f6c7
+      iscommand: false
+      name: GenericPolling
+      playbookId: GenericPolling
+      type: playbook
+      version: -1
+    taskid: 0cb9b5c1-4c47-42fc-860c-20385870f6c7
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 370
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a2712ae7-1100-4545-85a7-43770ff6fbd7
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: a2712ae7-1100-4545-85a7-43770ff6fbd7
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 60,
+          "y": 895
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: File
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if the link to the file is ready.
+      id: 069bc12b-b96b-47ef-86dd-c000cdc518b6
+      iscommand: false
+      name: Retrieve file finished
+      type: condition
+      version: -1
+    taskid: 069bc12b-b96b-47ef-86dd-c000cdc518b6
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 720
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: Not all files retrieved.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message.
+      id: 1c13cd5a-8e50-4d71-8479-01639acc41b4
+      iscommand: false
+      name: Print Error message
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 1c13cd5a-8e50-4d71-8479-01639acc41b4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 895
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      action_id:
+        complex:
+          accessor: action_id
+          root: PaloAltoNetworksXDR.RetrievedFiles
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: View the file retrieved by the xdr-retrieve-files command according
+        to the action ID. Before running this command, you can use the xdr-action-status-get
+        command to check if this action completed successfully.
+      id: 0564ecf2-66a6-4447-8572-b0854d7f6162
+      iscommand: true
+      name: xdr-retrieve-file-details
+      script: '|||xdr-retrieve-file-details'
+      type: regular
+      version: -1
+    taskid: 0564ecf2-66a6-4447-8572-b0854d7f6162
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 545
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "5_6_#default#": 0.68
+    },
+    "paper": {
+      "dimensions": {
+        "height": 940,
+        "width": 800,
+        "x": 60,
+        "y": 50
+      }
+    }
+  }
