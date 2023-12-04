@@ -1,0 +1,40 @@
+{
+	"autorun": false,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#69A536",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "Specific"
+	},
+	"fromServerVersion": "8.2.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "CTF01",
+	"itemVersion": "1.0.2",
+	"layout": "",
+	"locked": false,
+	"name": "CTF01",
+	"onChangeRepAlg": 0,
+	"packID": "ctf01",
+	"packName": "Capture The Flag - 01",
+	"packPropagationLabels": [
+		"all"
+	],
+	"playbookId": "CTF 1 - Get to know XSOAR8",
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
