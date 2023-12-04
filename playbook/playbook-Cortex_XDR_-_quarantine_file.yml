@@ -1,0 +1,247 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+deprecated: true
+description: Deprecated. Use Cortex XDR - quarantine file v2 instead.
+id: Cortex XDR - quarantine file
+inputs:
+- description: The file’s hash. Must be a valid SHA256 hash.
+  key: file_hash
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: The path for the selected file.
+  key: file_path
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: The file's location in the system.
+  key: endpoint_id
+  playbookInputQuery: null
+  required: true
+  value: {}
+name: Cortex XDR - quarantine file
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 698ce1e6-4540-40bb-8ec4-5dc2decebd93
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 698ce1e6-4540-40bb-8ec4-5dc2decebd93
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      AdditionalPollingCommandArgNames:
+        simple: file_hash,file_path,endpoint_id
+      AdditionalPollingCommandArgValues:
+        simple: ${inputs.file_hash},${inputs.file_path},${inputs.endpoint_id}
+      Ids:
+        simple: Cortex_XDR_-_quarantine_file
+      Interval:
+        simple: "1"
+      PollingCommandArgName:
+        simple: actionId
+      PollingCommandName:
+        simple: xdr-get-quarantine-status
+      Timeout:
+        simple: "10"
+      dt:
+        simple: PaloAltoNetworksXDR.quarantineFiles.status(val.fileHash === '${inputs.file_hash}'
+          && val.endpointId === '${inputs.endpoint_id}' && val.filePath === '${inputs.file_path}'
+          && val.status === false)
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Use this playbook as a sub-playbook to block execution of the master playbook until a remote action is complete.
+        This playbook implements polling by continuously running the command in Step \#2 until the operation completes.
+        The remote action should have the following structure:
+
+        1. Initiate the operation.
+        2. Poll to check if the operation completed.
+        3. (optional) Get the results of the operation.
+      id: 2b930111-1438-4488-8a2c-7f0fac67a84e
+      iscommand: false
+      name: GenericPolling
+      playbookId: GenericPolling
+      type: playbook
+      version: -1
+    taskid: 2b930111-1438-4488-8a2c-7f0fac67a84e
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_id_list:
+        simple: ${inputs.endpoint_id}
+      file_hash:
+        simple: ${inputs.file_hash}
+      file_path:
+        simple: ${inputs.file_path}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Quarantine a file on selected endpoints. You can select up to 1000
+        endpoints.
+      id: b8e66e18-fc70-48ce-8cb4-859bd1ce7de6
+      iscommand: true
+      name: Quarantine file
+      script: '|||xdr-file-quarantine'
+      type: regular
+      version: -1
+    taskid: b8e66e18-fc70-48ce-8cb4-859bd1ce7de6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 454d0ef9-46e7-478c-809c-0b0931dce7ce
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 454d0ef9-46e7-478c-809c-0b0931dce7ce
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_id:
+        simple: ${inputs.endpoint_id}
+      file_hash:
+        simple: ${inputs.file_hash}
+      file_path:
+        simple: ${inputs.file_path}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieve the quarantine status for a selected file.
+      id: 932eceea-f7db-4839-845b-bba37414536d
+      iscommand: true
+      name: Get quarantine status
+      script: '|||xdr-get-quarantine-status'
+      type: regular
+      version: -1
+    taskid: 932eceea-f7db-4839-845b-bba37414536d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 735,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
