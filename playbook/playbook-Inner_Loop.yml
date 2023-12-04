@@ -1,0 +1,176 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: dec60c8a-04f0-4e91-8206-88dcd94ed5fe
+inputs: []
+name: Inner Loop
+outputs:
+- contextPath: Flag
+  type: boolean
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b8be0fbc-1306-4862-8943-e952905a5648
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: b8be0fbc-1306-4862-8943-e952905a5648
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    defaultassigneecomplex:
+      simple: admin
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: Start
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 7cd3b976-e59c-46a7-81ab-79d05dc9fec4
+      iscommand: false
+      name: Start
+      script: Print
+      type: regular
+      version: -1
+    taskid: 7cd3b976-e59c-46a7-81ab-79d05dc9fec4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 200
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    defaultassigneecomplex:
+      simple: admin
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: 'Counter is: ${counter}'
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: f0f19ec2-6919-4651-8244-59cce883da19
+      iscommand: false
+      name: Print counter
+      script: Print
+      type: regular
+      version: -1
+    taskid: f0f19ec2-6919-4651-8244-59cce883da19
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 770
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: counter
+      value:
+        complex:
+          root: counter
+          transformers:
+          - args:
+              by:
+                value:
+                  simple: "1"
+            operator: addition
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 4827e94e-a8ea-4b4f-87b9-cbf425c03aab
+      iscommand: false
+      name: Increase counter
+      script: Set
+      type: regular
+      version: -1
+    taskid: 4827e94e-a8ea-4b4f-87b9-cbf425c03aab
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 470
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 815,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
