@@ -1,0 +1,37 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Classifies QRadar events.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "QRadar",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "2.4.41",
+	"keyTypeMap": {
+		"SIM User Authentication": "Access",
+		"User Login Failure": "Access"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "QRadar - Classifier",
+	"nameRaw": "QRadar - Classifier",
+	"packID": "QRadar",
+	"packName": "IBM QRadar",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "categories.[0]"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
