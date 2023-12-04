@@ -1,0 +1,49 @@
+comment: Shows InvestigationDetailedSummaryParse results as a markdown table
+commonfields:
+  id: InvestigationDetailedSummaryToTable
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.2.0
+    itemVersion: 2.0.8
+    packID: MalwareInvestigationAndResponse
+    packName: Malware Investigation and Response
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.4.29342
+engineinfo: {}
+mainengineinfo: {}
+name: InvestigationDetailedSummaryToTable
+nativeimage:
+- "8.3"
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: "register_module_line('InvestigationDetailedSummaryToTable', 'start', __line__())\n###
+  pack version: 2.0.8\n\n\nTACTIC = 'Tactic'\nSTATUS = 'Status'\nBOOL_TO_DESCRIPTION
+  = {True: '\U0001F534  Detected', False: '\U0001F7E2  Not Detected'}\n\n\ndef table_command(context:
+  dict) -> CommandResults:\n    if not context:\n        return CommandResults(\n
+  \           readable_output='### Waiting on entries\\n'\n                            'When
+  `InvestigationDetailedSummaryParse` is finished, its results will appear here.'\n
+  \       )\n    table_values: list[dict] = []\n    for tactic, techniques in context.items():\n
+  \       table_values.append({TACTIC: f'**{tactic.upper()}**', STATUS: ''})\n\n        for
+  technique, found in techniques.items():\n            table_values.append({TACTIC:
+  technique, STATUS: BOOL_TO_DESCRIPTION[found]})\n    return CommandResults(readable_output=tableToMarkdown('',
+  table_values, headers=[TACTIC, STATUS]))\n\n\ndef main():\n    try:\n        context
+  = json.loads(\n            demisto.incident().get('CustomFields', {}).get('malwaredetailedinvestigationsummary')
+  or '{}')\n        return_results(table_command(context))\n    except Exception as
+  ex:\n        demisto.error(traceback.format_exc())  # print the traceback\n        return_error(f'Failed
+  to execute InvestigationDetailedSummaryToTable. Error: {str(ex)}')\n\n\nif __name__
+  in ('__main__', '__builtin__', 'builtins'):\n    main()\n\nregister_module_line('InvestigationDetailedSummaryToTable',
+  'end', __line__())\n"
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- dynamic-section
+- field-change-triggered
+type: python
