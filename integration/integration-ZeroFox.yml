@@ -1,0 +1,2774 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: ZeroFox
+  version: -1
+configuration:
+- defaultvalue: https://api.zerofox.com/
+  display: URL (e.g., https://api.zerofox.com/)
+  name: url
+  required: true
+  type: 0
+- display: Username
+  name: credentials
+  required: true
+  type: 9
+- defaultvalue: "false"
+  display: Fetch only escalated alerts
+  name: only_escalated
+  required: false
+  type: 8
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- defaultvalue: 3 days
+  display: First fetch timestamp (<number> <time unit>, e.g., 12 hours, 7 days)
+  name: fetch_time
+  required: false
+  type: 0
+- defaultvalue: "100"
+  display: Fetch Limit
+  name: fetch_limit
+  required: true
+  type: 0
+- display: Fetch incidents
+  name: isFetch
+  required: false
+  type: 8
+- display: Incident type
+  name: incidentType
+  required: false
+  type: 13
+- defaultvalue: "1"
+  display: Incidents Fetch Interval
+  name: incidentFetchInterval
+  required: false
+  type: 19
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.2.2
+    packID: ZeroFox
+    packName: ZeroFox
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Cloud-based SaaS to detect risks found on social media and digital channels.
+detaileddescription: |-
+  ### Partner Contributed Integration
+  #### Integration Author: ZeroFox
+  Support and maintenance for this integration are provided by the author. Please use the following contact details:
+  - **Email**: [integration-support@zerofox.com](mailto:integration-support@zerofox.com)
+  - **URL**: [https://www.zerofox.com/contact-us/](https://www.zerofox.com/contact-us/)
+  ***
+   # ZeroFox
+
+   ## Configuration
+  To obtain your ZeroFox token, email us at [integration-support@zerofox.com](mailto:integration-support@zerofox.com) with your org info to request the service account token for integration.
+
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/zero-fox)
+display: ZeroFox (Partner Contribution)
+image: data:image/png;base64,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
+name: ZeroFox
+script:
+  commands:
+  - arguments:
+    - description: The ID of an alert. Can be retrieved by running the zerofox-list-alerts
+        command.
+      name: alert_id
+      required: true
+    description: Fetches an alert by ID.
+    name: zerofox-get-alert
+    outputs:
+    - contextPath: ZeroFox.Alert.AlertType
+      description: The type of an alert.
+      type: String
+    - contextPath: ZeroFox.Alert.OffendingContentURL
+      description: The URL to the site containing content that triggered an alert.
+      type: String
+    - contextPath: ZeroFox.Alert.Assignee
+      description: The user to which an alert is assigned.
+      type: String
+    - contextPath: ZeroFox.Alert.Entity.ID
+      description: The ID of the entity corresponding to the triggered alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.Entity.Name
+      description: The name of the entity corresponding to the triggered alert.
+      type: String
+    - contextPath: ZeroFox.Alert.Entity.Image
+      description: The URL to the profile image of the entity on which an alert was
+        created.
+      type: String
+    - contextPath: ZeroFox.Alert.EntityTerm.ID
+      description: The ID of the entity term corresponding to the triggered alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.EntityTerm.Name
+      description: The name of the entity term corresponding to the triggered alert.
+      type: String
+    - contextPath: ZeroFox.Alert.EntityTerm.Deleted
+      description: Whether an entity term was deleted.
+      type: Boolean
+    - contextPath: ZeroFox.Alert.ContentCreatedAt
+      description: The date-time string indicating when the alerted content was created,
+        in ISO-8601 format.
+      type: Date
+    - contextPath: ZeroFox.Alert.ID
+      description: The ID of an alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.RiskRating
+      description: The risk rating of an alert. Can be "Critical", "High", "Medium",
+        "Low", or "Info".
+      type: Number
+    - contextPath: ZeroFox.Alert.Perpetrator.Name
+      description: For account, post, or page alerts, the perpetrator's social network
+        account display name or the account from which the content was posted.
+      type: String
+    - contextPath: ZeroFox.Alert.Perpetrator.URL
+      description: The URL at which you can view the basic details of the perpetrator.
+      type: String
+    - contextPath: ZeroFox.Alert.Perpetrator.Timestamp
+      description: The timestamp of a post created by a perpetrator.
+      type: Date
+    - contextPath: ZeroFox.Alert.Perpetrator.Type
+      description: The type of perpetrator on which an alert was created. Can be an
+        account, page, or post.
+      type: String
+    - contextPath: ZeroFox.Alert.Perpetrator.ID
+      description: The ZeroFox resource ID of the alert perpetrator.
+      type: Number
+    - contextPath: ZeroFox.Alert.Perpetrator.Network
+      description: The network containing the offending content.
+      type: String
+    - contextPath: ZeroFox.Alert.RuleGroupID
+      description: The ID of the rule group.
+      type: Number
+    - contextPath: ZeroFox.Alert.Status
+      description: The status of an alert. Can be "Open", "Closed", "Takedown:Accepted",
+        "Takedown:Denied", "Takedown:Requested", or "Whitelisted".
+      type: String
+    - contextPath: ZeroFox.Alert.Timestamp
+      description: The date-time string when an the alert was created, in ISO-8601
+        format.
+      type: Date
+    - contextPath: ZeroFox.Alert.RuleName
+      description: The name of the rule on which an alert was created. Outputs "null"
+        if the rule was deleted.
+      type: String
+    - contextPath: ZeroFox.Alert.LastModified
+      description: The date and time at which an alert was last modified.
+      type: Date
+    - contextPath: ZeroFox.Alert.DarkwebTerm
+      description: Details about the dark web term on which an alert was created.
+        Outputs "null" if the alert has no details.
+      type: String
+    - contextPath: ZeroFox.Alert.Reviewed
+      description: Whether an alert was reviewed.
+      type: Boolean
+    - contextPath: ZeroFox.Alert.Escalated
+      description: Whether an alert was escalated.
+      type: Boolean
+    - contextPath: ZeroFox.Alert.Network
+      description: The network on which an alert was created.
+      type: String
+    - contextPath: ZeroFox.Alert.ProtectedSocialObject
+      description: The protected object corresponding to an alert. If the alert occurred
+        on an entity term, the protected object will be an entity term name. If the
+        alert occurred on a protected account, (account information or an incoming
+        or outgoing content), and it was network defined, the protected object will
+        be an account username. If the alert was not network-defined, the protected
+        object will default to the account's display name. Otherwise, the protected
+        account will be an account display name. For impersonation alerts, the protected
+        object is null.
+      type: String
+    - contextPath: ZeroFox.Alert.Notes
+      description: Notes made on an alert by the user.
+      type: String
+    - contextPath: ZeroFox.Alert.RuleID
+      description: The ID of the rule on which an alert was created. Outputs "null"
+        if the rule has been deleted.
+      type: Number
+    - contextPath: ZeroFox.Alert.Tags
+      description: A list of an alert's tags.
+      type: String
+    - contextPath: ZeroFox.Alert.EntityAccount
+      description: The account associated with the entity.
+      type: String
+  - arguments:
+    - description: The ID of an alert. Can be retrieved by running the zerofox-list-alerts
+        command.
+      name: alert_id
+      required: true
+    - description: The name of the user to which an alert is assigned.
+      name: username
+      required: true
+    description: Assigns an alert to a user.
+    name: zerofox-alert-user-assignment
+    outputs:
+    - contextPath: ZeroFox.Alert.ID
+      description: The ID of an alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.Assignee
+      description: The user to which an alert is assigned.
+      type: String
+  - arguments:
+    - description: The ID of an alert. Can be retrieved by running the zerofox-list-alerts
+        command.
+      name: alert_id
+      required: true
+    description: Closes an alert.
+    name: zerofox-close-alert
+    outputs:
+    - contextPath: ZeroFox.Alert.ID
+      description: The ID of an alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.Status
+      description: The status of an alert.
+      type: String
+  - arguments:
+    - description: The ID of an alert. Can be retrieved by running the zerofox-list-alerts
+        command.
+      name: alert_id
+      required: true
+    description: Requests a takedown of a specified alert.
+    name: zerofox-alert-request-takedown
+    outputs:
+    - contextPath: ZeroFox.Alert.ID
+      description: The ID of an alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.Status
+      description: The status of an alert.
+      type: String
+  - arguments:
+    - auto: PREDEFINED
+      default: true
+      defaultValue: add
+      description: Adds or removes tags.
+      name: action
+      predefined:
+      - add
+      - remove
+    - description: The ID of an alert. Can be retrieved by running the zerofox-list-alerts
+        command.
+      name: alert_id
+      required: true
+    - description: A CSV of tags to be added to or removed from an alert.
+      name: tags
+      required: true
+    description: Adds tags to and or removes tags from a specified alert.
+    name: zerofox-modify-alert-tags
+    outputs:
+    - contextPath: ZeroFox.Alert.AlertType
+      description: The type of an alert.
+      type: String
+    - contextPath: ZeroFox.Alert.OffendingContentURL
+      description: The URL to the site containing content that triggered an alert.
+      type: String
+    - contextPath: ZeroFox.Alert.Assignee
+      description: The user to which an alert is assigned.
+      type: String
+    - contextPath: ZeroFox.Alert.Entity.ID
+      description: The ID of the entity corresponding to the triggered alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.Entity.Name
+      description: The name of the entity corresponding to the triggered alert.
+      type: String
+    - contextPath: ZeroFox.Alert.Entity.Image
+      description: The URL to the profile image of the entity on which an alert was
+        created.
+      type: String
+    - contextPath: ZeroFox.Alert.EntityTerm.ID
+      description: The ID of the entity term corresponding to the triggered alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.EntityTerm.Name
+      description: The name of the entity term corresponding to the triggered alert.
+      type: String
+    - contextPath: ZeroFox.Alert.EntityTerm.Deleted
+      description: Whether an entity term was deleted.
+      type: Boolean
+    - contextPath: ZeroFox.Alert.ContentCreatedAt
+      description: The date-time string indicating when the alerted content was created,
+        in ISO-8601 format.
+      type: Date
+    - contextPath: ZeroFox.Alert.ID
+      description: The ID of an alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.RiskRating
+      description: The risk rating of an alert. Can be "Critical", "High", "Medium",
+        "Low", or "Info".
+      type: Number
+    - contextPath: ZeroFox.Alert.Perpetrator.Name
+      description: For account, post, or page alerts, the perpetrator's social network
+        account display name or the account from which the content was posted.
+      type: String
+    - contextPath: ZeroFox.Alert.Perpetrator.URL
+      description: The URL at which you can view the basic details of the perpetrator.
+      type: String
+    - contextPath: ZeroFox.Alert.Perpetrator.Timestamp
+      description: The timestamp of a post created by a perpetrator.
+      type: Date
+    - contextPath: ZeroFox.Alert.Perpetrator.Type
+      description: The type of perpetrator on which an alert was created. Can be an
+        account, page, or post.
+      type: String
+    - contextPath: ZeroFox.Alert.Perpetrator.ID
+      description: The ZeroFox resource ID of the alert perpetrator.
+      type: Number
+    - contextPath: ZeroFox.Alert.Perpetrator.Network
+      description: The network containing the offending content.
+      type: String
+    - contextPath: ZeroFox.Alert.RuleGroupID
+      description: The ID of the rule group.
+      type: Number
+    - contextPath: ZeroFox.Alert.Status
+      description: The status of an alert. Can be "Open", "Closed", "Takedown:Accepted",
+        "Takedown:Denied", "Takedown:Requested", or "Whitelisted".
+      type: String
+    - contextPath: ZeroFox.Alert.Timestamp
+      description: The date-time string when an alert was created, in ISO-8601 format.
+      type: Date
+    - contextPath: ZeroFox.Alert.RuleName
+      description: The name of the rule on which an alert was created. Outputs "null"
+        if the rule has been deleted.
+      type: String
+    - contextPath: ZeroFox.Alert.LastModified
+      description: The date and time at which an alert was last modified.
+      type: Date
+    - contextPath: ZeroFox.Alert.DarkwebTerm
+      description: Details about the dark web term on which an alert was created.
+        Outputs "null" if the alert has no details.
+      type: String
+    - contextPath: ZeroFox.Alert.Reviewed
+      description: Whether an alert was reviewed.
+      type: Boolean
+    - contextPath: ZeroFox.Alert.Escalated
+      description: Whether an alert was escalated.
+      type: Boolean
+    - contextPath: ZeroFox.Alert.Network
+      description: The network on which an alert was created.
+      type: String
+    - contextPath: ZeroFox.Alert.ProtectedSocialObject
+      description: The protected object corresponding to an alert. If the alert occurred
+        on an entity term, the protected object will be an entity term name. If the
+        alert occurred on a protected account, (account information or an incoming
+        or outgoing content), and it was network defined, the protected object will
+        be an account username. If the alert was not network-defined, the protected
+        object will default to the account's display name. Otherwise, the protected
+        account will be an account display name. For impersonation alerts, the protected
+        object is null.
+      type: String
+    - contextPath: ZeroFox.Alert.Notes
+      description: Notes made on an alert.
+      type: String
+    - contextPath: ZeroFox.Alert.RuleID
+      description: The ID of the rule on which an alert was created. Outputs "null"
+        if the rule has been deleted.
+      type: Number
+    - contextPath: ZeroFox.Alert.Tags
+      description: A list of an alert's tags.
+      type: String
+    - contextPath: ZeroFox.Alert.EntityAccount
+      description: The account associated with the entity.
+      type: String
+  - arguments:
+    - description: The account number of the social network (unique ID).
+      name: account
+    - auto: PREDEFINED
+      description: A CSV list of alert types.
+      name: alert_type
+      predefined:
+      - account_information
+      - entity_discovery_content
+      - entity_discovery_profile
+      - impersonating_account
+      - impersonating_comment
+      - impersonating_post
+      - incoming_comment
+      - incoming_post
+      - incoming_private_message
+      - outgoing_private_message
+      - self_comment
+      - self_post
+      - search_query
+      - location
+      - email
+    - description: The name of the user assigned to an alert.
+      name: assignee
+    - description: The ID of the ZeroFox entity.
+      name: entity
+    - description: The term ID of the ZeroFox entity.
+      name: entity_term
+    - description: The amount of time (in seconds) since an alert was last modified.
+      name: last_modified
+    - default: true
+      defaultValue: "10"
+      description: The maximum number of alerts to retrieve (0 - 100).
+      name: limit
+    - description: The ending date-time string (in ISO-8601 format) by which to filter
+        alerts.
+      name: max_timestamp
+    - description: The starting date-time string (in ISO-8601 format) by which to
+        filter alerts.
+      name: min_timestamp
+    - description: Filters results by the specified network names.
+      name: network
+    - description: Used for pagination. Starts response with the first filtered alert.
+      name: offset
+    - description: CSV list of the ZeroFox page IDs.
+      name: page_id
+    - description: The URL to the website or social media content that triggered an
+        alert.
+      name: page_url
+    - description: The encoded JSON array of strings used for filtering alerts.
+      name: pages
+    - description: The unique post number of the social network.
+      name: post
+    - description: CSV list of the ZeroFox rule IDs.
+      name: rule_id
+    - description: CSV list of the ZeroFox rule names.
+      name: rule_name
+    - description: The matched substring of the protected entity.
+      name: entity_search
+    - description: The substring used to filter alerts by the username or display
+        name of a perpetrator.
+      name: perpetrator_search
+    - description: The substring used to filter alerts by the username, display name,
+        or entity term name of protected social objects.
+      name: pro_social_obj_search
+    - description: CSV list of alert IDs.
+      name: alert_id
+    - auto: PREDEFINED
+      description: Risk rating of alert.
+      name: risk_rating
+      predefined:
+      - Critical
+      - High
+      - Medium
+      - Low
+      - Info
+    - auto: PREDEFINED
+      description: Sorts results in ascending or descending order.
+      name: sort_direction
+      predefined:
+      - asc
+      - desc
+    - auto: PREDEFINED
+      description: Field used for defining alert filter for sorting.
+      name: sort_field
+      predefined:
+      - alert_id
+      - alert_status
+      - alert_type
+      - assigned_user
+      - perpetrator
+      - protected_entity
+      - protected_social_object
+      - rule
+      - severity
+      - social_network
+      - timestamp
+      - escalated
+    - auto: PREDEFINED
+      description: The alert status.
+      name: status
+      predefined:
+      - closed
+      - open
+      - takedown_accepted
+      - takedown_denied
+      - takedown_requested
+      - whitelisted
+    - auto: PREDEFINED
+      description: If true, returns only escalated alerts.
+      name: escalated
+      predefined:
+      - "true"
+      - "false"
+    - description: Alert tags. Returns alerts containing at least of the tags in the
+        provided CSV list.
+      name: tags
+    description: Returns alerts that match user-defined or default filters and parameters.
+      By default, no filters are applied and the results are sorted by timestamp.
+    name: zerofox-list-alerts
+    outputs:
+    - contextPath: ZeroFox.Alert.AlertType
+      description: The type of an alert.
+      type: String
+    - contextPath: ZeroFox.Alert.OffendingContentURL
+      description: The URL to the site containing content that triggered an alert.
+      type: String
+    - contextPath: ZeroFox.Alert.Assignee
+      description: The user to which an alert is assigned.
+      type: String
+    - contextPath: ZeroFox.Alert.Entity.ID
+      description: The ID of the entity corresponding to the triggered alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.Entity.Name
+      description: The name of the entity corresponding to the triggered alert.
+      type: String
+    - contextPath: ZeroFox.Alert.Entity.Image
+      description: The URL to the profile image of the entity on which an alert was
+        created.
+      type: String
+    - contextPath: ZeroFox.Alert.EntityTerm.ID
+      description: The ID of the entity term corresponding to the triggered alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.EntityTerm.Name
+      description: The name of the entity term corresponding to the triggered alert.
+      type: String
+    - contextPath: ZeroFox.Alert.EntityTerm.Deleted
+      description: Whether an entity term was deleted.
+      type: Boolean
+    - contextPath: ZeroFox.Alert.ContentCreatedAt
+      description: The date-time string indicating when the alerted content was created,
+        in ISO-8601 format.
+      type: Date
+    - contextPath: ZeroFox.Alert.ID
+      description: The ID of an alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.RiskRating
+      description: The risk rating of an alert. Can be "Critical", "High", "Medium",
+        "Low", or "Info".
+      type: Number
+    - contextPath: ZeroFox.Alert.Perpetrator.Name
+      description: For account, post, or page alerts, the perpetrator's social network
+        account display name or the account from which the content was posted.
+      type: String
+    - contextPath: ZeroFox.Alert.Perpetrator.URL
+      description: The URL at which you can view the basic details of the perpetrator.
+      type: String
+    - contextPath: ZeroFox.Alert.Perpetrator.Timestamp
+      description: The timestamp of a post created by a perpetrator.
+      type: Date
+    - contextPath: ZeroFox.Alert.Perpetrator.Type
+      description: The type of perpetrator on which an alert was created. Can be an
+        account, page, or post.
+      type: String
+    - contextPath: ZeroFox.Alert.Perpetrator.ID
+      description: The ZeroFox resource ID of the alert perpetrator.
+      type: Number
+    - contextPath: ZeroFox.Alert.Perpetrator.Network
+      description: The network containing the offending content.
+      type: String
+    - contextPath: ZeroFox.Alert.RuleGroupID
+      description: The ID of the rule group.
+      type: Number
+    - contextPath: ZeroFox.Alert.Status
+      description: The status of an alert. Can be "Open", "Closed", "Takedown:Accepted",
+        "Takedown:Denied", "Takedown:Requested" and "Whitelisted".
+      type: String
+    - contextPath: ZeroFox.Alert.Timestamp
+      description: The date-time string when an alert was created, in ISO-8601 format.
+      type: Date
+    - contextPath: ZeroFox.Alert.RuleName
+      description: The name of the rule on which an alert was created. Outputs "null"
+        if the rule has been deleted.
+      type: String
+    - contextPath: ZeroFox.Alert.LastModified
+      description: The date and time at which an alert was last modified.
+      type: Date
+    - contextPath: ZeroFox.Alert.DarkwebTerm
+      description: Details about the dark web term on which an alert was created.
+        Outputs "null" if the alert has no details.
+      type: String
+    - contextPath: ZeroFox.Alert.Reviewed
+      description: Whether an alert was reviewed.
+      type: Boolean
+    - contextPath: ZeroFox.Alert.Escalated
+      description: Whether an alert was escalated.
+      type: Boolean
+    - contextPath: ZeroFox.Alert.Network
+      description: The network on which an alert was created.
+      type: String
+    - contextPath: ZeroFox.Alert.ProtectedSocialObject
+      description: The protected object corresponding to an alert. If the alert occurred
+        on an entity term, the protected object will be an entity term name. If the
+        alert occurred on a protected account, (account information or an incoming
+        or outgoing content), and it was network defined, the protected object will
+        be an account username. If the alert was not network-defined, the protected
+        object will default to the account's display name. Otherwise, the protected
+        account will be an account display name. For impersonation alerts, the protected
+        object is null.
+      type: String
+    - contextPath: ZeroFox.Alert.Notes
+      description: Notes made on an alert.
+      type: String
+    - contextPath: ZeroFox.Alert.RuleID
+      description: The ID of the rule on which an alert was created. Outputs "null"
+        if the rule has been deleted.
+      type: Number
+    - contextPath: ZeroFox.Alert.Tags
+      description: A list of an alert's tags.
+      type: String
+    - contextPath: ZeroFox.Alert.EntityAccount
+      description: The account associated with the entity.
+      type: String
+  - arguments:
+    - description: Name of the entity (may be non-unique).
+      name: name
+      required: true
+    - description: |-
+        Indicates the type of string matching used for comparing entity names
+        to impersonator names. It must be `true` or `false`.
+      name: strict_name_matching
+    - description: |-
+        Comma-separated list of string tags for tagging the entity.
+        For example:
+        label1,label2,label3.
+      isArray: true
+      name: tags
+    - description: The ID of the policy to assign to the new entity. Can be retrieved
+        running the zerofox-get-policy-types command.
+      name: policy_id
+      predefined:
+      - ""
+    - description: The name of the organization associated with the entity.
+      name: organization
+    description: Creates a new entity associated with the company of the authorized
+      user.
+    name: zerofox-create-entity
+    outputs:
+    - contextPath: ZeroFox.Entity.Name
+      description: The name of the entity.
+      type: String
+    - contextPath: ZeroFox.Entity.ID
+      description: The ID of the entity.
+      type: Number
+    - contextPath: ZeroFox.StrictNameMatching
+      description: Indicates the type of string matching used for comparing entity
+        names to impersonator names.
+      type: Boolean
+    - contextPath: ZeroFox.Entity.Tags
+      description: The list of string tags that can be used for tagging the entity.
+      type: String
+    - contextPath: ZeroFox.Entity.PolicyID
+      description: The policy ID of the entity.
+      type: String
+    - contextPath: ZeroFox.Entity.Organization
+      description: The name of the organization associated with the entity.
+      type: String
+  - arguments:
+    - description: The ID of an alert. Can be retrieved running the zerofox-list-alerts
+        command.
+      name: alert_id
+      required: true
+    description: Cancels a takedown of a specified alert.
+    name: zerofox-alert-cancel-takedown
+    outputs:
+    - contextPath: ZeroFox.Alert.ID
+      description: The ID of an alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.Status
+      description: The status of an alert.
+      type: String
+  - arguments:
+    - description: The ID of an alert. Can be retrieved running the zerofox-list-alerts
+        command.
+      name: alert_id
+      required: true
+    description: Opens an alert.
+    name: zerofox-open-alert
+    outputs:
+    - contextPath: ZeroFox.Alert.ID
+      description: The ID of an alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.Status
+      description: The status of an alert.
+      type: String
+  - arguments:
+    - description: Filters by matching email_address substrings.
+      name: email_address
+    - description: Filters by entity group ID. Can be filtered by multiple group parameters.
+      name: group
+    - description: Filters by entity label ID. Can be filtered by multiple label parameters.
+      name: label
+    - description: Filters by entities with network accounts using an ID. Can be filtered
+        by multiple network parameters.
+      name: network
+    - description: Filters by entities with network accounts using a CSV of network
+        names.
+      name: networks
+    - description: The index of page to fetch.
+      name: page
+    - description: Filters by entity policy ID. Can be filtered by multiple policy
+        parameters. Can be retrieved running the zerofox-get-policy-types command.
+      name: policy
+    - description: Filters by an entity type ID. Can be filtered by multiple type
+        parameters. Can be retrieved running the zerofox-get-entity-types command.
+      name: type
+    description: Lists all entities associated with the company of the authorized
+      user.
+    name: zerofox-list-entities
+    outputs:
+    - contextPath: ZeroFox.Entity.ID
+      description: The ID of the entity.
+      type: Number
+    - contextPath: ZeroFox.Entity.Name
+      description: The name of the entity.
+      type: String
+    - contextPath: ZeroFox.Entity.EmailAddress
+      description: The email address associated with the entity.
+      type: String
+    - contextPath: ZeroFox.Entity.Organization
+      description: The organization associated with the entity.
+      type: String
+    - contextPath: ZeroFox.Entity.Tags
+      description: A list of tags of the entity.
+      type: String
+    - contextPath: ZeroFox.Entity.StrictNameMatching
+      description: Indicates the type of string matching used for comparing entity
+        names to impersonator names.
+      type: Boolean
+    - contextPath: ZeroFox.Entity.PolicyID
+      description: The policy ID of the entity.
+      type: Number
+    - contextPath: ZeroFox.Entity.Profile
+      description: A link to a profile resource, if applicable.
+      type: String
+    - contextPath: ZeroFox.Entity.EntityGroupID
+      description: The ID of the entity group.
+      type: Number
+    - contextPath: ZeroFox.Entity.EntityGroupName
+      description: The name of the entity group.
+      type: String
+    - contextPath: ZeroFox.Entity.TypeID
+      description: The ID of the type of entity.
+      type: Number
+    - contextPath: ZeroFox.Entity.TypeName
+      description: The name of the type of entity.
+      type: String
+  - arguments: []
+    description: Shows a table of all entity type names and IDs in the War Room.
+    name: zerofox-get-entity-types
+  - arguments: []
+    description: Shows a table of all policy type names and IDs in the War Room.
+    name: zerofox-get-policy-types
+  - arguments:
+    - description: The ID of an alert. Can be retrieved running the zerofox-list-alerts
+        command.
+      name: alert_id
+      required: true
+    - description: The notes to add to an alert.
+      name: notes
+      required: true
+    description: Modify the notes of a specified alert.
+    name: zerofox-modify-alert-notes
+    outputs:
+    - contextPath: ZeroFox.Alert.AlertType
+      description: The type of an alert.
+      type: String
+    - contextPath: ZeroFox.Alert.OffendingContentURL
+      description: The URL to the site containing content that triggered an alert.
+      type: String
+    - contextPath: ZeroFox.Alert.Assignee
+      description: The user to which an alert is assigned.
+      type: String
+    - contextPath: ZeroFox.Alert.Entity.ID
+      description: The ID of the entity corresponding to the triggered alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.Entity.Name
+      description: The name of the entity corresponding to the triggered alert.
+      type: String
+    - contextPath: ZeroFox.Alert.Entity.Image
+      description: The URL to the profile image of the entity on which an alert was
+        created.
+      type: String
+    - contextPath: ZeroFox.Alert.EntityTerm.ID
+      description: The ID of the entity term corresponding to the triggered alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.EntityTerm.Name
+      description: The name of the entity term corresponding to the triggered alert.
+      type: String
+    - contextPath: ZeroFox.Alert.EntityTerm.Deleted
+      description: Whether an entity term was deleted.
+      type: Boolean
+    - contextPath: ZeroFox.Alert.ContentCreatedAt
+      description: The date-time string indicating when the alerted content was created,
+        in ISO-8601 format.
+      type: Date
+    - contextPath: ZeroFox.Alert.ID
+      description: The ID of an alert.
+      type: Number
+    - contextPath: ZeroFox.Alert.RiskRating
+      description: The risk rating of an alert. Can be "Critical", "High", "Medium",
+        "Low", or "Info".
+      type: Number
+    - contextPath: ZeroFox.Alert.Perpetrator.Name
+      description: For account, post, or page alerts, the perpetrator's social network
+        account display name or the account from which the content was posted.
+      type: String
+    - contextPath: ZeroFox.Alert.Perpetrator.URL
+      description: The URL at which you can view the basic details of the perpetrator.
+      type: String
+    - contextPath: ZeroFox.Alert.Perpetrator.Timestamp
+      description: The timestamp of a post created by a perpetrator.
+      type: Date
+    - contextPath: ZeroFox.Alert.Perpetrator.Type
+      description: The type of perpetrator on which an alert was created. Can be an
+        account, page, or post.
+      type: String
+    - contextPath: ZeroFox.Alert.Perpetrator.ID
+      description: The ZeroFox resource ID of the alert perpetrator.
+      type: Number
+    - contextPath: ZeroFox.Alert.Perpetrator.Network
+      description: The network containing the offending content.
+      type: String
+    - contextPath: ZeroFox.Alert.RuleGroupID
+      description: The ID of the rule group.
+      type: Number
+    - contextPath: ZeroFox.Alert.Status
+      description: The status of an alert. Can be "Open", "Closed", "Takedown:Accepted",
+        "Takedown:Denied", "Takedown:Requested", or "Whitelisted".
+      type: String
+    - contextPath: ZeroFox.Alert.Timestamp
+      description: The date-time string when an alert was created, in ISO-8601 format.
+      type: Date
+    - contextPath: ZeroFox.Alert.RuleName
+      description: The name of the rule on which an alert was created. Outputs "null"
+        if the rule has been deleted.
+      type: String
+    - contextPath: ZeroFox.Alert.LastModified
+      description: The date and time at which an alert was last modified.
+      type: Date
+    - contextPath: ZeroFox.Alert.DarkwebTerm
+      description: Details about the dark web term on which an alert was created.
+        Outputs "null" if the alert has no details.
+      type: String
+    - contextPath: ZeroFox.Alert.Reviewed
+      description: Whether an alert was reviewed.
+      type: Boolean
+    - contextPath: ZeroFox.Alert.Escalated
+      description: Whether an alert was escalated.
+      type: Boolean
+    - contextPath: ZeroFox.Alert.Network
+      description: The network on which an alert was created.
+      type: String
+    - contextPath: ZeroFox.Alert.ProtectedSocialObject
+      description: The protected object corresponding to an alert. If the alert occurred
+        on an entity term, the protected object will be an entity term name. If the
+        alert occurred on a protected account, (account information or an incoming
+        or outgoing content), and it was network defined, the protected object will
+        be an account username. If the alert was not network-defined, the protected
+        object will default to the account's display name. Otherwise, the protected
+        account will be an account display name. For impersonation alerts, the protected
+        object is null.
+      type: String
+    - contextPath: ZeroFox.Alert.Notes
+      description: Notes made on an alert.
+      type: String
+    - contextPath: ZeroFox.Alert.RuleID
+      description: The ID of the rule on which an alert was created. Outputs "null"
+        if the rule has been deleted.
+      type: Number
+    - contextPath: ZeroFox.Alert.Tags
+      description: A list of an alert's tags.
+      type: String
+    - contextPath: ZeroFox.Alert.EntityAccount
+      description: The account associated with the entity.
+      type: String
+  - arguments:
+    - auto: PREDEFINED
+      description: Content to be considered a threat.
+      name: source
+      required: true
+      type: keyValue
+    - auto: PREDEFINED
+      description: Type of content acting as a threat, could be one of email, ip,
+        domain, url, phone, mail_exchange, page_content or account.
+      name: alert_type
+      required: true
+      type: keyValue
+    - auto: PREDEFINED
+      description: Type of infringement the submitted threat represents, could be
+        one of phishing, malware, rogue_app, impersonation, trademark, copyright,
+        private_data, fraud or other.
+      name: violation
+      required: true
+      type: keyValue
+    - auto: PREDEFINED
+      description: Identifier of the entity being threatened by submitted content.
+      name: entity_id
+      required: true
+      type: keyValue
+    - description: Additional notes to include in submission.
+      name: notes
+      type: textArea
+    description: Submits potential threats into the ZF alert registry for disruption.
+    name: zerofox-submit-threat
+    outputs:
+    - contextPath: ZeroFox.Alert.ID
+      description: The ID of the alert created.
+      type: Number
+  - arguments:
+    - description: Domain to search.
+      name: domain
+      required: true
+      type: keyValue
+    description: Looks for a given domain in Zerofox's CTI feeds
+    name: zerofox-search-compromised-domain
+    outputs:
+    - contextPath: ZeroFox.CompromisedDomains.Domain
+      description: Domain in which the search domain was found.
+      type: string
+    - contextPath: ZeroFox.CompromisedDomains.LastModified
+      description: Last time that the threat was found.
+      type: string
+    - contextPath: ZeroFox.CompromisedDomains.IPs
+      description: Related domains to the threat separated by commas.
+      type: string
+  - arguments:
+    - auto: PREDEFINED
+      description: email to search.
+      name: email
+      required: true
+      type: keyValue
+    description: Looks for a given email in ZeroFox's CTI feeds
+    name: zerofox-search-compromised-email
+    outputs:
+    - contextPath: ZeroFox.CompromisedEmails.Domain
+      description: Domain in which the search domain was found.
+      type: string
+    - contextPath: ZeroFox.CompromisedEmails.Email
+      description: Email involved in the threat.
+      type: string
+    - contextPath: ZeroFox.CompromisedEmails.CreatedAt
+      description: Date in which the email was found related to a threat.
+      type: string
+  - arguments:
+    - auto: PREDEFINED
+      description: ip to search.
+      name: ip
+      required: true
+      type: keyValue
+    description: Looks for malicious ips in ZeroFox's CTI feeds
+    name: zerofox-search-malicious-ip
+    outputs:
+    - contextPath: ZeroFox.MaliciousIPs.Domain
+      description: Domain in which the search domain was found.
+      type: string
+    - contextPath: ZeroFox.MaliciousIPs.IPAddress
+      description: IP in which the search domain was found.
+      type: string
+    - contextPath: ZeroFox.MaliciousIPs.CreatedAt
+      description: Date in which the ip was found related to a threat.
+      type: string
+  - arguments:
+    - auto: PREDEFINED
+      description: hash to search.
+      name: hash
+      required: true
+      type: keyValue
+    description: Looks for registered hashes in ZeroFox's CTI feeds
+    name: zerofox-search-malicious-hash
+    outputs:
+    - contextPath: ZeroFox.MaliciousHashes.CreatedAt
+      description: Date in which the ip was found related to a threat.
+      type: string
+    - contextPath: ZeroFox.MaliciousHashes.Family
+      description: Family related threat.
+      type: string
+    - contextPath: ZeroFox.MaliciousHashes.MD5
+      description: Hash in MD5 format.
+      type: string
+    - contextPath: ZeroFox.MaliciousHashes.SHA1
+      description: Hash in SHA1 format.
+      type: string
+    - contextPath: ZeroFox.MaliciousHashes.SHA256
+      description: Hash in SHA256 format.
+      type: string
+    - contextPath: ZeroFox.MaliciousHashes.SHA512
+      description: Hash in SHA512 format.
+      type: string
+    - contextPath: ZeroFox.MaliciousHashes.FoundHash
+      description: Indicates in which hash format was found the search.
+      type: string
+  - arguments:
+    - auto: PREDEFINED
+      description: Staring date for exploit search.
+      name: since
+      required: true
+      type: keyValue
+    description: Looks for registered exploits in ZeroFox's CTI feeds.
+    name: zerofox-search-exploits
+    outputs:
+    - contextPath: ZeroFox.Exploits.CreatedAt
+      description: Date in which the ip was found related to a threat.
+      type: string
+    - contextPath: ZeroFox.Exploits.CVECode
+      description: CVE Code to identify the exploit.
+      type: string
+    - contextPath: ZeroFox.Exploits.URLs
+      description: URLs associated to the threat separated by commas.
+      type: string
+  dockerimage: demisto/python3:3.10.13.80014
+  isfetch: true
+  isremotesyncin: true
+  nativeimage:
+  - "8.3"
+  - "8.4"
+  runonce: false
+  script: |
+    register_module_line('ZeroFox', 'start', __line__())
+    ### pack version: 1.2.2
+
+
+
+
+    """ IMPORTS  """
+    from dateparser import parse as parse_date
+    from typing import Any
+    from collections.abc import Callable
+    from requests import Response
+    from copy import deepcopy
+    import urllib.parse as urlparse
+    import json
+
+    """ GLOBALS / PARAMS  """
+    FETCH_TIME_DEFAULT = "3 days"
+    CLOSED_ALERT_STATUS = ["Closed", "Deleted"]
+
+
+    """ CLIENT """
+
+
+    class ZFClient(BaseClient):
+        def __init__(
+            self, username, password, fetch_limit, only_escalated, *args, **kwargs
+        ):
+            super().__init__(*args, **kwargs)
+            self.credentials = {
+                "username": username,
+                "password": password
+            }
+            self.fetch_limit = fetch_limit
+            self.only_escalated = only_escalated
+
+        def api_request(
+            self,
+            method: str,
+            url_suffix: str,
+            headers_builder_type: str | None = 'api',
+            params: dict[str, str] | None = None,
+            data: dict[str, Any] | None = None,
+            prefix: str | None = "1.0",
+            empty_response: bool = False,
+            error_handler: Callable[[Any], Any] | None = None,
+        ) -> dict[str, Any]:
+            """
+            :param method: HTTP request type
+            :param url_suffix: The suffix of the URL
+            :param headers_builder_type: It can be `api` or `cti`. It selects
+            the function to build the headers required
+            for each case
+            :param params: The request's query parameters
+            :param data: The request's body parameters
+            :param version: api prefix to consider, default is to use version '1.0'
+            :param res_type: Selects the decoder of the response. It can be
+            `json` (default), `xml`, `text`, `content`, `response`
+            :param empty_response: Indicates if the response data is empty or not
+            :param error_handler: Function that receives the response and manage
+            the error
+            :return: Returns the content of the response received from the API.
+            """
+            pref_string = f"/{prefix}" if prefix else ""
+
+            headers = {}
+            if headers_builder_type is not None:
+                if headers_builder_type not in ("api", "cti"):
+                    raise ValueError(
+                        "`headers_builder_type` should be 'api' or 'cti'"
+                    )
+                header_builder = {
+                    "api": self.get_api_request_header,
+                    "cti": self.get_cti_request_header
+                }.get(headers_builder_type)
+                if header_builder is None:
+                    raise ValueError(
+                        "`headers_builder_type` should be 'api' or 'cti'"
+                    )
+                headers = header_builder()
+
+            return self._http_request(
+                method=method,
+                url_suffix=urljoin(pref_string, url_suffix),
+                headers=headers,
+                params=params,
+                json_data=data,
+                empty_valid_codes=(200, 201),
+                return_empty_response=empty_response,
+                error_handler=error_handler,
+            )
+
+        def handle_auth_error(self, raw_response: Response):
+            response = raw_response.json()
+            if "res_content" in response:
+                raise Exception("Failure resolving URL.")
+            error_msg_list: list[str] = response.get("non_field_errors", [])
+            if not error_msg_list:
+                raise Exception("Unable to log in with provided credentials.")
+            else:
+                raise Exception(error_msg_list[0])
+
+        def get_authorization_token(self) -> str:
+            """
+            :return: Returns the authorization token
+            """
+            url_suffix: str = "/1.0/api-token-auth/"
+            response_content = self.api_request(
+                "POST",
+                url_suffix,
+                data=self.credentials,
+                error_handler=self.handle_auth_error,
+                headers_builder_type=None,
+                prefix=None,
+            )
+            token = response_content.get("token", "")
+            return token
+
+        def _get_new_access_token(self) -> str:
+            url_suffix: str = "/auth/token/"
+            response_content = self.api_request(
+                "POST",
+                url_suffix,
+                data=self.credentials,
+                headers_builder_type=None,
+                prefix=None,
+            )
+            return response_content.get("access", "")
+
+        def get_cti_authorization_token(self) -> str:
+            """
+            :return: returns the authorization token for the CTI feed
+            """
+            token = self._get_new_access_token()
+            if not token:
+                raise Exception("Unable to retrieve token.")
+            return token
+
+        def get_api_request_header(self) -> dict[str, str]:
+            token: str = self.get_authorization_token()
+            return {
+                "Authorization": f"Token {token}",
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            }
+
+        def get_cti_request_header(self) -> dict[str, str]:
+            token: str = self.get_cti_authorization_token()
+            return {
+                "Authorization": f"Bearer {token}",
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            }
+
+        def get_policy_types(self) -> dict[str, Any]:
+            """
+            :return: HTTP request content.
+            """
+            url_suffix: str = "/policies/"
+            response_content = self.api_request("GET", url_suffix)
+            return response_content
+
+        def list_alerts(self, params: dict[str, Any]) -> dict[str, Any]:
+            """
+            :param params: The request's body parameters.
+            :return: HTTP request content.
+            """
+            url_suffix: str = "/alerts/"
+            if not params.get("limit"):
+                params['limit'] = self.fetch_limit
+            if self.only_escalated:
+                params['escalated'] = 'true'
+            response_content = self.api_request(
+                "GET",
+                url_suffix,
+                params=params
+            )
+            return response_content
+
+        def get_alert(self, alert_id: int) -> dict[str, Any]:
+            """
+            :param alert_id: The ID of the alert.
+            :return: HTTP request content.
+            """
+            url_suffix: str = f"/alerts/{alert_id}/"
+            response_content = self.api_request("GET", url_suffix)
+            return response_content
+
+        def alert_user_assignment(
+            self,
+            alert_id: int,
+            username: str
+        ) -> dict[str, Any]:
+            """
+            :param alert_id: The ID of the alert.
+            :param username: The username we want to assign to the alert.
+            :return: HTTP request content.
+            """
+            url_suffix: str = f"/alerts/{alert_id}/assign/"
+            request_body = {"subject": username}
+            response_content = self.api_request(
+                "POST",
+                url_suffix,
+                data=request_body,
+                empty_response=True,
+            )
+            return response_content
+
+        def close_alert(self, alert_id: int) -> dict[str, Any]:
+            """
+            :param alert_id: The ID of the alert.
+            :return: HTTP request content.
+            """
+            url_suffix: str = f"/alerts/{alert_id}/close/"
+            response_content = self.api_request(
+                "POST",
+                url_suffix,
+                empty_response=True,
+            )
+            return response_content
+
+        def open_alert(self, alert_id: int) -> dict[str, Any]:
+            """
+            :param alert_id: The ID of the alert.
+            :return: HTTP request content.
+            """
+            url_suffix: str = f"/alerts/{alert_id}/open/"
+            response_content = self.api_request(
+                "POST",
+                url_suffix,
+                empty_response=True,
+            )
+            return response_content
+
+        def alert_request_takedown(self, alert_id: int) -> dict[str, Any]:
+            """
+            :param alert_id: The ID of the alert.
+            :return: HTTP request content.
+            """
+            url_suffix: str = f"/alerts/{alert_id}/request_takedown/"
+            response_content = self.api_request(
+                "POST",
+                url_suffix,
+                empty_response=True,
+            )
+            return response_content
+
+        def alert_cancel_takedown(self, alert_id: int) -> dict[str, Any]:
+            """
+            :param alert_id: The ID of the alert.
+            :return: HTTP request content.
+            """
+            url_suffix: str = f"/alerts/{alert_id}/cancel_takedown/"
+            response_content = self.api_request(
+                "POST",
+                url_suffix,
+                empty_response=True,
+            )
+            return response_content
+
+        def modify_alert_tags(
+            self,
+            alert_id: int,
+            action: str,
+            tags_list: list[str]
+        ) -> dict[str, Any]:
+            """
+            :param alert_id: The ID of the alert.
+            :param action: action can be 'added' or 'removed'. It indicates
+            what action we want to do i.e add/remove tags/
+            :param tags_list: A string representation of the tags,
+            separated by a comma ','
+            :return: HTTP request content.
+            """
+            url_suffix: str = "/alerttagchangeset/"
+            request_body = {
+                "changes": [
+                    {
+                        f"{action}": tags_list,
+                        "alert": alert_id,
+                    },
+                ],
+            }
+            response_content = self.api_request(
+                "POST", url_suffix, data=request_body,
+            )
+            return response_content
+
+        def create_entity(
+            self,
+            name: str,
+            strict_name_matching: bool | None = None,
+            tags: list | None = None,
+            policy: int | None = None,
+            organization: str | None = None,
+        ) -> dict[str, Any]:
+            """
+            :param name: Name of the entity (may be non-unique).
+            :param strict_name_matching: Indicating type of string matching for
+            comparing name to impersonators.
+            :param tags: List of string tags for tagging the entity. Separated
+            by a comma ','.
+            :param policy: The ID of the policy to assign to the new entity.
+            :param organization: Organization name associated with entity.
+            :return: HTTP request content.
+            """
+            url_suffix: str = "/entities/"
+            request_body = {
+                "name": name,
+                "strict_name_matching": strict_name_matching,
+                "labels": tags,
+                "policy": policy,
+                "policy_id": policy,
+                "organization": organization,
+            }
+            request_body = remove_none_dict(request_body)
+            response_content = self.api_request(
+                "POST", url_suffix, data=request_body,
+            )
+            return response_content
+
+        def list_entities(self, params: dict[str, Any]) -> dict[str, Any]:
+            """
+            :param params: The request's body parameters.
+            :return: HTTP request content.
+            """
+            url_suffix: str = "/entities/"
+            response_content = self.api_request(
+                "GET",
+                url_suffix,
+                params=params,
+            )
+            return response_content
+
+        def get_entity_types(self) -> dict[str, Any]:
+            """
+            :return: HTTP request content.
+            """
+            url_suffix: str = "/entities/types/"
+            response_content = self.api_request("GET", url_suffix)
+            return response_content
+
+        def modify_alert_notes(self, alert_id: int, notes: str) -> dict[str, Any]:
+            """
+            :param alert_id: The ID of the alert.
+            :param notes: The notes for the alert.
+            :return: HTTP request content.
+            """
+            url_suffix: str = f"/alerts/{alert_id}/"
+            request_body = {"notes": notes}
+            response_content = self.api_request(
+                "POST",
+                url_suffix,
+                data=request_body,
+                empty_response=True,
+            )
+            return response_content
+
+        def submit_threat(
+            self,
+            source: str,
+            alert_type: str,
+            violation: str,
+            entity_id: str
+        ) -> dict[str, Any]:
+            """
+            :param source: The source of the threat.
+            :param alert_type: The type of the alert.
+            :param violation: The violation of the alert.
+            :param entity_id: The ID of the entity.
+            :return: HTTP request content.
+            """
+            url_suffix: str = "/threat_submit/"
+            request_body = {
+                "source": source,
+                "alert_type": alert_type,
+                "violation": violation,
+                "entity_id": entity_id,
+            }
+            request_body = remove_none_dict(request_body)
+            response_content = self.api_request(
+                "POST",
+                url_suffix,
+                data=request_body,
+                prefix="2.0",
+            )
+            return response_content
+
+        def get_cti_c2_domains(self, domain: str) -> dict[str, Any]:
+            """
+            :param domain: The domain to lookup in c2-domains CTI Feed
+            :return: HTTP request content.
+            """
+            url_suffix = "/c2-domains/"
+            params = {"domain": domain}
+            response_content = self.api_request(
+                "GET",
+                url_suffix,
+                params=params,
+                prefix="cti",
+                headers_builder_type="cti",
+            )
+            return response_content
+
+        def get_cti_phishing(
+            self,
+            domain: str | None = None,
+            ip: str | None = None
+        ) -> dict[str, Any]:
+            """
+            :param domain: The domain to lookup in phishing CTI Feed
+            :param ip: The ip to lookup in phishing CTI Feed
+            :return: HTTP request content.
+            """
+            url_suffix = "/phishing/"
+            params = remove_none_dict({"domain": domain, "host_ip": ip})
+            response_content = self.api_request(
+                "GET",
+                url_suffix,
+                params=params,
+                prefix="cti",
+                headers_builder_type="cti",
+            )
+            return response_content
+
+        def get_cti_email_addresses(self, email: str) -> dict[str, Any]:
+            """
+            :param email: The email to lookup in email-addresses CTI Feed
+            :return: HTTP request content.
+            """
+            url_suffix = "/email-addresses/"
+            params = {"email": email}
+            response_content = self.api_request(
+                "GET",
+                url_suffix,
+                params=params,
+                prefix="cti",
+                headers_builder_type="cti",
+            )
+            return response_content
+
+        def get_cti_compromised_credentials(self, email: str) -> dict[str, Any]:
+            """
+            :param email: The email to lookup in compromised-credentials CTI Feed
+            :return: HTTP request content.
+            """
+            url_suffix = "/compromised-credentials/"
+            params = {"email": email}
+            response_content = self.api_request(
+                "GET",
+                url_suffix,
+                params=params,
+                prefix="cti",
+                headers_builder_type="cti",
+            )
+            return response_content
+
+        def get_cti_botnet_compromised_credentials(
+            self,
+            email: str
+        ) -> dict[str, Any]:
+            """
+            :param email: The email to lookup in botnet-compromised-credentials
+            CTI Feed
+            :return: HTTP request content.
+            """
+            url_suffix = "/botnet-compromised-credentials/"
+            params = {"email": email}
+            response_content = self.api_request(
+                "GET",
+                url_suffix,
+                params=params,
+                prefix="cti",
+                headers_builder_type="cti",
+            )
+            return response_content
+
+        def get_cti_botnet(self, ip: str) -> dict[str, Any]:
+            """
+            :param ip: The ip to lookup in botnet CTI Feed
+            :return: HTTP request content.
+            """
+            url_suffix = "/botnet/"
+            params = {"ip": ip}
+            response_content = self.api_request(
+                "GET",
+                url_suffix,
+                params=params,
+                prefix="cti",
+                headers_builder_type="cti",
+            )
+            return response_content
+
+        def get_cti_malware(self, hash_type: str, hash: str) -> dict[str, Any]:
+            """
+            :param hash_type: The hash type to lookup in malware CTI Feed
+            :param hash: The hash to lookup in malware CTI Feed
+            :return: HTTP request content.
+            """
+            url_suffix = "/malware/"
+            params = {hash_type: hash}
+            response_content = self.api_request(
+                "GET",
+                url_suffix,
+                params=params,
+                prefix="cti",
+                headers_builder_type="cti",
+            )
+            return response_content
+
+        def get_cti_exploits(self, since: str) -> dict[str, Any]:
+            """
+            :param since: since date to query exploits
+            :return: HTTP request content.
+            """
+            url_suffix = "/exploits/"
+            params = {"created_after": since}
+            response_content = self.api_request(
+                "GET",
+                url_suffix,
+                params=params,
+                prefix="cti",
+                headers_builder_type="cti",
+            )
+            return response_content
+
+
+    """ HELPERS """
+
+
+    def alert_to_incident(alert: dict[str, Any]) -> dict[str, str]:
+        """
+        transforms an alert to incident convention
+        :param alert: alert is a dictionary
+        :return: Incident - dictionary
+        """
+        alert_id = str(alert.get("id", ""))
+        incident = {
+            "rawJSON": json.dumps(alert),
+            "name": f"ZeroFox Alert {alert_id}",
+            "occurred": alert.get("timestamp", ""),
+        }
+        return incident
+
+
+    def parse_dict_values_to_integer(
+        params: dict[str, Any],
+        keys: list[str]
+    ) -> dict[str, Any]:
+        params_copy = deepcopy(params)
+        for key in keys:
+            value = params_copy.get(key)
+            if value is not None:
+                try:
+                    params_copy[key] = int(value)
+                except ValueError:
+                    raise Exception(f"This value for {key} must be an integer.")
+        return params_copy
+
+
+    def severity_num_to_string(severity_num: int) -> str:
+        """
+        transforms severity number to string representation
+        :param severity_num: Severity score as Integer
+        :return: Returns the String representation of the severity score
+        """
+        severity_map = {1: "Info", 2: "Low", 3: "Medium", 4: "High", 5: "Critical"}
+        return severity_map.get(severity_num, "")
+
+
+    def severity_string_to_num(severity_str: str) -> int:
+        """
+        :param severity_str: Severity score as String
+        :return: Returns the Integer representation of the severity score
+        """
+        severity_map = {"Info": 1, "Low": 2, "Medium": 3, "High": 4, "Critical": 5}
+        return severity_map.get(severity_str, -1)
+
+
+    def get_nested_key(
+        obj: dict[str, Any],
+        path: list[str],
+        default_value: Any | None = None
+    ) -> Any:
+        """
+        It returns the value of a nested key in a dictionary
+        :param obj: The dictionary we want to get the value from
+        :param path: The path to the nested key
+        :param default_value: The default value to return if the key is not found
+        :return: The value of the nested key
+
+        Example:
+        obj = {"a": {"b": {"c": 1}}}
+        default_value = -1
+
+        get_nested_key(obj, ["a", "b", "c"], default_value) -> 1
+        get_nested_key(obj, ["a", "x", "d"], default_value) -> -1
+        """
+        for key in path[:-1]:
+            obj = obj.get(key, {})
+            if not isinstance(obj, dict):
+                return default_value
+        return obj.get(path[-1])
+
+
+    def get_alert_contents(alert: dict[str, Any]) -> dict[str, Any]:
+        """
+        :param alert: Alert is a dictionary
+        :return: A dict representing the alert contents
+        """
+        return {
+            "AlertType": alert.get("alert_type"),
+            "OffendingContentURL": alert.get("offending_content_url"),
+            "Assignee": alert.get("assignee"),
+            "EntityID": get_nested_key(alert, ["entity", "id"]),
+            "EntityName": get_nested_key(alert, ["entity", "name"]),
+            "EntityImage": get_nested_key(alert, ["entity", "image"]),
+            "EntityTermID": get_nested_key(alert, ["entity_term", "id"]),
+            "EntityTermName": get_nested_key(alert, ["entity_term", "name"]),
+            "EntityTermDeleted": get_nested_key(alert, ["entity_term", "deleted"]),
+            "ContentCreatedAt": alert.get("content_created_at"),
+            "ID": alert.get("id"),
+            "ProtectedAccount": alert.get("protected_account"),
+            "RiskRating": severity_num_to_string(int(alert.get("severity", ""))),
+            "PerpetratorName": get_nested_key(alert, ["perpetrator", "name"]),
+            "PerpetratorUrl": get_nested_key(alert, ["perpetrator", "url"]),
+            "PerpetratorTimeStamp": get_nested_key(
+                alert, ["perpetrator", "timestamp"],
+            ),
+            "PerpetratorType": get_nested_key(alert, ["perpetrator", "type"]),
+            "PerpetratorID": get_nested_key(alert, ["perpetrator", "id"]),
+            "PerpetratorNetwork": get_nested_key(
+                alert, ["perpetrator", "network"],
+            ),
+            "RuleGroupID": alert.get("rule_group_id"),
+            "Status": alert.get("status"),
+            "Timestamp": alert.get("timestamp"),
+            "RuleName": alert.get("rule_name"),
+            "LastModified": alert.get("last_modified"),
+            "ProtectedLocations": alert.get("protected_locations"),
+            "DarkwebTerm": alert.get("darkweb_term"),
+            "Reviewed": alert.get("reviewed"),
+            "Escalated": alert.get("escalated"),
+            "Network": alert.get("network"),
+            "ProtectedSocialObject": alert.get("protected_social_object"),
+            "Notes": alert.get("notes"),
+            "RuleID": alert.get("rule_id"),
+            "EntityAccount": alert.get("entity_account"),
+            "Tags": alert.get("tags"),
+        }
+
+
+    def transform_alert_human_readable_values(
+        alert: dict[str, Any],
+        title_keys: list[str] | None = None
+    ) -> dict[str, Any]:
+        """
+        It takes an alert and convert the keys indicated in `title_keys` to
+        title case
+
+        :param alert: Dictionary representing the alert
+        :param title_keys: List of keys to convert to title case
+        :return: return a copy of the alert with the keys converted to title case
+        """
+        title_keys = title_keys or []
+        transformed_alert = deepcopy(alert)
+        for key in title_keys:
+            transformed_alert[key] = transformed_alert.get(key, "").title()
+        return transformed_alert
+
+
+    def transform_alerts_human_readable_values(
+        alerts: dict[str, Any] | list[dict[str, Any]],
+        title_keys: list[str] | None = None
+    ) -> dict[str, Any] | list[dict[str, Any]]:
+        """
+        It takes an alert or a list of alerts and convert the keys specified in
+        `title_keys` to title case
+
+        :param alerts: Alert or list of alerts to transform
+        :parma title_keys: List of keys to convert to title case
+        :return: a copy of the alert or list of alerts with the corresponding
+        transformations
+        """
+        title_keys = title_keys or []
+        if isinstance(alerts, list):
+            return [
+                transform_alert_human_readable_values(
+                    alert,
+                    title_keys=title_keys,
+                )
+                for alert in alerts
+            ]
+        elif isinstance(alerts, dict):
+            return transform_alert_human_readable_values(
+                alerts,
+                title_keys=title_keys,
+            )
+        else:
+            raise Exception("alerts must be a list or a dict")
+
+
+    def transform_alert_human_readable_header(header: str) -> str:
+        """
+        It returns the header name of the alert's key to human readable
+
+        :param header: the key to get the human readable header
+        :return: the human readable header name of the key requested
+        """
+        transformations = {
+            "EntityName": "Protected Entity",
+            "AlertType": "Content Type",
+            "Timestamp": "Alert Date",
+            "Network": "Source",
+            "RuleName": "Rule",
+            "RiskRating": "Risk Rating",
+            "OffendingContentURL": "Offending Content",
+        }
+        return transformations.get(header, header)
+
+
+    def get_human_readable_alerts(
+        alerts: dict[str, Any] | list[dict[str, Any]]
+    ) -> str:
+        visible_keys = [
+            "ID",
+            "EntityName",
+            "AlertType",
+            "Timestamp",
+            "Status",
+            "OffendingContentURL",
+            "Network",
+            "RuleName",
+            "RiskRating",
+            "Notes",
+            "Tags",
+        ]
+        title_keys = ["AlertType", "RuleName", "Network", "EntityName"]
+        transformed_alerts = transform_alerts_human_readable_values(
+            alerts, title_keys=title_keys
+        )
+        readable_output: str = tableToMarkdown(
+            "ZeroFox Alerts",
+            transformed_alerts,
+            headers=visible_keys,
+            date_fields=["Timestamp"],
+            headerTransform=transform_alert_human_readable_header,
+            removeNull=True,
+        )
+        return readable_output
+
+
+    def remove_none_dict(input_dict: dict[Any, Any]) -> dict[Any, Any]:
+        """
+        removes all none values from a dict
+        :param input_dict: any dictionary in the world is OK
+        :return: same dictionary but without None values
+        """
+        return {
+            key: value for key, value in input_dict.items()
+            if value is not None
+        }
+
+
+    def get_entity_contents(entity: dict[str, Any]) -> dict[str, Any]:
+        """
+        :param entity: Entity is a dictionary
+        :return: A dict representation of the contents of entity
+        """
+        return {
+            "ID": entity.get("id"),
+            "Name": entity.get("name"),
+            "EmailAddress": entity.get("email_address"),
+            "Organization": entity.get("organization"),
+            "Tags": entity.get("labels"),
+            "StrictNameMatching": entity.get("strict_name_matching"),
+            "PolicyID": entity.get("policy_id"),
+            "Profile": entity.get("profile"),
+            "EntityGroupID": get_nested_key(entity, ["entity_group", "id"]),
+            "EntityGroupName": get_nested_key(entity, ["entity_group", "name"]),
+            "TypeID": get_nested_key(entity, ["type", "id"]),
+            "TypeName": get_nested_key(entity, ["type", "name"]),
+        }
+
+
+    def get_entity_human_readable_outputs(
+        contents: dict[str, Any]
+    ) -> dict[str, Any]:
+        """
+        returns the convention for the war room
+        :param contents: Contents is a dictionary
+        :return: A dict representation of the war room contents
+        displayed to the user
+        """
+        return {
+            "Name": contents.get("Name"),
+            "Type": contents.get("TypeName"),
+            "Policy": contents.get("PolicyID"),
+            "Email": contents.get("EmailAddress"),
+            "Tags": contents.get("Tags"),
+            "ID": contents.get("ID"),
+        }
+
+
+    def get_c2_domain_content(c2_domain_record: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "Domain": c2_domain_record.get("domain", ""),
+            "LastModified": c2_domain_record.get("created_at", ""),
+            "IPs": ", ".join(c2_domain_record.get("ip_addresses", []))
+        }
+
+
+    def get_phishing_content(phishing_record: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "Domain": phishing_record.get("domain", ""),
+            "LastModified": phishing_record.get("scanned", ""),
+            "IPs": get_nested_key(phishing_record, ["host", "ip"], "")
+        }
+
+
+    def get_compromised_domain_content(
+        c2_domain_response: dict[str, Any],
+        phishing_response: dict[str, Any]
+    ) -> list[dict[str, Any]]:
+        """
+        It merges the content of c2_domain_response and phishing_response and
+        format it to be standardized as compromised domain content
+
+        :param c2_domain_response: The response of the c2-domains CTI Feed
+        :param phishing_response: The response of the phishing CTI Feed
+        :return: A list of dictionaries representing the compromised domain content
+        """
+        compromised_domain_content = []
+
+        c2_domains_results = c2_domain_response.get("results", [])
+        compromised_domain_content += [
+            get_c2_domain_content(record) for record in c2_domains_results
+        ]
+
+        phishing_results = phishing_response.get("results", [])
+        compromised_domain_content += [
+            get_phishing_content(record) for record in phishing_results
+        ]
+
+        return compromised_domain_content
+
+
+    def get_email_address_content(
+        email_address_record: dict[str, Any]
+    ) -> dict[str, Any]:
+        return {
+            "Domain": email_address_record.get("domain", ""),
+            "Email": email_address_record.get("email", ""),
+            "CreatedAt": email_address_record.get("created_at", ""),
+        }
+
+
+    def get_credentials_content(
+        credentials_record: dict[str, Any]
+    ) -> dict[str, Any]:
+        return {
+            "Domain": credentials_record.get("domain", ""),
+            "Email": credentials_record.get("email", ""),
+            "CreatedAt": credentials_record.get("created_at", ""),
+        }
+
+
+    def get_botnet_credentials_content(
+        botnet_credentials_record: dict[str, Any]
+    ) -> dict[str, Any]:
+        return {
+            "Domain": botnet_credentials_record.get("domain", ""),
+            "Email": botnet_credentials_record.get("email", ""),
+            "CreatedAt": botnet_credentials_record.get("created_at", ""),
+        }
+
+
+    def get_compromised_email_content(
+        email_addressed_response: dict[str, Any],
+        credentials_response: dict[str, Any],
+        botnet_credentials_response: dict[str, Any],
+    ) -> list[dict[str, Any]]:
+        """
+        It merges the content of email_addressed_response,
+        credentials_response and botnet_credentials_response and
+        format it to be standardized as compromised email content
+
+        :param email_addressed_response: The response of the email-addresses
+        :param credentials_response: The response of the compromised-credentials
+        :param botnet_credentials_response: The response of the
+        botnet-compromised-credentials
+        :return: A list of dictionaries representing the compromised email content
+        """
+        compromised_email_content = []
+
+        email_addresses_results = email_addressed_response.get("results", [])
+        compromised_email_content += [
+            get_email_address_content(record)
+            for record in email_addresses_results
+        ]
+
+        credentials_results = credentials_response.get("results", [])
+        compromised_email_content += [
+            get_credentials_content(record)
+            for record in credentials_results
+        ]
+
+        botnet_credentials_results = botnet_credentials_response.get("results", [])
+        compromised_email_content += [
+            get_botnet_credentials_content(record)
+            for record in botnet_credentials_results
+        ]
+
+        return compromised_email_content
+
+
+    def get_botnet_ip_content(botnet_result: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "CreatedAt": botnet_result.get("acquired_at", ""),
+            "IPAddress": botnet_result.get("ip_address", ""),
+            "Domain": botnet_result.get("c2_domain", ""),
+        }
+
+
+    def get_phishing_ip_content(botnet_result: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "CreatedAt": botnet_result.get("scanned", ""),
+            "IPAddress": get_nested_key(botnet_result, ["host", "ip"]),
+            "Domain": botnet_result.get("domain", ""),
+        }
+
+
+    def get_malicious_ip_content(
+        botnet_response: dict[str, Any],
+        phishing_response: dict[str, Any]
+    ) -> list[dict[str, Any]]:
+        """
+        It merges the content of botnet_response and phishing_response and
+        format it to be standardized as malicious ip content
+
+        :param botnet_response: The response of the botnet CTI Feed
+        :param phishing_response: The response of the phishing CTI Feed
+        :return: A list of dictionaries representing the malicious ip content
+        """
+        malicious_ip_content = []
+
+        botnet_results = botnet_response.get("results", [])
+        malicious_ip_content += [
+            get_botnet_ip_content(record)
+            for record in botnet_results
+        ]
+
+        phishing_results = phishing_response.get("results", [])
+        malicious_ip_content += [
+            get_phishing_ip_content(record)
+            for record in phishing_results
+        ]
+
+        return malicious_ip_content
+
+
+    def get_malicious_hash_type_content(
+        malicious_hash_result: dict[str, Any],
+        hash_type: str
+    ) -> dict[str, str]:
+        family_content = malicious_hash_result.get("family", [])
+        if not family_content:
+            family_content = []
+        return {
+            "CreatedAt": malicious_hash_result.get("created_at", ""),
+            "Family": ", ".join(family_content),
+            "MD5": malicious_hash_result.get("md5", ""),
+            "SHA1": malicious_hash_result.get("sha1", ""),
+            "SHA256": malicious_hash_result.get("sha256", ""),
+            "SHA512": malicious_hash_result.get("sha512", ""),
+            "FoundHash": hash_type,
+        }
+
+
+    def get_malicious_hash_content(
+        hash_type: str,
+        malicious_hash_response: dict[str, Any]
+    ) -> list[dict[str, Any]]:
+        malicious_hash_content = []
+
+        malicious_hash_results = malicious_hash_response.get("results", [])
+        malicious_hash_content += [
+            get_malicious_hash_type_content(record, hash_type)
+            for record in malicious_hash_results
+        ]
+
+        return malicious_hash_content
+
+
+    def get_exploit_content(exploit_result: dict[str, Any]) -> dict[str, str]:
+        return {
+            "CreatedAt": exploit_result.get("created_at", ""),
+            "CVECode": exploit_result.get("cve", ""),
+            "URLs": ", ".join(exploit_result.get("urls", [])),
+        }
+
+
+    def get_exploits_content(
+        exploits_response: dict[str, Any]
+    ) -> list[dict[str, Any]]:
+        """
+        It formats the exploits_response to be standardized as exploits content
+
+        :param exploits_response: The response of the exploits CTI Feed
+        :return: A list of dictionaries representing the exploits content
+        """
+        exploits_content = []
+
+        exploits_results = exploits_response.get("results", [])
+        exploits_content += [
+            get_exploit_content(record)
+            for record in exploits_results
+        ]
+
+        return exploits_content
+
+
+    """ COMMANDS """
+
+
+    def test_module(client: ZFClient) -> str:
+        """
+        Performs basic get request to get item samples
+        """
+        client.get_policy_types()
+        return "ok"
+
+
+    def fetch_incidents(
+        client: ZFClient,
+        last_run: dict[str, str],
+        first_fetch_time: str
+    ) -> tuple[dict[str, str], list[dict[str, Any]]]:
+        date_format = "%Y-%m-%dT%H:%M:%S.%f"
+        last_fetched = last_run.get("last_fetched")
+        last_offset_str: str = last_run.get("last_offset", "")
+        if last_fetched is None:
+            last_fetched = first_fetch_time
+        last_fetched = parse_date(last_fetched, date_formats=(date_format,))
+        last_offset = int(last_offset_str) if last_offset_str else 0
+        if last_fetched is None:
+            raise ValueError("last_fetched param is invalid")
+
+        response_content = client.list_alerts(
+            {
+                "sort_direction": "asc",
+                "min_timestamp": last_fetched,
+                "offset": last_offset,
+            }
+        )
+        alerts: list[dict[str, Any]] = response_content.get("alerts", [])
+
+        next_run = {
+            "last_fetched": last_fetched.strftime(date_format),
+            "last_offset": str(last_offset),
+        }
+        incidents: list[dict[str, Any]] = []
+
+        if not alerts:
+            return next_run, incidents
+
+        integration_instance = demisto.integrationInstance()
+        for alert in alerts:
+            # Fields for mirroring alert
+            alert["mirror_direction"] = "In"
+            alert["mirror_instance"] = integration_instance
+
+            incident = alert_to_incident(alert)
+            incidents.append(incident)
+
+        next_page: str = response_content.get("next", "")
+        if next_page:
+            parsed_next_page = urlparse.urlparse(next_page)
+            parsed_query = urlparse.parse_qs(parsed_next_page.query)
+            next_run["last_offset"] = parsed_query.get("offset", ["0"])[0]
+            return next_run, incidents
+
+        # max_update_time is the timestamp of the last alert in alerts
+        # (alerts is a sorted list by timestamp)
+        last_alert_timestamp = alerts[-1].get("timestamp", "")
+
+        # add 1 millisecond to last alert timestamp,
+        # in order to prevent duplicated alerts
+        parsed_last_alert_timestamp = parse_date(
+            last_alert_timestamp,
+            date_formats=(date_format,),
+        )
+        if parsed_last_alert_timestamp is None:
+            raise ValueError("Incorrect timestamp in last alert "
+                             "of fetch-incidents")
+        max_update_time = (
+            parsed_last_alert_timestamp + timedelta(milliseconds=1)
+        ).strftime(date_format)
+        next_run["last_fetched"] = max_update_time
+        next_run["last_offset"] = "0"
+
+        return next_run, incidents
+
+
+    def get_modified_remote_data_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> GetModifiedRemoteDataResponse:
+        args = GetModifiedRemoteDataArgs(args)
+        last_update = args.last_update
+
+        # Get alerts modified after `last_update`
+        list_alert_params = {
+            "last_modified_min_date": str(last_update),
+        }
+
+        try:
+            response_content = client.list_alerts(list_alert_params)
+        except Exception as e:
+            raise Exception(f"There was an error {e}, skip update")
+
+        modified_alerts = response_content.get("alerts", [])
+        demisto.debug(f"Fetched {len(modified_alerts)} alerts with "
+                      f"the following params: {list_alert_params}")
+        modified_alert_ids = [str(alert.get("id")) for alert in modified_alerts]
+
+        return GetModifiedRemoteDataResponse(
+            modified_incident_ids=modified_alert_ids,
+        )
+
+
+    def get_remote_data_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> GetRemoteDataResponse:
+        args = GetRemoteDataArgs(args)
+        alert_id = args.remote_incident_id
+
+        response_content = client.get_alert(alert_id)
+        alert: dict[str, Any] = response_content.get("alert", {})
+        demisto.debug(f"Alert fetched with id {alert.get('id')}")
+
+        entries = []
+        if alert.get("status") in CLOSED_ALERT_STATUS:
+            demisto.debug("Incident associated with "
+                          "alert_id={alert_id} is being closed")
+            entries.append({
+                "Contents": {
+                    "dbotIncidentClose": True,
+                    "closeReason": "Other",
+                    "closeNotes": "Closed in ZeroFox"
+                },
+            })
+
+        return GetRemoteDataResponse(mirrored_object=alert, entries=entries)
+
+
+    def get_alert_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        params = parse_dict_values_to_integer(args, ["alert_id"])
+        alert_id: int = params.get("alert_id", "")
+        response_content = client.get_alert(alert_id)
+        alert: dict[str, Any] = response_content.get("alert", {})
+        if not alert or not isinstance(alert, dict):
+            raise Exception(f"Alert with ID {alert_id} does not exist")
+        output = get_alert_contents(alert)
+        readable_output = get_human_readable_alerts(output)
+        return CommandResults(
+            outputs=output,
+            outputs_prefix="ZeroFox.Alert",
+            readable_output=readable_output,
+            outputs_key_field="ID",
+        )
+
+
+    def alert_user_assignment_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        params = parse_dict_values_to_integer(args, ["alert_id"])
+        alert_id: int = params.get("alert_id", "")
+        username: str = args.get("username", "")
+        client.alert_user_assignment(alert_id, username)
+        response_content = client.get_alert(alert_id)
+        alert: dict[str, Any] = response_content.get("alert", {})
+        contents = get_alert_contents(alert)
+
+        return CommandResults(
+            readable_output="Successful assignment "
+                            f"of {username} to alert {alert_id}.",
+            outputs=contents,
+            outputs_prefix="ZeroFox.Alert",
+            outputs_key_field="ID",
+        )
+
+
+    def close_alert_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        params = parse_dict_values_to_integer(args, ["alert_id"])
+        alert_id: int = params.get("alert_id", "")
+        client.close_alert(alert_id)
+        response_content = client.get_alert(alert_id)
+        alert: dict[str, Any] = response_content.get("alert", {})
+        contents = get_alert_contents(alert)
+
+        return CommandResults(
+            readable_output=f"Successfully closed Alert {alert_id}.",
+            outputs=contents,
+            outputs_prefix="ZeroFox.Alert",
+            outputs_key_field="ID",
+        )
+
+
+    def open_alert_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        params = parse_dict_values_to_integer(args, ["alert_id"])
+        alert_id: int = params.get("alert_id", "")
+        client.open_alert(alert_id)
+        response_content = client.get_alert(alert_id)
+        alert: dict[str, Any] = response_content.get("alert", {})
+        contents = get_alert_contents(alert)
+
+        return CommandResults(
+            readable_output=f"Successfully opened Alert {alert_id}.",
+            outputs=contents,
+            outputs_prefix="ZeroFox.Alert",
+            outputs_key_field="ID",
+        )
+
+
+    def alert_request_takedown_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        params = parse_dict_values_to_integer(args, ["alert_id"])
+        alert_id: int = params.get("alert_id", "")
+        client.alert_request_takedown(alert_id)
+        response_content = client.get_alert(alert_id)
+        alert: dict[str, Any] = response_content.get("alert", {})
+        contents = get_alert_contents(alert)
+
+        return CommandResults(
+            readable_output=f"Request to successfully take down Alert {alert_id}.",
+            outputs=contents,
+            outputs_prefix="ZeroFox.Alert",
+            outputs_key_field="ID",
+        )
+
+
+    def alert_cancel_takedown_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        params = parse_dict_values_to_integer(args, ["alert_id"])
+        alert_id: int = params.get("alert_id", "")
+        client.alert_cancel_takedown(alert_id)
+        response_content = client.get_alert(alert_id)
+        alert: dict[str, Any] = response_content.get("alert", {})
+        contents = get_alert_contents(alert)
+
+        return CommandResults(
+            readable_output=f"Successful cancelled takedown of Alert {alert_id}.",
+            outputs=contents,
+            outputs_prefix="ZeroFox.Alert",
+            outputs_key_field="ID",
+        )
+
+
+    def modify_alert_tags_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        params = parse_dict_values_to_integer(args, ["alert_id"])
+        alert_id: int = params.get("alert_id", "")
+        action_string: str = args.get("action", "")
+        action: str = "added" if action_string == "add" else "removed"
+        tags_list_string: str = args.get("tags", "")
+        tags_list: list[str] = argToList(tags_list_string, separator=",")
+        response_content = client.modify_alert_tags(
+            alert_id,
+            action,
+            tags_list,
+        )
+        if not response_content.get("changes"):
+            raise Exception(f"Alert with ID {alert_id} does not exist")
+        response_content = client.get_alert(alert_id)
+        alert: dict[str, Any] = response_content.get("alert", {})
+        contents = get_alert_contents(alert)
+
+        return CommandResults(
+            readable_output="Successful modification of tags.",
+            outputs=contents,
+            outputs_prefix="ZeroFox.Alert",
+            outputs_key_field="ID",
+        )
+
+
+    def create_entity_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        params = parse_dict_values_to_integer(args, ["policy_id"])
+        name = params.get("name", "")
+        raw_strict_name_matching = params.get("strict_name_matching", "")
+        strict_name_matching = raw_strict_name_matching == "true"
+        tags = params.get("tags", "")
+        tags: list[str] = argToList(tags, ",")
+        policy_id: int = params.get("policy_id", "")
+        organization = params.get("organization", "")
+        response_content = client.create_entity(
+            name, strict_name_matching, tags, policy_id, organization,
+        )
+        entity_id: int = response_content.get("id", "")
+
+        return CommandResults(
+            readable_output=f"Successful creation of entity. ID: {entity_id}.",
+            outputs={
+                "ID": entity_id,
+                "StrictNameMatching": strict_name_matching,
+                "Name": name,
+                "Tags": tags,
+                "PolicyID": policy_id,
+                "Organization": organization,
+            },
+            outputs_prefix="ZeroFox.Entity",
+            outputs_key_field="ID",
+        )
+
+
+    def list_alerts_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        params = remove_none_dict(args)
+        # handle all integer query params
+        params = parse_dict_values_to_integer(params, [
+            "entity", "entity_term", "last_modified", "offset", "page_id",
+            "rule_id", "limit",
+        ])
+        # handle severity/risk_rating parameter - special case
+        risk_rating_string = str(params.get("risk_rating", ""))
+        if risk_rating_string:
+            del params["risk_rating"]
+            params["severity"] = severity_string_to_num(risk_rating_string)
+        # handle limit parameter - special case
+        limit: int = params.get("limit", "")
+        if limit and (limit < 0 or limit > 100):
+            raise Exception("Incorrect limit. Limit should be 0 <= x <= 100.")
+        response_content = client.list_alerts(params)
+        if not response_content:
+            return CommandResults(readable_output="No alerts found.", outputs=[])
+        elif isinstance(response_content, dict):
+            alerts: list[dict[str, Any]] = response_content.get("alerts", [])
+            if not alerts:
+                return CommandResults(
+                    readable_output="No alerts found.",
+                    outputs=[],
+                    outputs_prefix="ZeroFox.Alert",
+                )
+            else:
+                output: list[dict[str, Any]] = [
+                    get_alert_contents(alert) for alert in alerts
+                ]
+                readable_output = get_human_readable_alerts(output)
+                return CommandResults(
+                    outputs=output,
+                    readable_output=readable_output,
+                    outputs_prefix="ZeroFox.Alert",
+                )
+        else:
+            return CommandResults(
+                readable_output="No alerts found.",
+                outputs=[],
+                outputs_prefix="ZeroFox.Alert",
+            )
+
+
+    def list_entities_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        params = remove_none_dict(args)
+        # handle all integer query params
+        params = parse_dict_values_to_integer(params, [
+            "group", "label", "network", "page", "policy", "type",
+        ])
+        response_content = client.list_entities(params)
+        if not response_content:
+            return CommandResults(
+                readable_output="No entities found.",
+                outputs=[],
+                outputs_prefix="ZeroFox.Entity",
+            )
+        elif isinstance(response_content, dict):
+            entities: list[dict[str, Any]] = response_content.get("entities", [])
+            if not entities:
+                return CommandResults(
+                    readable_output="No entities found.",
+                    outputs=entities,
+                    outputs_prefix="ZeroFox.Entity",
+                )
+            else:
+                contents = [get_entity_contents(entity) for entity in entities]
+                human_readable = [
+                    get_entity_human_readable_outputs(content)
+                    for content in contents
+                ]
+                headers = ["Name", "Type", "Policy", "Email", "Tags", "ID"]
+                return CommandResults(
+                    readable_output=tableToMarkdown(
+                        "ZeroFox Entities",
+                        human_readable,
+                        headers=headers,
+                        removeNull=True,
+                    ),
+                    raw_response=response_content,
+                    outputs=contents,
+                    outputs_prefix="ZeroFox.Entity",
+                )
+
+        else:
+            return CommandResults(
+                readable_output="No entities found.",
+                outputs=[],
+                outputs_prefix="ZeroFox.Entities",
+            )
+
+
+    def get_entity_types_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        response_content = client.get_entity_types()
+        entity_types: list[dict[str, Any]] = response_content.get("results", [])
+        human_readable = []
+        for entity_type in entity_types:
+            type_name: str = entity_type.get("name", "")
+            type_id: int = entity_type.get("id", "")
+            human_readable.append({"Name": type_name, "ID": type_id})
+        headers = ["Name", "ID"]
+        return CommandResults(
+            outputs=entity_types,
+            readable_output=tableToMarkdown(
+                "ZeroFox Entity Types",
+                human_readable,
+                headers=headers,
+                removeNull=True,
+            ),
+            outputs_prefix="ZeroFox.EntityTypes",
+        )
+
+
+    def get_policy_types_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        response_content = client.get_policy_types()
+        policy_types: list[dict[str, Any]] = response_content.get("policies", [])
+        human_readable = []
+        for policy_type in policy_types:
+            type_name: str = policy_type.get("name", "")
+            type_id: int = policy_type.get("id", "")
+            human_readable.append({"Name": type_name, "ID": type_id})
+        headers = ["Name", "ID"]
+
+        return CommandResults(
+            outputs=policy_types,
+            readable_output=tableToMarkdown(
+                "ZeroFox Policy Types",
+                human_readable,
+                headers=headers,
+                removeNull=True,
+            ),
+            outputs_prefix="ZeroFox.PolicyTypes",
+            raw_response=response_content,
+        )
+
+
+    def modify_alert_notes_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        params = parse_dict_values_to_integer(args, ["alert_id"])
+        alert_id: int = params.get("alert_id", "")
+        alert_notes: str = params.get("notes", "")
+        client.modify_alert_notes(alert_id, alert_notes)
+        response_content = client.get_alert(alert_id)
+        alert: dict[str, Any] = response_content.get("alert", {})
+        contents = get_alert_contents(alert)
+
+        return CommandResults(
+            readable_output="Successful note modification of alert "
+                            f"with ID: {alert_id}",
+            outputs=contents,
+            outputs_prefix="ZeroFox.Alert",
+            outputs_key_field="ID",
+        )
+
+
+    def submit_threat_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        source: str = args.get("source", "")
+        alert_type: str = args.get("alert_type", "")
+        violation: str = args.get("violation", "")
+        entity_id: str = args.get("entity_id", "")
+        response_content = client.submit_threat(
+            source,
+            alert_type,
+            violation,
+            entity_id,
+        )
+        alert_id = response_content.get("alert_id")
+        if alert_id is None:
+            raise Exception("Threat couldn't be created")
+        output = f"Successful submission of threat. ID: {alert_id}."
+        response_content = client.get_alert(alert_id)
+        alert: dict[str, Any] = response_content.get("alert", {})
+        contents = get_alert_contents(alert)
+
+        return CommandResults(
+            readable_output=output,
+            raw_response=response_content,
+            outputs=contents,
+            outputs_prefix="ZeroFox.Alert",
+            outputs_key_field="ID",
+        )
+
+
+    def compromised_domain_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        domain: str = args.get("domain", "")
+
+        c2_domains_response = client.get_cti_c2_domains(domain)
+        phishing_response = client.get_cti_phishing(domain=domain)
+        outputs = get_compromised_domain_content(
+            c2_domains_response,
+            phishing_response,
+        )
+
+        if len(outputs) == 0:
+            return CommandResults(
+                readable_output="No compromised domains were found",
+                outputs=outputs,
+                outputs_prefix="ZeroFox.CompromisedDomains",
+            )
+        return CommandResults(
+            readable_output=tableToMarkdown("Compromised domain Summary", outputs),
+            outputs=outputs,
+            outputs_prefix="ZeroFox.CompromisedDomains",
+        )
+
+
+    def compromised_email_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        email: str = args.get("email", "")
+
+        email_addresses_response = client.get_cti_email_addresses(email)
+        credentials_response = client.get_cti_compromised_credentials(email)
+        botnet_credentials_response = client\
+            .get_cti_botnet_compromised_credentials(email)
+
+        outputs = get_compromised_email_content(
+            email_addresses_response,
+            credentials_response,
+            botnet_credentials_response,
+        )
+
+        if len(outputs) == 0:
+            return CommandResults(
+                outputs=outputs,
+                readable_output="No compromised emails were found",
+                outputs_prefix="ZeroFox.CompromisedEmails",
+            )
+        return CommandResults(
+            outputs=outputs,
+            readable_output=tableToMarkdown(
+                "Compromised email Summary",
+                outputs,
+            ),
+            outputs_prefix="ZeroFox.CompromisedEmails",
+        )
+
+
+    def malicious_ip_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        ip: str = args.get("ip", "")
+
+        botnet_response = client.get_cti_botnet(ip)
+        phishing_response = client.get_cti_phishing(ip=ip)
+
+        outputs = get_malicious_ip_content(
+            botnet_response,
+            phishing_response,
+        )
+
+        if len(outputs) == 0:
+            return CommandResults(
+                readable_output="No malicious ips were found",
+                outputs=outputs,
+                outputs_prefix="ZeroFox.MaliciousIPs",
+            )
+        return CommandResults(
+            outputs=outputs,
+            readable_output=tableToMarkdown("Malicious ip Summary", outputs),
+            outputs_prefix="ZeroFox.MaliciousIPs",
+        )
+
+
+    def malicious_hash_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        hash: str = args.get("hash", "")
+
+        outputs = []
+        for hash_type in ["md5", "sha1", "sha256", "sha512"]:
+            hash_type_response = client.get_cti_malware(hash_type, hash)
+            outputs += get_malicious_hash_content(hash_type, hash_type_response)
+
+        if len(outputs) == 0:
+            return CommandResults(
+                readable_output="No malicious hashes were found",
+                outputs=outputs,
+                outputs_prefix="ZeroFox.MaliciousHashes",
+            )
+        return CommandResults(
+            outputs=outputs,
+            readable_output=tableToMarkdown("Malicious hash Summary", outputs),
+            outputs_prefix="ZeroFox.MaliciousHashes",
+        )
+
+
+    def search_exploits_command(
+        client: ZFClient,
+        args: dict[str, Any]
+    ) -> CommandResults:
+        since: str = args.get("since", "")
+
+        exploits_response = client.get_cti_exploits(since)
+
+        outputs = get_exploits_content(exploits_response)
+
+        if len(outputs) == 0:
+            return CommandResults(
+                outputs=outputs,
+                readable_output="No exploits were found",
+                outputs_prefix="ZeroFox.Exploits",
+            )
+        return CommandResults(
+            outputs=outputs,
+            readable_output=tableToMarkdown("Exploit Search Summary", outputs),
+            outputs_prefix="ZeroFox.Exploits",
+        )
+
+
+    """ COMMANDS MANAGER / SWITCH PANEL """
+
+
+    def main():
+        params = demisto.params()
+        USERNAME: str = params.get("credentials", {}).get("identifier")
+        PASSWORD: str = params.get("credentials", {}).get("password")
+        BASE_URL: str = (
+            params["url"][:-1]
+            if params["url"].endswith("/")
+            else params["url"]
+        )
+        FETCH_TIME: str = params.get(
+            "fetch_time", FETCH_TIME_DEFAULT,
+        ).strip()
+        FETCH_LIMIT: int = int(params.get("fetch_limit", "100"))
+        USE_SSL: bool = not params.get("insecure", False)
+        PROXY: bool = params.get('proxy', False)
+        ONLY_ESCALATED: bool = params.get("only_escalated", False)
+
+        commands: dict[str, Callable[[ZFClient, dict[str, Any]], Any]] = {
+            "get-modified-remote-data": get_modified_remote_data_command,
+            "get-remote-data": get_remote_data_command,
+            "zerofox-get-alert": get_alert_command,
+            "zerofox-alert-user-assignment": alert_user_assignment_command,
+            "zerofox-close-alert": close_alert_command,
+            "zerofox-open-alert": open_alert_command,
+            "zerofox-alert-request-takedown": alert_request_takedown_command,
+            "zerofox-alert-cancel-takedown": alert_cancel_takedown_command,
+            "zerofox-modify-alert-tags": modify_alert_tags_command,
+            "zerofox-create-entity": create_entity_command,
+            "zerofox-list-alerts": list_alerts_command,
+            "zerofox-list-entities": list_entities_command,
+            "zerofox-get-entity-types": get_entity_types_command,
+            "zerofox-get-policy-types": get_policy_types_command,
+            "zerofox-modify-alert-notes": modify_alert_notes_command,
+            "zerofox-submit-threat": submit_threat_command,
+            "zerofox-search-compromised-domain": compromised_domain_command,
+            "zerofox-search-compromised-email": compromised_email_command,
+            "zerofox-search-malicious-ip": malicious_ip_command,
+            "zerofox-search-malicious-hash": malicious_hash_command,
+            "zerofox-search-exploits": search_exploits_command,
+        }
+        try:
+            handle_proxy()
+            client = ZFClient(
+                base_url=BASE_URL,
+                ok_codes={200, 201},
+                username=USERNAME,
+                password=PASSWORD,
+                fetch_limit=FETCH_LIMIT,
+                verify=USE_SSL,
+                proxy=PROXY,
+                only_escalated=ONLY_ESCALATED,
+            )
+
+            command = demisto.command()
+
+            if command == 'test-module':
+                results = test_module(client)
+                return_results(results)
+            elif command == 'fetch-incidents':
+                next_run, incidents = fetch_incidents(
+                    client,
+                    last_run=demisto.getLastRun(),
+                    first_fetch_time=FETCH_TIME,
+                )
+                demisto.setLastRun(next_run)
+                demisto.incidents(incidents)
+            elif command in commands:
+                command_handler = commands[command]
+                results = command_handler(client, demisto.args())
+                return_results(results)
+            else:
+                raise NotImplementedError(f"Command '{command}' not implemented")
+
+        # Log exceptions
+        except Exception as e:
+            return_error(e)
+
+
+    if __name__ in ["__main__", "builtin", "builtins"]:
+        main()
+
+    register_module_line('ZeroFox', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
