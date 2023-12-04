@@ -1,0 +1,353 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.10.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: "This playbook accepts \"file path\", \"file hash\" and \"endpoint id\"
+  to quarantine a selected file and wait until the action is done. All 3 inputs are
+  required to quarantine a single file. This playbook does not support the quarantine
+  of multiple files.  \n"
+id: Cortex XDR - Quarantine File v2
+inputs:
+- description: The file’s hash. Must be a valid SHA256 hash.
+  key: file_hash
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: The path for the selected file.
+  key: file_path
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: The file's location in the system.
+  key: endpoint_id
+  playbookInputQuery: null
+  required: true
+  value: {}
+name: Cortex XDR - Quarantine File v2
+outputs:
+- contextPath: PaloAltoNetworksXDR.quarantineFiles.status.status
+  description: The status of the quarantine.
+  type: unknown
+- contextPath: PaloAltoNetworksXDR.quarantineFiles.actionIds.endpointIdList.fileHash
+  description: The file hash SHA256.
+  type: unknown
+- contextPath: PaloAltoNetworksXDR.quarantineFiles.actionIds.endpointIdList.filePath
+  description: The path of the file.
+  type: unknown
+- contextPath: PaloAltoNetworksXDR.quarantineFiles.actionIds.actionId
+  description: The action id.
+  type: unknown
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 698ce1e6-4540-40bb-8ec4-5dc2decebd93
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 698ce1e6-4540-40bb-8ec4-5dc2decebd93
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_id_list:
+        complex:
+          root: inputs.endpoint_id
+          transformers:
+          - operator: uniq
+      file_hash:
+        complex:
+          root: inputs.file_hash
+          transformers:
+          - operator: uniq
+      file_path:
+        complex:
+          root: inputs.file_path
+          transformers:
+          - operator: uniq
+      interval_in_seconds:
+        simple: "60"
+      timeout_in_seconds:
+        simple: "600"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Quarantine a file on selected endpoints. You can select up to 1000
+        endpoints.
+      id: bb380542-05bf-42d8-80c4-643931e5f1ea
+      iscommand: true
+      name: Quarantine file
+      script: '|||xdr-file-quarantine'
+      type: regular
+      version: -1
+    taskid: bb380542-05bf-42d8-80c4-643931e5f1ea
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -270,
+          "y": 375
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 454d0ef9-46e7-478c-809c-0b0931dce7ce
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 454d0ef9-46e7-478c-809c-0b0931dce7ce
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1090
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_id:
+        complex:
+          root: inputs.endpoint_id
+          transformers:
+          - operator: uniq
+      file_hash:
+        complex:
+          root: inputs.file_hash
+          transformers:
+          - operator: uniq
+      file_path:
+        complex:
+          root: inputs.file_path
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieves the quarantine status for a selected file.
+      id: 89fbf68d-9803-4fbc-88a5-ed5dd3c54297
+      iscommand: true
+      name: Get quarantine status
+      script: '|||xdr-get-quarantine-status'
+      type: regular
+      version: -1
+    taskid: 89fbf68d-9803-4fbc-88a5-ed5dd3c54297
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -270,
+          "y": 550
+        }
+      }
+  "6":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.file_hash
+          operator: isNotEmpty
+          right:
+            value: {}
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.file_path
+          operator: isNotEmpty
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.endpoint_id
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 30c0aca5-fc22-4bea-8523-c53a065fb330
+      iscommand: false
+      name: Are the inputs were provided?
+      type: condition
+      version: -1
+    taskid: 30c0aca5-fc22-4bea-8523-c53a065fb330
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 190
+        }
+      }
+  "7":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                accessor: status
+                root: PaloAltoNetworksXDR.quarantineFiles.status
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 98c2a87e-316c-4780-8264-65545d353818
+      iscommand: false
+      name: 'Is the quarantine was successful? '
+      type: condition
+      version: -1
+    taskid: 98c2a87e-316c-4780-8264-65545d353818
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -270,
+          "y": 720
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: 'The quarantine task was not successful. '
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: 9345a04e-0504-48fc-8bea-babe94ae0234
+      iscommand: false
+      name: 'Print error message '
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 9345a04e-0504-48fc-8bea-babe94ae0234
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -270,
+          "y": 920
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1105,
+        "width": 700,
+        "x": -270,
+        "y": 50
+      }
+    }
+  }
