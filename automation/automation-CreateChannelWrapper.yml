@@ -1,0 +1,113 @@
+args:
+- description: The name of the channel.
+  name: name
+  required: true
+- auto: PREDEFINED
+  defaultValue: private
+  description: The channel type. Can be "private" or "public".  Relevant only for
+    Slack.
+  name: type
+  predefined:
+  - public
+  - private
+- description: The team in which to create the channel. Relevant only for Microsoft
+    Teams.
+  name: team
+- description: The description of the channel. Relevant only for Microsoft Teams.
+  name: description
+comment: Creates a channel in Slack v2 or in Microsoft Teams. If both Slack v2 and
+  Microsoft Teams are available, it creates the channel in both Slack v2 and Microsoft
+  Teams.
+commonfields:
+  id: CreateChannelWrapper
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 1.3.8
+    packID: ShiftManagement
+    packName: Shift Management
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.7.24076
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: CreateChannelWrapper
+nativeimage:
+- "8.3"
+- "8.4"
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('CreateChannelWrapper', 'start', __line__())
+  ### pack version: 1.3.8
+
+
+
+  def main():
+      args = demisto.args()
+      channel_type = args.get('type')
+      channel_name = args.get('name')
+      channel_desc = args.get('description')
+      channel_team = args.get('team')
+
+      errors = []
+      integrations_to_create = []
+      channels_created = []
+
+      modules = demisto.getModules()
+      for module_name, module in modules.items():
+          brand = module.get('brand')
+          if module.get('state') == 'active' and brand in {'Microsoft Teams', 'SlackV2'}:
+              integrations_to_create.append(brand)
+
+      if not integrations_to_create:
+          return_error('Microsoft Teams and Slack are not available, please configure at least one of them.')
+
+      for integration in integrations_to_create:
+          res = None
+          if integration == 'SlackV2':
+              res = demisto.executeCommand('slack-create-channel', {'type': channel_type, 'name': channel_name})
+
+          elif integration == 'Microsoft Teams':
+              if channel_team:
+                  res = demisto.executeCommand('microsoft-teams-create-channel',
+                                               {'channel_name': channel_name, 'description': channel_desc, 'team': channel_team})
+              else:
+                  errors.append('Failed to create channel in Microsoft Teams: team argument is missing')
+
+          if is_error(res):
+              errors.append(f'Failed to create channel in {integration}: {get_error(res)}')
+          elif res:
+              channels_created.append(integration)
+
+      errors_str = '\n'.join(errors)
+
+      # in case of no channel created
+      if len(channels_created) == 0:
+          return_error(errors_str)
+      # in case of channel created in all the available brands(Microsoft Teams and Slack)
+      elif len(channels_created) == len(integrations_to_create):
+          return_results(f'Channel {channel_name} created successfully.')
+      # in case of only one channel created
+      else:
+          return_results(f'Channel {channel_name} created successfully.\n{errors_str}')
+
+
+  if __name__ in ('__builtin__', 'builtins', '__main__'):
+      main()
+
+  register_module_line('CreateChannelWrapper', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- Shift Management
+- ooo
+type: python
