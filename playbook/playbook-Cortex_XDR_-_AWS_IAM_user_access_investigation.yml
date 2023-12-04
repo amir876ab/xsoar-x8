@@ -1,0 +1,1586 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.2.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+deprecated: true
+description: "Deprecated. Use `Cortex XDR - Cloud IAM User Access Investigation` instead.
+  Investigate and respond to Cortex XDR Cloud alerts where an AWS IAM user`s access
+  key is used suspiciously to access the cloud environment. \nThe following alerts
+  are supported for AWS environments.\n- Penetration testing tool attempt\n- Penetration
+  testing tool activity\n- Suspicious API call from a Tor exit node\n This is a beta
+  playbook, which lets you implement and test pre-release software. At the moment
+  we support AWS but are working towards multi-cloud support. Since the playbook is
+  beta, it might contain bugs. Updates to the playbook during the beta phase might
+  include non-backward compatible features. We appreciate your feedback on the quality
+  and usability of the content to help us identify issues, fix them, and continually
+  improve.\n"
+id: Cortex XDR - AWS IAM user access investigation
+inputs:
+- description: |
+    Tag name for bad reputation IP addresses investigated in the incident.
+    Use it when the EDL service is configured to add indicators to block in PANW PAN-OS.
+    If indicator verdict (Malicious/Bad) is used to add indicators to XSOAR EDL you don't need to use the tag. Indicators will be set as malicious automatically in the incident.
+  key: IndicatorTag
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    This input determines whether Palo Alto Networks Panorama or Firewall Dynamic Address Groups are used.
+    Specify the Dynamic Address Group tag name for IP handling.
+  key: DAG
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: 'True/False to initiate block IP playbook automatically '
+  key: AutoBlockIP
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "False"
+- description: True/False to automatically delete the user login profile if it exists.
+  key: AutoDeleteProfile
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "False"
+name: Cortex XDR - AWS IAM user access investigation
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: eb45e1af-6483-41a6-869a-1bfdbf5c36c5
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: eb45e1af-6483-41a6-869a-1bfdbf5c36c5
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": -750
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      incident_id:
+        complex:
+          accessor: xdrincidentid
+          root: incident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns additional data for the specified incident, for example,
+        related alerts, file artifacts, network artifacts, and so on.
+      id: 176b3fe5-66b3-4e4d-82f2-959ba2631703
+      iscommand: true
+      name: Get incident extra data
+      script: '|||xdr-get-incident-extra-data'
+      type: regular
+      version: -1
+    taskid: 176b3fe5-66b3-4e4d-82f2-959ba2631703
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": -600
+        }
+      }
+  "4":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "34"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      alert_id_list:
+        complex:
+          accessor: alert_id
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PaloAltoNetworksXDR.Incident.alerts.name
+              operator: isEqualString
+              right:
+                value:
+                  simple: Penetration testing tool attempt
+            - left:
+                iscontext: true
+                value:
+                  simple: PaloAltoNetworksXDR.Incident.alerts.name
+              operator: isEqualString
+              right:
+                value:
+                  simple: Penetration testing tool activity
+            - left:
+                iscontext: true
+                value:
+                  simple: PaloAltoNetworksXDR.Incident.alerts.name
+              operator: isEqualString
+              right:
+                value:
+                  simple: Suspicious API call from a Tor exit node
+          - - left:
+                iscontext: true
+                value:
+                  simple: PaloAltoNetworksXDR.Incident.alerts.cloud_provider
+              operator: isEqualString
+              right:
+                value:
+                  simple: AWS
+          root: PaloAltoNetworksXDR.Incident.alerts
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns information about each alert ID.
+      id: f98a36c2-d92b-4545-8fe9-7a62278269d9
+      iscommand: true
+      name: Get original cloud alert
+      script: '|||xdr-get-cloud-original-alerts'
+      type: regular
+      version: -1
+    taskid: f98a36c2-d92b-4545-8fe9-7a62278269d9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": -420
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "23"
+      - "30"
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d2284e8b-2ed7-4573-8613-f14529579557
+      iscommand: false
+      name: Collect Additional Data
+      type: title
+      version: -1
+    taskid: d2284e8b-2ed7-4573-8613-f14529579557
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 260
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "26"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      query:
+        complex:
+          accessor: accessKeyId
+          root: PaloAltoNetworksXDR.OriginalAlert.event.identity_orig
+          transformers:
+          - operator: uniq
+          - args:
+              separator:
+                value:
+                  simple: '","'
+            operator: join
+          - args:
+              prefix:
+                value:
+                  simple: |-
+                    dataset = cloud_audit_logs
+                    | alter accesskey = trim(json_extract(identity_orig, "$.accessKeyId"), "\"")
+                    | filter accesskey in("
+              suffix:
+                value:
+                  simple: "\")\n| fields caller_ip, project, identity_name, identity_type,
+                    identity_sub_type,accesskey, operation_name_orig, operation_status,
+                    referenced_resource_name, caller_ip_asn_org, caller_ip_geolocation
+                    \n| sort asc _time \n| limit 100"
+            operator: concat
+      query_name:
+        simple: apiCalls
+      time_frame:
+        simple: 7 days
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Execute an XQL query and retrieve results of an executed XQL query
+        API. The command will be executed every 10 seconds until results are retrieved
+        or until a timeout error is raised.
+      id: 38e0d2b5-8dee-4633-86c9-67d0c7b290ba
+      iscommand: true
+      name: XQL Query - Last 100 API calls made with the access key
+      script: '|||xdr-xql-generic-query'
+      tags:
+      - KeyXQL
+      type: regular
+      version: -1
+    taskid: 38e0d2b5-8dee-4633-86c9-67d0c7b290ba
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 660,
+          "y": 690
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+      - "17"
+      - "44"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 91df1747-e288-4133-885c-e76fff79e929
+      iscommand: false
+      name: 'Remediation '
+      type: title
+      version: -1
+    taskid: 91df1747-e288-4133-885c-e76fff79e929
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 1880
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "40"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      accessKeyId:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: AWS.IAM.Users.AccessKeys.AccessKeyId
+              operator: startWith
+              right:
+                value:
+                  simple: AKIA
+          root: AWS.IAM.Users.AccessKeys.AccessKeyId
+          transformers:
+          - operator: uniq
+      status:
+        simple: Inactive
+      userName:
+        complex:
+          accessor: UserName
+          root: AWS.IAM.Users.AccessKeys
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Changes the status of the specified access key from Active to Inactive,
+        or vice versa. This operation can be used to disable a user's key as part
+        of a key rotation workflow.
+      id: 81f46d38-90d6-45fd-82f4-4d1f3adc1090
+      iscommand: true
+      name: Set compromised IAM access key as inactive
+      script: '|||aws-iam-update-access-key'
+      type: regular
+      version: -1
+    taskid: 81f46d38-90d6-45fd-82f4-4d1f3adc1090
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -190,
+          "y": 2025
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "42"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      userName:
+        complex:
+          accessor: UserName
+          root: AWS.IAM.Users.AccessKeys
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Deletes the password for the specified IAM user, which terminates
+        the user's ability to access AWS services through the AWS Management Console.
+      id: a0a9f984-0a6a-4ed2-8cc3-7b309a3cfa39
+      iscommand: true
+      name: Delete user login profile to AWS console
+      script: '|||aws-iam-delete-login-profile'
+      type: regular
+      version: -1
+    taskid: a0a9f984-0a6a-4ed2-8cc3-7b309a3cfa39
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 80,
+          "y": 2550
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "26"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      username:
+        complex:
+          accessor: user_name
+          root: PaloAltoNetworksXDR.Incident.alerts
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: true
+    task:
+      brand: ""
+      description: |
+        Enrich AWS IAM user information from AWS Identity and Access Management.
+        - List user access keys
+        - Get user information
+      id: a5932e26-e7c8-4893-89e4-4d9be382f8ed
+      iscommand: false
+      name: AWS IAM - User enrichment
+      playbookName: AWS IAM - User enrichment
+      type: playbook
+      version: -1
+    taskid: a5932e26-e7c8-4893-89e4-4d9be382f8ed
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -650,
+          "y": 400
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        To determine if this is a true positive event,  review the results of the XQL queries from the previous steps.
+        The queries search for the operations performed by the access key and the user in the recent time frame.
+        Go over the results of the queries and search for the following items:
+
+        1. Investigate the operation performed by the access key and examine the executed operations, by who it was executed, on which resource, and the operation status.
+
+        2.  Investigate operations performed by the user and examine the executed operations, by who it was executed, on which resource, and the operation status.
+        Look at any persistence, for example - a new user creation or key, etc.
+
+        3. Investigate operations perform by the user and examine the executed operations, by who it was executed, on which resource, and the operation status.
+        Look at any lateral movement operations. For example, an operation can be = AsumeRole.
+
+        4. As an extra validation step it is recommended to query the user and/or the user's manager regarding the investigated suspicious activity.
+      id: 838d6965-463c-4fd4-8bcb-1453148e9705
+      iscommand: false
+      name: 'Investigate collected data '
+      type: regular
+      version: -1
+    taskid: 838d6965-463c-4fd4-8bcb-1453148e9705
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 1430
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "26"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      query:
+        complex:
+          accessor: userName
+          root: PaloAltoNetworksXDR.OriginalAlert.event.identity_orig
+          transformers:
+          - operator: uniq
+          - args:
+              separator:
+                value:
+                  simple: '","'
+            operator: join
+          - args:
+              prefix:
+                value:
+                  simple: "dataset = cloud_audit_logs \n| filter cloud_provider =
+                    \"AWS\"\n| filter identity_name in(\""
+              suffix:
+                value:
+                  simple: "\") \n| dedup project, identity_name, operation_name_orig,
+                    operation_status, referenced_resource_name \n| fields caller_ip,
+                    project, identity_name, identity_type, identity_sub_type, operation_name_orig,
+                    operation_status, referenced_resource_name, caller_ip_asn_org,
+                    caller_ip_geolocation\n| limit 100"
+            operator: concat
+      query_name:
+        simple: userActions
+      time_frame:
+        simple: 7 days
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Execute an XQL query and retrieve results of an executed XQL query
+        API. The command will be executed every 10 seconds until results are retrieved
+        or until a timeout error is raised.
+      id: 5802803a-1f35-4f12-8484-53daf666a5cc
+      iscommand: true
+      name: XQL Query - Actions performed by the user in the last 7 days
+      script: '|||xdr-xql-generic-query'
+      tags:
+      - UserXQL
+      type: regular
+      version: -1
+    taskid: 5802803a-1f35-4f12-8484-53daf666a5cc
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1140,
+          "y": 690
+        }
+      }
+  "17":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: name
+                root: PaloAltoNetworksXDR.Incident.alerts
+          operator: containsGeneral
+          right:
+            value:
+              simple: Suspicious API call from a Tor exit node
+      label: "yes"
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "37"
+      - "38"
+      "yes":
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is it a Tor IP?
+      id: 50ae3b5e-74dd-4838-863f-a71b066cb0eb
+      iscommand: false
+      name: Is it a Tor IP?
+      type: condition
+      version: -1
+    taskid: 50ae3b5e-74dd-4838-863f-a71b066cb0eb
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1030,
+          "y": 2020
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d2c11e43-d9ab-4484-8845-56b2d7300801
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: d2c11e43-d9ab-4484-8845-56b2d7300801
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -190,
+          "y": 2880
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "41"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      AutoCommit:
+        simple: "No"
+      CustomBlockRule:
+        simple: "True"
+      IP:
+        complex:
+          accessor: Address
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: IP.PositiveDetections
+              operator: greaterThanOrEqual
+              right:
+                value:
+                  simple: "2"
+          root: IP
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        This playbook blocks malicious IPs using all integrations that are enabled.
+
+        Supported integrations for this playbook:
+        * Check Point Firewall
+        * Palo Alto Networks Minemeld
+        * Palo Alto Networks PAN-OS
+        * Zscaler
+        * FortiGate
+      id: 5faab3e7-4e02-41cd-8e75-ee8413a662a3
+      iscommand: false
+      name: Block IP - Generic v2
+      playbookId: Block IP - Generic v2
+      type: playbook
+      version: -1
+    taskid: 5faab3e7-4e02-41cd-8e75-ee8413a662a3
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1950,
+          "y": 2360
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "No":
+      - "22"
+      "Yes":
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Based on the collected data investigation, is it a true positive
+        event?
+      id: 1283a7e1-6f4c-411d-8e29-d269c202c8d1
+      iscommand: false
+      name: Decision making - true/false-positive alert
+      type: condition
+      version: -1
+    taskid: 1283a7e1-6f4c-411d-8e29-d269c202c8d1
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 1610
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 55201935-0f2f-4f7d-8a51-89a141ab7f37
+      iscommand: false
+      name: False Positive - Done
+      type: title
+      version: -1
+    taskid: 55201935-0f2f-4f7d-8a51-89a141ab7f37
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -660,
+          "y": 2735
+        }
+      }
+  "23":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PaloAltoNetworksXDR.OriginalAlert.event.identity_orig.accessKeyId
+                    operator: startWith
+                    right:
+                      value:
+                        simple: AKIA
+                root: PaloAltoNetworksXDR.OriginalAlert.event.identity_orig.accessKeyId
+                transformers:
+                - operator: uniq
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "26"
+      "yes":
+      - "16"
+      - "6"
+    note: false
+    quietmode: 2
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Validate access key type is AKIA
+      id: 4e46e03a-9d7b-4951-8563-fc01f0df9104
+      iscommand: false
+      name: Validate access key type is AKIA
+      type: condition
+      version: -1
+    taskid: 4e46e03a-9d7b-4951-8563-fc01f0df9104
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 515
+        }
+      }
+  "26":
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "31"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 781ff8c8-ef7e-43f3-8e4b-869cc157ec73
+      iscommand: false
+      name: Investigation
+      type: title
+      version: -1
+    taskid: 781ff8c8-ef7e-43f3-8e4b-869cc157ec73
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 870
+        }
+      }
+  "29":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: LoginProfile
+                root: AWS.IAM.Users
+          operator: isNotEmpty
+      label: Delete profile
+    continueonerrortype: ""
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "19"
+      Delete profile:
+      - "45"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Check the user AWS login profile configuration.\nIf a login profile
+        is configured, it needs to be deleted. \n\nThe user login profile configuration
+        can be found under https://console.aws.amazon.com/iam/home#/users/[username]
+        under the security credentials tab."
+      id: 94e599f9-c3db-4452-8db3-17033ecda3af
+      iscommand: false
+      name: Check for AWS user login profile
+      type: condition
+      version: -1
+    taskid: 94e599f9-c3db-4452-8db3-17033ecda3af
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 2205
+        }
+      }
+  "30":
+    continueonerrortype: ""
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "26"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip:
+        complex:
+          accessor: host_ip
+          root: PaloAltoNetworksXDR.Incident.alerts
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks the reputation of an IP address in AutoFocus.
+      id: 07e9e5ce-2671-46e3-8db1-d456d729d5cd
+      iscommand: true
+      name: Enrich Source IP addresses
+      script: '|||ip'
+      type: regular
+      version: -1
+    taskid: 07e9e5ce-2671-46e3-8db1-d456d729d5cd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -200,
+          "y": 400
+        }
+      }
+  "31":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Address
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: IP.ASN
+                    operator: isEmpty
+                root: IP
+          operator: isExists
+      label: "Yes"
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "15"
+      "Yes":
+      - "33"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: New IP addresses were found in the XQL query results?
+      id: a5d7d95e-13d9-41ca-8c7a-a6a0cbbc7e0c
+      iscommand: false
+      name: New IP addresses were found in the XQL query results?
+      type: condition
+      version: -1
+    taskid: a5d7d95e-13d9-41ca-8c7a-a6a0cbbc7e0c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 1010
+        }
+      }
+  "33":
+    continueonerrortype: ""
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip:
+        complex:
+          accessor: Address
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: IP.ASN
+              operator: isEmpty
+          root: IP
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks the reputation of an IP address in AutoFocus.
+      id: 8c6bd89b-1f16-4a39-8685-8d1d6f0923b8
+      iscommand: true
+      name: Enrich new IP addresses
+      script: '|||ip'
+      type: regular
+      version: -1
+    taskid: 8c6bd89b-1f16-4a39-8685-8d1d6f0923b8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 1240
+        }
+      }
+  "34":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PaloAltoNetworksXDR.OriginalAlert
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "35"
+      "yes":
+      - "43"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check for supported xcloud alerts.
+      id: 9ad170ca-8536-4964-851e-0263282b3488
+      iscommand: false
+      name: Check for supported xcloud alerts
+      type: condition
+      version: -1
+    taskid: 9ad170ca-8536-4964-851e-0263282b3488
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": -170
+        }
+      }
+  "35":
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "36"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 58ba296b-bac9-413f-8ccc-a1def6f8d6eb
+      iscommand: false
+      name: Done - No supported alerts
+      type: title
+      version: -1
+    taskid: 58ba296b-bac9-413f-8ccc-a1def6f8d6eb
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 2260,
+          "y": 95
+        }
+      }
+  "36":
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 45ddfb42-aba2-4f43-8ad1-3fa8073303e3
+      iscommand: false
+      name: Done - No supported alerts
+      type: title
+      version: -1
+    taskid: 45ddfb42-aba2-4f43-8ad1-3fa8073303e3
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 2260,
+          "y": 2735
+        }
+      }
+  "37":
+    continueonerrortype: ""
+    id: "37"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "41"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      indicatorsValues:
+        complex:
+          accessor: Address
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: IP.PositiveDetections
+              operator: greaterThanOrEqual
+              right:
+                value:
+                  simple: "2"
+          root: IP
+      tags:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.IndicatorTag
+              operator: isNotEmpty
+          root: inputs.IndicatorTag
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.indicators
+      id: d5ceed77-f82b-4fcf-8b24-ac72e3e56bc4
+      iscommand: true
+      name: 'Tag indicators for EDL '
+      script: Builtin|||setIndicators
+      type: regular
+      version: -1
+    taskid: d5ceed77-f82b-4fcf-8b24-ac72e3e56bc4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1030,
+          "y": 2360
+        }
+      }
+  "38":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.AutoBlockIP
+          operator: isEqualString
+          right:
+            value:
+              simple: "True"
+      label: "yes"
+    continueonerrortype: ""
+    id: "38"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "39"
+      "yes":
+      - "20"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: ''''''
+      id: 96cabd96-5472-4f5f-8e34-72e5a0e66a95
+      iscommand: false
+      name: Automated block IP playbook?
+      type: condition
+      version: -1
+    taskid: 96cabd96-5472-4f5f-8e34-72e5a0e66a95
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1720,
+          "y": 2190
+        }
+      }
+  "39":
+    continueonerrortype: ""
+    id: "39"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "41"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Block IP address according to IP enrichment and reputation results.
+      id: 56f29a78-77e6-4bd7-8f91-3298a9d39e3c
+      iscommand: false
+      name: Block IP  - Manual
+      type: regular
+      version: -1
+    taskid: 56f29a78-77e6-4bd7-8f91-3298a9d39e3c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1480,
+          "y": 2360
+        }
+      }
+  "40":
+    continueonerrortype: ""
+    id: "40"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: RemediationActions.InactiveAccessKeys
+      value:
+        complex:
+          accessor: AccessKeyId
+          root: AWS.IAM.Users.AccessKeys
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 01d0ee6f-f516-4e15-8116-4e84fc0e3a52
+      iscommand: false
+      name: Set Remediation  Action
+      script: Set
+      type: regular
+      version: -1
+    taskid: 01d0ee6f-f516-4e15-8116-4e84fc0e3a52
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -190,
+          "y": 2205
+        }
+      }
+  "41":
+    continueonerrortype: ""
+    id: "41"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: RemediationActions.BlockedIP.Addresses
+      value:
+        complex:
+          accessor: Address
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: IP.PositiveDetections
+              operator: greaterThanOrEqual
+              right:
+                value:
+                  simple: "2"
+          root: IP
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 14fccfdc-84e1-4e74-8480-7825263a9466
+      iscommand: false
+      name: Set Remediation  Action
+      script: Set
+      type: regular
+      version: -1
+    taskid: 14fccfdc-84e1-4e74-8480-7825263a9466
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1730,
+          "y": 2530
+        }
+      }
+  "42":
+    continueonerrortype: ""
+    id: "42"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: RemediationActions.DisabledLoginProfile.Username
+      value:
+        complex:
+          accessor: UserName
+          root: AWS.IAM.Users.AccessKeys
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: f8072170-8f96-4b13-8413-57317cc0c64b
+      iscommand: false
+      name: Set Remediation  Action
+      script: Set
+      type: regular
+      version: -1
+    taskid: f8072170-8f96-4b13-8413-57317cc0c64b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 80,
+          "y": 2705
+        }
+      }
+  "43":
+    continueonerrortype: ""
+    id: "43"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      type:
+        simple: Cortex XDR - XCLOUD
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 3c9ae5c8-4cec-4444-8254-80157b136350
+      iscommand: true
+      name: Set incident type to XCLOUD
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 3c9ae5c8-4cec-4444-8254-80157b136350
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 80
+        }
+      }
+  "44":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "44"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "29"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      userName:
+        complex:
+          accessor: UserName
+          root: AWS.IAM.Users.AccessKeys
+    separatecontext: false
+    skipunavailable: true
+    task:
+      brand: ""
+      description: Retrieves the user login profile information for AWS management
+        consle
+      id: 26a9e1e8-787c-4528-8a78-b164a059d66b
+      iscommand: true
+      name: AWS IAM - Get user profile
+      script: '|||aws-iam-get-user-login-profile'
+      type: regular
+      version: -1
+    taskid: 26a9e1e8-787c-4528-8a78-b164a059d66b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 2025
+        }
+      }
+  "45":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.AutoDeleteProfile
+                transformers:
+                - operator: toLowerCase
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "45"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "46"
+      "yes":
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Do you want XSOAR to automatically delete the user login profile?
+      id: 9ca18516-0441-4744-8535-c85fd0aac122
+      iscommand: false
+      name: Automatically delete user login profile?
+      type: condition
+      version: -1
+    taskid: 9ca18516-0441-4744-8535-c85fd0aac122
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 410,
+          "y": 2380
+        }
+      }
+  "46":
+    continueonerrortype: ""
+    id: "46"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete the user login profile manually.
+      id: 378287be-05c1-47ee-8207-a58e864a7c03
+      iscommand: false
+      name: Delete user login profile - Manual
+      type: regular
+      version: -1
+    taskid: 378287be-05c1-47ee-8207-a58e864a7c03
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 530,
+          "y": 2550
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "17_19_yes": 0.1,
+      "17_37_#default#": 0.43,
+      "17_38_#default#": 0.33,
+      "21_22_No": 0.1,
+      "23_16_yes": 0.76,
+      "23_26_#default#": 0.47,
+      "23_6_yes": 0.62,
+      "29_19_#default#": 0.11,
+      "31_15_#default#": 0.18,
+      "34_35_#default#": 0.16,
+      "34_43_yes": 0.66,
+      "38_20_yes": 0.74,
+      "38_39_#default#": 0.52
+    },
+    "paper": {
+      "dimensions": {
+        "height": 3695,
+        "width": 3300,
+        "x": -660,
+        "y": -750
+      }
+    }
+  }
