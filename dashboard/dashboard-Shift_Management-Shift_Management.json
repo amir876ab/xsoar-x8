@@ -1,0 +1,352 @@
+{
+	"cacheVersn": 0,
+	"definitionId": "",
+	"fromDate": "0001-01-01T00:00:00Z",
+	"fromDateLicense": "0001-01-01T00:00:00Z",
+	"fromServerVersion": "6.0.0",
+	"hidePivot": false,
+	"hideSearch": false,
+	"id": "Shift Management ",
+	"isCommon": true,
+	"itemVersion": "1.3.8",
+	"layout": [
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "f2efe220-656d-11eb-9cda-0739334e539c",
+			"id": "f2efe220-656d-11eb-9cda-0739334e539c",
+			"reflectDimensions": false,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "scripts",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "",
+						"byTo": "",
+						"field": "",
+						"fromValue": null,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"description": "Details of the users that are currently out of office",
+				"fromServerVersion": "5.5.0",
+				"id": "UsersOOO",
+				"isPredefined": true,
+				"itemVersion": "1.2.1",
+				"modified": "2021-02-02T15:45:30.423391738Z",
+				"name": "Out of office users",
+				"packID": "ShiftManagement",
+				"packName": "",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": null,
+				"prevName": "Out of office users",
+				"propagationLabels": [],
+				"query": "GetUsersOOO",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "text"
+			},
+			"x": 0,
+			"y": 4
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "19969900-656e-11eb-9cda-0739334e539c",
+			"id": "19969900-656e-11eb-9cda-0739334e539c",
+			"reflectDimensions": false,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "scripts",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "",
+						"byTo": "",
+						"field": "",
+						"fromValue": null,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"description": "Displays number of on-call hours per user.",
+				"fromServerVersion": "5.5.0",
+				"id": "OnCallHoursPerUser",
+				"isPredefined": true,
+				"itemVersion": "1.2.1",
+				"modified": "2021-02-02T15:45:30.422883019Z",
+				"name": "On-Call Hours Per User",
+				"packID": "ShiftManagement",
+				"packName": "",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": null,
+				"prevName": "On-Call Hours Per User",
+				"propagationLabels": [],
+				"query": "GetOnCallHoursPerUser",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "bar"
+			},
+			"x": 4,
+			"y": 7
+		},
+		{
+			"forceRange": false,
+			"h": 7,
+			"i": "3bd1df70-656e-11eb-9cda-0739334e539c",
+			"id": "3bd1df70-656e-11eb-9cda-0739334e539c",
+			"reflectDimensions": false,
+			"w": 8,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "scripts",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "",
+						"byTo": "",
+						"field": "",
+						"fromValue": null,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"description": "Roles per shift 24x7",
+				"fromServerVersion": "5.5.0",
+				"id": "RolesPerShift",
+				"isPredefined": true,
+				"itemVersion": "1.2.1",
+				"modified": "2021-02-02T15:45:30.422924316Z",
+				"name": "Roles Per Shift",
+				"packID": "ShiftManagement",
+				"packName": "",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": null,
+				"prevName": "Roles Per Shift",
+				"propagationLabels": [],
+				"query": "GetRolesPerShift",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "text"
+			},
+			"x": 4,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "7b2878f0-656e-11eb-9cda-0739334e539c",
+			"id": "7b2878f0-656e-11eb-9cda-0739334e539c",
+			"reflectDimensions": false,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "scripts",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "",
+						"byTo": "",
+						"field": "",
+						"fromValue": null,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"description": "Shows how much time left for the shift to ends.",
+				"fromServerVersion": "5.5.0",
+				"id": "ShiftTimeLeft",
+				"isPredefined": true,
+				"itemVersion": "1.2.1",
+				"modified": "2021-02-02T15:45:30.422963877Z",
+				"name": "Shift changes in",
+				"packID": "ShiftManagement",
+				"packName": "",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": null,
+				"prevName": "Shift changes in",
+				"propagationLabels": [],
+				"query": "TimeToNextShift",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "duration"
+			},
+			"x": 0,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "8e1aefb0-656e-11eb-9cda-0739334e539c",
+			"id": "8e1aefb0-656e-11eb-9cda-0739334e539c",
+			"reflectDimensions": false,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "scripts",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "",
+						"byTo": "",
+						"field": "",
+						"fromValue": null,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"description": "Details of the users that are currently on-call",
+				"fromServerVersion": "5.5.0",
+				"id": "UsersOnCall",
+				"isPredefined": true,
+				"itemVersion": "1.2.1",
+				"modified": "2021-02-02T15:45:30.423453073Z",
+				"name": "Users On-Call",
+				"packID": "ShiftManagement",
+				"packName": "",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": null,
+				"prevName": "Users On-Call",
+				"propagationLabels": [],
+				"query": "GetUsersOnCall",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "text"
+			},
+			"x": 0,
+			"y": 1
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "ae091f00-6cb0-11ec-abd7-5fe04def6eef",
+			"id": "ae091f00-6cb0-11ec-abd7-5fe04def6eef",
+			"reflectDimensions": true,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "scripts",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "",
+						"byTo": "",
+						"field": "",
+						"fromValue": null,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "902948b9-dd73-4341-8000-959700b6252c",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2022-01-03T16:17:41.678746592Z",
+				"name": "AwayUsers",
+				"packID": "",
+				"packName": "",
+				"params": {},
+				"prevName": "AwayUsers",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "GetAwayUsers",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "text"
+			},
+			"x": 0,
+			"y": 7
+		}
+	],
+	"locked": false,
+	"modulePage": false,
+	"name": "Shift Management ",
+	"owner": "",
+	"packID": "ShiftManagement",
+	"packName": "Shift Management",
+	"packPropagationLabels": [
+		"all"
+	],
+	"period": {
+		"by": "",
+		"byFrom": "days",
+		"byTo": "",
+		"field": "",
+		"fromValue": 7,
+		"toValue": null
+	},
+	"propagationLabels": [],
+	"system": true,
+	"toDate": "0001-01-01T00:00:00Z",
+	"toServerVersion": "",
+	"version": -1
+}
