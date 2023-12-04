@@ -1,0 +1,877 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Analytics \u0026 SIEM"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"classifier",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Deprecated. Use the **QRadarCorrelationLog** playbook instead. Return the QRadar Correlation logs if exist",
+				"name": "QRadarGetCorrelationLogs",
+				"tags": [
+					"QRadar"
+				]
+			},
+			{
+				"description": "This script prints the events fetched from the offense in a table format.",
+				"name": "QRadarPrintEvents",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "This script prints the assets fetched from the offense in a table format.",
+				"name": "QRadarPrintAssets",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Build QRadar AQL Query.",
+				"name": "QRadarCreateAQLQuery",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "This enables to color the field according to the magnitude. The scale is \n1-3 green\n4-7 yellow\n8-10 red",
+				"name": "QRadarMagnitude",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Deprecated. No available replacement. This Script runs a QRadar query and return its results to the war-room.",
+				"name": "QRadarFullSearch",
+				"tags": [
+					"QRadar"
+				]
+			},
+			{
+				"description": "This display the amount of fetched events vs the total amount of events in the offense.",
+				"name": "QRadarFetchedEventsSum",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Deprecated. No available replacement. This script Classifies QRadar incidents.\\nThe 'QRADAR_CATEGORIES' dictionary translate QRadar 'High level Categories' to its 'Demisto Types' counterpart.\\n\\nFor custom categories, use the 'customCategories' argument.\\nThe offense high level category will be put to context.",
+				"name": "QRadarClassifier",
+				"tags": [
+					"QRadar",
+					"Classifier"
+				]
+			},
+			{
+				"description": "Deprecated. Use the QradarGetOffenseCorrlations_v2 Playbook instead. Return the QRadar offense correlations if exist in logs.",
+				"name": "QRadarGetOffenseCorrelations",
+				"tags": [
+					"QRadar"
+				]
+			},
+			{
+				"description": "This displays the mirrored events status in the offense.",
+				"name": "QRadarMirroringEventsStatus",
+				"tags": [
+					"dynamic-section"
+				]
+			}
+		],
+		"classifier": [
+			{
+				"description": "Classifies QRadar events.",
+				"id": "QRadar",
+				"name": "QRadar - Classifier"
+			},
+			{
+				"description": "Maps QRadar event fields.",
+				"id": "QRadar-mapper",
+				"name": "QRadar - Incoming Mapper"
+			},
+			{
+				"description": "Default Mapping for Qradar Offenses, Events, and Assets.",
+				"id": "QRadar - Generic Incoming Mapper",
+				"name": "QRadar - Generic Incoming Mapper"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "The source network related to the offense.",
+				"name": "Source Network - Offense",
+				"type": "multiSelect"
+			},
+			{
+				"description": "The number of usernames that are associated with the offense.",
+				"name": "Username Count - Offense",
+				"type": "number"
+			},
+			{
+				"description": "Event categories that are associated with the offense.",
+				"name": "Low Level Categories - Offense",
+				"type": "multiSelect"
+			},
+			{
+				"description": "True if the offense is inactive. ",
+				"name": "Offense Inactive",
+				"type": "boolean"
+			},
+			{
+				"description": "The list of rules associated with the offense.",
+				"name": "List of Rules - Offense",
+				"type": "multiSelect"
+			},
+			{
+				"description": "The magnitude of the offense.",
+				"name": "Magnitude - Offense",
+				"type": "number"
+			},
+			{
+				"description": "The destination addresses associated with the offense.",
+				"name": "Destination IP - Offense",
+				"type": "multiSelect"
+			},
+			{
+				"description": "The credibility of the offense.",
+				"name": "Credibility - Offense",
+				"type": "number"
+			},
+			{
+				"description": "The number of events fetched with the offense.",
+				"name": "Number Of Fetched Events",
+				"type": "number"
+			},
+			{
+				"description": "Offense Number Of Flows.",
+				"name": "Number Of Flows",
+				"type": "number"
+			},
+			{
+				"description": "The source addresses associated with the offense.",
+				"name": "Source IP - Offense",
+				"type": "multiSelect"
+			},
+			{
+				"description": "The link to the QRadar offense.",
+				"name": "Link To Offense",
+				"type": "url"
+			},
+			{
+				"description": "The severity of the offense.",
+				"name": "Severity - Offense",
+				"type": "number"
+			},
+			{
+				"description": "The number of events that are associated with the offense.",
+				"name": "Number Of Events In Offense",
+				"type": "number"
+			},
+			{
+				"description": "ID of associated domain if the offense is associated with a single domain.",
+				"name": "Domain - Offense",
+				"type": "shortText"
+			},
+			{
+				"description": "The ID of the offense.",
+				"name": "ID - Offense",
+				"type": "number"
+			},
+			{
+				"description": "The status of the offense. One of \"OPEN\", \"HIDDEN\", or \"CLOSED\".",
+				"name": "Status - Offense",
+				"type": "shortText"
+			},
+			{
+				"description": "The destination network related to the offense.",
+				"name": "Destination Network - Offense",
+				"type": "multiSelect"
+			},
+			{
+				"description": "The description of the offense.",
+				"name": "Description - Offense",
+				"type": "shortText"
+			},
+			{
+				"description": "The type of the offense.",
+				"name": "Type - Offense",
+				"type": "shortText"
+			},
+			{
+				"description": "The relevance of the offense.",
+				"name": "Relevance - Offense",
+				"type": "number"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Qradar Generic",
+				"playbook": "QRadar Generic",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Analytics \u0026 SIEM",
+				"commands": [
+					{
+						"description": "Creates a new reference set.",
+						"name": "qradar-reference-set-create"
+					},
+					{
+						"description": "Add or update a value in a reference set.",
+						"name": "qradar-create-reference-set-value"
+					},
+					{
+						"description": "Gets offense with matching offense ID from qradar.",
+						"name": "qradar-offense-by-id"
+					},
+					{
+						"description": "Retrieves a list of log sources.",
+						"name": "qradar-log-sources-list"
+					},
+					{
+						"description": "Retrieves a list of notes for an offense.",
+						"name": "qradar-offense-notes-list"
+					},
+					{
+						"description": "Deletes a reference set corresponding to the name provided.",
+						"name": "qradar-delete-reference-set"
+					},
+					{
+						"description": "Retrieves Domain information By ID.",
+						"name": "qradar-get-domain-by-id"
+					},
+					{
+						"description": "Uploads indicators from Demisto to QRadar.",
+						"name": "qradar-upload-indicators"
+					},
+					{
+						"description": "Create a note on an offense.",
+						"name": "qradar-create-note"
+					},
+					{
+						"description": "Executes a deployment.\nPotentially harmful: This API command executes any waiting system deployments in QRadar within the same deployment type and hosts defined.\n",
+						"name": "qradar-remote-network-deploy-execution"
+					},
+					{
+						"description": "Get Source IPs.",
+						"name": "qradar-ips-local-destination-get"
+					},
+					{
+						"description": "Get closing reasons.",
+						"name": "qradar-get-closing-reasons"
+					},
+					{
+						"description": "List all assets found in the model.",
+						"name": "qradar-get-assets"
+					},
+					{
+						"description": "Retrieves search results.",
+						"name": "qradar-search-results-get"
+					},
+					{
+						"description": "Searches in QRadar using AQL. It is highly recommended to use the playbook 'QRadarFullSearch' instead of this command - it will execute the search, and will return the result.",
+						"name": "qradar-searches"
+					},
+					{
+						"description": "Returns the list of incidents IDs that were modified since the last update time. Note that this method is for debugging purposes. The get-modified-remote-data command is used as part of the mirroring feature, which is available from version 6.1.",
+						"name": "get-modified-remote-data"
+					},
+					{
+						"description": "Uploads indicators to QRadar.",
+						"name": "qradar-indicators-upload"
+					},
+					{
+						"description": "Retrieve a note for an offense.",
+						"name": "qradar-get-note"
+					},
+					{
+						"description": "Retrieves a list of event regex properties.",
+						"name": "qradar-get-custom-properties"
+					},
+					{
+						"description": "Update an offense.",
+						"name": "qradar-update-offense"
+					},
+					{
+						"description": "Gets remote data from a remote incident. This method does not update the current incident, and should be used for debugging purposes.",
+						"name": "get-remote-data"
+					},
+					{
+						"description": "Create remote network CIDRs.",
+						"name": "qradar-remote-network-cidr-create"
+					},
+					{
+						"description": "Retrieve all Domains.",
+						"name": "qradar-get-domains"
+					},
+					{
+						"description": "Adds or updates an element in a reference set.",
+						"name": "qradar-reference-set-value-upsert"
+					},
+					{
+						"description": "Creates a new asynchronous Ariel search. Returns the search ID. Search status and results can be polled by sending the search ID to the 'qradar-search-status-get' and 'qradar-search-results-get' commands. Accepts SELECT query expressions only.",
+						"name": "qradar-search-create"
+					},
+					{
+						"description": "Gets offenses from QRadar.",
+						"name": "qradar-offenses"
+					},
+					{
+						"description": "Removes a reference set or purges its contents.",
+						"name": "qradar-reference-set-delete"
+					},
+					{
+						"description": "Polling command to search for events of a specific offense.",
+						"name": "qradar-search-retrieve-events"
+					},
+					{
+						"description": "Retrieves the MaxMind GeoIP data for the specified IP address.",
+						"name": "qradar-geolocations-for-ip"
+					},
+					{
+						"description": "Get Source IPs.",
+						"name": "qradar-ips-source-get"
+					},
+					{
+						"description": "Updates an existing staged remote network.",
+						"name": "qradar-remote-network-cidr-update"
+					},
+					{
+						"description": "Retrieves the list of Ariel searches IDs. Search status and results can be polled by sending the search ID to the 'qradar-search-status-get' and 'qradar-search-results-get' commands.",
+						"name": "qradar-searches-list"
+					},
+					{
+						"description": "Retrieves a list of rules.",
+						"name": "qradar-rules-list"
+					},
+					{
+						"description": "Gets a specific search id and status.",
+						"name": "qradar-get-search"
+					},
+					{
+						"description": "Deletes an existing staged remote network.",
+						"name": "qradar-remote-network-cidr-delete"
+					},
+					{
+						"description": "Creates a note on an offense.",
+						"name": "qradar-offense-note-create"
+					},
+					{
+						"description": "Retrieves the asset by id.",
+						"name": "qradar-get-asset-by-id"
+					},
+					{
+						"description": "Returns the list of fields for an incident type. This command should be used for debugging purposes.",
+						"name": "get-mapping-fields"
+					},
+					{
+						"description": "Creates a new reference set. If the provided name is already in use, this command will fail.",
+						"name": "qradar-create-reference-set"
+					},
+					{
+						"description": "Retrieves a list of Ariel saved searches.",
+						"name": "qradar-saved-searches-list"
+					},
+					{
+						"description": "Adds or updates a value in a reference set.",
+						"name": "qradar-update-reference-set-value"
+					},
+					{
+						"description": "Information about the reference set that had data added or updated. This returns the information set, but not the contained data. This feature is supported from version 8.1 and upward.",
+						"name": "qradar-get-reference-by-name"
+					},
+					{
+						"description": "Deletes a value in a reference set.",
+						"name": "qradar-delete-reference-set-value"
+					},
+					{
+						"description": "Retrieves assets list.",
+						"name": "qradar-assets-list"
+					},
+					{
+						"description": "Gets offenses from QRadar.",
+						"name": "qradar-offenses-list"
+					},
+					{
+						"description": "Retrieves a list of reference sets.",
+						"name": "qradar-reference-sets-list"
+					},
+					{
+						"description": "Removes a value from a reference set.",
+						"name": "qradar-reference-set-value-delete"
+					},
+					{
+						"description": "Gets the list of domains. You must have System Administrator or Security Administrator permissions to call this endpoint if you are trying to retrieve the details of all domains. You can retrieve details of domains that are assigned to your Security Profile without having the System Administrator or Security Administrator permissions. If you do not have the System Administrator or Security Administrator permissions, then for each domain assigned to your security profile you can only view the values for the ID and name fields. All other values return null.",
+						"name": "qradar-domains-list"
+					},
+					{
+						"description": "Retrieves status information for a search, based on the search ID.",
+						"name": "qradar-search-status-get"
+					},
+					{
+						"description": "Retrieves a list of the rule groups.",
+						"name": "qradar-rule-groups-list"
+					},
+					{
+						"description": "Updates an offense.",
+						"name": "qradar-offense-update"
+					},
+					{
+						"description": "Gets search results.",
+						"name": "qradar-get-search-results"
+					},
+					{
+						"description": "Retrieves a list of offense closing reasons.",
+						"name": "qradar-closing-reasons"
+					},
+					{
+						"description": "Resets the fetch incidents last run value, which resets the fetch to its initial fetch state. (Will try to fetch the first available offense).",
+						"name": "qradar-reset-last-run"
+					},
+					{
+						"description": "Retrieves the list of staged remote networks.",
+						"name": "qradar-remote-network-cidr-list"
+					}
+				],
+				"description": "IBM QRadar SIEM helps security teams accurately detect and prioritize threats across the enterprise, supports API versions 10.1 and above. Provides intelligent insights that enable teams to respond quickly to reduce the impact of incidents.",
+				"id": "QRadar v3",
+				"name": "IBM QRadar v3"
+			},
+			{
+				"category": "Analytics \u0026 SIEM",
+				"commands": [
+					{
+						"description": "Update an offense",
+						"name": "qr-update-offense"
+					},
+					{
+						"description": "Creates a new reference set. If the provided name is already in use, this command will fail",
+						"name": "qradar-create-reference-set"
+					},
+					{
+						"description": "List all assets found in the model",
+						"name": "qr-get-assets"
+					},
+					{
+						"description": "Information about the reference set that had data added or updated. This returns information set but not the contained data. This feature is supported from version 8.1 and upward.",
+						"name": "qradar-get-reference-by-name"
+					},
+					{
+						"description": "Deletes a value in a reference set.",
+						"name": "qradar-delete-reference-set-value"
+					},
+					{
+						"description": "Gets search results",
+						"name": "qradar-get-search-results"
+					},
+					{
+						"description": "Gets offense with matching offense ID from qradar",
+						"name": "qradar-offense-by-id"
+					},
+					{
+						"description": "Add or update a value in a reference set.",
+						"name": "qradar-create-reference-set-value"
+					},
+					{
+						"description": "Uploads indicators from Demisto to Qradar. This command requires Cortex SOAR v5.5 or later.",
+						"name": "qradar-upload-indicators"
+					},
+					{
+						"description": "Gets search results",
+						"name": "qr-get-search-results"
+					},
+					{
+						"description": "List all assets found in the model",
+						"name": "qradar-get-assets"
+					},
+					{
+						"description": "Update an offense",
+						"name": "qradar-update-offense"
+					},
+					{
+						"description": "Deletes a reference set corresponding to the name provided.",
+						"name": "qradar-delete-reference-set"
+					},
+					{
+						"description": "Retrieves Domain information By ID",
+						"name": "qradar-get-domain-by-id"
+					},
+					{
+						"description": "Create a note on an offense",
+						"name": "qradar-create-note"
+					},
+					{
+						"description": "Retrieve a note for an offense",
+						"name": "qradar-get-note"
+					},
+					{
+						"description": "Gets a specific search id and state",
+						"name": "qr-get-search"
+					},
+					{
+						"description": "Gets offenses from QRadar",
+						"name": "qr-offenses"
+					},
+					{
+						"description": "Retrieve all Domains",
+						"name": "qradar-get-domains"
+					},
+					{
+						"description": "Get closing reasons",
+						"name": "qradar-get-closing-reasons"
+					},
+					{
+						"description": "Gets offenses from QRadar",
+						"name": "qradar-offenses"
+					},
+					{
+						"description": "Searches in QRadar using AQL. It is highly recommended to use the playbook 'QRadarFullSearch' instead of this command - it will execute the search, and will return the result.",
+						"name": "qradar-searches"
+					},
+					{
+						"description": "Retrieves the asset by id",
+						"name": "qradar-get-asset-by-id"
+					},
+					{
+						"description": "Adds or updates a value in a reference set.",
+						"name": "qradar-update-reference-set-value"
+					},
+					{
+						"description": "Gets a specific search id and status",
+						"name": "qradar-get-search"
+					},
+					{
+						"description": "Searches in QRadar",
+						"name": "qr-searches"
+					}
+				],
+				"description": "Deprecated. Use IBM QRadar v2 or IBM QRadar v3 instead.",
+				"id": "QRadar",
+				"name": "IBM QRadar (Deprecated)"
+			},
+			{
+				"category": "Analytics \u0026 SIEM",
+				"commands": [
+					{
+						"description": "Creates a new reference set. If the provided name is already in use, this command will fail.",
+						"name": "qradar-create-reference-set"
+					},
+					{
+						"description": "Information about the reference set that had data added or updated. This returns the information set, but not the contained data. This feature is supported from version 8.1 and upward.",
+						"name": "qradar-get-reference-by-name"
+					},
+					{
+						"description": "Returns the list of fields for an incident type. This command should be used for debugging purposes.",
+						"name": "get-mapping-fields"
+					},
+					{
+						"description": "Deletes a value in a reference set.",
+						"name": "qradar-delete-reference-set-value"
+					},
+					{
+						"description": "Gets search results.",
+						"name": "qradar-get-search-results"
+					},
+					{
+						"description": "Gets offense with matching offense ID from qradar.",
+						"name": "qradar-offense-by-id"
+					},
+					{
+						"description": "Reset fetch incidents last run value, which resets the fetch to its initial fetch state (will try to fetch first available offense).",
+						"name": "qradar-reset-last-run"
+					},
+					{
+						"description": "List all assets found in the model.",
+						"name": "qradar-get-assets"
+					},
+					{
+						"description": "Retrieves Domain information By ID.",
+						"name": "qradar-get-domain-by-id"
+					},
+					{
+						"description": "Create a note on an offense.",
+						"name": "qradar-create-note"
+					},
+					{
+						"description": "Retrieve a note for an offense.",
+						"name": "qradar-get-note"
+					},
+					{
+						"description": "Uploads indicators from Demisto to Qradar.",
+						"name": "qradar-upload-indicators"
+					},
+					{
+						"description": "Add or update a value in a reference set.",
+						"name": "qradar-create-reference-set-value"
+					},
+					{
+						"description": "Gets offenses from QRadar.",
+						"name": "qradar-offenses"
+					},
+					{
+						"description": "Retrieves a list of event regex properties.",
+						"name": "qradar-get-custom-properties"
+					},
+					{
+						"description": "Searches in QRadar using AQL. It is highly recommended to use the playbook 'QRadarFullSearch' instead of this command - it will execute the search, and will return the result.",
+						"name": "qradar-searches"
+					},
+					{
+						"description": "Retrieve all Domains.",
+						"name": "qradar-get-domains"
+					},
+					{
+						"description": "Get closing reasons.",
+						"name": "qradar-get-closing-reasons"
+					},
+					{
+						"description": "Update an offense.",
+						"name": "qradar-update-offense"
+					},
+					{
+						"description": "Deletes a reference set corresponding to the name provided.",
+						"name": "qradar-delete-reference-set"
+					},
+					{
+						"description": "Gets a specific search id and status.",
+						"name": "qradar-get-search"
+					},
+					{
+						"description": "Retrieves the asset by id.",
+						"name": "qradar-get-asset-by-id"
+					},
+					{
+						"description": "Adds or updates a value in a reference set.",
+						"name": "qradar-update-reference-set-value"
+					}
+				],
+				"description": "Deprecated. Use the IBM QRadar v3 integration instead. Fetch offenses from QRadar using Cortex XSOAR. Supports API versions until 10.0. You can fetch the offenses with their related events and assets by creating a comma-separated list of event fields.",
+				"id": "QRadar_v2",
+				"name": "IBM QRadar v2 (Deprecated)"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "Qradar Generic"
+			}
+		],
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook queries indicators based on a pre-defined query or results from a parent playbook, and adds the resulting indicators to a QRadar Reference Set. The Reference Set name must be defined in the playbook inputs.",
+				"name": "TIM - QRadar Add Bad Hash Indicators"
+			},
+			{
+				"description": "Deprecated. Use the \"QRadar Indicator Hunting V2\" playbook instead.",
+				"name": "QRadar Indicator Hunting"
+			},
+			{
+				"description": "Works for QRadar integration version 3, v1 and v2 are deprecated.\n\nNote: You can use the integration to fetch the events with the offense however it will fetch the events according to the specified limit defined in the instance settings. By using this playbook you can define an additional search to query a larger number of logs.\n\nDefault playbook inputs use the QRadar incident fields such as idoffense, starttime. These fields can be replaced but need to point to relevant offense ID and starttime fields. ",
+				"name": "QRadar - Get Offense Logs"
+			},
+			{
+				"description": "This playbook runs a QRadar query and return its results to the context.",
+				"name": "QRadarFullSearch"
+			},
+			{
+				"description": "The QRadar Generic playbook is executed for the QRadar Generic incident type. It performs all the common parts of the investigation, including notifying the SOC, enriching data for indicators and users, calculating severity, assigning incidents, and notifying the SIEM admin about false positives.",
+				"name": "QRadar Generic"
+			},
+			{
+				"description": "Deprecated. Use the \"QRadar - Get Offense Logs\" playbook instead.\n Run on a QRadar offense to get more information:\n\n * Get all correlations relevant to the offense\n * Get all logs relevant to the correlations (not done by default - set \"GetCorrelationLogs\" to \"True\")\n\n Inputs:\n * GetCorrelationLogs (default: False)\n * MaxLogsCount (default: 20)",
+				"name": "QRadar - Get offense correlations v2"
+			},
+			{
+				"description": "This playbook queries indicators based on a pre-defined query or results from a parent playbook, and adds the resulting indicators to a QRadar Reference Set. The Reference Set name must be defined in the playbook inputs.",
+				"name": "TIM - QRadar Add Domain Indicators"
+			},
+			{
+				"description": "This playbook is used to sort the QRadar search results to display the IP addresses, assets, and usernames that the search provided. In addition, the results allow you to differentiate between internal and external IP addresses as well as query the QRadar assets API in order to get the assets details from the IP addresses. You can provide the QRadar fields names and the organizations' IP ranges in order to properly sort the data. The end result of the playbook will be the internal and external IP addresses detected as well as the assets and users.",
+				"name": "QRadar Get Hunting Results"
+			},
+			{
+				"description": "The QRadar Build Query and Search playbook creates an AQL query for the QRadar SIEM using the QRadarCreateAQLQuery automation queries. Complex queries take into consideration several inputs and allow including or excluding each of the values as well as performing a full or partial search. Each of the values can be searched across several fields.\n\nThe playbook supports 3 separate conditions to be evaluated.\nFor example, in the first condition, inputs will evaluate several user names that may or may not exist in several fields. The second input, can for example, evaluate for IP addresses in several fields that may or may not exist in several fields, and a third value can search for an event ID that may or may not exist in several fields. The results of all of the inputs will create an AQL query that covers all of the inputs combining all of the different conditions.\n\nEach of the inputs is validated so in case the inputs are not set correctly, the user can review and run them again.\nAlso, populated inputs will be combined, meaning by populating the first and second values the resulting AQL query will be a combination of all of the values and not 3 separate searches. In addition, make sure to populate the inputs in order according to the indexed fields in QRadar (indexed fields should be provided before non indexed ones).",
+				"name": "QRadar Build Query and Search"
+			},
+			{
+				"description": "Deprecated. Use the \"QRadar - Get Offense Logs\"\\ \\ playbook instead. This playbook retrieves the correlation logs of multiple QIDs.",
+				"name": "QRadarCorrelationLog"
+			},
+			{
+				"description": "The Playbook queries QRadar SIEM for indicators such as file hashes, IP addresses, domains, or urls. ",
+				"name": "QRadar Indicator Hunting V2"
+			},
+			{
+				"description": "Deprecated. No available replacement. This playbook uses the QRadar integration to investigate an access incident by gathering user and IP information.\n\nThe playbook then interacts with the user that triggered the incident to confirm whether or not they initiated the access action.",
+				"name": "Access Investigation - QRadar"
+			},
+			{
+				"description": "This playbook queries indicators based on a pre-defined query or results from a parent playbook, and adds the resulting indicators to a QRadar Reference Set. The Reference Set name must be defined in the playbook inputs.",
+				"name": "TIM - QRadar Add Url Indicators"
+			},
+			{
+				"description": "This playbook queries indicators based on a pre-defined query or results from a parent playbook, and adds the resulting indicators to a QRadar Reference Set. The Reference Set name must be defined in the playbook inputs.",
+				"name": "TIM - QRadar Add IP Indicators"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-07-26T10:34:45Z",
+	"currentVersion": "2.4.41",
+	"definitionId": "",
+	"dependencies": {
+		"AccessInvestigation": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.2.5",
+			"name": "Access Investigation"
+		},
+		"Asset": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.6",
+			"name": "Asset"
+		},
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.45",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.4.24",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.12.44",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.3.91",
+			"name": "Common Types"
+		},
+		"CortexXDR": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "6.0.2",
+			"name": "Cortex XDR by Palo Alto Networks"
+		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.37",
+			"name": "Filters And Transformers"
+		}
+	},
+	"deprecated": false,
+	"description": "Fetch offenses as incidents and search QRadar",
+	"downloads": 26140,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "QRadar",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/QRadar/QRadar_image.png",
+			"name": "IBM QRadar (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/QRadar/QRadar_v2_image.png",
+			"name": "IBM QRadar v2 (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/QRadar/QRadarv3_image.png",
+			"name": "IBM QRadar v3"
+		},
+		{
+			"imagePath": "content/packs/CortexXDR/CortexXDR-IOC_image.png",
+			"name": "Cortex XDR - IOC"
+		},
+		{
+			"imagePath": "content/packs/CortexXDR/CortexXDR-XQLQueryEngine_image.png",
+			"name": "Cortex XDR - XQL Query Engine"
+		},
+		{
+			"imagePath": "content/packs/CortexXDR/CortexXDR-IR_image.png",
+			"name": "Palo Alto Networks Cortex XDR - Investigation and Response"
+		}
+	],
+	"itemVersion": "2.4.41",
+	"keywords": [],
+	"legacy": true,
+	"modules": [],
+	"name": "IBM QRadar",
+	"packID": "QRadar",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "QRadar aggregates and parses logs that come in from various data sources. The QRadar admin creates rules for detecting suspicious traffic, suspicious IDs, etc., and runs searches to obtain additional data about these offences.\n\n## What does this pack do?\nThe integration in this pack automatically fetches the offences from QRadar along with all the additional data about the offenses. The data from QRadar is populated into XSOAR incident fields providing the XSOAR analyst with all the information about the incident just by performing a fetch. \n\nUsing the commands in the integration, you can leverage what the QRadar API has to offer, such as:\n- Editing objects\n- Getting object lists\n- Adding notes\nBasically, you can perform tasks that a user would need to do manually in the QRadar UI or would need to provide automations to do.\n\n_For more information, visit our [Cortex XSOAR Developer Docs](https://xsoar.pan.dev/docs/reference/packs/QRadar)._\n\n_If you're new to our QRadar Content Pack, check out our [Ingest Incidents from a SIEM Using QRadar](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.x/Cortex-XSOAR-Tutorials-6.x/Ingest-Incidents-from-a-SIEM-Using-Splunk) tutorial._\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"TIM"
+	],
+	"toServerVersion": "",
+	"updated": "2023-11-19T10:24:18Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6932727",
+	"videos": []
+}
