@@ -1,0 +1,104 @@
+{
+	"author": "Nicholas Ericksen",
+	"authorImage": "",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "Read the provided JSON and return the results to the Context and Warroom.  Can use key and value arg to change a JSON values if desired.",
+						"name": "json-sample-incident-generator-command"
+					}
+				],
+				"description": "A utility for testing incident fetching with mock JSON data.",
+				"id": "JSONSampleIncidentGenerator",
+				"name": "JSON Sample Incident Generator (Community Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2021-04-25T22:48:52Z",
+	"currentVersion": "1.0.6",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.33",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "A utility for testing incident fetching with mock JSON data.",
+	"downloads": 1146,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "6.0.0",
+	"general": [
+		"generalFieldFree"
+	],
+	"id": "JSONSampleIncidentGenerator",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/JSONSampleIncidentGenerator/JSONSampleIncidentGenerator_image.png",
+			"name": "JSON Sample Incident Generator"
+		}
+	],
+	"itemVersion": "1.0.6",
+	"keywords": [],
+	"legacy": true,
+	"modules": [],
+	"name": "JSON Sample Incident Generator",
+	"packID": "JSONSampleIncidentGenerator",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Fetching incidents can be challenging when testing and building playbooks as the required integration is normally connected to a live system and an incident must be generated in the 3rd party system to simulate an fetching event.\nThis can be challenging or impossible depending upon the integration and test environment.\n\nJSONSampler is intended to assist with mocking the fetching of incidents for testing and development purposes.\nBy providing a JSON string as input to the integration, events can be fetched at a scheduled interval.\nThese simulated incidents can go through the complete incident lifecycle of classification, mapping, preprocessing, playbook processing and incident closure.\n\nInstances of the JSONSampler integration can also be configured in test environments to perform load testing by setting the fetch time to mimic the frequency of events expected in a production environment.\nIn this way, the load can be tested and validated before releasing a use case to production.\n",
+	"searchRank": 0,
+	"serverMaxVersion": "",
+	"serverMinVersion": "6.0.0",
+	"support": "community",
+	"supportDetails": {
+		"email": "",
+		"url": "https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-09-06T19:23:58Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6319909",
+	"videos": []
+}
