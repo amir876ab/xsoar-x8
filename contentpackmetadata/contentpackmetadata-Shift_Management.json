@@ -1,0 +1,362 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"automation",
+		"incidentfield",
+		"incidenttype",
+		"dashboard",
+		"playbook",
+		"layoutscontainer",
+		"widget"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Randomly assigns the active incidents to on call analysts (requires shift management).\nThis automation works with the other out-of-office automations to ensure only available analysts are assigned to the active incidents.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.10/Cortex-XSOAR-Administrator-Guide/Automations",
+				"name": "AssignToNextShiftOOO",
+				"tags": [
+					"Shift Management",
+					"ooo"
+				]
+			},
+			{
+				"description": "Retrieves the time left until the next shift begins.",
+				"name": "TimeToNextShift",
+				"tags": [
+					"Shift Management",
+					"widget"
+				]
+			},
+			{
+				"description": "Adds or removes an analyst from the out-of-office list in XSOAR. When used with the AssignAnalystToIncidentOOO automation, prevents incidents from being assigned to an analyst who is out of office.",
+				"name": "ManageOOOusers",
+				"tags": [
+					"ooo",
+					"Shift Management"
+				]
+			},
+			{
+				"description": "Assigns analysts who are not out of the office to the shift handover incident.\nUse the ManageOOOusers automation to add or remove analysts from the out-of-office list.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.10/Cortex-XSOAR-Administrator-Guide/Automations",
+				"name": "AssignAnalystToIncidentOOO",
+				"tags": [
+					"Shift Management",
+					"ooo"
+				]
+			},
+			{
+				"description": "Retrieves the number of on call hours per user.",
+				"name": "GetOnCallHoursPerUser",
+				"tags": [
+					"Shift Management",
+					"widget"
+				]
+			},
+			{
+				"description": "Creates a channel in Slack v2 or in Microsoft Teams. If both Slack v2 and Microsoft Teams are available, it creates the channel in both Slack v2 and Microsoft Teams.",
+				"name": "CreateChannelWrapper",
+				"tags": [
+					"Shift Management",
+					"ooo"
+				]
+			},
+			{
+				"description": "Retrieves users who are currently out of the office. The script use the OutOfOfficeListCleanup script to remove users from the out-of-office list whose 'off until day' is in the past.",
+				"name": "GetUsersOOO",
+				"tags": [
+					"Shift Management",
+					"widget"
+				]
+			},
+			{
+				"description": "Retrieves the roles that are available per shift.",
+				"name": "GetRolesPerShift",
+				"tags": [
+					"Shift Management",
+					"widget"
+				]
+			},
+			{
+				"description": "Retrieves the number of users who are currently on call.",
+				"name": "GetNumberOfUsersOnCall",
+				"tags": [
+					"Shift Management",
+					"widget"
+				]
+			},
+			{
+				"description": "Returns a list of all the users marked as away in Cortex XSOAR.",
+				"name": "GetAwayUsers",
+				"tags": [
+					"Shift Management",
+					"widget"
+				]
+			},
+			{
+				"description": "Retrieves users who are currently on call.",
+				"name": "GetUsersOnCall",
+				"tags": [
+					"Shift Management",
+					"widget"
+				]
+			},
+			{
+				"description": "Removes any users from the out-of-office list whose 'off until day' is in the past.",
+				"name": "OutOfOfficeListCleanup",
+				"tags": [
+					"ooo",
+					"Shift Management"
+				]
+			},
+			{
+				"description": "Retrieves the number of on-call hours per user.",
+				"name": "GetShiftsPerUser",
+				"tags": [
+					"Shift Management",
+					"widget"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": [
+			{
+				"name": "Shift Management "
+			}
+		],
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "To start the meeting",
+				"type": "markdown"
+			},
+			{
+				"description": "",
+				"name": "Out off the office",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Shift open incidents",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Shift manager briefing ",
+				"type": "longText"
+			},
+			{
+				"description": "",
+				"name": "To join the meeting",
+				"type": "markdown"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Shift handover",
+				"playbook": "Shift handover",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": null,
+		"layoutscontainer": [
+			{
+				"description": "SOC shift change layout is part of shift management pack, this layout is managing the SOC shift change. ",
+				"name": "Shift handover"
+			}
+		],
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook is used to set up shift handover meetings with all the accompanying processes such as creating an online meeting, creating a notification in a integrated chat app (for example Slack), creating a SOC manager briefing, and creating a display of the active incidents, team members who are on-call, and team members who are out of the office.\nBy modifying the playbook inputs you can decide whether to activate the Assign Active Incidents to Next Shift and whether a user who is out of the office will be taken into consideration.",
+				"name": "Shift handover"
+			},
+			{
+				"description": "This playbook is used to create an online meeting for shift handover. Currently, this playbook supports Zoom.",
+				"name": "Set up a Shift handover meeting"
+			},
+			{
+				"description": "This playbook reassigns Active Incidents to the current users on call. It requires shift management to be set up.  The playbook can be run as a job a few minutes after the scheduled shift change time.\n\nYou can update the playbook input with a different search query, if required.  Will branch if there are no incidents that match the query and no users on call. \n\nCases will not be assigned to users that defined OOO (by OutOfOffice automation).",
+				"name": "Assign Active Incidents to Next Shift V2"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": [
+			{
+				"name": "Number Of Users On-Call"
+			},
+			{
+				"name": "Out of office users"
+			},
+			{
+				"name": "AwayUsers"
+			},
+			{
+				"name": "On-Call Hours Per User"
+			},
+			{
+				"name": "Shift changes in"
+			},
+			{
+				"name": "Roles Per Shift"
+			},
+			{
+				"name": "Users On-Call"
+			}
+		],
+		"wizard": null
+	},
+	"created": "2020-06-30T20:23:12Z",
+	"currentVersion": "1.3.8",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.50",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.12.51",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.3.93",
+			"name": "Common Types"
+		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.38",
+			"name": "Filters And Transformers"
+		},
+		"MicrosoftTeams": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.4.38",
+			"name": "Microsoft Teams"
+		},
+		"Slack": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.2.6",
+			"name": "Slack"
+		},
+		"Zoom": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.6.1",
+			"name": "Zoom"
+		}
+	},
+	"deprecated": false,
+	"description": "This pack's purpose is to provide a single interface for all those essential elements of Shift management and handover in one place.",
+	"downloads": 3865,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "ShiftManagement",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Slack/SlackIAM_image.png",
+			"name": "Slack IAM"
+		},
+		{
+			"imagePath": "content/packs/Slack/SlackV2_image.png",
+			"name": "Slack v2 (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/Slack/SlackV3_image.png",
+			"name": "Slack v3"
+		},
+		{
+			"imagePath": "content/packs/MicrosoftTeams/MicrosoftTeams_image.png",
+			"name": "Microsoft Teams"
+		},
+		{
+			"imagePath": "content/packs/MicrosoftTeams/MicrosoftTeamsManagement_image.png",
+			"name": "Microsoft Teams Management"
+		},
+		{
+			"imagePath": "content/packs/MicrosoftTeams/MicrosoftTeamsviaWebhook_image.png",
+			"name": "Microsoft Teams via Webhook"
+		},
+		{
+			"imagePath": "content/packs/Zoom/Zoom_image.png",
+			"name": "Zoom"
+		},
+		{
+			"imagePath": "content/packs/Zoom/Zoom_IAM_image.png",
+			"name": "Zoom_IAM"
+		}
+	],
+	"itemVersion": "1.3.8",
+	"keywords": [
+		"Shift management",
+		"Handover",
+		"Assign",
+		"Reassign"
+	],
+	"legacy": true,
+	"modules": [],
+	"name": "Shift Management",
+	"packID": "ShiftManagement",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Shift management and shift handover are crucial processes of SOC team management.\nThis pack's purpose is provide a single interface for all those essential elements in one place in order to prevent loss of data in the shift handover process. \n\n### What does this pack do?\n\n- Automatically reassign active incidents to the next shift\n- Setting up online meeting\n- Sending notification on relevant messaging apps.\n- Providing SOC manager briefing for the team.\n- Managing out of the office users.\n\nFor more information, visit our [Cortex XSOAR Developer Docs](https://xsoar.pan.dev/docs/reference/packs/Shift_management)\n\n![Shift_management_layout](https://storage.googleapis.com/marketplace-dist/content/packs/ShiftManagement/readme_images/layout.PNG)",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Core",
+		"Getting Started"
+	],
+	"toServerVersion": "",
+	"updated": "2023-11-28T20:23:01Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "7012606",
+	"videos": []
+}
