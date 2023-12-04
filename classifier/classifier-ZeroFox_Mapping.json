@@ -1,0 +1,215 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "6.8.0",
+	"id": "ZeroFox Mapping",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.2.2",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"dbot_classification_incident_type_all": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"Additional Data": {
+					"simple": "metadata"
+				},
+				"Alert Category": {
+					"simple": "alert_type"
+				},
+				"Alert ID": {
+					"simple": "id"
+				},
+				"Alert Source": {
+					"simple": "network"
+				},
+				"Event Type": {
+					"simple": "alert_type"
+				},
+				"External Status": {
+					"simple": "status"
+				},
+				"Rule Name": {
+					"complex": {
+						"filters": [],
+						"root": "rule_name",
+						"transformers": []
+					}
+				},
+				"Tags": {
+					"complex": {
+						"filters": [],
+						"root": "tags",
+						"transformers": [
+							{
+								"args": {
+									"separator": {
+										"isContext": false,
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "join"
+							}
+						]
+					}
+				},
+				"Threat Name": {
+					"simple": "rule_name"
+				},
+				"URLs": {
+					"simple": "offending_content_url"
+				},
+				"dbotMirrorDirection": {
+					"simple": "mirror_direction"
+				},
+				"dbotMirrorId": {
+					"simple": "id"
+				},
+				"dbotMirrorInstance": {
+					"simple": "mirror_instance"
+				},
+				"details": {
+					"simple": "notes"
+				},
+				"occurred": {
+					"complex": {
+						"filters": [],
+						"root": "timestamp",
+						"transformers": []
+					}
+				},
+				"severity": {
+					"complex": {
+						"filters": [],
+						"root": "severity",
+						"transformers": [
+							{
+								"args": {
+									"limit": {
+										"isContext": false
+									},
+									"replaceWith": {
+										"isContext": false,
+										"value": {
+											"simple": "informational"
+										}
+									},
+									"toReplace": {
+										"isContext": false,
+										"value": {
+											"simple": "1"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {
+										"isContext": false
+									},
+									"replaceWith": {
+										"isContext": false,
+										"value": {
+											"simple": "low"
+										}
+									},
+									"toReplace": {
+										"isContext": false,
+										"value": {
+											"simple": "2"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {
+										"isContext": false
+									},
+									"replaceWith": {
+										"isContext": false,
+										"value": {
+											"simple": "medium"
+										}
+									},
+									"toReplace": {
+										"isContext": false,
+										"value": {
+											"simple": "3"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {
+										"isContext": false
+									},
+									"replaceWith": {
+										"isContext": false,
+										"value": {
+											"simple": "high"
+										}
+									},
+									"toReplace": {
+										"isContext": false,
+										"value": {
+											"simple": "4"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {
+										"isContext": false
+									},
+									"replaceWith": {
+										"isContext": false,
+										"value": {
+											"simple": "critical"
+										}
+									},
+									"toReplace": {
+										"isContext": false,
+										"value": {
+											"simple": "5"
+										}
+									}
+								},
+								"operator": "replace"
+							}
+						]
+					}
+				}
+			}
+		}
+	},
+	"name": "ZeroFox Mapping",
+	"nameRaw": "ZeroFox Mapping",
+	"packID": "ZeroFox",
+	"packName": "ZeroFox",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
