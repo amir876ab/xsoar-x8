@@ -1,0 +1,36 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Classifies Gmail phishing email messages.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Gmail",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.3.14",
+	"keyTypeMap": {
+		"Gmail": "Phishing"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Gmail - Classifier",
+	"nameRaw": "Gmail - Classifier",
+	"packID": "Gmail",
+	"packName": "Gmail",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "Type"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
