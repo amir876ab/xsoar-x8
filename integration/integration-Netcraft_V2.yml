@@ -1,0 +1,2839 @@
+category: Utilities
+commonfields:
+  id: Netcraft V2
+  version: -1
+configuration:
+- additionalinfo: The URL to use for the Takedown Service.
+  defaultvalue: https://takedown.netcraft.com
+  display: Takedown Server URL
+  name: takedown_url
+  required: true
+  section: Connect
+  type: 0
+- additionalinfo: The URL to use for the Submission Service.
+  defaultvalue: https://report.netcraft.com
+  display: Submission Server URL
+  name: submission_url
+  required: true
+  section: Connect
+  type: 0
+- additionalinfo: The API key associated with the Netcraft account.
+  display: ""
+  displaypassword: API Key
+  hiddenusername: true
+  name: credentials
+  required: true
+  section: Connect
+  type: 9
+- additionalinfo: The default region to use with the takedown Service.
+  display: Region
+  name: region
+  required: true
+  section: Connect
+  type: 0
+- advanced: true
+  display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  section: Connect
+  type: 8
+- defaultvalue: Netcraft Attack
+  display: Incident type
+  name: incidentType
+  required: false
+  section: Collect
+  type: 13
+- defaultvalue: "10"
+  display: Maximum number of incidents per fetch
+  name: max_fetch
+  required: false
+  section: Collect
+  type: 0
+- defaultvalue: 3 days
+  display: First fetch time
+  name: first_fetch
+  required: true
+  section: Collect
+  type: 0
+- advanced: true
+  defaultvalue: "1"
+  display: Incidents Fetch Interval
+  name: incidentFetchInterval
+  required: false
+  section: Collect
+  type: 19
+- advanced: true
+  display: Use system proxy settings
+  name: proxy
+  required: false
+  section: Connect
+  type: 8
+- display: Fetch incidents
+  name: isFetch
+  required: false
+  section: Collect
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.10.0
+    itemVersion: 1.0.0
+    packID: Netcraft_V2
+    packName: Netcraft
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+defaultmapperin: Netcraft Incoming Mapper
+description: Netcraft takedown, submission and screenshot management.
+detaileddescription: |-
+  ## Netcraft
+
+  Netcraft takedown, submission and screenshot management.
+
+  To generate an API key, login to Netcraft and go to the [Netcraft Client Portal](https://account.netcraft.com/security)
+
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/netcraft-v2)
+display: Netcraft
+image: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAAyCAYAAACXpx/YAAAMh0lEQVR4nO2afZRV1XXAf/uce98wAxSQDw0qWVaQFGljRRuF+ZBhVDAIzLgeSyEmTRoTE6OpyzTWmoCY2KQuXdasrDZV2+UnGkY+jLNWZYzofPAxxqkVARMtsVEJXSigwMxj5t5zdv+4b968YT4YLTVZ7f2t9dZ6887Z5+x99jn77LvvQEpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKyv9T5HetQMqHQpi95A/JZE7B6W9pqX/zeALBx6FVygmgavE5YFfhqUQYCfE9wM3HExvUwdk1a+w+JpaWjspFz1x2WddwdNAdMzL7IBOPK/WnntreOXztU4aksm4aqk9h7RTwYCwQlw5HdFAHvxuffp4RfTA6Uuarn9j2S4+774Ur52wcarADNvrmyFK5pqvjA7//jbP24d0jJx0e+6Cc1x59SJP+d6laPBZvL8VIiLpOOt5+mvbfMx37oDdgwym4GECJo02Iby00z75yMmFUDYB3+2jZ8CygMFSIFj/KGPspjMFYM4OIxXNXb/67CcGeFfVLl7oB1UBPKSmx05wDY5guYiv26wfn644Z35CZu7pPnMH/Q1wwBeNXE2QM3f597MRPAr+fDp6RzaDuM6gHYyB2jdh3F9LcFBf6hNG52OARRKBbf0E2+xz19Q7ADDW2eu81jvHdXYhgbabkb/bHk78/qIDgokiJYqWrO/mEGXPNwZJ4wYmy94Qg/nQQJY5A6ODI6KO/a5UGZcopApQm51EA/o2mIucCeD8V78DFINrZ41wY4gRbL6KigiSJtnoPGiNBePNFq1sPvrCs/M7j6aYKgYXuSCuBpwbtODc7C8cUAsB1vwnv78CPn4fIPNSPReQ3WG3g+fWvDCg/I5vhpLgaoQZkMqJdqNmJmI0017/aO8+i6figGq83IGLzv5Yy0V9BVV0O53fRuuH1Qv9Zs0LKplQg1KB8EsGDvIHTRjav39ZHh6rsOShnJDb4t2la+xKVddNA/hR1pZhwLU31R5K+dZ9CuQz0j1EpQTiA0Ea3bmTr+n0AzJ9fQq50Lkf3jkcYA5oEXZHpzK1dhOfXRD4gDGrw/iZUSTaATKTyijoMjsi8POhjUvXqlosRuxERSYQTxBhAYu+irz+/rPz+Ypn3fjn1zrIy+1edOV/4rXSEkDvq/mHC9N3XDTYXlXWrseFVoODiBlQPYcwyjMnfJIB3R0BvpXn9j/rIli+agQnvRagh0S35XRW8P4Lq/YyZ8B0a7uuksu52gvC7uJhimxCTJC4++i5N65IIdWHtTDJyNyqXYEzvA6UC6iKUNXh7I6317+Zt+Bds+EVQ8PF6vLyM6E1YO4Y4PooPprN5xjtUvHozIt/GmLE9h6fgPO93g7ue5g3/SvXlJxMHr2GCcfiiG1EETABx972I/AFB+MUB7QFwfGmIEB3AAM/J6j1AYGzwo+on2rKDyxcjepwODvVJiEEvxQbLEAGvJAvmQGQUyF1U1FUWpMqXnIXYpzCmBgScU1y8DxcfRhWEUQTBjXzw7j1FuvQ3SyT5qE9OdVXtTDLmZ4i9pNDHa68+KiE2WI64x6nKjupng+pFiN6OmDHJqUMJ6KZy+7VY+7cIY/Ob+RAu2kMc++SOlTNR8zBV2akEIyKQINkEA+iLGBQ7qC0iIN4M6mAVEZGBmzVZ8BGg99c8tvnS3hYv1grHfkCHvOv7KmhDnHuN2N2Axn+Bcw0gyQ41NgT9HADZrEXMD7HhVNSD9ztQPx+xn0bcn6B+JardyeYwX6KirhLnG4miVahv6D09HMb5O3DR7QjPUfWFEaj8PWLPSE6OgnPr8Po11F2Hd40IyaYLM/Pw7voBjBiXRB+Xw7tdwMto90RUbk2igQHvHkSiWUSci5FL8fpO/k6bgI8/x/5xh4FVOPcD0H3Qswm1FRetQvRpjK/HRavw+ouCU73/Dd7dhsYr8PpSQFVVQNek8FgV446DYThyzFETZkaoi3tObq+TnUNsMMbDwzWPb7mxI9KfH3XXRiNd1z4Xa2H14uT7oeE5V8D79zG6lKb1OwC4IPs4oWvCmPNBQZgOwF5/NkY/izpQDqOynNYN24tGu52K2qlYezVKgIuXs3nDV4FWKmq/jLELwYP6Q7TYlZBPTCpqqzGmGh/3OOIOWtZ/pzDq/Pn/TGfpTxF7MS56Bdjb3w4Dzrci5gY6un5FWKrwQSnhqB/g41k4JvHBkW+w/dmOvMTPqajbiphs/p49m/b7IuBuZn0lZOS+y5FgUrI+cRPN624rmq2BytrxiD0/f5+9SfO6VT2NAfH4BYTximMXeutPH369/OqvXYRyIcIKscE4dX2TN3UxYuwkjzxWNrJkz7de+/49j//Zdefuj0oKJ7YrVhnp48PDcG9PWNnOC+t3FiLPtvoclXUvInI+qqBSmu97IcZmCmHTcAuVdUUKKigz8T4/Luf0zkOmeFZmd5WxhcP5v+YiRhLnu7fIaFF4B555pos5C2+gJJzAeH2lOGMt2KD+ECrX0bK2eMPlgB8DMHvRZMaMPJuqK85E3TSUP0L0ErxLcgHVkoLUuINldPcJpf0OI32TZUs2a3v0CrAyETHn9eluDXEul3vh85VtQFv1mq078X6N2GBsPycn4Robhqf+V8dklSnv7BlAgQ+ByXHbSoFVRZmdDFBJc5OQEIhBZDQ2vLJfxuCVwvOjd+OZNSs8fkFDTs3PCZ7dlH/6IM9t6Ntlc8NbwFsDiwuo/09a173ar23ekvFEZiXCYpApGEtig9IvUTpBBKj63lQ1jwdEXM9O2LT0wmerV2++BuEhMabs2HCNahKyNToBGuqxbgJV6ec8kc4kkRLw+h6+ew1yjCGqMSIR3pegspf29gELNH3xndDzBMVo2tpCYFil2iITDnHsol6QLaXbPUoQzE+SMX8UjdtQfg28AXoJxl70oeYZBkGyeMd/qbRp2Zwnqx9rHUsQ/qMYE/RzMpDsjI8DFWTpTtSTJB/qieM72PKz3/bpdkH2VDLxLKR7C80N7/WKF20XxeBLesOSSDtAPrTPpKPsM0Bzn3GrFi9Bwi/gfANEm2h5+rhvdQjiKoyZj3eg2gX8OSfbJwshvqJ25nD8MDB9DoUUXxsGdNgluk3Lyx9QF/91IaPrMweIyMfj4ezSkFxmC6pJUULMJGzwALOXnFnoU5OdQiZ+CBM8BSX/QUXtXxaN0IVAPgKMI+MXUFH7CWYvGo0NGvFuL2JAzAiE+ymvq6Fq8VjKPzuOyisWoPZexCwhDB+AoKeyN3T0EnsavVdpJ7gtvc69/AzEVCYb9iOgJokwSbFjGnOWlFN9+cksXFhmsLoDpXO4r4Y3LZtzt3fxHSYI+zlZ1Jz4S2Qg3sby4mOHEPkeqkmVwJgFWNlMRd3TVNQ9RZfbjNh5+WTLomZrkaav45zP21wC/gnEbCcIrmFT/R7U3570UxA5C9GNqG1DMm2oNiAyBe8gjnKI+UnPoEPqrPEbeOfzWfI4MD+hsvbzVNbdhIQNGHPaR7+DXZLMJRv2ZIw8Sxy+zKHMEkPTOdsx+uPC81mvnoMq7H/VfZuLjt4tYtSEmZ4sFfeRQ7SEGJvPIPtkuD0EhfbiDLhp7aOo/zbQiQhYezKBXUhgF2HtaZhCRnstrWvbCnKdE7YCa7A2ScCMDQnCCcBoAFo2/BM+vgXI5atcBmPOwtppGGPyJ/EQwtdpXtuSH3VoG+zBzaCrsRYQsMFlmOAhgvAukBm4+KVE3gCMgpXFmXNJYeyBystRZj3ObcMGYASsHYGxn0ApNbDKw4Fb8f6bqO4A7QTNoQxagG9aNTd+/qrybxG7q33c3aaqHep9l8jww30fRNtxcSPONQJb+rWr7sTFjXjXiNLM6fQmSy3r78JzMT5+BO9341wnLs7h3W68exjVGlqefKzPeO33RZSUfZk4vgWvzXi/Cxe3IbqzZ0ZaNvwQpxfj3aOo3433nXiXS767h1BfQ9O6B4t0/PeCDSKtHEtTU0xH9FV8tAL8q7i4A+8O4+IXQZdjuB7Vjcka6KtUvZA4WN6PgU34eCMubgTZ1W/sbfUHMLYWH92J1214vwvvWjGyu+8prcmO4agbTxgKXblcv6RlAC5Ys6W01GUmE9gRoeb2Ni6dfeB4MoNQXO0dqn3wPuXZidijY9BQ8Pb9Qp14KGZ9JaR0zyhy0kV7w8D/pFB11QQ4MhYNBSk5SNPj7w3Ybzg6QrLOXZyE6VaOuH1F8w4mP7xxIcnWg84RjHKdPPPMh8v+U1JSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJS/i/x37d6lYRKWCLYAAAAAElFTkSuQmCC
+name: Netcraft V2
+script:
+  commands:
+  - arguments:
+    - description: The digital location of the attack to take down, e.g., a phishing
+        URL, or a fraudulent email address.
+      name: attack
+      required: true
+    - description: The reason for the report, such as a description of the attack.
+      name: comment
+      required: true
+    - description: The brand to report the takedown under. If no brand is specified,
+        the brand of the provided "region" will be used.
+      name: brand
+    - defaultValue: phishing_url
+      description: |
+        The type of attack being reported.
+        Run the command "netcraft-attack-type-list" to get the list of available types, use the "Name" field of the type for this argument.
+      name: attack_type
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: |
+        Set to "true" if the attack is not currently active.
+        This will place the takedown directly into the "Inactive (Monitoring)" status, which can be used to monitor suspicious sites.
+      name: inactive
+      predefined:
+      - "true"
+      - "false"
+    - auto: PREDEFINED
+      defaultValue: "true"
+      description: |
+        If set to true, Netcraft will be authorized to start the takedown as soon as the report has been processed.
+        If set to false, the takedown will only be authorized if you have automatic authorization enabled for the given attack type, or if the takedown is manually authorized later through the web interface.
+      name: force_auth
+      predefined:
+      - "true"
+      - "false"
+    - auto: PREDEFINED
+      description: |
+        Should be set to true if the reported content contains or is related to a computer virus.
+        This is used to determine the correct attack type in the case where the attack_type argument has not been provided.
+      name: malware
+      predefined:
+      - "true"
+      - "false"
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: |
+        Should be set to true if you believe that the domain name has been registered as part of the fraud.
+        This will ensure that the registrar is contacted to seek suspension of the domain name.
+      name: suspected_fraud_domain
+      predefined:
+      - "true"
+      - "false"
+    - description: The password to extract any archived evidence provided via the
+        evidence argument, if necessary.
+      name: password
+    - description: Entry ID of the evidence file uploaded to Cortex XSOAR. If a password
+        is needed for the file, it can be provided with the "password" argument.
+      name: entry_id
+    - description: |
+        The URL where the phishkit archive was found.
+        This parameter is required for attacks of type "phishkit_email".
+      name: phishkit_fetch_url
+    - description: |
+        The URL of the phishing attack which uses the referenced phishkit.
+        This parameter is required for attacks of type "phishkit_email" and/or "phishkit_archive".
+      name: phishkit_phish_url
+    - description: A free-text field which can be used to keep track of particular
+        attacks.
+      name: customer_label
+    - description: A comma-separated list of tags to apply to the attack.
+      isArray: true
+      name: tags
+    - description: |
+        The name of the region to create a takedown under.
+        If not provided, the region specified in the instance configuration will be used.
+      name: region
+    description: |
+      Report a new attack or authorize an existing attack in the Takedown Service.
+      If a takedown for the attack already exists in the Netcraft system it will be authorized, otherwise, a new takedown will be added and authorized.
+    name: netcraft-attack-report
+    outputs:
+    - contextPath: Netcraft.Takedown.id
+      description: The ID of the takedown. (This key will only appear if the takedown
+        has been created and verified).
+      type: String
+  - arguments:
+    - description: Filter to the takedown with the specified ID.
+      name: id
+    - auto: PREDEFINED
+      description: |
+        Filter to takedowns that are currently in the given status. Multiple values may be provided as a comma-separated list.
+        Possible values: "inactive_monitoring", "verified", "contacted_hosting", "contacted_police", "contacted_upstream", "resolved_monitoring", "resolved", "stale".
+      isArray: true
+      name: statuses
+      predefined:
+      - unverified
+      - inactive_monitoring
+      - verified
+      - contacted_hosting
+      - contacted_police
+      - contacted_upstream
+      - resolved_monitoring
+      - resolved
+      - stale
+      - invalid
+    - description: Filter by URL, email, hostname, domain or IP.
+      name: url
+    - auto: PREDEFINED
+      description: Whether to filter to takedowns which have been incorrectly marked
+        as malicious.
+      name: false_positive
+      predefined:
+      - "true"
+      - "false"
+    - description: Filter to attacks that are hosted on the given IPv4 address, or
+        within the given IPv4 CIDR range. Note that partial IP addresses will not
+        be matched.
+      name: ip
+    - description: Filter to takedowns that were submitted before the specified takedown
+        ID.
+      name: id_before
+    - description: |
+        Filter to takedowns that were submitted after the specified takedown
+        ID. When using this argument we recommend that you also set the "sort" argument
+        to Id to ensure that no results are missed.
+      name: id_after
+    - description: |
+        Filter to takedowns that were submitted on or after the date/time
+        provided. Values should be supplied as "YYYY-MM-DD HH:MM:SS" in UTC format. If no time
+        information is provided, the system will default to YYYY-MM-DD 00:00:00. Relative
+        date/time formats are also supported, for example "5 days ago"",\_and "monday
+        this week".
+      name: date_from
+    - description: |
+        Filter to takedowns that were submitted on or before the date/time
+        provided. Values should be supplied as "YYYY-MM-DD HH:MM:SS" in UTC format. If no time
+        information is provided, the system will default to "YYYY-MM-DD 00:00:00". Relative
+        date/time formats are also supported, for example "5 days ago", and "monday this week".
+      name: date_to
+    - description: Filter to takedowns that were reported by the given user.
+      name: reporter_email
+    - auto: PREDEFINED
+      description: Filter to takedowns that were reported through the given mechanism.
+      name: report_source
+      predefined:
+      - Interface
+      - Phishing Feed
+      - Referer
+      - Forensic
+      - Api
+      - Email Feed
+      - Fraud Detection
+    - description: |
+        Filter to takedowns of the given attack type. Multiple values may be provided as a comma-separated list.
+        Run the command "netcraft-attack-type-list" to get the list of available types, use the "Name" field of the type for this argument.
+      isArray: true
+      name: attack_types
+    - auto: PREDEFINED
+      description: Filter based on whether and by who the takedown has been authorized.
+      name: auth_given
+      predefined:
+      - "Yes"
+      - Yes Customer
+      - Yes Netcraft
+      - "No"
+    - auto: PREDEFINED
+      description: Filter based on whether and by who the takedown has been escalated.
+      name: escalated
+      predefined:
+      - "Yes"
+      - Yes Customer
+      - Yes Netcraft
+      - "No"
+    - auto: PREDEFINED
+      defaultValue: Status
+      description: The key that the list of takedowns should be sorted by.
+      name: sort
+      predefined:
+      - Auth Given
+      - Customer Label
+      - Date Submitted
+      - Hoster
+      - Id
+      - Ip
+      - Language
+      - Last Updated
+      - Registrar
+      - Status
+    - auto: PREDEFINED
+      defaultValue: asc
+      description: The direction to sort takedowns in with the key specified in the
+        "sort" argument.
+      name: sort_direction
+      predefined:
+      - asc
+      - desc
+    - defaultValue: "50"
+      description: The maximum number of takedowns to return. The max value is 100,000.
+      name: limit
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: |
+        Whether to retrieve all takedowns that match the filters.
+        If true, the "limit" argument will be ignored. The maximum takedowns returned in one call is 100,000.
+      name: all_results
+      predefined:
+      - "false"
+      - "true"
+    - description: |
+        The name of the region for which to list takedowns.
+        If not provided, the region specified in the instance configuration will be used.
+      name: region
+    description: |
+      Get a list of takedown objects.
+      Netcraft has a limit of 1,000,000 objects returned within a 24 hour period (moving time window) per email address.
+    name: netcraft-takedown-list
+    outputs:
+    - contextPath: Netcraft.Takedown.id
+      description: The ID of the takedown.
+      type: String
+    - contextPath: Netcraft.Takedown.group_id
+      description: The ID of the group that the takedown belongs to. Can potentially
+        be the same ID, or empty if there is no group.
+      type: String
+    - contextPath: Netcraft.Takedown.attack_url
+      description: The location of the attack being taken down. This field contains
+        a canonicalized value. See the reported_url field for the exact location that
+        was reported to takedown.
+      type: String
+    - contextPath: Netcraft.Takedown.reported_url
+      description: The location of the attack as reported to takedown. See the attack_url
+        field for the formatted location of the attack being taken down.
+      type: String
+    - contextPath: Netcraft.Takedown.ip
+      description: The IPv4 address of the attack.
+      type: String
+    - contextPath: Netcraft.Takedown.country_code
+      description: ISO country code of the advertised hosting location.
+      type: String
+    - contextPath: Netcraft.Takedown.date_submitted
+      description: The date and time that the takedown was reported, in UTC format.
+      type: Date
+    - contextPath: Netcraft.Takedown.last_updated
+      description: The date and time of the last action taken on the takedown, in
+        UTC format.
+      type: Date
+    - contextPath: Netcraft.Takedown.region
+      description: The name of the area that the takedown resides in.
+      type: String
+    - contextPath: Netcraft.Takedown.target_brand
+      description: The name of the brand being targeted by the attack.
+      type: String
+    - contextPath: Netcraft.Takedown.authgiven
+      description: Indicates whether the takedown has been authorized.
+      type: Boolean
+    - contextPath: Netcraft.Takedown.host
+      description: The name of the company responsible for the IP address.
+      type: String
+    - contextPath: Netcraft.Takedown.registrar
+      description: The name of the registrar responsible for the domain name used
+        in the attack.
+      type: String
+    - contextPath: Netcraft.Takedown.customer_label
+      description: A custom field which may be provided along with the takedown report.
+      type: String
+    - contextPath: Netcraft.Takedown.date_authed
+      description: The date and time that the takedown was authorized, in UTC.
+      type: Date
+    - contextPath: Netcraft.Takedown.stop_monitoring_date
+      description: |
+        The date and time that the takedown system stopped monitoring the attack, in UTC format.
+        If the attack is still being monitored, an empty string is given.
+      type: Date
+    - contextPath: Netcraft.Takedown.domain
+      description: |
+        The domain of the URL or email address being taken down.
+        This will be blank for an attack with no domain name.
+      type: String
+    - contextPath: Netcraft.Takedown.language
+      description: The language used in the attack (if it can be determined).
+      type: String
+    - contextPath: Netcraft.Takedown.date_first_actioned
+      description: |
+        The date and time of the first action taken by Netcraft
+        after the takedown was reported, in UTC format. This is calculated as the first time
+        that the takedown was moved out of the "unverified" status.
+      type: Date
+    - contextPath: Netcraft.Takedown.escalated
+      description: Indicates whether the takedown has been escalated.
+      type: Boolean
+    - contextPath: Netcraft.Takedown.first_contact
+      description: The date and time that the takedown first entered a contacted state,
+        in UTC format.
+      type: Date
+    - contextPath: Netcraft.Takedown.first_inactive
+      description: The date and time that the takedown first entered the inactive
+        (monitoring) state in UTC format.
+      type: Date
+    - contextPath: Netcraft.Takedown.is_redirect
+      description: |
+        Whether or not the attack redirects to another location.
+        Possible values:
+          "final" - the attack is the final destination of another redirect.
+          "redirect" - the attack redirects to another location.
+          "no_redirect" - the attack does not redirect.
+      type: String
+    - contextPath: Netcraft.Takedown.attack_type
+      description: The type of attack being taken down.
+      type: String
+    - contextPath: Netcraft.Takedown.certificate
+      description: |
+        HTTPS certificate details for the hostname.
+        The structure of the returned data is the output of PHP's "openssl_x509_parse" function with the additional keys spki_sha256 and spki_sha1. (See https://www.php.net/manual/en/function.openssl-x509-parse.php).
+      type: Unknown
+    - contextPath: Netcraft.Takedown.certificate.spki_sha256
+      description: The SHA-256 hash of the Subject Public Key Info structure in the
+        certificate.
+      type: Unknown
+    - contextPath: Netcraft.Takedown.certificate.spki_sha1
+      description: The SHA-1 hash of the Subject Public Key Info structure in the
+        certificate.
+      type: Unknown
+    - contextPath: Netcraft.Takedown.deceptive_domain_score
+      description: |
+        The deceptive domain score of the domain.
+        E.g., for the URL https://l0gin.example.com/, this value will contain the deceptive domain score for example.com.
+      type: String
+    - contextPath: Netcraft.Takedown.domain_risk_rating
+      description: |
+        A score from 0 to 10 which represents the risk that the domain is hosting a malicious website.
+        E.g., for the URL https://l0gin.example.com/, this value will contain the risk rating for "example.com".
+        This score is distinct from the "deceptive domain score", and takes a range of factors into account,
+        such as the reputation of the hosting provider, age of the domain name, search engine rankings and more.
+      type: String
+    - contextPath: Netcraft.Takedown.final_outage
+      description: |
+        The duration (hh:mm:ss) between when the takedown was
+        authorized, and the final time that the attack went offline (final_resolved - date_authed).
+      type: String
+    - contextPath: Netcraft.Takedown.final_resolved
+      description: The date and time that the attack went offline for the final time,
+        in UTC format.
+      type: Date
+    - contextPath: Netcraft.Takedown.first_outage
+      description: The duration (hh:mm:ss) between when the takedown was authorized,
+        and the first time that the attack went offline (first_resolved - date_authed).
+      type: Date
+    - contextPath: Netcraft.Takedown.first_resolved
+      description: The date and time that the attack first went offline, in UTC format.
+      type: Date
+    - contextPath: Netcraft.Takedown.fwd_owner
+      description: The owner of the forward DNS infrastructure.
+      type: String
+    - contextPath: Netcraft.Takedown.has_phishing_kit
+      description: Indicates whether the takedown has an associated phishing kit.
+      type: Boolean
+    - contextPath: Netcraft.Takedown.hostname
+      description: The full hostname of the URL or email address being taken down.
+        This will be blank for attacks with no hostname.
+      type: String
+    - contextPath: Netcraft.Takedown.hostname_ddss_score
+      description: |
+        The deceptive domain score of the hostname.
+        E.g., For the URL https://l0gin.example.com/, this value will contain the deceptive domain score for l0gin.example.com.
+      type: String
+    - contextPath: Netcraft.Takedown.evidence_url
+      description: A URL for the public incident report for this attack.
+      type: String
+    - contextPath: Netcraft.Takedown.domain_attack
+      description: |
+        Whether or not the domain name used in the attack is believed to be fraudulent.
+        Possible values (non exhaustive):
+          "all" - All attacks.
+          "yes" - There is a high confidence that the domain name is fraudulent.
+                  The domain registrar will be contacted, and the webmaster will not be contacted.
+          "yes_low_confidence" - The domain is likely fraudulent. The domain registrar
+                                will be contacted, and the webmaster will still be contacted.
+          "no" - The domain name is not believed to be fraudulent. This is likely a compromised site.
+      type: String
+    - contextPath: Netcraft.Takedown.false_positive
+      description: Indicates whether the reported content was incorrectly flagged
+        as malicious.
+      type: Boolean
+    - contextPath: Netcraft.Takedown.hostname_attack
+      description: |
+        Whether or not the hostname used in the attack is believed to be fraudulent.
+        Possible values (non exhaustive):
+          "all" - All attacks.
+          "yes" - There is a high confidence that the hostname is fraudulent. The certificate authority will be contacted.
+          "yes_low_confidence" - The hostname is likely fraudulent.
+          "no" - The hostname is not believed to be fraudulent. This is likely a compromised site.
+      type: String
+    - contextPath: Netcraft.Takedown.malware_category
+      description: The category of malware detected. Only set for malware attack types.
+        May be empty if category cannot be determined.
+      type: String
+    - contextPath: Netcraft.Takedown.malware_family
+      description: The family of malware detected. Only set for malware attack types.
+        May be empty if family cannot be determined.
+      type: String
+    - contextPath: Netcraft.Takedown.phishing_kit_hash
+      description: The SHA-1 hashes of all phishing kits available for download that
+        are related to this takedown.
+      type: Unknown
+    - contextPath: Netcraft.Takedown.report_source
+      description: The method through which the takedown was submitted.
+      type: String
+    - contextPath: Netcraft.Takedown.reporter
+      description: Person/account that submitted the takedown. This will be the email
+        address of the user, or "netcraft" for any reports made by Netcraft.
+      type: String
+    - contextPath: Netcraft.Takedown.rev_owner
+      description: The owner of the reverse DNS infrastructure.
+      type: String
+    - contextPath: Netcraft.Takedown.reverse_dns
+      description: The output of a reverse DNS lookup on the IP of the attack.
+      type: String
+    - contextPath: Netcraft.Takedown.certificate_revoked
+      description: If the SSL certificate has been revoked, then the date this was
+        detected (in UTC format) is returned, else "Not revoked" is returned.
+      type: String
+    - contextPath: Netcraft.Takedown.screenshot_url
+      description: |
+        The URL(s) at which a screenshot of the attack can be found.
+        When returning a single URL as a string (the default behaviour) the returned URL will be the best guess of the screenshot which displays the live attack.
+        When returning multiple URLs, the list will be sorted by the time the screenshot was requested, with the earliest first.
+      type: String
+    - contextPath: Netcraft.Takedown.status_change_uptime
+      description: |
+        The total duration (hh:mm:ss) that the attack was available for after authorization, as determined by the takedown status changes.
+        i.e. the total amount of time since authorization that an attack was not in the resolved or resolved (monitoring)  state.'.
+      type: String
+    - contextPath: Netcraft.Takedown.status
+      description: |
+        The status of the takedown.
+        Possible values:
+          "Unverified" - The report has not yet been verified as fraudulent by Netcraft.
+          "Inactive (Monitoring)" - The attack went offline before Netcraft was authorized to start the takedown process, and is being monitored in case it returns.
+          "Verified" - The report has been verified as fraudulent, but no takedown notices have been sent.
+          "Contacted Hosting" - Takedown notices have been sent to the hosting provider.
+          "Contacted Police" - The takedown has been escalated to local law enforcement.
+          "Contacted Upstream" - The takedown has been escalated to the organization providing connectivity to the hosting provider.
+          "Monitoring" - The attack is offline, as it is being monitored in case it returns.
+          "Resolved" - The attack has been offline for 7 consecutive days, and is no longer being monitored.
+          "Stale" - The attack went offline before Netcraft was authorized to start the takedown process, and is no longer being monitored.
+          "Invalid" - The report is not a valid takedown target.
+      type: String
+    - contextPath: Netcraft.Takedown.tags
+      description: List of tags applied to the group.
+      type: String
+    - contextPath: Netcraft.Takedown.targeted_url
+      description: The URL which this attack is masquerading as, e.g., the URL of
+        the legitimate login form that a phishing attack is targeting.
+      type: String
+    - contextPath: Netcraft.Takedown.site_risk_rating
+      description: |
+        A score from 0 to 10 which represents the risk that the hostname is hosting a malicious website.
+        E.g., For the URL https://l0gin.example.com/, this value will contain the risk rating for l0gin.example.com.
+      type: String
+    - contextPath: Netcraft.Takedown.whois_server
+      description: The WHOIS data for the takedown.
+      type: String
+    - contextPath: Netcraft.Takedown.authorization_source
+      description: |
+        The source of authorization for the takedown. will be blank if the takedown has not been authorized.  customer
+        Possible values: "customer" "netcraft".
+      type: String
+    - contextPath: Netcraft.Takedown.escalation_source
+      description: |
+        The source of escalation for the takedown. Will be blank if the takedown has not been escalated.
+        Possible values: "customer" "netcraft".
+      type: String
+    - contextPath: Netcraft.Takedown.restart_date
+      description: |
+        The latest date and time, in UTC format, that the takedown was restarted, i.e., went from the "resolved (monitoring)" status to a contacted status.
+        Will be empty if the takedown had never been restarted.
+      type: String
+    - contextPath: Netcraft.Takedown.gsb_block_status
+      description: |
+        An array of objects containing the Google Safe Browsing block status on all platforms (iOS, Android and Desktop).
+        Will be an empty array if the takedown is not a Phishing URL takedown, or if Netcraft hasn't tested the GSB block status for the takedown.
+      type: Unknown
+    - contextPath: Netcraft.Takedown.gsb_first_blocked
+      description: |
+        An array of objects containing the first time that the URL was seen blocked in Google Safe Browsing (GSB) by Netcraft.
+        Will be an empty array if the URL was not seen blocked by GSB on any platform.
+      type: Unknown
+    - contextPath: Netcraft.Takedown.managed
+      description: Indicates whether the takedown is being performed under the managed
+        service.
+      type: Boolean
+    - contextPath: Netcraft.Takedown.date_escalated
+      description: The date and time that the takedown entered the managed state,
+        in UTC format.
+      type: Date
+    - contextPath: Netcraft.Takedown.logged_credential_injections
+      description: An array of objects containing the type and value of each marked
+        account injection associated with the takedown.
+      type: String
+    - contextPath: Netcraft.Takedown.whois_data
+      description: The WHOIS data for the takedown.
+      type: String
+  - arguments:
+    - default: true
+      description: The ID of the takedown to update.
+      name: takedown_id
+      required: true
+    - description: A free-text field which can be used to keep track of particular
+        attacks.
+      name: customer_label
+    - description: The reason for the report, such as a description of the attack.
+      name: description
+    - description: The brand to move the takedown under.
+      name: brand
+    - auto: PREDEFINED
+      description: Should be set to true if it is believed that the domain name has
+        been registered as part of the fraud. This will ensure that the registrar
+        is contacted to seek suspension of the domain name.
+      name: suspected_fraud_domain
+      predefined:
+      - "true"
+      - "false"
+    - auto: PREDEFINED
+      description: Should be set to true if it is believed that the hostname has been
+        created as part of the fraud. This will ensure that the certificate issuer
+        is contacted to seek revocation of any certificates for the hostname.
+      name: suspected_fraud_hostname
+      predefined:
+      - "true"
+      - "false"
+    - description: A comma-separated list of tags to add to the takedown group.
+      isArray: true
+      name: add_tags
+    - description: |
+        A comma-separated list of tags to remove from the takedown group.
+        Removing a tag from a group which already doesn't have that tag is permitted.
+        However, including the same tag in both "add_tags" and "remove_tags" will return an error.
+      isArray: true
+      name: remove_tags
+    - description: The name of the region to move the takedown under.
+      name: region
+    description: Update one or more fields related to a takedown.
+    name: netcraft-takedown-update
+  - arguments:
+    - default: true
+      description: The ID of the automated takedown to escalate.
+      name: takedown_id
+      required: true
+    description: |
+      Escalate an automated takedown to a managed takedown.
+      Only attacks that are in an authorized state can be escalated.
+      The minimum access level required to escalate is "Escalator".
+      Note that escalating a takedown may cost one or more Netcraft managed credits.
+    name: netcraft-takedown-escalate
+  - arguments:
+    - default: true
+      description: The ID of the takedown to add the note to.
+      name: takedown_id
+      required: true
+    - description: The contents of the new note.
+      name: note_text
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "true"
+      description: |
+        When set to true, the note will also be raised to Netcraft's operations team for further investigation.
+        This should be set if you require a Netcraft staff member to read and respond to your note.
+      name: notify
+      predefined:
+      - "true"
+      - "false"
+    description: Add a new note to an existing takedown.
+    name: netcraft-takedown-note-create
+    outputs:
+    - contextPath: Netcraft.TakedownNote.note_id
+      description: The ID of the note added to the takedown.
+      type: Number
+  - arguments:
+    - default: true
+      description: Filter to notes that have been added to the takedown with the given
+        ID.
+      name: takedown_id
+    - description: |
+        Filter to notes that were created by the user with the given username.
+        Notes that were created by Netcraft can be found by filtering to "Netcraft".
+      name: author_mail
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Whether to retrieve all notes that match the filters. If set to
+        false, only 50 will be returned.
+      name: all_results
+      predefined:
+      - "false"
+      - "true"
+    description: Retrieve details of notes that have been added to takedowns.
+    name: netcraft-takedown-note-list
+    outputs:
+    - contextPath: Netcraft.TakedownNote.note_id
+      description: The unique identifier for the note.
+      type: Number
+    - contextPath: Netcraft.TakedownNote.takedown_id
+      description: The ID of the takedown that the note belongs to.
+      type: String
+    - contextPath: Netcraft.TakedownNote.group_id
+      description: |
+        The ID of the takedown group that this note belongs to.
+        This will only be set if the note has been attached to all takedowns in the group, otherwise this field will have a value of "0".
+      type: String
+    - contextPath: Netcraft.TakedownNote.time
+      description: The date and time that the note was created.
+      type: Date
+    - contextPath: Netcraft.TakedownNote.author
+      description: The username of the account that created the note. Notes added
+        by Netcraft will show as "Netcraft".
+      type: String
+    - contextPath: Netcraft.TakedownNote.note
+      description: The contents of the note.
+      type: String
+  - arguments:
+    - auto: PREDEFINED
+      description: Filter to attack types where automated takedowns are available.
+      name: automated
+      predefined:
+      - "true"
+      - "false"
+    - auto: PREDEFINED
+      description: Filter to attack types which you have chosen to escalate to managed
+        takedowns after the configured escalation period.
+      name: auto_escalation
+      predefined:
+      - "true"
+      - "false"
+    - auto: PREDEFINED
+      description: Filter to attack types which you have chosen to automatically authorize
+        takedowns against.
+      name: auto_authorize
+      predefined:
+      - "true"
+      - "false"
+    - description: |
+        The name of the region to create a takedown under.
+        If not provided, the region specified in the instance configuration will be used.
+      name: region
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Whether to retrieve all attack types that match the filters. If
+        set to false, only 50 will be returned.
+      name: all_results
+      predefined:
+      - "false"
+      - "true"
+    description: Get information on the attack types that are available under a given
+      region.
+    name: netcraft-attack-type-list
+    outputs:
+    - contextPath: Netcraft.AttackType.name
+      description: The unique string identifier for the attack type.
+      type: String
+    - contextPath: Netcraft.AttackType.display_name
+      description: The human-readable name of the attack type.
+      type: String
+    - contextPath: Netcraft.AttackType.base_type
+      description: The unique string identifier for the top-level parent type of this
+        attack type.
+      type: String
+    - contextPath: Netcraft.AttackType.description
+      description: A short description of the attack type.
+      type: String
+    - contextPath: Netcraft.AttackType.automated
+      description: Indicates whether or not automated takedowns are available for
+        this attack type.
+      type: Boolean
+    - contextPath: Netcraft.AttackType.auto_escalation
+      description: Indicates whether or not you have chosen to automatically escalate
+        takedowns under this type to managed takedowns after the configured escalation
+        period.
+      type: Boolean
+    - contextPath: Netcraft.AttackType.auto_authorize
+      description: Indicates whether or not you have chosen to automatically authorize
+        takedowns under this type.
+      type: Boolean
+  - arguments:
+    - default: true
+      description: Get a specific submission. If provided, all the others arguments
+        will be ignored and an extensive report will be returned.
+      name: submission_uuid
+    - description: Filter submissions by start date. Use UTC format or plain English
+        for example "5 days ago".
+      name: date_start
+    - description: Filter submissions by end date. Use UTC format or plain English
+        for example "5 days ago".
+      name: date_end
+    - description: Filter the submissions by source.
+      name: source_name
+    - auto: PREDEFINED
+      description: The state of the submissions. Note, in the case of a misclassification,
+        a submission may be assigned a higher-severity state several days after its
+        initial classification.
+      name: state
+      predefined:
+      - Processing
+      - No Threats
+      - Suspicious
+      - Malicious
+    - description: Filter the submissions by words contained in the submission reason.
+      name: submission_reason
+    - description: Filter the submissions by submitter email.
+      name: submitter_email
+    - defaultValue: "50"
+      description: The number of submissions to return.
+      name: limit
+    - description: The number of submissions to return per page. The maximum is 1000.
+      name: page_size
+    - description: The UUID denoting the first submission to return, as given by the
+        response of the previous run of this command under the context key "Netcraft.SubmissionNextToken".
+      name: next_token
+    - defaultValue: "false"
+      description: Use Cortex XSOAR built-in polling to wait for the report to be
+        processed.
+      hidden: true
+      name: polling
+    - defaultValue: "30"
+      description: Indicates the time in seconds until the polling sequence times
+        out.
+      hidden: true
+      name: interval_in_seconds
+    - defaultValue: "600"
+      description: Indicates how long to wait between command executions (in seconds).
+      hidden: true
+      name: timeout
+    - defaultValue: "true"
+      description: whether to hide the output of the polling on each run, should always
+        be "true".
+      hidden: true
+      name: hide_polling_output
+    - defaultValue: "false"
+      description: Whether to ignore 404 responses from the API. Used when creating
+        a submission as Netcraft may not have updated the system yet.
+      hidden: true
+      name: ignore_404
+    description: Get basic information about a submissions.
+    name: netcraft-submission-list
+    outputs:
+    - contextPath: Netcraft.Submission.date
+      description: The UNIX timestamp of the submission.
+      type: Number
+    - contextPath: Netcraft.Submission.source_name
+      description: The name of the source of this submission.
+      type: String
+    - contextPath: Netcraft.Submission.state
+      description: The state of the submission. One of "processing", "no threats",
+        "suspicious" or "malicious". Note, in the case of a misclassification, a submission
+        may be assigned a higher-severity state several days after its initial classification.
+      type: String
+    - contextPath: Netcraft.Submission.submitter_email
+      description: The email address of the reporter of the submission.
+      type: String
+    - contextPath: Netcraft.Submission.uuid
+      description: The unique identifier of the submission.
+      type: String
+    - contextPath: Netcraft.Submission.submitter_uuid
+      description: The unique identifier of the submitter. This key appears only if
+        the "submission_uuid" argument is *not* provided.
+      type: String
+    - contextPath: Netcraft.Submission.classification_log.date
+      description: A UNIX timestamp of when this state change occurred. This key appears
+        only if the "submission_uuid" argument is provided.
+      type: Number
+    - contextPath: Netcraft.Submission.classification_log.from_state
+      description: The state the submission moved out of. This key appears only if
+        the "submission_uuid" argument is provided.
+      type: String
+    - contextPath: Netcraft.Submission.classification_log.to_state
+      description: The state the submission moved into. This key appears only if the
+        "submission_uuid" argument is provided.
+      type: String
+    - contextPath: Netcraft.Submission.files
+      description: An API URL to get details about the files associated with this
+        submission. This key appears only if the "submission_uuid" argument is provided.
+      type: String
+    - contextPath: Netcraft.Submission.has_cryptocurrency_addresses
+      description: Whether the submission contains cryptocurrency addresses. This
+        key appears only if the "submission_uuid" argument is provided.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_files
+      description: Whether the submission contains files. This key appears only if
+        the "submission_uuid" argument is provided.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_issues
+      description: Whether the submission contains issues. This key appears only if
+        the "submission_uuid" argument is provided.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_mail
+      description: Whether the submission has an email. This key appears only if the
+        "submission_uuid" argument is provided.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_phone_numbers
+      description: Whether the submission contains phone numbers. This key appears
+        only if the "submission_uuid" argument is provided.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_urls
+      description: Whether the submission contains URLs. This key appears only if
+        the "submission_uuid" argument is provided.
+      type: Boolean
+    - contextPath: Netcraft.Submission.is_archived
+      description: Whether the submission has been archived. This key appears only
+        if the "submission_uuid" argument is provided.
+      type: Boolean
+    - contextPath: Netcraft.Submission.last_update
+      description: A UNIX timestamp of when this submission was last updated. This
+        key appears only if the "submission_uuid" argument is provided.
+      type: Number
+    - contextPath: Netcraft.Submission.mail
+      description: An API URL to get details about the email associated with this
+        submission. This key appears only if the "submission_uuid" argument is provided.
+      type: String
+    - contextPath: Netcraft.Submission.mail_state
+      description: The state of the email in the submission. This key appears only
+        if the "submission_uuid" argument is provided.
+      type: String
+    - contextPath: Netcraft.Submission.original_source.name
+      description: The name of the submission source. This key appears only if the
+        "submission_uuid" argument is provided.
+      type: String
+    - contextPath: Netcraft.Submission.original_source.type
+      description: The type of submission source. This key appears only if the "submission_uuid"
+        argument is provided.
+      type: String
+    - contextPath: Netcraft.Submission.pending
+      description: Whether the submission is still pending. This key appears only
+        if the "submission_uuid" argument is provided.
+      type: Boolean
+    - contextPath: Netcraft.Submission.reason
+      description: The optional reason for this submission. This key appears only
+        if the "submission_uuid" argument is provided.
+      type: String
+    - contextPath: Netcraft.Submission.source.type
+      description: The type of submission source. This key appears only if the "submission_uuid"
+        argument is provided.
+      type: String
+    - contextPath: Netcraft.Submission.source.uuid
+      description: The UUID of the source. This key appears only if the "submission_uuid"
+        argument is provided.
+      type: String
+    - contextPath: Netcraft.Submission.state_counts.files
+      description: An object containing the amount of files in each state, where the
+        key is the state and the value is the amount. This key appears only if the
+        "submission_uuid" argument is provided.
+      type: Unknown
+    - contextPath: Netcraft.Submission.state_counts.urls
+      description: An object containing the amount of URLs in each state, where the
+        key is the state and the value is the amount. This key appears only if the
+        "submission_uuid" argument is provided.
+      type: Unknown
+    - contextPath: Netcraft.Submission.tags.name
+      description: The name of the tag. This key appears only if the "submission_uuid"
+        argument is provided.
+      type: String
+    - contextPath: Netcraft.Submission.tags.description
+      description: The tag's description. This key appears only if the "submission_uuid"
+        argument is provided.
+      type: String
+    - contextPath: Netcraft.Submission.urls
+      description: An API URL to get details about the URLs associated with this submission.
+        This key appears only if the "submission_uuid" argument is provided.
+      type: String
+    - contextPath: Netcraft.Submission.warnings.link
+      description: A link to further information about the warning. This key appears
+        only if the "submission_uuid" argument is provided.
+      type: String
+    - contextPath: Netcraft.Submission.warnings.warning
+      description: The warning. This key appears only if the "submission_uuid" argument
+        is provided.
+      type: String
+    - contextPath: Netcraft.SubmissionNextToken
+      description: The submission UUID to provide as the "next_token" argument in
+        a subsequent request for pagination. Will be null if the end of the submissions
+        has been reached. This key appears only if the "submission_uuid" argument
+        is *not* provided.
+      type: String
+    polling: true
+  - arguments:
+    - description: The reporter's email address, to which the result of Netcraft's
+        analysis will be sent.
+      name: reporter_email
+      required: true
+    - description: A base64 encoded string of the file. To report multiple files,
+        upload the files to Cortex XSOAR and provide the file entry IDs in the "entry_id"
+        argument. Max 10 files per submission, with a maximum combined file size of
+        20MiB.
+      name: file_content
+    - description: |
+        The name of the file. To report multiple files, upload the files to Cortex XSOAR and provide the file entry IDs in the "entry_id" argument.
+      name: file_name
+    - description: A comma-separated list of Cortex XSOAR file entry IDs to report.
+        Max 10 files per submission, with a maximum combined file size of 20MiB. The
+        arguments "file_content" and "file_name" can be used for reporting a single
+        file.
+      isArray: true
+      name: entry_id
+    - description: The reason the file is considered malicious. Should be less than
+        1000 characters.
+      name: reason
+    - auto: PREDEFINED
+      defaultValue: "true"
+      description: Use Cortex XSOAR built-in polling to wait for the report to be
+        processed.
+      name: polling
+      predefined:
+      - "true"
+      - "false"
+    - defaultValue: "30"
+      description: Indicates how long to wait between command executions (in seconds)
+        when the 'polling' argument is true. Minimum value is 10 seconds.
+      name: interval_in_seconds
+    - defaultValue: "600"
+      description: Indicates the time in seconds until the polling sequence times
+        out.
+      name: timeout
+    description: Report files to Netcraft for analysis.
+    name: netcraft-file-report-submit
+    outputs:
+    - contextPath: Netcraft.Submission.date
+      description: The UNIX timestamp of the submission.
+      type: Number
+    - contextPath: Netcraft.Submission.source_name
+      description: The name of the source of this submission.
+      type: String
+    - contextPath: Netcraft.Submission.state
+      description: The state of the submission. One of "processing", "no threats",
+        "suspicious" or "malicious". Note, in the case of a misclassification, a submission
+        may be assigned a higher-severity state several days after its initial classification.
+      type: String
+    - contextPath: Netcraft.Submission.submitter_email
+      description: The email address of the reporter of the submission.
+      type: String
+    - contextPath: Netcraft.Submission.uuid
+      description: The unique identifier of the submission.
+      type: String
+    - contextPath: Netcraft.Submission.classification_log.date
+      description: A UNIX timestamp of when this state change occurred.
+      type: Number
+    - contextPath: Netcraft.Submission.classification_log.from_state
+      description: The state the submission moved out of.
+      type: String
+    - contextPath: Netcraft.Submission.classification_log.to_state
+      description: The state the submission moved into.
+      type: String
+    - contextPath: Netcraft.Submission.files
+      description: An API URL to get details about the files associated with this
+        submission.
+      type: String
+    - contextPath: Netcraft.Submission.has_cryptocurrency_addresses
+      description: Whether the submission contains cryptocurrency addresses.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_files
+      description: Whether the submission contains files.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_issues
+      description: Whether the submission contains issues.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_mail
+      description: Whether the submission has an email.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_phone_numbers
+      description: Whether the submission contains phone numbers.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_urls
+      description: Whether the submission contains URLs.
+      type: Boolean
+    - contextPath: Netcraft.Submission.is_archived
+      description: Whether the submission has been archived.
+      type: Boolean
+    - contextPath: Netcraft.Submission.last_update
+      description: A UNIX timestamp of when this submission was last updated.
+      type: Number
+    - contextPath: Netcraft.Submission.mail
+      description: An API URL to get details about the email associated with this
+        submission.
+      type: String
+    - contextPath: Netcraft.Submission.mail_state
+      description: The state of the email in the submission.
+      type: String
+    - contextPath: Netcraft.Submission.original_source.name
+      description: The name of the submission source.
+      type: String
+    - contextPath: Netcraft.Submission.original_source.type
+      description: The type of submission source.
+      type: String
+    - contextPath: Netcraft.Submission.pending
+      description: Whether the submission is still pending.
+      type: Boolean
+    - contextPath: Netcraft.Submission.reason
+      description: The optional reason for this submission.
+      type: String
+    - contextPath: Netcraft.Submission.source.type
+      description: The type of submission source.
+      type: String
+    - contextPath: Netcraft.Submission.source.uuid
+      description: The UUID of the source.
+      type: String
+    - contextPath: Netcraft.Submission.state_counts.files
+      description: An object containing the amount of files in each state, where the
+        key is the state and the value is the amount.
+      type: Unknown
+    - contextPath: Netcraft.Submission.state_counts.urls
+      description: An object containing the amount of URLs in each state, where the
+        key is the state and the value is the amount.
+      type: Unknown
+    - contextPath: Netcraft.Submission.tags.name
+      description: The name of the tag.
+      type: String
+    - contextPath: Netcraft.Submission.tags.description
+      description: The tag's description.
+      type: String
+    - contextPath: Netcraft.Submission.urls
+      description: An API URL to get details about the URLs associated with this submission.
+      type: String
+    - contextPath: Netcraft.Submission.warnings.link
+      description: A link to further information about the warning.
+      type: String
+    - contextPath: Netcraft.Submission.warnings.warning
+      description: The warning.
+      type: String
+    polling: true
+  - arguments:
+    - default: true
+      description: The submission's unique identifier. Submission UUIDs can be obtained
+        by running the command "netcraft-submission-list".
+      name: submission_uuid
+      required: true
+    - description: The page number of file records to retrieve (used for pagination)
+        starting from 1. The page size is defined by the "page_size" argument.
+      name: page
+    - description: The number of file records per page to retrieve (used for pagination).
+        The page number is defined by the "page" argument.
+      name: page_size
+    - defaultValue: "50"
+      description: The maximum number of file records to retrieve. If "page_size"
+        is defined, this argument is ignored.
+      name: limit
+    description: |
+      Get basic information about a submission's files.
+      When a submission is archived this command will return an error with the message "this submission has been archived".
+    name: netcraft-submission-file-list
+    outputs:
+    - contextPath: Netcraft.SubmissionFile.file_state
+      description: The classification state of the file. One of "processing", "no
+        threats" or "malicious.".
+      type: String
+    - contextPath: Netcraft.SubmissionFile.filename
+      description: The name of the file.
+      type: String
+    - contextPath: Netcraft.SubmissionFile.has_screenshot
+      description: Whether the file has a screenshot associated with it.
+      type: Boolean
+    - contextPath: Netcraft.SubmissionFile.hash
+      description: The hash of the file.
+      type: String
+    - contextPath: Netcraft.SubmissionFile.classification_log.date
+      description: A UNIX timestamp of when this state change occurred.
+      type: Number
+    - contextPath: Netcraft.SubmissionFile.classification_log.from_state
+      description: The state the entity moved out of.
+      type: String
+    - contextPath: Netcraft.SubmissionFile.classification_log.to_state
+      description: The state the entity moved into.
+      type: String
+  - arguments:
+    - default: true
+      description: The unique identifier of the submission from which to retrieve
+        a file screenshot. Submission UUIDs can be obtained by running the command
+        "netcraft-submission-list".
+      name: submission_uuid
+      required: true
+    - description: The file's hash. Submission file hashes can be obtained by running
+        the command "netcraft-submission-file-list".
+      name: file_hash
+      required: true
+    description: Get a screenshot for a file associated with a submission.
+    name: netcraft-file-screenshot-get
+    outputs:
+    - contextPath: InfoFile.Size
+      description: The size of the screenshot in bytes.
+      type: number
+    - contextPath: InfoFile.Name
+      description: The name of the screenshot.
+      type: string
+    - contextPath: InfoFile.EntryID
+      description: The War Room entry ID of the screenshot.
+      type: string
+    - contextPath: InfoFile.Info
+      description: The format and encoding of the screenshot.
+      type: string
+    - contextPath: InfoFile.Type
+      description: The type of the screenshot.
+      type: string
+    - contextPath: InfoFile.Extension
+      description: The file extension of the screenshot.
+      type: string
+  - arguments:
+    - description: The reporter's email address, to which the result of Netcraft's
+        analysis will be sent.
+      name: reporter_email
+      required: true
+    - description: Either a plain text string of the malicious email in MIME format
+        or if the "password" argument is provided, a base64 encoded AES-256-CBC encrypted
+        email in MIME format. Max message size is 20MiB.
+      name: message
+    - description: Entry ID of an EML file uploaded to Cortex XSOAR. Max message size
+        is 20MiB.
+      name: entry_id
+    - description: The password used to encrypt/decrypt the MIME email provided with
+        the "message" argument. Should not be provided if the email is not encrypted.
+      name: password
+    - auto: PREDEFINED
+      defaultValue: "true"
+      description: Use Cortex XSOAR built-in polling to wait for the report to be
+        processed.
+      name: polling
+      predefined:
+      - "true"
+      - "false"
+    - defaultValue: "30"
+      description: Indicates how long to wait between command executions (in seconds)
+        when the 'polling' argument is true. Minimum value is 10 seconds.
+      name: interval_in_seconds
+    - defaultValue: "600"
+      description: Indicates the time in seconds until the polling sequence times
+        out.
+      name: timeout
+    description: |
+      Report email messages to Netcraft for analysis.
+      The email will be examined for malicious attachments and URLs.
+      Optionally, emails can be encrypted before upload. If an email is encrypted before upload, it should be encrypted with AES-256-CBC, for example using OpenSSL.
+      The email must be provided using either the "message" or "entry_id" arguments.
+    name: netcraft-email-report-submit
+    outputs:
+    - contextPath: Netcraft.Submission.date
+      description: The UNIX timestamp of the submission.
+      type: Number
+    - contextPath: Netcraft.Submission.source_name
+      description: The name of the source of this submission.
+      type: String
+    - contextPath: Netcraft.Submission.state
+      description: The state of the submission. One of "processing", "no threats",
+        "suspicious" or "malicious". Note, in the case of a misclassification, a submission
+        may be assigned a higher-severity state several days after its initial classification.
+      type: String
+    - contextPath: Netcraft.Submission.submitter_email
+      description: The email address of the reporter of the submission.
+      type: String
+    - contextPath: Netcraft.Submission.uuid
+      description: The unique identifier of the submission.
+      type: String
+    - contextPath: Netcraft.Submission.classification_log.date
+      description: A UNIX timestamp of when this state change occurred.
+      type: Number
+    - contextPath: Netcraft.Submission.classification_log.from_state
+      description: The state the submission moved out of.
+      type: String
+    - contextPath: Netcraft.Submission.classification_log.to_state
+      description: The state the submission moved into.
+      type: String
+    - contextPath: Netcraft.Submission.files
+      description: An API URL to get details about the files associated with this
+        submission.
+      type: String
+    - contextPath: Netcraft.Submission.has_cryptocurrency_addresses
+      description: Whether the submission contains cryptocurrency addresses.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_files
+      description: Whether the submission contains files.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_issues
+      description: Whether the submission contains issues.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_mail
+      description: Whether the submission has an email.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_phone_numbers
+      description: Whether the submission contains phone numbers.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_urls
+      description: Whether the submission contains URLs.
+      type: Boolean
+    - contextPath: Netcraft.Submission.is_archived
+      description: Whether the submission has been archived.
+      type: Boolean
+    - contextPath: Netcraft.Submission.last_update
+      description: A UNIX timestamp of when this submission was last updated.
+      type: Number
+    - contextPath: Netcraft.Submission.mail
+      description: An API URL to get details about the email associated with this
+        submission.
+      type: String
+    - contextPath: Netcraft.Submission.mail_state
+      description: The state of the email in the submission.
+      type: String
+    - contextPath: Netcraft.Submission.original_source.name
+      description: The name of the submission source.
+      type: String
+    - contextPath: Netcraft.Submission.original_source.type
+      description: The type of submission source.
+      type: String
+    - contextPath: Netcraft.Submission.pending
+      description: Whether the submission is still pending.
+      type: Boolean
+    - contextPath: Netcraft.Submission.reason
+      description: The optional reason for this submission.
+      type: String
+    - contextPath: Netcraft.Submission.source.type
+      description: The type of submission source.
+      type: String
+    - contextPath: Netcraft.Submission.source.uuid
+      description: The UUID of the source.
+      type: String
+    - contextPath: Netcraft.Submission.state_counts.files
+      description: An object containing the amount of files in each state, where the
+        key is the state and the value is the amount.
+      type: Unknown
+    - contextPath: Netcraft.Submission.state_counts.urls
+      description: An object containing the amount of URLs in each state, where the
+        key is the state and the value is the amount.
+      type: Unknown
+    - contextPath: Netcraft.Submission.tags.name
+      description: The name of the tag.
+      type: String
+    - contextPath: Netcraft.Submission.tags.description
+      description: The tag's description.
+      type: String
+    - contextPath: Netcraft.Submission.urls
+      description: An API URL to get details about the URLs associated with this submission.
+      type: String
+    - contextPath: Netcraft.Submission.warnings.link
+      description: A link to further information about the warning.
+      type: String
+    - contextPath: Netcraft.Submission.warnings.warning
+      description: The warning.
+      type: String
+    polling: true
+  - arguments:
+    - default: true
+      description: The submission's unique identifier. Submission UUIDs can be obtained
+        by running the command "netcraft-submission-list".
+      name: submission_uuid
+      required: true
+    description: |
+      Get basic information about a submission's email.
+      When a submission is archived this command will return an error with the message "this submission has been archived".
+    name: netcraft-submission-mail-get
+    outputs:
+    - contextPath: Netcraft.SubmissionMail.classification_log.date
+      description: A unix timestamp of when this state change occurred.
+      type: Number
+    - contextPath: Netcraft.SubmissionMail.classification_log.from_state
+      description: The state the entity moved out of.
+      type: String
+    - contextPath: Netcraft.SubmissionMail.classification_log.to_state
+      description: The state the entity moved into.
+      type: String
+    - contextPath: Netcraft.SubmissionMail.from
+      description: The email addresses of the email senders.
+      type: String
+    - contextPath: Netcraft.SubmissionMail.hash
+      description: The MD5 hash of the email associated with this submission.
+      type: String
+    - contextPath: Netcraft.SubmissionMail.reply_to
+      description: The email addresses that reply messages of the email were sent
+        to.
+      type: String
+    - contextPath: Netcraft.SubmissionMail.state
+      description: The classification state of the email. One of "processing", "no
+        threats" or "malicious".
+      type: String
+    - contextPath: Netcraft.SubmissionMail.subject
+      description: The subject of the email submitted.
+      type: String
+    - contextPath: Netcraft.SubmissionMail.to
+      description: The email addresses of the email recipients.
+      type: String
+  - arguments:
+    - default: true
+      description: The unique identifier of the submission from which to retrieve
+        an email screenshot. Submission UUIDs can be obtained by running the command
+        "netcraft-submission-list".
+      name: submission_uuid
+      required: true
+    description: Get a screenshot for the email associated with a submission.
+    name: netcraft-mail-screenshot-get
+    outputs:
+    - contextPath: InfoFile.Size
+      description: The size of the screenshot in bytes.
+      type: number
+    - contextPath: InfoFile.Name
+      description: The name of the screenshot.
+      type: string
+    - contextPath: InfoFile.EntryID
+      description: The War Room entry ID of the screenshot.
+      type: string
+    - contextPath: InfoFile.Info
+      description: The format and encoding of the screenshot.
+      type: string
+    - contextPath: InfoFile.Type
+      description: The type of the screenshot.
+      type: string
+    - contextPath: InfoFile.Extension
+      description: The file extension of the screenshot.
+      type: string
+  - arguments:
+    - description: The reporter's email address, to which the result of Netcraft's
+        analysis will be sent.
+      name: reporter_email
+      required: true
+    - description: A comma-separated list of URLs to report. Up to 1,000 URLs per
+        submission are permitted.
+      isArray: true
+      name: urls
+      required: true
+    - description: The reason the URLs are considered malicious. Should be less than
+        10,000 characters.
+      name: reason
+    - auto: PREDEFINED
+      defaultValue: "true"
+      description: Use Cortex XSOAR built-in polling to wait for the report to be
+        processed.
+      name: polling
+      predefined:
+      - "true"
+      - "false"
+    - defaultValue: "30"
+      description: Indicates how long to wait between command executions (in seconds)
+        when the 'polling' argument is true. Minimum value is 10 seconds.
+      name: interval_in_seconds
+    - defaultValue: "600"
+      description: Indicates the time in seconds until the polling sequence times
+        out.
+      name: timeout
+    description: Report URLs to Netcraft for analysis.
+    name: netcraft-url-report-submit
+    outputs:
+    - contextPath: Netcraft.Submission.date
+      description: The UNIX timestamp of the submission.
+      type: Number
+    - contextPath: Netcraft.Submission.source_name
+      description: The name of the source of this submission.
+      type: String
+    - contextPath: Netcraft.Submission.state
+      description: The state of the submission. One of "processing", "no threats",
+        "suspicious" or "malicious". Note, in the case of a misclassification, a submission
+        may be assigned a higher-severity state several days after its initial classification.
+      type: String
+    - contextPath: Netcraft.Submission.submitter_email
+      description: The email address of the reporter of the submission.
+      type: String
+    - contextPath: Netcraft.Submission.uuid
+      description: The unique identifier of the submission.
+      type: String
+    - contextPath: Netcraft.Submission.classification_log.date
+      description: A UNIX timestamp of when this state change occurred.
+      type: Number
+    - contextPath: Netcraft.Submission.classification_log.from_state
+      description: The state the submission moved out of.
+      type: String
+    - contextPath: Netcraft.Submission.classification_log.to_state
+      description: The state the submission moved into.
+      type: String
+    - contextPath: Netcraft.Submission.files
+      description: An API URL to get details about the files associated with this
+        submission.
+      type: String
+    - contextPath: Netcraft.Submission.has_cryptocurrency_addresses
+      description: Whether the submission contains cryptocurrency addresses.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_files
+      description: Whether the submission contains files.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_issues
+      description: Whether the submission contains issues.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_mail
+      description: Whether the submission has an email.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_phone_numbers
+      description: Whether the submission contains phone numbers.
+      type: Boolean
+    - contextPath: Netcraft.Submission.has_urls
+      description: Whether the submission contains URLs.
+      type: Boolean
+    - contextPath: Netcraft.Submission.is_archived
+      description: Whether the submission has been archived.
+      type: Boolean
+    - contextPath: Netcraft.Submission.last_update
+      description: A unix timestamp of when this submission was last updated.
+      type: Number
+    - contextPath: Netcraft.Submission.mail
+      description: An API URL to get details about the email associated with this
+        submission.
+      type: String
+    - contextPath: Netcraft.Submission.mail_state
+      description: The state of the email in the submission.
+      type: String
+    - contextPath: Netcraft.Submission.original_source.name
+      description: The name of the submission source.
+      type: String
+    - contextPath: Netcraft.Submission.original_source.type
+      description: The type of submission source.
+      type: String
+    - contextPath: Netcraft.Submission.pending
+      description: Whether the submission is still pending.
+      type: Boolean
+    - contextPath: Netcraft.Submission.reason
+      description: The optional reason for this submission.
+      type: String
+    - contextPath: Netcraft.Submission.source.type
+      description: The type of submission source.
+      type: String
+    - contextPath: Netcraft.Submission.source.uuid
+      description: The UUID of the source.
+      type: String
+    - contextPath: Netcraft.Submission.state_counts.files
+      description: An object containing the amount of files in each state, where the
+        key is the state and the value is the amount.
+      type: Unknown
+    - contextPath: Netcraft.Submission.state_counts.urls
+      description: An object containing the amount of URLs in each state, where the
+        key is the state and the value is the amount.
+      type: Unknown
+    - contextPath: Netcraft.Submission.tags.name
+      description: The name of the tag.
+      type: String
+    - contextPath: Netcraft.Submission.tags.description
+      description: The tag's description.
+      type: String
+    - contextPath: Netcraft.Submission.urls
+      description: An API URL to get details about the URLs associated with this submission.
+      type: String
+    - contextPath: Netcraft.Submission.warnings.link
+      description: A link to further information about the warning.
+      type: String
+    - contextPath: Netcraft.Submission.warnings.warning
+      description: The warning.
+      type: String
+    polling: true
+  - arguments:
+    - default: true
+      description: The submission's unique identifier. Submission UUIDs can be obtained
+        by running the command "netcraft-submission-list".
+      name: submission_uuid
+      required: true
+    - description: The page number of URLs to retrieve (used for pagination). The
+        page size is defined by the "page_size" argument.
+      name: page
+    - description: The number of URLs per page to retrieve (used for pagination).
+        The page number is defined by the "page" argument.
+      name: page_size
+    - defaultValue: "50"
+      description: The maximum number of URLs to retrieve. If "page_size" is defined,
+        this argument is ignored.
+      name: limit
+    description: |
+      Get basic information about a submission's URLs.
+      When a submission is archived this command will return an error with the message "this submission has been archived".
+    name: netcraft-submission-url-list
+    outputs:
+    - contextPath: Netcraft.SubmissionURL.url
+      description: The URL reported.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.url_state
+      description: The state of the URL. One of "processing", "no threats", "unavailable",
+        "malicious", "rejected", or "suspicious".
+      type: String
+    - contextPath: Netcraft.SubmissionURL.classification_log.date
+      description: A UNIX timestamp of when this state change occurred.
+      type: Number
+    - contextPath: Netcraft.SubmissionURL.classification_log.from_state
+      description: The state the entity moved out of.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.classification_log.to_state
+      description: The state the entity moved into.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.country_code
+      description: The country code this hostname resolved to.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.file_hash
+      description: If the URL was found in a file that was submitted or an email attachment,
+        this field contains the MD5 hash of that file.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.hostname
+      description: The hostname of the URL.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.incident_report_url
+      description: A link to the incident report detailing the attack hosted by the
+        URL. This will only exist if Netcraft is performing takedown action.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.ip
+      description: The IP address this hostname resolved to.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.reason
+      description: The reason this URL is believed to be malicious.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.screenshots.hash
+      description: A hash of the screenshot provided.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.screenshots.type
+      description: The type of screenshot. One of "gif" or "png".
+      type: String
+    - contextPath: Netcraft.SubmissionURL.sources.file_hash
+      description: If this URL originated in a file, this is the hash of the file.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.sources.file_name
+      description: If this URL originated in a file, this is the filename.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.sources.source
+      description: The name of a source this URL was found in.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.sources.source_id
+      description: The part of the email the URL was found in, if applicable. Either
+        1 for the body of the email, or 2 for an attachment to the email.
+      type: Number
+    - contextPath: Netcraft.SubmissionURL.tags.description
+      description: The tag's description.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.tags.name
+      description: The name of the tag.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.tags.submitter_tag
+      description: The submitter of the tag, 1 is for user, 0 is for Netcraft.
+      type: Number
+    - contextPath: Netcraft.SubmissionURL.takedown_link
+      description: A link to the takedown associated with the URL.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.takedown_url_id
+      description: The ID for the URL in takedown.
+      type: Number
+    - contextPath: Netcraft.SubmissionURL.url_classification_reason
+      description: The reason for a URL classification.
+      type: String
+    - contextPath: Netcraft.SubmissionURL.url_takedown_state
+      description: The progress of Netcraft's takedown action against the URL. One
+        of "not injected", "not started", "in progress" or "resolved".
+      type: String
+    - contextPath: Netcraft.SubmissionURL.uuid
+      description: The UUID of the URL.
+      type: String
+  - arguments:
+    - default: true
+      description: The unique identifier of the submission from which to retrieve
+        a URL screenshot. Submission UUIDs can be obtained by running the command
+        "netcraft-submission-list".
+      name: submission_uuid
+      required: true
+    - description: The URL's UUID. Submission URL UUIDs can be obtained by running
+        the command "netcraft-submission-url-list".
+      name: url_uuid
+      required: true
+    - description: An MD5 hash of the URL's screenshot. Submission URL screenshot
+        hashes can be obtained by running the command "netcraft-submission-url-list".
+      name: screenshot_hash
+      required: true
+    description: Download associated screenshots for a specified URL.
+    name: netcraft-url-screenshot-get
+    outputs:
+    - contextPath: InfoFile.Size
+      description: The size of the screenshot in bytes.
+      type: number
+    - contextPath: InfoFile.Name
+      description: The name of the screenshot.
+      type: string
+    - contextPath: InfoFile.EntryID
+      description: The War Room entry ID of the screenshot.
+      type: string
+    - contextPath: InfoFile.Info
+      description: The format and encoding of the screenshot.
+      type: string
+    - contextPath: InfoFile.Type
+      description: The type of the screenshot.
+      type: string
+    - contextPath: InfoFile.Extension
+      description: The file extension of the screenshot.
+      type: string
+  dockerimage: demisto/python3:3.10.13.80014
+  isfetch: true
+  runonce: false
+  script: |
+    register_module_line('Netcraft V2', 'start', __line__())
+    ### pack version: 1.0.0
+
+
+    from collections.abc import Callable, Generator, Iterable
+    from math import ceil
+    import base64
+    import yaml
+
+
+    ''' CONSTANTS '''
+
+    PARAMS: dict = demisto.params()
+    TAKEDOWN_API_LIMIT = 100_000
+    SUBMISSION_API_LIMIT = 1000
+    MAX_FETCH_DEFAULT = 10
+    TAKEDOWN_OK_CODE = 'TD_OK'
+
+    RES_CODE_TO_MESSAGE = {
+        TAKEDOWN_OK_CODE: 'The attack was submitted to Netcraft successfully.',
+        'TD_EXISTS': 'The attack was not submitted to Netcraft because it already exists in the system.',
+        'TD_WILDCARD': 'The attack was not submitted because it is a wildcard sub-domain variation of an existing takedown.',
+        'TD_VERIFY':
+            'The submitted content is undergoing additional verification to ensure that it is a valid takedown target.'
+            ' If verification is successful, a new takedown will be submitted. If not, no takedown will be created.\n'
+            'To get a list of all takedowns, run the command: "netcraft-takedown-list"',
+    }
+
+    ''' CLIENT CLASS '''
+
+
+    class Client(BaseClient):
+
+        def takedown_http_request(self, method: str, url_suffix: str,
+                                  params: dict = None, data: dict = None,
+                                  files: dict = None, resp_type: str = 'json',
+                                  ok_codes: Any = None, **kwargs) -> Any:
+            '''
+            A wrapper for BaseClient._http_request that interacts with the Netcraft takedown service.
+            Args:
+                method (str):
+                    The HTTP method, for example: GET, POST, and so on.
+                url_suffix (str):
+                    The API endpoint.
+                params (dict):
+                    URL parameters to specify the query.
+                json_data (dict):
+                    The dictionary to send in a 'POST' request.
+                files (dict):
+                    The file data to send in a 'POST' request.
+                resp_type (str):
+                    Determines which data format to return from the HTTP request. The default
+                    is 'json'. Other options are 'text', 'content', 'xml' or 'response'. Use 'response'
+                        to return the full response object.
+                ok_codes (tuple[int]):
+                    The request codes to accept as OK, for example: (200, 201, 204). If you specify "None", will use self._ok_codes.
+            Returns:
+                dict | str | bytes | xml.etree.ElementTree.Element | requests.Response: Depends on the resp_type parameter
+            '''
+            remove_nulls_from_dictionary(params or {})
+            remove_nulls_from_dictionary(data or {})
+            return self._http_request(
+                method, full_url=urljoin(self._base_url['takedown_url'], url_suffix),
+                params=params, data=data, files=files, resp_type=resp_type,
+                ok_codes=ok_codes, **kwargs)
+
+        def submission_http_request(self, method: str, url_suffix: str,
+                                    params: dict = None, json_data: dict = None,
+                                    files: dict = None, resp_type: str = 'json',
+                                    ok_codes: Any = None, **kwargs) -> Any:
+            '''
+            A wrapper for BaseClient._http_request that interacts with the Netcraft submission service.
+            Args:
+                method (str):
+                    The HTTP method, for example: GET, POST, and so on.
+                url_suffix (str):
+                    The API endpoint.
+                params (dict):
+                    URL parameters to specify the query.
+                json_data (dict):
+                    The dictionary to send in a 'POST' request.
+                files (dict):
+                    The file data to send in a 'POST' request.
+                resp_type (str):
+                    Determines which data format to return from the HTTP request. The default
+                    is 'json'. Other options are 'text', 'content', 'xml' or 'response'. Use 'response'
+                        to return the full response object.
+                ok_codes (tuple[int]):
+                    The request codes to accept as OK, for example: (200, 201, 204). If you specify "None", will use self._ok_codes.
+            Returns:
+                dict | str | bytes | xml.etree.ElementTree.Element | requests.Response: Depends on the resp_type parameter
+            '''
+            remove_nulls_from_dictionary(params or {})
+            remove_nulls_from_dictionary(json_data or {})
+            return self._http_request(
+                method, full_url=urljoin(self._base_url['submission_url'], url_suffix),
+                params=params, json_data=json_data, files=files, resp_type=resp_type,
+                ok_codes=ok_codes, **kwargs)
+
+        def client_error_handler(self, res: requests.Response):
+            '''Error handler for Netcraft API call error'''
+            err_msg = f'Error in Netcraft API call [{res.status_code}] - {res.reason}\n'
+            try:
+                # return a more readable error
+                err_msg += yaml.safe_dump(res.json())
+            except ValueError:
+                err_msg += res.text
+            raise DemistoException(err_msg, res=res)
+
+        def get_takedowns(self, params: dict) -> list[dict]:
+            '''Used by fetch-incidents and netcraft-takedown-list'''
+            return self.takedown_http_request(
+                'GET', 'api/v1/attacks/', params=params,
+            )
+
+        def attack_report(self, body: dict, file: dict | None) -> str:
+            return self.takedown_http_request(
+                'POST', 'api/v1/report/',
+                data=body, resp_type='text', files=file,
+            )
+
+        def takedown_update(self, body: dict) -> dict:
+            return self.takedown_http_request(
+                'POST', 'api/v1/update-attack/', data=body,
+            )
+
+        def takedown_escalate(self, body: dict) -> dict:
+            return self.takedown_http_request(
+                'POST', 'api/v1/escalate/', data=body,
+            )
+
+        def takedown_note_create(self, body: dict) -> dict:
+            return self.takedown_http_request(
+                'POST', 'api/v1/notes/', data=body,
+            )
+
+        def takedown_note_list(self, params: dict) -> list[dict]:
+            return self.takedown_http_request(
+                'GET', 'api/v1/notes/', params=params,
+            )
+
+        def attack_type_list(self, params: dict) -> list[dict]:
+            return self.takedown_http_request(
+                'GET', 'api/v1/attack-types/', params=params,
+            )
+
+        def submission_list(self, params: dict) -> dict:
+            return self.submission_http_request(
+                'GET', 'api/v3/submissions/', params=params,
+            )
+
+        def get_submission(self, uuid: str, ignore_404: bool) -> dict:
+            return self.submission_http_request(
+                'GET', f'api/v3/submission/{uuid}', ok_codes=(200, 404 * ignore_404)
+            )
+
+        def file_report_submit(self, body: dict) -> dict:
+            return self.submission_http_request(
+                'POST', 'api/v3/report/files', json_data=body,
+            )
+
+        def submission_file_list(self, submission_uuid, params: dict) -> dict:
+            return self.submission_http_request(
+                'GET', f'api/v3/submission/{submission_uuid}/files', params=params,
+            )
+
+        def file_screenshot_get(self, submission_uuid: str, file_hash: str) -> requests.Response:
+            return self.submission_http_request(
+                'GET', f'api/v3/submission/{submission_uuid}/files/{file_hash}/screenshot',
+                resp_type='response', ok_codes=(200, 404)
+            )
+
+        def url_report_submit(self, body: dict) -> dict:
+            return self.submission_http_request(
+                'POST', 'api/v3/report/urls', json_data=body,
+            )
+
+        def submission_mail_get(self, submission_uuid: str) -> dict:
+            return self.submission_http_request(
+                'GET', f'api/v3/submission/{submission_uuid}/mail',
+            )
+
+        def mail_screenshot_get(self, submission_uuid: str) -> requests.Response:
+            return self.submission_http_request(
+                'GET', f'api/v3/submission/{submission_uuid}/mail/screenshot',
+                resp_type='response', ok_codes=(200, 404)
+            )
+
+        def email_report_submit(self, body: dict) -> dict:
+            return self.submission_http_request(
+                'POST', 'api/v3/report/mail', json_data=body,
+            )
+
+        def submission_url_list(self, submission_uuid, params: dict) -> dict:
+            return self.submission_http_request(
+                'GET', f'api/v3/submission/{submission_uuid}/urls', params=params,
+            )
+
+        def url_screenshot_get(self, submission_uuid: str, url_uuid: str, screenshot_hash: str) -> requests.Response:
+            return self.submission_http_request(
+                'GET', f'api/v3/submission/{submission_uuid}/urls/{url_uuid}/screenshots/{screenshot_hash}',
+                resp_type='response',
+            )
+
+
+    ''' HELPER FUNCTIONS '''
+
+
+    def sub_dict(d: dict, *keys) -> dict:
+        '''Returns a sub dict of d with the given keys'''
+        return {k: d.get(k) for k in keys}
+
+
+    def pop_keys(d: dict, *keys) -> dict:
+        '''Removes the given keys of d and returns them as their own dict'''
+        return {k: d.pop(k, None) for k in keys}
+
+
+    def int_to_readable_bool(val: str | int | None) -> str | None:
+        '''
+        Converts the 1 or 0 values returned by netcraft to a human readable string.
+        The val provided can be an int, str or None (in which case None should be returned).
+        '''
+        return {'0': 'No', '1': 'Yes'}.get(str(val))
+
+
+    def int_to_bool(val: str | int | None) -> Any:
+        '''
+        Converts the 1 or 0 values returned by netcraft to a boolean for the context, if possible.
+        The val provided can be an int, str or None (in which case None should be returned).
+        '''
+        return {'0': False, '1': True}.get(str(val), val)
+
+
+    def convert_binary_keys_to_bool(d: dict, *keys):
+        '''Converts values of specified keys in a dictionary to booleans in place.
+
+        This takes a dictionary and list of keys, and converts the values of those keys
+        in the dictionary to True/False based on their string or int values of "0", "1", 0 or 1.
+
+        Args:
+            d (dict): The dictionary to modify in-place.
+            *keys: The list of keys in the dictionary to convert.
+
+        Returns:
+            None
+
+        Examples:
+            >>> d = {'a': '1', 'b': '0'}
+            >>> convert_binary_keys_to_bool(d, 'a', 'b')
+            >>> print(d)
+            {'a': True, 'b': False}
+        '''
+        d.update({
+            key: int_to_bool(d.get(key))
+            for key in keys
+        })
+
+
+    def read_base64encoded_file(filepath: str) -> str:
+        '''Returns a base64 encoded string of the file'''
+        with open(filepath, 'rb') as f:
+            return base64.b64encode(f.read()).decode()
+
+
+    def get_file_path(entry_id: str) -> dict:
+        '''
+        Wrapper for demisto.getFilePath function, raises a more informative error when the file is not found
+        '''
+        try:
+            return demisto.getFilePath(entry_id)
+        except ValueError as e:
+            demisto.debug(str(e))
+            raise DemistoException(f'Could not find file: {entry_id!r}')
+
+
+    def paginate_with_token(
+        client_func: Callable[[dict], dict],
+        api_params: dict[str, Any],
+        limit: str | int | None,
+        page_size: str | int | None,
+        next_token: str | None,
+        pages_key_path: Iterable | None = (),
+        api_limit: int = 1000,
+        api_token_key: str = 'marker',
+        api_page_size_key: str = 'page_size',
+        stop_on_token: Any = None,
+    ) -> tuple[list, Any]:
+        '''
+        Paginates an API endpoint that accepts "page token" and "page size" parameters
+        using the "limit", "next_token" and "page_size" args provided by demisto.args() as per the XSOAR pagination protocol.
+
+        Args:
+            client_func (Callable[[dict], dict]): The client function that calls the API endpoint.
+            api_params (dict[str, Any]): The parameters to call the endpoint with. The pagination args will be added to this arg.
+            limit (str | int | None): The demisto.args() limit.
+            page (str | None): The demisto.args() page.
+            page_size (str | int | None): The demisto.args() page_size.
+            pages_key_path (Iterable | None): The keys used to extract the "pages" returned by the API.
+                                              i.e. If the API returns a JSON in the format: {'data': {'pages': [1,2,3,4,5]}},
+                                              then pages_key_path=('data', 'pages'). The key path MUST point to a list.
+            api_limit (int, optional): The maximum amount of data returned by the API on a single call. Defaults to 1000.
+            api_token_key (str, optional): The key used by the API as a page token.
+                                           This will be used both for the API call and response. Defaults to 'marker'.
+            api_page_size_key (str, optional): The key used by the API as a page size. Defaults to 'page_size'.
+            stop_on_token (Any): The token returned by the API that indicates the end of the existing data. Defaults to = None
+
+        Returns:
+            tuple[list, Any]: The combined pages and the next page token.
+        '''
+
+        def page_sizes(limit: int, api_limit: int) -> Generator[int, None, None]:
+            '''Generates page sizes for pagination based on the api_limit.
+
+            This generates page sizes to use for pagination with
+            where all but the last are the API limit and the last is the remainder.
+            It yields page sizes until the total limit is reached.
+
+            Args:
+                limit: The total number of results to fetch.
+                api_limit: The limit the API has per page/request.
+
+            Yields:
+                int: The next page size to use, not exceeding the API limit.
+            '''
+            while limit > api_limit:
+                yield api_limit
+                limit -= api_limit
+            yield limit
+
+        def get_page(pagination_args: dict) -> tuple[list, Any]:
+            response = client_func(api_params | pagination_args)
+            return (
+                dict_safe_get(response, keys=pages_key_path, return_type=list),
+                response.get(api_token_key),
+            )
+
+        page_size = min(api_limit, arg_to_number(page_size) or api_limit)
+
+        if next_token:
+            pagination_args = {api_token_key: next_token, api_page_size_key: page_size}
+            return get_page(pagination_args)
+        else:
+            pages = []
+            for page_size in page_sizes(arg_to_number(limit) or 50, api_limit):
+                pagination_args = {api_token_key: next_token, api_page_size_key: page_size}
+                new_page, next_token = get_page(pagination_args)
+                pages += new_page
+                if next_token == stop_on_token:
+                    break
+            return pages, next_token
+
+
+    def paginate_with_page_num_and_size(
+        client_func: Callable,
+        *func_args,
+        limit: str | int | None = 50,
+        page: str | int | None = None,
+        page_size: str | int | None = None,
+        pages_key_path: Iterable | None = (),
+        api_limit: int = 1000,
+        api_page_num_key: str = 'page',
+        api_page_size_key: str = 'count',
+    ) -> list:
+        '''
+        Paginates an API endpoint that accepts "page number" and "page size" parameters
+        using the "limit", "page" and "page_size" args provided by demisto.args() as per the XSOAR pagination protocol.
+
+        Args:
+            client_func (Callable[[...], dict]): The client function that calls the API endpoint.
+            api_params (dict[str, Any]): The parameters to call the endpoint with. The pagination args will be added to this arg.
+            limit (str | int | None): The demisto.args() limit.
+            page (str | None): The demisto.args() page.
+            page_size (str | int | None): The demisto.args() page_size.
+            pages_key_path (Iterable | None): The keys used to extract the "pages" returned by the API.
+                                              i.e. If the API returns a JSON in the format: {'data': {'pages': [1,2,3,4,5]}},
+                                              then pages_key_path=('data', 'pages'). The key path MUST point to a list.
+            api_limit (int, optional): The maximum amount of data returned by the API on a single call. Defaults to 1000.
+            api_page_num_key (str, optional): The key used by the API as a page number/index. Defaults to 'page'.
+            api_page_size_key (str, optional): The key used by the API as a page size. Defaults to 'count'.
+
+        Returns:
+            list: The combined pages.
+        '''
+        def get_page(pagination_args: dict) -> list[dict]:
+            response = client_func(*func_args, pagination_args)
+            return dict_safe_get(response, keys=pages_key_path, return_type=list)
+
+        page = arg_to_number(page)
+        page_size = arg_to_number(page_size)
+
+        if page and page_size:
+            pagination_args = {api_page_num_key: page, api_page_size_key: min(api_limit, page_size)}
+            return get_page(pagination_args)
+        else:
+            limit = arg_to_number(limit) or 50
+            pages = []
+            for page in range(1, ceil(limit / api_limit) + 1):
+                pagination_args = {api_page_num_key: page, api_page_size_key: api_limit}
+                new_page = get_page(pagination_args)
+                pages += new_page
+                if len(new_page) < api_limit:  # end of the data has been reached
+                    break
+            del pages[limit:]  # remove the surplus
+            return pages
+
+
+    ''' COMMAND FUNCTIONS '''
+
+
+    def test_module(client: Client) -> str:
+        if PARAMS.get('isFetch') and not arg_to_datetime(PARAMS['first_fetch']):
+            raise ValueError(f'{PARAMS["first_fetch"]!r} is not a valid time.')
+
+        service = 'Takedown'
+        try:
+            client.get_takedowns({'page_size': 1})  # test takedown service
+            service = 'Submission'
+            client.submission_list({'max_results': 1})  # test submission service
+        except DemistoException as e:
+            demisto.debug(str(e))
+            raise DemistoException(
+                f'Unable to connect to the Netcraft {service} service.'
+                f' Make sure the {service} URL and API key are correct'
+            )
+        return 'ok'
+
+
+    def fetch_incidents(client: Client) -> list[dict[str, str]]:
+        # demisto.getLastRun and demisto.setLastRun hold takedown IDs
+        def to_xsoar_incident(incident: dict) -> dict:
+
+            demisto.debug(incident_id := incident['id'])
+            return {
+                'name': f'Takedown-{incident_id}',
+                'occurred': arg_to_datetime(  # type: ignore[union-attr]
+                    incident['date_submitted'],
+                    required=True
+                ).isoformat(),
+                'rawJSON': json.dumps(incident),
+            }
+
+        params = {
+            'max_results': min(
+                arg_to_number(PARAMS['max_fetch']) or MAX_FETCH_DEFAULT,
+                TAKEDOWN_API_LIMIT
+            ),
+            'sort': 'id',
+            'region': PARAMS['region']
+        }
+
+        if last_run := demisto.getLastRun():
+            last_id = last_run['id']
+            params['id_after'] = last_id
+            demisto.debug(f'Fetching IDs from: {last_id}')
+        else:
+            last_id = None
+            params['date_from'] = str(
+                arg_to_datetime(
+                    PARAMS['first_fetch'],
+                    required=True
+                ))
+            demisto.debug(f'First fetch date: {params["date_from"]}')
+
+        incidents = client.get_takedowns(params) or []
+        if incidents:
+            demisto.setLastRun({'id': incidents[-1]['id']})
+            # the first incident from the API call should be a duplicate of last_id
+            if incidents[0]['id'] == last_id:
+                del incidents[0]
+
+        return list(map(to_xsoar_incident, incidents))
+
+
+    def attack_report_command(args: dict, client: Client) -> CommandResults:
+
+        def args_to_api_body_and_file(args: dict) -> tuple[dict, dict | None]:
+            if entry_id := args.get('entry_id'):
+                file = {'evidence': open(get_file_path(entry_id)['path'], 'rb')}
+            else:
+                file = None
+
+            return args | {
+                'type': args.pop('attack_type'),
+                'suspected_fraudulent_domain': argToBoolean(args.pop('suspected_fraud_domain')),
+                'region': args.get('region') or PARAMS['region'],
+                'malware': json.loads(args.get('malware', 'null')),
+                'force_auth': json.loads(args.get('force_auth', 'null')),
+                'inactive': json.loads(args.get('inactive', 'null')),
+                'tags': ','.join(argToList(args.get('tags'))),
+            }, file
+
+        def response_to_outputs(response: str) -> dict[str, Any]:
+            '''Returns the commands context and readable outputs'''
+            # the response contains one or two lines inf the form "<code>\n<id (if it exists)>"
+            code, takedown_id, *_ = response.splitlines() + ['']
+            if code not in RES_CODE_TO_MESSAGE:
+                raise DemistoException(
+                    f'Error in Netcraft API call:\n{response}'
+                )
+            table = {
+                'Report status': RES_CODE_TO_MESSAGE[code],
+                'Takedown ID': takedown_id,
+                'Response code': code,
+            }
+            return {
+                'outputs': {'id': takedown_id} if code == TAKEDOWN_OK_CODE else None,
+                'readable_output': tableToMarkdown(
+                    'Netcraft attack reported',
+                    table, list(table),
+                    removeNull=True
+                )
+            }
+
+        response = client.attack_report(
+            *args_to_api_body_and_file(args)
+        )
+        return CommandResults(
+            outputs_prefix='Netcraft.Takedown',
+            outputs_key_field='id',
+            raw_response=response,
+            **response_to_outputs(response)
+        )
+
+
+    def takedown_list_command(args: dict, client: Client) -> CommandResults:
+
+        def args_to_params(args: dict) -> dict:
+            return args | {
+                'authgiven': args.pop('auth_given', '').lower().replace(' ', ':'),
+                'escalated': args.pop('escalated', '').lower().replace(' ', ':'),
+                'report_source': {
+                    'Phishing Feed': 'phish_feed',
+                    'Interface': 'interface',
+                    'Referer': 'referer',
+                    'Forensic': 'forensic',
+                    'Api': 'api',
+                    'Email Feed': 'email_feed',
+                    'Fraud Detection': 'fraud_detection'
+                }.get(args.get('report_source', '')),
+                'sort': {
+                    'Auth Given': 'authgiven',
+                    'Customer Label': 'customer_label',
+                    'Date Submitted': 'date_submitted',
+                    'Hoster': 'hoster',
+                    'Id': 'id',
+                    'Ip': 'ip',
+                    'Language': 'language',
+                    'Last Updated': 'last_updated',
+                    'Registrar': 'registrar',
+                    'Status': 'status'
+                }.get(args.get('sort', '')),
+                'statuses': ','.join(argToList(args.get('statuses'))),
+                'dir': args.pop('sort_direction'),
+                'max_results':
+                    arg_to_number(args.pop('limit'))
+                    if not argToBoolean(args.pop('all_results'))
+                    else TAKEDOWN_API_LIMIT,
+                'region': args.get('region') or PARAMS['region']
+            }
+
+        def response_to_context(response: list[dict]) -> list[dict]:
+            for takedown in response:
+                convert_binary_keys_to_bool(
+                    takedown,
+                    'authgiven', 'escalated', 'has_phishing_kit',
+                    'false_positive', 'managed'
+                )
+                # Translates from British English to American.
+                takedown['authorization_source'] = takedown.pop('authorisation_source', None)
+            return response
+
+        def response_to_readable(response: list[dict]) -> str:
+            header_map = {
+                'id': 'ID',
+                'authgiven': 'Auth',
+                'target_brand': 'Brand',
+                'attack_type': 'Attack Type',
+                'status': 'Status',
+                'attack_url': 'Attack URL',
+                'date_submitted': 'Date Reported',
+                'last_updated': 'Last Updated',
+                'date_authed': 'Date Authorized',
+                'date_escalated': 'Date Escalated',
+                'first_contact': 'First Contact',
+                'first_inactive': 'First Inactive (Monitoring)',
+                'first_resolved': 'First Resolved'
+            }
+            return tableToMarkdown(
+                'Netcraft Takedowns',
+                response,
+                list(header_map),
+                headerTransform=header_map.get,
+                removeNull=True
+            )
+
+        response = client.get_takedowns(
+            args_to_params(args)
+        )
+        return CommandResults(
+            outputs_prefix='Netcraft.Takedown',
+            outputs_key_field='id',
+            outputs=response_to_context(response),
+            readable_output=response_to_readable(response),
+        )
+
+
+    def takedown_update_command(args: dict, client: Client) -> CommandResults:
+
+        def args_to_params(args: dict) -> dict:
+            return {
+                key: args.get(value)
+                for key, value in
+                (
+                    ('set_customer_label', 'customer_label'),
+                    ('set_description', 'description'),
+                    ('set_region', 'region'),
+                    ('set_brand', 'brand'),
+                    ('set_suspected_fraudulent_domain', 'suspected_fraud_domain'),
+                    ('set_suspected_fraudulent_hostname', 'suspected_fraud_hostname'),
+                )
+            } | {
+                'add_tags': ','.join(argToList(args.get('add_tags'))),
+                'remove_tags': ','.join(argToList(args.get('remove_tags'))),
+                'takedown_id': args.get('takedown_id')
+            }
+
+        response = client.takedown_update(
+            args_to_params(args)
+        )
+        if not response.get('takedown_id'):
+            raise DemistoException(
+                f'Error in Netcraft API call:\n{yaml.dump(response)}'
+            )
+        return CommandResults(
+            readable_output=tableToMarkdown(
+                'Takedown successfully updated.',
+                {'Takedown ID': response['takedown_id']},
+            ),
+            raw_response=response
+        )
+
+
+    def takedown_escalate_command(args: dict, client: Client) -> CommandResults:
+        response = client.takedown_escalate(args)
+        if response.get('status') != TAKEDOWN_OK_CODE:
+            raise DemistoException(
+                f'Error in Netcraft API call:\n{yaml.dump(response)}'
+            )
+        return CommandResults(
+            raw_response=response,
+            readable_output=tableToMarkdown(
+                'Takedown successfully escalated.',
+                {'Takedown ID': args['takedown_id']},
+            )
+        )
+
+
+    def takedown_note_create_command(args: dict, client: Client) -> CommandResults:
+        response = client.takedown_note_create(
+            {
+                'takedown_id': args['takedown_id'],
+                'text': args['note_text'],
+                'notify': argToBoolean(args['notify']),
+            }
+        )
+        if not response.get('note_id'):
+            raise DemistoException(
+                f'Error in Netcraft API call:\n{yaml.dump(response)}'
+            )
+        return CommandResults(
+            outputs_prefix='Netcraft.TakedownNote',
+            outputs=response,
+            outputs_key_field='note_id',
+            readable_output=tableToMarkdown(
+                'Note successfully added to takedown.',
+                {'Note ID': response['note_id'],
+                 'Takedown ID': args['takedown_id']},
+                ['Note ID', 'Takedown ID']
+            )
+        )
+
+
+    def takedown_note_list_command(args: dict, client: Client) -> CommandResults:
+
+        def response_to_readable(response: list[dict]) -> str:
+            header_map = {
+                'note_id': 'Note ID',
+                'takedown_id': 'Takedown ID',
+                'group_id': 'Group ID',
+                'time': 'Time',
+                'author': 'Author',
+                'note': 'Note'
+            }
+            return tableToMarkdown(
+                'Takedown Notes', response,
+                list(header_map),
+                headerTransform=header_map.get,
+                removeNull=True
+            )
+
+        response = client.takedown_note_list({
+            'takedown_id': args.get('takedown_id'),
+            'author': args.get('author_mail')
+        })
+        response = response if argToBoolean(args['all_results']) else response[:50]
+        return CommandResults(
+            outputs_prefix='Netcraft.TakedownNote',
+            outputs=response,
+            outputs_key_field='note_id',
+            readable_output=response_to_readable(response)
+        )
+
+
+    def attack_type_list_command(args: dict, client: Client) -> CommandResults:
+
+        def response_to_context(response: list[dict]) -> list[dict]:
+            '''Translates from British English to American.'''
+            for attack_type in response:
+                attack_type['auto_authorize'] = attack_type.pop('auto_authorise', None)
+            return response
+
+        def response_to_readable(response: list[dict]) -> str:
+            return tableToMarkdown(
+                'Netcraft Attack Types', response,
+                [
+                    'name', 'display_name', 'base_type', 'description',
+                    'automated', 'auto_escalation', 'auto_authorize',
+                ],
+                headerTransform=string_to_table_header,
+                removeNull=True
+            )
+
+        response = client.attack_type_list(
+            sub_dict(args, 'auto_escalation', 'automated')
+            | {
+                'auto_authorise': args.get('auto_authorize'),
+                'region': args.get('region') or PARAMS['region']
+            }
+        )
+        response = response if argToBoolean(args['all_results']) else response[:50]
+        return CommandResults(
+            outputs_prefix='Netcraft.AttackType',
+            outputs=response_to_context(response),
+            readable_output=response_to_readable(response)
+        )
+
+
+    @polling_function(
+        name='netcraft-submission-list',
+        interval=arg_to_number(demisto.getArg('interval_in_seconds')),
+        timeout=arg_to_number(demisto.getArg('timeout')),
+        poll_message='Submission pending:'
+    )
+    def get_submission(args: dict, submission_uuid: str, client: Client) -> PollResult:
+
+        def response_to_context(response: dict, uuid: str) -> dict:
+            '''
+            Does the following:
+            1. adds the uuid the output so that there is a uuid for every submission under 'Netcraft.Submission'
+                as is the the case with submission_list().
+            2. keeps the context output somewhat similar to the output of the non uuid command call (submission_list) by aligning keys
+                that differ in name only.
+            3. converts 1 or 0 values into their corresponding boolean values.
+            '''
+            response.update({
+                'uuid': uuid,
+                'source_name': response.get('source', {}).pop('name', None),
+                'submitter_email': response.pop('submitter', {}).get('email'),
+            })
+            convert_binary_keys_to_bool(
+                response,
+                'has_cryptocurrency_addresses', 'has_files', 'has_issues', 'has_mail',
+                'has_phone_numbers', 'has_urls', 'is_archived', 'pending'
+            )
+            return response
+
+        def response_to_readable(submission: dict) -> str:
+            return tableToMarkdown(
+                'Netcraft Submission',
+                {
+                    'Submission UUID': submission['uuid'],
+                    'Submission Date': str(arg_to_datetime(submission.get('date'))),
+                    'Submitter Email': submission.get('submitter_email'),
+                    'State': submission.get('state'),
+                    'Source': submission.get('source_name')
+                },
+                ['Submission UUID', 'Submission Date', 'Submitter Email', 'State', 'Source'],
+                removeNull=True,
+            )
+
+        response = client.get_submission(submission_uuid, args['ignore_404'])
+        return PollResult(
+            CommandResults(
+                outputs_prefix='Netcraft.Submission',
+                outputs_key_field='uuid',
+                outputs=response_to_context(response, submission_uuid),
+                readable_output=response_to_readable(response),
+            ),
+            # the submission may not be registered yet, hence the "None" option.
+            continue_to_poll=(response.get('state') in ('processing', None)),
+            args_for_next_run=(args | {'submission_uuid': submission_uuid})
+        )
+
+
+    def submission_list(args: dict, client: Client) -> CommandResults:
+
+        def get_date(arg_name: str) -> str | None:
+            if (date := arg_to_datetime(args.get(arg_name))):
+                return str(date.date())
+            else:
+                return None
+
+        def args_to_params(args: dict) -> dict:
+            return sub_dict(
+                args,
+                'source_name', 'submission_reason', 'submitter_email'
+            ) | {
+                'date_start': get_date('date_start'),
+                'date_end': get_date('date_end'),
+                'state': args.get('state', '').lower()
+            }
+
+        def response_to_readable(submissions: list[dict]) -> str:
+            return tableToMarkdown(
+                'Netcraft Submissions',
+                [
+                    {
+                        'Submission UUID': sub.get('uuid'),
+                        'Submission Date': str(arg_to_datetime(sub.get('date'))),
+                        'Submitter Email': sub.get('submitter_email'),
+                        'State': sub.get('state'),
+                        'Source': sub.get('source_name')
+                    }
+                    for sub in submissions
+                ],
+                ['Submission UUID', 'Submission Date', 'Submitter Email', 'State', 'Source'],
+                removeNull=True,
+            )
+
+        submissions, next_token = paginate_with_token(
+            client.submission_list,
+            api_params=args_to_params(args),
+            **sub_dict(args, 'limit', 'page_size', 'next_token'),
+            pages_key_path=['submissions']
+        )
+        return CommandResults(
+            # this method is used so that the key Netcraft.SubmissionNextToken is overridden on each run
+            outputs={
+                'Netcraft.Submission(val.uuid && val.uuid == obj.uuid)': submissions,
+                'Netcraft(true)': {'SubmissionNextToken': next_token}
+            },
+            readable_output=response_to_readable(submissions),
+        )
+
+
+    def submission_list_command(args: dict, client: Client) -> CommandResults:
+        if uuid := args.pop('submission_uuid', None):
+            return get_submission(args, uuid, client)
+        else:
+            return submission_list(args, client)
+
+
+    def submission_report_results(args: dict, response: dict, client: Client) -> CommandResults:
+        '''Handle the response from a submission report endpoint and poll if needed.'''
+
+        if not argToBoolean(args['polling']):
+            return CommandResults(
+                outputs_prefix='Netcraft.Submission',
+                outputs_key_field='uuid',
+                outputs={'uuid': response['uuid']},
+                readable_output=tableToMarkdown(
+                    'Submission successfully reported.',
+                    {'Submission UUID': response['uuid']}
+                ),
+            )
+        return get_submission(args | {'ignore_404': True}, response['uuid'], client)
+
+
+    def file_report_submit_command(args: dict, client: Client) -> CommandResults:
+
+        def args_to_body(args: dict) -> dict:
+            content = args.pop('file_content', None)
+            name = args.pop('file_name', None)
+            entry_ids = argToList(args.pop('entry_id', None))
+
+            if content and name:
+                files = [
+                    {
+                        'content': content,
+                        'filename': name,
+                    }
+                ]
+            elif entry_ids:
+                files = [
+                    {
+                        'content': read_base64encoded_file(file['path']),
+                        'filename': file['name'].removesuffix('}'),  # remove the XSOAR added suffix
+                    }
+                    for file in map(get_file_path, entry_ids)
+                ]
+            else:
+                raise DemistoException('A file must be provided. Use file_content and file_name OR entry_id')
+
+            return {
+                'email': args.pop('reporter_email'),
+                'reason': args.pop('reason', None),
+                'files': files,
+            }
+
+        response = client.file_report_submit(
+            args_to_body(args)
+        )
+        return submission_report_results(args, response, client)
+
+
+    def submission_file_list_command(args: dict, client: Client) -> CommandResults:
+
+        def response_to_readable(files: list[dict]) -> str:
+            header_map = {
+                'filename': 'Filename',
+                'hash': 'Hash',
+                'file_state': 'Classification',
+            }
+            return tableToMarkdown(
+                'Submission Files',
+                files,
+                list(header_map),
+                headerTransform=header_map.get,
+                removeNull=True,
+            )
+
+        def response_to_context(files: list[dict]) -> list[dict]:
+            for file in files:
+                convert_binary_keys_to_bool(file, 'has_screenshot')
+            return files
+
+        files = paginate_with_page_num_and_size(
+            client.submission_file_list,
+            args['submission_uuid'],
+            **sub_dict(args, 'limit', 'page_size', 'page'),
+            pages_key_path=('files',)
+        )
+        return CommandResults(
+            readable_output=response_to_readable(files),
+            outputs=response_to_context(files),
+            outputs_prefix='Netcraft.SubmissionFile',
+            outputs_key_field='hash',
+        )
+
+
+    def file_screenshot_get_command(args: dict, client: Client) -> dict | CommandResults:
+        response = client.file_screenshot_get(**args)
+        if response.status_code == 404:
+            return CommandResults(
+                readable_output='No screenshot for file.'
+            )
+        return fileResult(
+            f'file_screenshot_{args["file_hash"]}.png',
+            response.content,
+            EntryType.ENTRY_INFO_FILE,
+        )
+
+
+    def email_report_submit_command(args: dict, client: Client) -> CommandResults:
+
+        if from_message := args.get('message'):
+            message = from_message
+        if from_entry_id := args.get('entry_id'):
+            with open(get_file_path(from_entry_id)['path']) as f:
+                message = f.read()
+        if not bool(from_message) ^ bool(from_entry_id):
+            raise DemistoException('Please provide entry_id OR message.')
+
+        response = client.email_report_submit(
+            {
+                'email': args['reporter_email'],
+                'message': message,
+                'password': args.get('password'),
+            }
+        )
+        return submission_report_results(args, response, client)
+
+
+    def submission_mail_get_command(args: dict, client: Client) -> CommandResults:
+
+        def response_to_readable(mail: dict) -> str:
+            header_map = {
+                'subject': 'Subject',
+                'from': 'From',
+                'to': 'To',
+                'state': 'Classification',
+            }
+            return tableToMarkdown(
+                'Submission Mails',
+                mail,
+                list(header_map),
+                headerTransform=header_map.get,
+                removeNull=True,
+            )
+
+        response = client.submission_mail_get(**args)
+        return CommandResults(
+            outputs=response,
+            outputs_prefix='Netcraft.SubmissionMail',
+            outputs_key_field='hash',
+            readable_output=response_to_readable(response),
+        )
+
+
+    def mail_screenshot_get_command(args: dict, client: Client) -> dict | CommandResults:
+        response = client.mail_screenshot_get(**args)
+        if response.status_code == 404:
+            return CommandResults(
+                readable_output='No screenshot for mail.'
+            )
+        return fileResult(
+            f'email_screenshot_{args["submission_uuid"]}.png',
+            response.content,
+            EntryType.ENTRY_INFO_FILE,
+        )
+
+
+    def url_report_submit_command(args: dict, client: Client) -> CommandResults:
+
+        response = client.url_report_submit({
+            'email': args.pop('reporter_email'),
+            'reason': args.pop('reason', None),
+            'urls': [
+                {'url': url} for url in argToList(args.pop('urls'))
+            ]
+        })
+        return submission_report_results(args, response, client)
+
+
+    def submission_url_list_command(args: dict, client: Client) -> CommandResults:
+
+        def response_to_readable(urls: list[dict]) -> str:
+            return tableToMarkdown(
+                'Submission URLs',
+                [
+                    {
+                        'UUID': url.get('uuid'),
+                        'URL': url.get('url'),
+                        'Hostname': url.get('hostname'),
+                        'Classification': url.get('url_state'),
+                        'URL Classification Log': yaml.safe_dump(url.get('classification_log')),
+                    }
+                    for url in urls
+                ],
+                ['UUID', 'URL', 'Hostname', 'Classification', 'URL Classification Log'],
+                removeNull=True,
+            )
+
+        urls = paginate_with_page_num_and_size(
+            client.submission_url_list,
+            args['submission_uuid'],
+            **sub_dict(args, 'limit', 'page_size', 'page'),
+            pages_key_path=('urls',)
+        )
+        return CommandResults(
+            outputs=urls,
+            outputs_key_field='uuid',
+            outputs_prefix='Netcraft.SubmissionURL',
+            readable_output=response_to_readable(urls)
+        )
+
+
+    def url_screenshot_get_command(args: dict, client: Client) -> dict:
+        response = client.url_screenshot_get(**args)
+        # type of screenshot can be gif or png, the Content-Type key returns: "image/{file_type}"
+        file_type = response.headers.get('Content-Type', '').partition('/')[2]
+        return fileResult(
+            f'url_screenshot_{args["screenshot_hash"]}.{file_type}',
+            response.content,
+            EntryType.ENTRY_INFO_FILE
+        )
+
+
+    ''' MAIN FUNCTION '''
+
+
+    def main() -> None:
+
+        args = demisto.args()
+        command = demisto.command()
+
+        client = Client(
+            base_url=sub_dict(PARAMS, 'submission_url', 'takedown_url'),
+            headers={'Authorization': f'Bearer {PARAMS["credentials"]["password"]}'},
+            verify=(not PARAMS['insecure']),
+            proxy=PARAMS['proxy'],
+            ok_codes=(200,),
+        )
+
+        demisto.debug(f'Command being called is {command}')
+        try:
+            if command == 'test-module':
+                return_results(test_module(client))
+            elif command == 'fetch-incidents':
+                demisto.incidents(fetch_incidents(client))
+            elif command == 'netcraft-attack-report':
+                return_results(attack_report_command(args, client))
+            elif command == 'netcraft-takedown-list':
+                return_results(takedown_list_command(args, client))
+            elif command == 'netcraft-takedown-update':
+                return_results(takedown_update_command(args, client))
+            elif command == 'netcraft-takedown-escalate':
+                return_results(takedown_escalate_command(args, client))
+            elif command == 'netcraft-takedown-note-create':
+                return_results(takedown_note_create_command(args, client))
+            elif command == 'netcraft-takedown-note-list':
+                return_results(takedown_note_list_command(args, client))
+            elif command == 'netcraft-attack-type-list':
+                return_results(attack_type_list_command(args, client))
+            elif command == 'netcraft-submission-list':
+                return_results(submission_list_command(args, client))
+            elif command == 'netcraft-submission-file-list':
+                return_results(submission_file_list_command(args, client))
+            elif command == 'netcraft-file-screenshot-get':
+                return_results(file_screenshot_get_command(args, client))
+            elif command == 'netcraft-submission-mail-get':
+                return_results(submission_mail_get_command(args, client))
+            elif command == 'netcraft-mail-screenshot-get':
+                return_results(mail_screenshot_get_command(args, client))
+            elif command == 'netcraft-submission-url-list':
+                return_results(submission_url_list_command(args, client))
+            elif command == 'netcraft-url-screenshot-get':
+                return_results(url_screenshot_get_command(args, client))
+            elif command == 'netcraft-file-report-submit':
+                return_results(file_report_submit_command(args, client))
+            elif command == 'netcraft-url-report-submit':
+                return_results(url_report_submit_command(args, client))
+            elif command == 'netcraft-email-report-submit':
+                return_results(email_report_submit_command(args, client))
+            else:
+                raise NotImplementedError(f'{command!r} is not a Netcraft command.')
+
+        except Exception as e:
+            return_error(f'Failed to execute {command!r}:\n{e}')
+
+
+    ''' ENTRY POINT '''
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('Netcraft V2', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
