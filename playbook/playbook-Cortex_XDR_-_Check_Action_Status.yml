@@ -1,0 +1,321 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Checks the action status of an action ID. \nEnter the action ID of the
+  action whose status you want to know.
+id: Cortex XDR - Check Action Status
+inputs:
+- description: Action ID of the specific request.
+  key: action_id
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Amount of time to poll before declaring a timeout and resuming the
+    playbook (in minutes).
+  key: timeout
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "10"
+name: Cortex XDR - Check Action Status
+outputs:
+- contextPath: PaloAltoNetworksXDR.GetActionStatus
+  description: Gets Action Status command results.
+- contextPath: PaloAltoNetworksXDR.GetActionStatus.endpoint_id
+  description: Endpoint ID.
+  type: string
+- contextPath: PaloAltoNetworksXDR.GetActionStatus.status
+  description: Status of specific endpoint ID.
+  type: string
+- contextPath: PaloAltoNetworksXDR.GetActionStatus.action_id
+  description: The action ID that was the input.
+  type: number
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 025a81bc-ff46-4679-89e4-a0d3cfda1589
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 025a81bc-ff46-4679-89e4-a0d3cfda1589
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": -130
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Ids:
+        simple: ${inputs.action_id}
+      Interval:
+        simple: "1"
+      PollingCommandArgName:
+        simple: action_id
+      PollingCommandName:
+        simple: xdr-action-status-get
+      Timeout:
+        complex:
+          root: inputs.timeout
+      dt:
+        simple: PaloAltoNetworksXDR.GetActionStatus(val.status != "CANCELLED" && val.status
+          != "ABORTED" && val.status != "EXPIRED" && val.status != "COMPLETED_PARTIAL"
+          && val.status != "COMPLETED_SUCCESSFULLY" && val.status != "FAILED" && val.status
+          != "TIMEOUT").action_id
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Use this playbook as a sub-playbook to block execution of the master playbook until a remote action is complete.
+        This playbook implements polling by continuously running the command in Step \#2 until the operation completes.
+        The remote action should have the following structure:
+
+        1. Initiate the operation.
+        2. Poll to check if the operation completed.
+        3. (optional) Get the results of the operation.
+      id: a3d064d5-11eb-403b-8eff-610618c0688b
+      iscommand: false
+      name: GenericPolling
+      playbookId: GenericPolling
+      type: playbook
+      version: -1
+    taskid: a3d064d5-11eb-403b-8eff-610618c0688b
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1d6f1210-f000-41a7-8ae4-27500e74e123
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 1d6f1210-f000-41a7-8ae4-27500e74e123
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 895
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PaloAltoNetworksXDR.GetActionStatus(val.status).status
+          operator: inList
+          right:
+            value:
+              simple: CANCELLED,ABORTED,EXPIRED,COMPLETED_PARTIAL,COMPLETED_SUCCESSFULLY,FAILED,TIMEOUT
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if the action is at its final status.
+      id: 5d245f47-e54e-4ede-88a2-2ec7a0f60342
+      iscommand: false
+      name: Action status is final
+      type: condition
+      version: -1
+    taskid: 5d245f47-e54e-4ede-88a2-2ec7a0f60342
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 545
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: The status of this action is still not final.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message.
+      id: 380f500c-b4c6-4569-84c7-4d3e5fb66253
+      iscommand: false
+      name: Print Error message
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 380f500c-b4c6-4569-84c7-4d3e5fb66253
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 720
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      action_id:
+        simple: ${inputs.action_id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieves the status of the requested actions according to the
+        action ID.
+      id: cb32c787-21a2-4488-8948-b1bc28943d7a
+      iscommand: true
+      name: xdr-action-status-get
+      script: '|||xdr-action-status-get'
+      type: regular
+      version: -1
+    taskid: cb32c787-21a2-4488-8948-b1bc28943d7a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 370
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      seconds:
+        simple: "2"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sleep for X seconds
+      id: fa7b2e15-29c3-487b-8141-b7650e5161db
+      iscommand: false
+      name: Sleep 2 Seconds
+      script: Sleep
+      type: regular
+      version: -1
+    taskid: fa7b2e15-29c3-487b-8141-b7650e5161db
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 20
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1090,
+        "width": 810,
+        "x": 50,
+        "y": -130
+      }
+    }
+  }
