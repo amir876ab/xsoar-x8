@@ -1,0 +1,117 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Authentication \u0026 Identity Management"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Authentication \u0026 Identity Management",
+				"commands": [
+					{
+						"description": "Performs a simple bind operation on the LDAP server.",
+						"name": "ad-authenticate"
+					},
+					{
+						"description": "Fetches LDAP groups under a given base DN.",
+						"name": "ad-groups"
+					},
+					{
+						"description": "Performs a simple bind operation on the LDAP server and returns the authenticated user's groups.",
+						"name": "ad-authenticate-and-roles"
+					}
+				],
+				"description": "Authenticate using OpenLDAP or Active Directory.",
+				"id": "OpenLDAP",
+				"name": "LDAP Authentication"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-09-23T17:42:32Z",
+	"currentVersion": "2.0.12",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.33",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Authenticate using Open LDAP or Active Directory",
+	"downloads": 3906,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "OpenLDAP",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/OpenLDAP/OpenLDAP_image.png",
+			"name": "LDAP Authentication"
+		}
+	],
+	"itemVersion": "2.0.12",
+	"keywords": [
+		"OpenLDAP",
+		"Active Directory Authentication"
+	],
+	"legacy": true,
+	"modules": [],
+	"name": "LDAP Authentication",
+	"packID": "OpenLDAP",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-07-25T19:37:53Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6319909",
+	"videos": []
+}
