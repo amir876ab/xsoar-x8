@@ -1,0 +1,149 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"incidentfield"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "The ID of the switch the the asset is connected to.",
+				"name": "Switch ID - Asset",
+				"type": "multiSelect"
+			},
+			{
+				"description": "The description of the asset.",
+				"name": "Description - Asset",
+				"type": "multiSelect"
+			},
+			{
+				"description": "The location of the asset.",
+				"name": "Location - Asset",
+				"type": "multiSelect"
+			},
+			{
+				"description": "A table view of all assets related to the offense.",
+				"name": "Asset Table",
+				"type": "markdown"
+			},
+			{
+				"description": "The ID of the switch port for which the asset is connected to.",
+				"name": "Switch Port ID - Asset",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "ID - Asset",
+				"type": "multiSelect"
+			},
+			{
+				"description": "The MAC address provided for the asset.",
+				"name": "MAC Address - Asset",
+				"type": "multiSelect"
+			},
+			{
+				"description": "The IP address provided for the asset.",
+				"name": "IP Address - Asset",
+				"type": "multiSelect"
+			}
+		],
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": null,
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-15T05:57:12Z",
+	"currentVersion": "1.0.6",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.33",
+			"name": "Base"
+		},
+		"QRadar": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.4.35",
+			"name": "IBM QRadar"
+		}
+	},
+	"deprecated": false,
+	"description": "Base pack for any packs using asset fields.",
+	"downloads": 7915,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "6.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Asset",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/QRadar/QRadar_image.png",
+			"name": "IBM QRadar (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/QRadar/QRadar_v2_image.png",
+			"name": "IBM QRadar v2 (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/QRadar/QRadarv3_image.png",
+			"name": "IBM QRadar v3"
+		}
+	],
+	"itemVersion": "1.0.6",
+	"keywords": [],
+	"legacy": true,
+	"modules": [],
+	"name": "Asset",
+	"packID": "Asset",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "6.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-09-10T20:39:14Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6319909",
+	"videos": []
+}
