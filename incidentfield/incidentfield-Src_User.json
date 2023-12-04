@@ -5,7 +5,8 @@
 	"associatedToAll": false,
 	"associatedTypes": [
 		"Access",
-		"Traps"
+		"Traps",
+		"Access_ronit_copy"
 	],
 	"autoCompleteTags": null,
 	"breachScript": "",
