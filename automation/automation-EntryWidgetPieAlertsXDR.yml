@@ -1,0 +1,82 @@
+comment: Entry widget that returns a pie chart of alerts for a specified Cortex XDR
+  incident by alert severity (low, medium, and high).
+commonfields:
+  id: EntryWidgetPieAlertsXDR
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.13.80014
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: EntryWidgetPieAlertsXDR
+nativeimage:
+- "8.3"
+- "8.4"
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('EntryWidgetPieAlertsXDR', 'start', __line__())
+  ### pack version: 6.0.4
+
+
+  incident = demisto.incidents()
+  data = {
+      "Type": 17,
+      "ContentsFormat": "pie",
+      "Contents": {
+          "stats": [
+              {
+                  "data": [
+                      int(incident[0].get('CustomFields', {}).get('xdrhighseverityalertcount', 0))
+                  ],
+                  "groups": None,
+                  "name": "high",
+                  "label": "incident.severity.high",
+                  "color": "rgb(255, 23, 68)"
+              },
+              {
+                  "data": [
+                      int(incident[0].get('CustomFields', {}).get('xdrmediumseverityalertcount', 0))
+                  ],
+                  "groups": None,
+                  "name": "medium",
+                  "label": "incident.severity.medium",
+                  "color": "rgb(255, 144, 0)"
+              },
+              {
+                  "data": [
+                      int(incident[0].get('CustomFields', {}).get('xdrlowseverityalertcount', 0))
+                  ],
+                  "groups": None,
+                  "name": "low",
+                  "label": "incident.severity.low",
+                  "color": "rgb(0, 205, 51)"
+              },
+          ],
+          "params": {
+              "layout": "horizontal"
+          }
+      }
+  }
+
+  demisto.results(data)
+
+  register_module_line('EntryWidgetPieAlertsXDR', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- dynamic-section
+type: python
