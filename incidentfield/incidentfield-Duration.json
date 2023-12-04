@@ -4,7 +4,8 @@
 	"aliases": null,
 	"associatedToAll": false,
 	"associatedTypes": [
-		"Access"
+		"Access",
+		"Access_ronit_copy"
 	],
 	"autoCompleteTags": null,
 	"breachScript": "",
