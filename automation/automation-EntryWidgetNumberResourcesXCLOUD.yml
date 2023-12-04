@@ -1,0 +1,67 @@
+comment: Entry widget that returns the number of resources in a Cortex XDR incident.
+commonfields:
+  id: EntryWidgetNumberResourcesXCLOUD
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.13.80014
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: EntryWidgetNumberResourcesXCLOUD
+nativeimage:
+- "8.3"
+- "8.4"
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('EntryWidgetNumberResourcesXCLOUD', 'start', __line__())
+  ### pack version: 6.0.4
+
+
+
+  query = demisto.context().get('resourceCount')
+  data = {
+      "Type": 17,
+      "ContentsFormat": "number",
+      "Contents": {
+          "stats": query,
+          "params": {
+              "layout": "horizontal",
+              "name": "Resource Count",
+              "sign": "",
+              "colors": {
+                  "items": {
+                      "#00cd33": {
+                          "value": -1
+                      },
+                      "#f57d00": {
+                          "value": 1
+                      }
+                  }
+              },
+              "type": "above"
+          }
+      }
+  }
+
+  demisto.results(data)
+
+  register_module_line('EntryWidgetNumberResourcesXCLOUD', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- dynamic-section
+type: python
