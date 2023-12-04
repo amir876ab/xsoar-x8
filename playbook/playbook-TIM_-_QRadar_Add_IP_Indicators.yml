@@ -1,0 +1,799 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 2.4.41
+    packID: QRadar
+    packName: IBM QRadar
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook queries indicators based on a pre-defined query or results
+  from a parent playbook, and adds the resulting indicators to a QRadar Reference
+  Set. The Reference Set name must be defined in the playbook inputs.
+id: TIM - QRadar Add IP Indicators
+inputs:
+- description: The name of the QRadar block list IP reference set to insert the data
+    to.
+  key: QRadarBlackListIPReferenceSetName
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: ""
+  key: ""
+  playbookInputQuery:
+    daterange:
+      fromdate: "0001-01-01T00:00:00Z"
+      fromdatelicenseval: "0001-01-01T00:00:00Z"
+      period:
+        by: ""
+        byfrom: ""
+        byto: ""
+        field: ""
+        fromvalue: null
+        tovalue: null
+      todate: "0001-01-01T00:00:00Z"
+    query: ""
+    queryEntity: indicators
+    results: null
+    runFromLastJobTime: false
+  required: false
+  value: {}
+- description: The name of the QRadar allow list IP reference set to insert the data
+    in to.
+  key: QRadarWhiteListIPReferenceSetName
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The name of the QRadar watch list IP reference set to insert the data
+    in to.
+  key: QRadarWatchListIPReferenceSetName
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: TIM - QRadar Add IP Indicators
+outputs: []
+quiet: true
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: dfe3443b-d2bc-40c5-8291-35be6e9f4113
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: dfe3443b-d2bc-40c5-8291-35be6e9f4113
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 340,
+          "y": -70
+        }
+      }
+  "9":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: inList
+                    right:
+                      value:
+                        simple: QRadar,QRadar_v2,QRadar v3
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "34"
+      "yes":
+      - "31"
+      - "32"
+      - "37"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0c79bfb8-bd4a-4ee8-848a-1ffce8bb5cd5
+      iscommand: false
+      name: Is QRadarEnabled?
+      type: condition
+      version: -1
+    taskid: 0c79bfb8-bd4a-4ee8-848a-1ffce8bb5cd5
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 560,
+          "y": 270
+        }
+      }
+  "18":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: playbookQuery.value
+          operator: isNotEmpty
+      - - left:
+            iscontext: true
+            value:
+              simple: playbookQuery.indicator_type
+          operator: isEqualString
+          right:
+            value:
+              simple: IP
+      label: "yes"
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "34"
+      "yes":
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0c011dd9-73d1-4444-83a2-6fe38e56d1a9
+      iscommand: false
+      name: Are there filtered results?
+      type: condition
+      version: -1
+    taskid: 0c011dd9-73d1-4444-83a2-6fe38e56d1a9
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 340,
+          "y": 70
+        }
+      }
+  "26":
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "35"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ref_name:
+        simple: ${inputs.QRadarBlackListIPReferenceSetName}
+      value:
+        complex:
+          accessor: value
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.CustomFields.tags
+              operator: isEqualString
+              right:
+                value:
+                  simple: approved_black
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.indicator_type
+              operator: isEqualString
+              right:
+                value:
+                  simple: IP
+          root: playbookQuery
+          transformers:
+          - operator: uniq
+      values:
+        complex:
+          root: inputs.ParentPlaybookIndicators
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Add or update a value in a reference set.
+      id: 62c150d2-69d9-432a-8dff-d37eb6127849
+      iscommand: true
+      name: Add IPs to QRadar block list IP reference set
+      script: '|||qradar-update-reference-set-value'
+      type: regular
+      version: -1
+    taskid: 62c150d2-69d9-432a-8dff-d37eb6127849
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 860,
+          "y": 800
+        }
+      }
+  "31":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.QRadarBlackListIPReferenceSetName
+          operator: isNotEmpty
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: value
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: playbookQuery.CustomFields.tags
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: approved_black
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: playbookQuery.indicator_type
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: IP
+                root: playbookQuery
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "34"
+      "yes":
+      - "26"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 22f3d335-ddda-4b60-88ea-69c9de1f0de3
+      iscommand: false
+      name: Is there a Qradar block list IP Reference Set and values?
+      type: condition
+      version: -1
+    taskid: 22f3d335-ddda-4b60-88ea-69c9de1f0de3
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 860,
+          "y": 450
+        }
+      }
+  "32":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.QRadarWhiteListIPReferenceSetName
+          operator: isNotEmpty
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: value
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: playbookQuery.CustomFields.tags
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: approved_white
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: playbookQuery.indicator_type
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: IP
+                root: playbookQuery
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "32"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "34"
+      "yes":
+      - "33"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5c2a1583-8de8-4372-8120-38dd52762e4b
+      iscommand: false
+      name: Is there a Qradar allow list IP Reference Set and values?
+      type: condition
+      version: -1
+    taskid: 5c2a1583-8de8-4372-8120-38dd52762e4b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1600,
+          "y": 450
+        }
+      }
+  "33":
+    continueonerrortype: ""
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "36"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ref_name:
+        simple: ${inputs.QRadarWhiteListIPReferenceSetName}
+      value:
+        complex:
+          accessor: value
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.CustomFields.tags
+              operator: isEqualString
+              right:
+                value:
+                  simple: approved_white
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.indicator_type
+              operator: isEqualString
+              right:
+                value:
+                  simple: IP
+          root: playbookQuery
+          transformers:
+          - operator: uniq
+      values:
+        complex:
+          root: inputs.ParentPlaybookIndicators
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Add or update a value in a reference set.
+      id: 51cc5048-684f-48ac-87b0-fd221cda659e
+      iscommand: true
+      name: Add IPs to QRadar allow list IP reference set
+      script: '|||qradar-update-reference-set-value'
+      type: regular
+      version: -1
+    taskid: 51cc5048-684f-48ac-87b0-fd221cda659e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1600,
+          "y": 800
+        }
+      }
+  "34":
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: aef2cf54-7be8-45f6-892d-a426ff55c7a2
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: aef2cf54-7be8-45f6-892d-a426ff55c7a2
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 340,
+          "y": 1170
+        }
+      }
+  "35":
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "34"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      field:
+        simple: tags
+      fieldValue:
+        simple: SIEM
+      indicatorsValues:
+        complex:
+          accessor: value
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.CustomFields.tags
+              operator: isEqualString
+              right:
+                value:
+                  simple: approved_black
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.indicator_type
+              operator: isEqualString
+              right:
+                value:
+                  simple: IP
+          root: playbookQuery
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Adds the SIEM tag to the indicators.
+      id: d4e91a92-0533-46d0-82be-e6c471babceb
+      iscommand: true
+      name: Add SIEM tag
+      script: Builtin|||appendIndicatorField
+      type: regular
+      version: -1
+    taskid: d4e91a92-0533-46d0-82be-e6c471babceb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 860,
+          "y": 970
+        }
+      }
+  "36":
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "34"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      field:
+        simple: tags
+      fieldValue:
+        simple: SIEM
+      indicatorsValues:
+        complex:
+          accessor: value
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.CustomFields.tags
+              operator: isEqualString
+              right:
+                value:
+                  simple: approved_white
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.indicator_type
+              operator: isEqualString
+              right:
+                value:
+                  simple: IP
+          root: playbookQuery
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Adds the SIEM tag to the indicators.
+      id: 6216a290-887e-4be5-878a-ebb0ad55327c
+      iscommand: true
+      name: Add SIEM tag
+      script: Builtin|||appendIndicatorField
+      type: regular
+      version: -1
+    taskid: 6216a290-887e-4be5-878a-ebb0ad55327c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1600,
+          "y": 970
+        }
+      }
+  "37":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.QRadarWatchListIPReferenceSetName
+          operator: isNotEmpty
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: value
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: playbookQuery.CustomFields.tags
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: approved_watchlist
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: playbookQuery.indicator_type
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: IP
+                root: playbookQuery
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "37"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "34"
+      "yes":
+      - "38"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b9ebb60f-b9c0-44b7-8f16-95b69ab25146
+      iscommand: false
+      name: Is there a Qradar watch list IP Reference Set and values?
+      type: condition
+      version: -1
+    taskid: b9ebb60f-b9c0-44b7-8f16-95b69ab25146
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 2310,
+          "y": 450
+        }
+      }
+  "38":
+    continueonerrortype: ""
+    id: "38"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "39"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ref_name:
+        simple: ${inputs.QRadarWatchListIPReferenceSetName}
+      value:
+        complex:
+          accessor: value
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.CustomFields.tags
+              operator: isEqualString
+              right:
+                value:
+                  simple: approved_watchlist
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.indicator_type
+              operator: isEqualString
+              right:
+                value:
+                  simple: IP
+          root: playbookQuery
+          transformers:
+          - operator: uniq
+      values:
+        complex:
+          root: inputs.ParentPlaybookIndicators
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Add or update a value in a reference set.
+      id: b08ea9e2-2a9a-4bd5-844c-4be2c3202598
+      iscommand: true
+      name: Add IPs to QRadar watch list IP reference set
+      script: '|||qradar-update-reference-set-value'
+      type: regular
+      version: -1
+    taskid: b08ea9e2-2a9a-4bd5-844c-4be2c3202598
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2310,
+          "y": 800
+        }
+      }
+  "39":
+    continueonerrortype: ""
+    id: "39"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "34"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      field:
+        simple: tags
+      fieldValue:
+        simple: SIEM
+      indicatorsValues:
+        complex:
+          accessor: value
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.CustomFields.tags
+              operator: isEqualString
+              right:
+                value:
+                  simple: approved_watchlist
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.indicator_type
+              operator: isEqualString
+              right:
+                value:
+                  simple: IP
+          root: playbookQuery
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Adds the SIEM tag to the indicators.
+      id: 412a249a-4e6d-43fa-8403-244da607a17b
+      iscommand: true
+      name: Add SIEM tag
+      script: Builtin|||appendIndicatorField
+      type: regular
+      version: -1
+    taskid: 412a249a-4e6d-43fa-8403-244da607a17b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2310,
+          "y": 970
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1305,
+        "width": 2350,
+        "x": 340,
+        "y": -70
+      }
+    }
+  }
