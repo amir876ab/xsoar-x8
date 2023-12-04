@@ -1,0 +1,53 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Classifies Cortex XDR incidents.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Cortex XDR - IR",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "6.0.4",
+	"keyTypeMap": {
+		"PortScan": "Cortex XDR Port Scan",
+		"XDR Incident": "Cortex XDR Incident"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Cortex XDR - Classifier",
+	"nameRaw": "Cortex XDR - Classifier",
+	"packID": "CortexXDR",
+	"packName": "Cortex XDR by Palo Alto Networks",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"complex": {
+			"filters": [],
+			"root": "description",
+			"transformers": [
+				{
+					"args": {
+						"dt": {
+							"isContext": false,
+							"value": {
+								"simple": ".=val \u0026\u0026 val.toLowerCase().indexOf(\"port scan\") \u003e -1 ? \"PortScan\" : \"XDR Incident\""
+							}
+						}
+					},
+					"operator": "DT"
+				}
+			]
+		}
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
