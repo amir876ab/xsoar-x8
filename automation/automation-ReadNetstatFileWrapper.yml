@@ -1,0 +1,55 @@
+comment: "This Automation is a wrapper - \nIf the CrowdStrike key is present in context,
+  ReadNetstatFile will be executed and displayed.\nElse, 'No data on Netstat found'
+  will be displayed."
+commonfields:
+  id: ReadNetstatFileWrapper
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.2.0
+    itemVersion: 2.0.8
+    packID: MalwareInvestigationAndResponse
+    packName: Malware Investigation and Response
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.8.36650
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: ReadNetstatFileWrapper
+nativeimage:
+- "8.3"
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('ReadNetstatFileWrapper', 'start', __line__())
+  ### pack version: 2.0.8
+
+
+
+  def main():
+      try:
+          if 'CrowdStrike' in demisto.context():
+              return_results(demisto.executeCommand('ReadNetstatFile', {}))
+          else:
+              return_results('No data on Netstat found')
+      except Exception as e:
+          demisto.error(traceback.format_exc())  # print the traceback
+          return_error(f'Failed to execute ReadNetstatFileWrapper. Error: {str(e)}')
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('ReadNetstatFileWrapper', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- dynamic-section
+type: python
