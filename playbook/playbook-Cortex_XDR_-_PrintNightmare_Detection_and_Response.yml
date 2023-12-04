@@ -1,0 +1,1569 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  The playbook targets specific PrintNightmare rules written by Cortex XDR for both vulnerabilities:
+  [CVE-2021-1675 LPE](https://nvd.nist.gov/vuln/detail/CVE-2021-1675)
+  [CVE-2021-34527 RCE](https://nvd.nist.gov/vuln/detail/CVE-2021-34527)
+
+  This playbook includes the following tasks:
+  - Containment of files, endpoints, users and IP Addresses
+  - Enrichment of indicators
+  - Data acquisition of system info and files using Cortex XDR
+  - Eradicating compromised user credentials
+
+  ** Note: This is a beta playbook, which lets you implement and test pre-release software. Since the playbook is beta, it might contain bugs. Updates to the pack during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the pack to help us identify issues, fix them, and continually improve.
+id: Cortex XDR - PrintNightmare Detection and Response
+inputs:
+- description: 'Whether to isolate the endpoint automatically '
+  key: IsolateEndpointAutomatically
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "False"
+- description: 'Whether to disable the account automatically '
+  key: DisableAccountAutomatically
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "True"
+- description: 'Whether to block the IP Address automatically '
+  key: BlockIPAutomatically
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "True"
+- description: 'Whether to run indicators auto enrichment automatically '
+  key: EnrichAutomatically
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "True"
+- description: "Possible values: True/False.\nWhether to provide user verification
+    for blocking IPs. \n\nFalse - No prompt will be displayed to the user.\nTrue -
+    The server will ask the user for blocking verification and will display the blocking
+    list."
+  key: UserVerification
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "False"
+name: Cortex XDR - PrintNightmare Detection and Response
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "77"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a54515dc-928a-4a40-8a4b-822d2b1ade36
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: a54515dc-928a-4a40-8a4b-822d2b1ade36
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 1210,
+          "y": -120
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.IsolateEndpointAutomatically
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "9"
+      "yes":
+      - "73"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Whether to isolate the endpoint automatically.
+      id: 143265db-b8b3-4869-838e-07d9f57b9a2f
+      iscommand: false
+      name: Execute endpoint Isolation automatically?
+      type: condition
+      version: -1
+    taskid: 143265db-b8b3-4869-838e-07d9f57b9a2f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -1370,
+          "y": 1100
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_id:
+        complex:
+          accessor: endpoint_id
+          root: PaloAltoNetworksXDR.Incident.alerts
+          transformers:
+          - operator: uniq
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This playbook accepts a Cortex XDR endpoint ID and isolates it
+        using the 'Palo Alto Networks Cortex XDR - Investigation and Response' integration.
+      id: 6858b2fe-7399-44d8-894a-68f05cd01cad
+      iscommand: false
+      name: Cortex XDR - Isolate Endpoint
+      playbookId: Cortex XDR - Isolate Endpoint
+      type: playbook
+      version: -1
+    taskid: 6858b2fe-7399-44d8-894a-68f05cd01cad
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -1370,
+          "y": 1845
+        }
+      }
+  "8":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.DisableAccountAutomatically
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "10"
+      "yes":
+      - "70"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Whether to disable the account automatically.
+      id: 8276bf0d-8d07-472c-8073-9c4440ab323e
+      iscommand: false
+      name: Disable account automatically?
+      type: condition
+      version: -1
+    taskid: 8276bf0d-8d07-472c-8073-9c4440ab323e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 100,
+          "y": 1100
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Execute endpoint isolation manually
+      id: 49117385-c0a2-4aff-8f65-1b59586ec14f
+      iscommand: false
+      name: Isolate affected endpoint manually
+      type: regular
+      version: -1
+    taskid: 49117385-c0a2-4aff-8f65-1b59586ec14f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -920,
+          "y": 1330
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Disable the affected account manually
+      id: 8342df19-33bf-4e7a-854a-1cba2bd459ea
+      iscommand: false
+      name: 'Disable affected account manually '
+      type: regular
+      version: -1
+    taskid: 8342df19-33bf-4e7a-854a-1cba2bd459ea
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -330,
+          "y": 1340
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 999d6edf-b9f0-4947-8e65-ad673007e6c5
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 999d6edf-b9f0-4947-8e65-ad673007e6c5
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1210,
+          "y": 3120
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+      - "8"
+      - "19"
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f48d8dd4-6d7a-4a14-80a7-eb5270cb98b8
+      iscommand: false
+      name: Containment
+      type: title
+      version: -1
+    taskid: f48d8dd4-6d7a-4a14-80a7-eb5270cb98b8
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -300,
+          "y": 930
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Block the suspicious files identified manually
+      id: fa1732c0-3514-48a5-8698-6f11173c4deb
+      iscommand: false
+      name: Block suspicious files manually
+      type: regular
+      version: -1
+    taskid: fa1732c0-3514-48a5-8698-6f11173c4deb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -2300,
+          "y": 1100
+        }
+      }
+  "19":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.BlockIPAutomatically
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "21"
+      "yes":
+      - "74"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'Whether to block the IP automatically '
+      id: 28872916-60a6-4ca9-85ce-4236e68214fb
+      iscommand: false
+      name: Block suspicious IP Address automatically?
+      type: condition
+      version: -1
+    taskid: 28872916-60a6-4ca9-85ce-4236e68214fb
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 960,
+          "y": 1100
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Block the attacker IP Address manually
+      id: 81e05e6f-8897-4e5a-85ed-fa10a5831034
+      iscommand: false
+      name: 'Block attacker IP Address manually '
+      type: regular
+      version: -1
+    taskid: 81e05e6f-8897-4e5a-85ed-fa10a5831034
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 530,
+          "y": 1340
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "62"
+      - "41"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0d1c6251-02db-40ea-8328-e445074001b6
+      iscommand: false
+      name: Acquire Data for Further Investigation
+      type: title
+      version: -1
+    taskid: 0d1c6251-02db-40ea-8328-e445074001b6
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -330,
+          "y": 2050
+        }
+      }
+  "28":
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "30"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: db979691-6e5b-4c33-8362-69488f948e97
+      iscommand: false
+      name: Eradication
+      type: title
+      version: -1
+    taskid: db979691-6e5b-4c33-8362-69488f948e97
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -330,
+          "y": 2760
+        }
+      }
+  "30":
+    continueonerrortype: ""
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set new credentials for the compromised user.
+      id: 695cb926-24f3-4e1e-8528-ddb1adbec546
+      iscommand: false
+      name: Revoke user credentials
+      type: regular
+      version: -1
+    taskid: 695cb926-24f3-4e1e-8528-ddb1adbec546
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -330,
+          "y": 2900
+        }
+      }
+  "32":
+    continueonerrortype: ""
+    id: "32"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "33"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a59cefda-d913-4acb-8440-7aca00288469
+      iscommand: false
+      name: Enrichment
+      type: title
+      version: -1
+    taskid: a59cefda-d913-4acb-8440-7aca00288469
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 2210,
+          "y": 930
+        }
+      }
+  "33":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.EnrichAutomatically
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "37"
+      "yes":
+      - "35"
+      - "36"
+      - "69"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'Whether to run auto enrichment '
+      id: addd72ee-e6a4-419b-88db-210b83c64f5b
+      iscommand: false
+      name: Auto Enrichment?
+      type: condition
+      version: -1
+    taskid: addd72ee-e6a4-419b-88db-210b83c64f5b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 2210,
+          "y": 1100
+        }
+      }
+  "35":
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Username:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: Account.Username
+              operator: isNotEqualString
+              right:
+                value:
+                  simple: "null"
+          root: Account.Username
+          transformers:
+          - operator: uniq
+          - args:
+              delimiter:
+                value:
+                  simple: \
+              fields:
+                value:
+                  simple: "2"
+            operator: Cut
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Enrich accounts using one or more integrations.
+        Supported integrations:
+        - Active Directory
+      id: 77c567e4-f2b7-4dbb-8e81-1beb07b4a8aa
+      iscommand: false
+      name: Account Enrichment - Generic v2.1
+      playbookId: Account Enrichment - Generic v2.1
+      type: playbook
+      version: -1
+    taskid: 77c567e4-f2b7-4dbb-8e81-1beb07b4a8aa
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 2210,
+          "y": 1340
+        }
+      }
+  "36":
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      indicatorsValues:
+        complex:
+          accessor: action_remote_ip
+          root: PaloAltoNetworksXDR.Incident.alerts
+          transformers:
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: File.SHA256
+            operator: append
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.enrich.indicators
+      id: 686190f4-62db-4b07-8d5a-fff0e6bf034b
+      iscommand: true
+      name: Indicators Enrichment
+      script: Builtin|||enrichIndicators
+      type: regular
+      version: -1
+    taskid: 686190f4-62db-4b07-8d5a-fff0e6bf034b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 3070,
+          "y": 1340
+        }
+      }
+  "37":
+    continueonerrortype: ""
+    id: "37"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Enrich all indicators manually
+      id: 2799a3c6-1f85-4ec7-87f2-56efdef4a788
+      iscommand: false
+      name: Enrich Indicators manually
+      type: regular
+      version: -1
+    taskid: 2799a3c6-1f85-4ec7-87f2-56efdef4a788
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1780,
+          "y": 1340
+        }
+      }
+  "41":
+    continueonerrortype: ""
+    id: "41"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "61"
+      - "81"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0e9de9f0-80b4-4640-8fa5-5bfd1c9ab7ef
+      iscommand: false
+      name: ' Collect Exploitation Indicators Related Activity'
+      type: title
+      version: -1
+    taskid: 0e9de9f0-80b4-4640-8fa5-5bfd1c9ab7ef
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 30,
+          "y": 2230
+        }
+      }
+  "61":
+    continueonerrortype: ""
+    id: "61"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "28"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      IPAddress:
+        complex:
+          accessor: action_remote_ip
+          root: PaloAltoNetworksXDR.Incident.alerts
+          transformers:
+          - operator: uniq
+    separatecontext: true
+    skipunavailable: true
+    task:
+      brand: ""
+      description: "This playbook enables threat hunting for IOCs in your enterprise.\nThis
+        playbook currently supports the following integrations:\n- Splunk\n- Qradar\n-
+        Pan-os\n- Cortex data lake \n- Autofocus"
+      id: e9267c6f-4c2d-48dd-8017-cecd3cd48a4a
+      iscommand: false
+      name: Threat Hunting - Generic
+      playbookId: Threat Hunting - Generic
+      type: playbook
+      version: -1
+    taskid: e9267c6f-4c2d-48dd-8017-cecd3cd48a4a
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -180,
+          "y": 2460
+        }
+      }
+  "62":
+    continueonerrortype: ""
+    id: "62"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "63"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 65273fff-6d72-49d3-89c4-b28068de1b81
+      iscommand: false
+      name: Cortex XDR  - Collect Files and System Info
+      type: title
+      version: -1
+    taskid: 65273fff-6d72-49d3-89c4-b28068de1b81
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -690,
+          "y": 2230
+        }
+      }
+  "63":
+    continueonerrortype: ""
+    id: "63"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "80"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Initiates a new endpoint script execution action using a script
+        from the script library.
+      id: aed1591c-cd9f-42ba-84c8-51184497392e
+      iscommand: false
+      name: Collect system info
+      type: regular
+      version: -1
+    taskid: aed1591c-cd9f-42ba-84c8-51184497392e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -690,
+          "y": 2375
+        }
+      }
+  "66":
+    continueonerrortype: ""
+    id: "66"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      username:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PaloAltoNetworksXDR.Incident.users
+              operator: isNotEqualString
+              right:
+                value:
+                  simple: "null"
+          root: PaloAltoNetworksXDR.Incident.users
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: \
+              fields:
+                value:
+                  simple: "2"
+            operator: Cut
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Disables an Active Directory user account.
+      id: a4d8ce77-e02b-4fc6-8b8b-d8fe02bb8104
+      iscommand: true
+      name: Disable affected account
+      script: '|||ad-disable-account'
+      type: regular
+      version: -1
+    taskid: a4d8ce77-e02b-4fc6-8b8b-d8fe02bb8104
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 100,
+          "y": 1845
+        }
+      }
+  "69":
+    continueonerrortype: ""
+    id: "69"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Hostname:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: foundIncidents.CustomFields.xdralerts.hostname
+              operator: isNotEqualString
+              right:
+                value:
+                  simple: "null"
+          root: foundIncidents.CustomFields.xdralerts.hostname
+          transformers:
+          - operator: uniq
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Enrich an endpoint by hostname using one or more integrations.
+        Supported integrations:
+        - Active Directory Query v2
+        - McAfee ePolicy Orchestrator
+        - Carbon Black Enterprise Response v2
+        - Cylance Protect v2
+        - CrowdStrike Falcon Host
+        - ExtraHop Reveal(x)
+      id: c6780f7d-1c31-4e1f-8506-b37dddb4f1f9
+      iscommand: false
+      name: Endpoint Enrichment - Generic v2.1
+      playbookId: Endpoint Enrichment - Generic v2.1
+      type: playbook
+      version: -1
+    taskid: c6780f7d-1c31-4e1f-8506-b37dddb4f1f9
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 2640,
+          "y": 1340
+        }
+      }
+  "70":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: Account.Username
+                    operator: isNotEqualString
+                    right:
+                      value:
+                        simple: "null"
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: Account.Username
+                    operator: isNotEqualString
+                    right:
+                      value:
+                        simple: Administrator
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: Account.Username
+                    operator: isNotEqualString
+                    right:
+                      value:
+                        simple: SYSTEM
+                root: Account.Username
+                transformers:
+                - operator: uniq
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "70"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "22"
+      "yes":
+      - "71"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if there is at least one username to enrich.
+      id: c441865d-404b-4b4b-81ad-a2c6daabfe44
+      iscommand: false
+      name: Is there an account to disable?
+      type: condition
+      version: -1
+    taskid: c441865d-404b-4b4b-81ad-a2c6daabfe44
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 100,
+          "y": 1340
+        }
+      }
+  "71":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Active Directory Query v2
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "71"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "22"
+      "yes":
+      - "66"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if there’s an active instance of the Active Directory Query
+        v2 integration enabled.
+      id: e48287f6-34db-41f2-8a31-925555eca04a
+      iscommand: false
+      name: Is Active Directory Query v2 enabled?
+      type: condition
+      version: -1
+    taskid: e48287f6-34db-41f2-8a31-925555eca04a
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 100,
+          "y": 1580
+        }
+      }
+  "73":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: hostname
+                root: foundIncidents.CustomFields.xdralerts
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "73"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "22"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if there is at least one username to enrich.
+      id: 18a75451-0ef5-44eb-806d-2c006904a867
+      iscommand: false
+      name: Is there an endpoint to isolate?
+      type: condition
+      version: -1
+    taskid: 18a75451-0ef5-44eb-806d-2c006904a867
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -1370,
+          "y": 1330
+        }
+      }
+  "74":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PaloAltoNetworksXDR.Incident.alerts.action_remote_ip
+                    operator: IsNotInCidrRanges
+                    right:
+                      value:
+                        simple: 10.0.0.0/8,127.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+                root: PaloAltoNetworksXDR.Incident.alerts.action_remote_ip
+                transformers:
+                - operator: uniq
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "74"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "22"
+      "yes":
+      - "82"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if there is at least one username to enrich.
+      id: 66b63470-6953-43fd-860e-e5f311010165
+      iscommand: false
+      name: Is there an IP Address to block?
+      type: condition
+      version: -1
+    taskid: 66b63470-6953-43fd-860e-e5f311010165
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 960,
+          "y": 1340
+        }
+      }
+  "75":
+    continueonerrortype: ""
+    id: "75"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+      - "32"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      incident_id:
+        complex:
+          accessor: xdrincidentid
+          root: foundIncidents.CustomFields
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns additional data for the specified incident, for example,
+        related alerts, file artifacts, network artifacts, and so on.
+      id: e0a94c31-eeef-4c3b-83f8-3424a3d81462
+      iscommand: true
+      name: Cortex XDR - get incident extra data
+      script: '|||xdr-get-incident-extra-data'
+      type: regular
+      version: -1
+    taskid: e0a94c31-eeef-4c3b-83f8-3424a3d81462
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1000,
+          "y": 650
+        }
+      }
+  "76":
+    continueonerrortype: ""
+    id: "76"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "78"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      query:
+        simple: xdralerts.description:*printnightmare_exploit_patched_machine* OR
+          xdralerts.description:*printnightmare_local_exploit_patched_machine* OR
+          xdralerts.description:*printnightmare_exploit_unpatched_machine* OR xdralerts.description:*printnightmare_local_exploit_unpatched_machine*
+          OR xdralerts.description:*printnightmare_exploit.2* OR xdralerts.description:“*printnightmare_local_exploit.3*
+          OR xdralerts.description:“*printnightmare_exploit.4* OR xdralerts.description:“*printnightmare_local_exploit.2*
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Search XDR incidents for REvil in the network.
+      id: 1f4415ac-f8d5-45da-8cd8-b9917f8a70c5
+      iscommand: false
+      name: 'Search XDR incidents for suspicious network behavior '
+      script: SearchIncidentsV2
+      type: regular
+      version: -1
+    taskid: 1f4415ac-f8d5-45da-8cd8-b9917f8a70c5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1000,
+          "y": 250
+        }
+      }
+  "77":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                accessor: state
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Cortex XDR - IR
+                root: modules
+          operator: isEqualString
+          right:
+            value:
+              simple: active
+      label: "yes"
+    continueonerrortype: ""
+    id: "77"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "11"
+      "yes":
+      - "76"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if the Cortex XDR instance is enabled.
+      id: 8966ca43-7539-4edf-89f6-e6c68ade0cb8
+      iscommand: false
+      name: 'Is Cortex XDR enabled? '
+      type: condition
+      version: -1
+    taskid: 8966ca43-7539-4edf-89f6-e6c68ade0cb8
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1210,
+          "y": 50
+        }
+      }
+  "78":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: foundIncidents
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "78"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "11"
+      "yes":
+      - "75"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if related PrintNightmare incidents were found in XSOAR
+      id: ba6b05b7-8bb9-420f-8fc6-2a41ceca9c95
+      iscommand: false
+      name: Found PrintNightmare Incidents?
+      type: condition
+      version: -1
+    taskid: ba6b05b7-8bb9-420f-8fc6-2a41ceca9c95
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1440,
+          "y": 440
+        }
+      }
+  "80":
+    continueonerrortype: ""
+    id: "80"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "28"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Get files that were involved in the attack for further analysis
+        and forensics.
+      id: f9cf1d24-c495-4d57-8cd5-a02ddbb851a4
+      iscommand: false
+      name: Retrieve suspicious files involved in the attack
+      type: regular
+      version: -1
+    taskid: f9cf1d24-c495-4d57-8cd5-a02ddbb851a4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -690,
+          "y": 2540
+        }
+      }
+  "81":
+    continueonerrortype: ""
+    id: "81"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "28"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Run related advanced XQL queries in Cortex XDR to find any malicious related activity.
+        [Cortex XDR Hunting Blog](https://www.paloaltonetworks.com/blog/security-operations/hunting-printnightmare/)
+      id: 44dfcf25-fea0-415a-8ae7-644577eea940
+      iscommand: false
+      name: Cortex XDR XQL queries
+      type: regular
+      version: -1
+    taskid: 44dfcf25-fea0-415a-8ae7-644577eea940
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 250,
+          "y": 2460
+        }
+      }
+  "82":
+    continueonerrortype: ""
+    id: "82"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      AutoCommit:
+        simple: "No"
+      CustomBlockRule:
+        simple: "True"
+      IP:
+        complex:
+          accessor: action_remote_ip
+          root: PaloAltoNetworksXDR.Incident.alerts
+          transformers:
+          - operator: uniq
+      UserVerification:
+        complex:
+          root: inputs.UserVerification
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5b309d3a-f683-4fd9-8b3f-d609b4225495
+      iscommand: false
+      name: Block IP - Generic v3
+      playbookId: Block IP - Generic v3
+      type: playbook
+      version: -1
+    taskid: 5b309d3a-f683-4fd9-8b3f-d609b4225495
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 960,
+          "y": 1845
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "19_74_yes": 0.71,
+      "33_35_yes": 0.52,
+      "33_37_#default#": 0.68,
+      "4_9_#default#": 0.63,
+      "70_22_#default#": 0.19,
+      "70_71_yes": 0.56,
+      "71_22_#default#": 0.23,
+      "71_66_yes": 0.47,
+      "73_22_#default#": 0.33,
+      "73_6_yes": 0.43,
+      "74_22_#default#": 0.12,
+      "77_11_#default#": 0.1,
+      "77_76_yes": 0.49,
+      "78_11_#default#": 0.1,
+      "78_75_yes": 0.52,
+      "8_10_#default#": 0.63
+    },
+    "paper": {
+      "dimensions": {
+        "height": 3305,
+        "width": 5750,
+        "x": -2300,
+        "y": -120
+      }
+    }
+  }
