@@ -1,0 +1,40 @@
+{
+	"autorun": true,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#4DE406",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "6.9.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Cortex XDR - Lite",
+	"itemVersion": "6.0.4",
+	"layout": "Cortex XDR - Lite",
+	"locked": false,
+	"name": "Cortex XDR - Lite",
+	"onChangeRepAlg": 1,
+	"packID": "CortexXDR",
+	"packName": "Cortex XDR by Palo Alto Networks",
+	"packPropagationLabels": [
+		"all"
+	],
+	"playbookId": "Cortex XDR Lite - Incident Handling",
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
