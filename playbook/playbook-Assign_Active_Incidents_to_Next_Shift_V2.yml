@@ -1,0 +1,379 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.3.8
+    packID: ShiftManagement
+    packName: Shift Management
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: "This playbook reassigns Active Incidents to the current users on call.
+  It requires shift management to be set up.  The playbook can be run as a job a few
+  minutes after the scheduled shift change time.\n\nYou can update the playbook input
+  with a different search query, if required.  Will branch if there are no incidents
+  that match the query and no users on call. \n\nCases will not be assigned to users
+  that defined OOO (by OutOfOffice automation)."
+id: Assign Active Incidents to Next Shift V2
+inputs:
+- description: 'Query for the incidents to reassign. Incidents need to be active.
+    It will not reassign pending incidents. '
+  key: IncidentSearchQuery
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: 'status:active -category:job -type:"Shift handover" '
+name: Assign Active Incidents to Next Shift V2
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 732379f6-9b8c-4117-8733-e0eb568cac60
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 732379f6-9b8c-4117-8733-e0eb568cac60
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      query:
+        simple: ${inputs.IncidentSearchQuery}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Searches Cortex XSOAR incidents.
+      id: a9a33550-08a7-47d8-86b4-88ff7ccb277a
+      iscommand: false
+      name: Search for Incidents
+      script: SearchIncidentsV2
+      type: regular
+      version: -1
+    taskid: a9a33550-08a7-47d8-86b4-88ff7ccb277a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: foundIncidents
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6aadb57e-7e9f-4f73-88ea-5076e7918d07
+      iscommand: false
+      name: Are there open incidents?
+      type: condition
+      version: -1
+    taskid: 6aadb57e-7e9f-4f73-88ea-5076e7918d07
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      incidentIds:
+        simple: ${foundIncidents.id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Randomly assigns the incidents to users on call (requires shift management). This is an example automation for reassigning a large number of incidents to the next shift. This automation works with the  Out of Office automation to ensure only available users get assigned.
+
+        https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.10/Cortex-XSOAR-Administrator-Guide/Shift-Management
+
+        Incident IDs should be passed in a comma-separated list.
+      id: def4dada-8825-435d-8fdf-9e922185a27a
+      iscommand: false
+      name: Assign Incidents to next shift
+      script: AssignToNextShiftOOO
+      type: regular
+      version: -1
+    taskid: def4dada-8825-435d-8fdf-9e922185a27a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 945
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      onCall:
+        simple: "true"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.get.users
+      id: c9aebe9c-0692-4f6c-8454-157709aa68b8
+      iscommand: true
+      name: Get Users on Call
+      script: Builtin|||getUsers
+      type: regular
+      version: -1
+    taskid: c9aebe9c-0692-4f6c-8454-157709aa68b8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 360,
+          "y": 540
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: name
+                root: DemistoUsers
+          operator: isExists
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: name
+                root: DemistoUsers
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0f9cafe2-9e5e-4409-8156-ba1f84dab7f3
+      iscommand: false
+      name: Are there users on call?
+      type: condition
+      version: -1
+    taskid: 0f9cafe2-9e5e-4409-8156-ba1f84dab7f3
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 360,
+          "y": 710
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      columns:
+        simple: Incident ID,Incident name,Incident owner,Link to incident
+      context_path:
+        simple: foundIncidents
+      grid_id:
+        simple: shiftopenincidents
+      keys:
+        simple: id,name,owner,incidentLink
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Creates a grid table from items or key-value pairs.
+      id: 9156d781-74e6-4d09-8b0f-f3bb1ccb25ed
+      iscommand: false
+      name: Set open incidents  to layout
+      script: SetGridField
+      type: regular
+      version: -1
+    taskid: 9156d781-74e6-4d09-8b0f-f3bb1ccb25ed
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 1270
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d3591c44-abaa-462e-863c-910c353039a7
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: d3591c44-abaa-462e-863c-910c353039a7
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1490
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      query:
+        simple: ${inputs.IncidentSearchQuery}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Searches Cortex XSOAR incidents.
+      id: 52cd9a7e-8163-4256-8796-fb31e70eb386
+      iscommand: false
+      name: Search for Incidents
+      script: SearchIncidentsV2
+      type: regular
+      version: -1
+    taskid: 52cd9a7e-8163-4256-8796-fb31e70eb386
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 1100
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "5_8_#default#": 0.21
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1505,
+        "width": 850,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
