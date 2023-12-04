@@ -1,0 +1,53 @@
+{
+	"Cache": null,
+	"cacheVersn": 0,
+	"category": "",
+	"dataType": "scripts",
+	"dateRange": {
+		"fromDate": "0001-01-01T00:00:00Z",
+		"fromDateLicense": "0001-01-01T00:00:00Z",
+		"period": {
+			"by": "",
+			"byFrom": "",
+			"byTo": "",
+			"field": "",
+			"fromValue": null,
+			"toValue": null
+		},
+		"toDate": "0001-01-01T00:00:00Z"
+	},
+	"definitionId": "",
+	"description": "Displays the number of users that are currently on-call.",
+	"fromServerVersion": "5.5.0",
+	"id": "NumberOfUsersOnCall",
+	"isPredefined": true,
+	"itemVersion": "1.3.8",
+	"name": "Number Of Users On-Call",
+	"packID": "ShiftManagement",
+	"packName": "Shift Management",
+	"packPropagationLabels": [
+		"all"
+	],
+	"params": {
+		"colors": {
+			"isEnabled": true,
+			"items": {
+				"#00CD33": {
+					"value": 4
+				},
+				"#FAC100": {
+					"value": 2
+				},
+				"#FF1B15": {
+					"value": 1
+				}
+			},
+			"type": "above"
+		}
+	},
+	"propagationLabels": [],
+	"query": "GetNumberOfUsersOnCall",
+	"toServerVersion": "",
+	"version": -1,
+	"widgetType": "number"
+}
