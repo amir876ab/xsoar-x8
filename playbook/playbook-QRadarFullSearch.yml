@@ -1,0 +1,472 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.4.41
+    packID: QRadar
+    packName: IBM QRadar
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook runs a QRadar query and return its results to the context.
+id: QRadarFullSearch
+inputs:
+- description: How much time to wait before a timeout occurs (minutes)
+  key: timeout
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "600"
+- description: Polling frequency - how often the polling command should run (minutes)
+  key: interval
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "1"
+- description: The query expressions in AQL
+  key: query_expression
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: Range of results to return (e.g. 0-20)
+  key: range
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Table headers
+  key: headers
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: QRadarFullSearch
+outputs:
+- contextPath: QRadar.Search.Result
+  description: The result of the search
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Start of playbook
+      id: ea863b7b-8773-444d-8ee8-0d0ce9fba6b1
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: ea863b7b-8773-444d-8ee8-0d0ce9fba6b1
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 152.5,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      headers:
+        simple: ${inputs.headers}
+      query_expression:
+        simple: ${inputs.query_expression}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Creates a search in QRadar using the search query
+      id: c4bad30a-41e8-42dc-893d-b83ef87e28e6
+      iscommand: true
+      name: Run QRadar search
+      script: '|||qradar-searches'
+      type: regular
+      version: -1
+    taskid: c4bad30a-41e8-42dc-893d-b83ef87e28e6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 370
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      headers:
+        simple: ${inputs.headers}
+      search_id:
+        simple: ${QRadar.Search.ID}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets search object to initialize polling playbook
+      id: ba498a12-5e29-4d65-8973-4056466f58ed
+      iscommand: true
+      name: Get QRadar search
+      script: '|||qradar-get-search'
+      type: regular
+      version: -1
+    taskid: ba498a12-5e29-4d65-8973-4056466f58ed
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 545
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Ids:
+        simple: ${QRadar.Search.ID}
+      Interval:
+        simple: ${inputs.interval}
+      PollingCommandArgName:
+        simple: search_id
+      PollingCommandName:
+        simple: qradar-get-search
+      Timeout:
+        simple: ${inputs.timeout}
+      dt:
+        simple: QRadar.Search(val.Status!=='COMPLETED' && val.Status!=='CANCELED').ID
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Generic polling of qradar-get-search
+      id: c5c40bd8-435b-46d1-8e3e-ffb9e72954c2
+      iscommand: false
+      name: GenericPolling
+      playbookId: GenericPolling
+      type: playbook
+      version: -1
+    taskid: c5c40bd8-435b-46d1-8e3e-ffb9e72954c2
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -200,
+          "y": 910
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    evidencedata:
+      customfields: {}
+      description:
+        simple: Qradar Full Search Results.
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      headers:
+        simple: ${inputs.headers}
+      range:
+        simple: ${inputs.range}
+      search_id:
+        simple: ${QRadar.Search.ID}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: executes qradar-get-search-results to get the search results
+      id: a8af7d6b-87e5-4f16-847a-038e2b15ac2c
+      iscommand: true
+      name: Get QRadar search results
+      script: '|||qradar-get-search-results'
+      tags:
+      - SIEMResults
+      type: regular
+      version: -1
+    taskid: a8af7d6b-87e5-4f16-847a-038e2b15ac2c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 300,
+          "y": 1300
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Playbook is done
+      id: 7160734d-90ad-4d48-8fa6-d8c7aa68bc61
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 7160734d-90ad-4d48-8fa6-d8c7aa68bc61
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 152.5,
+          "y": 1570
+        }
+      }
+  "6":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: QRadar.Search.Status
+          operator: isEqualString
+          right:
+            value:
+              simple: COMPLETED
+      label: "yes"
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether the search is completed
+      id: 3f799ca0-9bbb-4d1e-8010-f864a2d0325a
+      iscommand: false
+      name: Is search completed?
+      type: condition
+      version: -1
+    taskid: 3f799ca0-9bbb-4d1e-8010-f864a2d0325a
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 720
+        }
+      }
+  "7":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: inList
+                    right:
+                      value:
+                        simple: QRadar,QRadar_v2,QRadar v3
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if integration brand is available. Otherwise returns
+        'no'
+      id: 58fd7e65-aa1d-4619-86e2-01b38d4974c9
+      iscommand: false
+      name: Is QRadar enabled?
+      type: condition
+      version: -1
+    taskid: 58fd7e65-aa1d-4619-86e2-01b38d4974c9
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 152.5,
+          "y": 195
+        }
+      }
+  "8":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: QRadar.Search.Status
+          operator: isEqualString
+          right:
+            value:
+              simple: CANCELED
+      label: "yes"
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "4"
+      "yes":
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether the search was canceled
+      id: 3719dd6d-f2ad-4744-8845-8b1c210522be
+      iscommand: false
+      name: Is search canceled?
+      type: condition
+      version: -1
+    taskid: 3719dd6d-f2ad-4744-8845-8b1c210522be
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -200,
+          "y": 1110
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: 'Error in QRadar: qradar-get-search command returned with status ''CANCELED''. '
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: d25ec92e-f69c-46e8-8c75-80c93f0af5b9
+      iscommand: false
+      name: ERROR
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: d25ec92e-f69c-46e8-8c75-80c93f0af5b9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -500,
+          "y": 1300
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "7_5_#default#": 0.55,
+      "8_4_#default#": 0.9
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1585,
+        "width": 1180,
+        "x": -500,
+        "y": 50
+      }
+    }
+  }
