@@ -1,0 +1,40 @@
+{
+	"autorun": true,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#418ae6",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "6.0.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Shift handover",
+	"itemVersion": "1.3.8",
+	"layout": "Shift handover",
+	"locked": false,
+	"name": "Shift handover",
+	"onChangeRepAlg": 1,
+	"packID": "ShiftManagement",
+	"packName": "Shift Management",
+	"packPropagationLabels": [
+		"all"
+	],
+	"playbookId": "Shift handover",
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
