@@ -1,0 +1,813 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.2.0
+    itemVersion: 2.4.41
+    packID: QRadar
+    packName: IBM QRadar
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook is used to sort the QRadar search results to display the
+  IP addresses, assets, and usernames that the search provided. In addition, the results
+  allow you to differentiate between internal and external IP addresses as well as
+  query the QRadar assets API in order to get the assets details from the IP addresses.
+  You can provide the QRadar fields names and the organizations' IP ranges in order
+  to properly sort the data. The end result of the playbook will be the internal and
+  external IP addresses detected as well as the assets and users.
+id: QRadar Get Hunting Results
+inputs:
+- description: 'A list of internal IP ranges to check IP addresses against. The list
+    should be provided in CIDR notation, separated by commas. An example of a list
+    of ranges would be: "172.16.0.0/12,10.0.0.0/8,192.168.0.0/16" (without quotes).
+    If a list is not provided, will use the default list provided in the IsIPInRanges
+    script (the known IPv4 private address ranges).'
+  key: InternalRange
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The values of these QRadar fields will be used for the playbook IP
+    addresses outputs.
+  key: InvestigationIPFields
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: sourceip,destinationip
+- description: The values of these QRadar fields will be used for the playbook user
+    name outputs.
+  key: InvestigationUserFields
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: username
+- description: The search results of an AQL search.
+  key: SearchResults
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: QRadar Get Hunting Results
+outputs:
+- contextPath: QRadar.DetectedUsers
+  description: Users detected based on the username field in your search.
+  type: string
+- contextPath: QRadar.DetectedInternalIPs
+  description: Internal IP addresses detected based on fields and inputs in your search.
+  type: string
+- contextPath: QRadar.DetectedExternalIPs
+  description: External IP addresses detected based on fields and inputs in your search.
+  type: string
+- contextPath: QRadar.DetectedInternalHosts
+  description: Internal host names detected based on hosts in your assets table. Note
+    that the data accuracy depends on how the asset mapping is configured in QRadar.
+  type: string
+- contextPath: QRadar.DetectedExternalHosts
+  description: External host names detected based on hosts in your assets table. Note
+    that the data accuracy depends on how the asset mapping is configured in QRadar.
+  type: string
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 471d3946-d66d-4e31-8ad9-6ca8ba1cd448
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 471d3946-d66d-4e31-8ad9-6ca8ba1cd448
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 420,
+          "y": 140
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d9e83392-2f8d-4b43-8935-31ba8d824882
+      iscommand: false
+      name: Sort internal and external IP addresses
+      type: title
+      version: -1
+    taskid: d9e83392-2f8d-4b43-8935-31ba8d824882
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 670,
+          "y": 1950
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: QRadar.DetectedExternalIPs
+      value:
+        complex:
+          accessor: Address
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: IP.InRange
+              operator: isEqualString
+              right:
+                value:
+                  simple: "no"
+          root: IP
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if the specified value exists in context. If the value exists,
+        it will be set in context, otherwise no value will be set in context.
+      id: fb0311c0-88d0-4afa-8d2e-6f54f646df1b
+      iscommand: false
+      name: Set detected IP addresses as external
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: fb0311c0-88d0-4afa-8d2e-6f54f646df1b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 820,
+          "y": 2560
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: QRadar.DetectedIPs
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "11"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 94bf989c-baf5-4769-8325-f5f5f6226baf
+      iscommand: false
+      name: Are there detected IP addresses?
+      type: condition
+      version: -1
+    taskid: 94bf989c-baf5-4769-8325-f5f5f6226baf
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 670,
+          "y": 2070
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip:
+        simple: ${QRadar.DetectedIPs}
+      ipRanges:
+        simple: ${inputs.InternalRange}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns yes if the IP address is in one of the ranges provided.
+        Returns no otherwise.
+      id: 7ddc4c58-95a6-41ef-8369-01bf13913b89
+      iscommand: false
+      name: Determine whether the IP address is internal or external
+      script: IsIPInRanges
+      type: regular
+      version: -1
+    taskid: 7ddc4c58-95a6-41ef-8369-01bf13913b89
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 820,
+          "y": 2260
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: QRadar.DetectedInternalIPs
+      value:
+        complex:
+          accessor: Address
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: IP.InRange
+              operator: isEqualString
+              right:
+                value:
+                  simple: "yes"
+          root: IP
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if the specified value exists in context. If the value exists,
+        it will be set in context, otherwise no value will be set in context.
+      id: 0b0f085f-c64c-42f5-89c8-019ba8c8878c
+      iscommand: false
+      name: Set detected IP addresses as internal
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: 0b0f085f-c64c-42f5-89c8-019ba8c8878c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 820,
+          "y": 2420
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+      - "15"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: QRadar.DetectedIPs
+      value:
+        complex:
+          accessor: =[]}
+          root: ${
+          transformers:
+          - args:
+              key:
+                iscontext: true
+                value:
+                  simple: QRadar.Search.Result.events
+              list:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationIPFields
+            operator: GetValuesOfMultipleFields
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sets a value in context with the given context key.
+      id: 167285fd-2777-4725-8bc3-f4105974f7b0
+      iscommand: false
+      name: Set detected source and destination IP addresses
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: 167285fd-2777-4725-8bc3-f4105974f7b0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 670,
+          "y": 945
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: QRadar.DetectedUsers
+      value:
+        complex:
+          accessor: =[]}
+          root: ${
+          transformers:
+          - args:
+              key:
+                iscontext: true
+                value:
+                  simple: QRadar.Search.Result.events
+              list:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationUserFields
+            operator: GetValuesOfMultipleFields
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sets a value in context with the given context key.
+      id: dffced59-ddf3-456a-8b37-64b06d19bccd
+      iscommand: false
+      name: Set detected usernames
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: dffced59-ddf3-456a-8b37-64b06d19bccd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1280,
+          "y": 1280
+        }
+      }
+  "8":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      filter:
+        complex:
+          accessor: DetectedIPs}
+          root: ${QRadar
+          transformers:
+          - args:
+              prefix:
+                value:
+                  simple: interfaces contains ip_addresses contains value= "
+              suffix:
+                value:
+                  simple: '"'
+            operator: concat
+          - args:
+              separator:
+                value:
+                  simple: ' OR '
+            operator: join
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieves assets list.
+      id: 8b6eae0b-939e-4fd8-86ec-62f4b674e7dd
+      iscommand: true
+      name: Get hostnames from assets
+      script: '|||qradar-assets-list'
+      type: regular
+      version: -1
+    taskid: 8b6eae0b-939e-4fd8-86ec-62f4b674e7dd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 670,
+          "y": 1630
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: QRadar.DetectedInternalHosts
+      value:
+        complex:
+          accessor: Asset.Name.Value}
+          root: ${QRadar
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sets a value in context with the given context key.
+      id: bd2ea70a-3518-4fbb-8c5e-4cb156123200
+      iscommand: false
+      name: Set detected hostnames from assets
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: bd2ea70a-3518-4fbb-8c5e-4cb156123200
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 670,
+          "y": 1790
+        }
+      }
+  "10":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.SearchResults
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "11"
+      "yes":
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Was the domain or URL detected by QRadar?
+      id: 29ec4a5c-63de-49b7-8d46-90a7fd110c62
+      iscommand: false
+      name: Have results been detected?
+      type: condition
+      version: -1
+    taskid: 29ec4a5c-63de-49b7-8d46-90a7fd110c62
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 420,
+          "y": 260
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0fff2b31-f1a7-4660-8451-2efba965425a
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 0fff2b31-f1a7-4660-8451-2efba965425a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 280,
+          "y": 2730
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: fe022e8b-a53c-4fe3-8f81-549b70d3d215
+      iscommand: false
+      name: Set detected values
+      type: title
+      version: -1
+    taskid: fe022e8b-a53c-4fe3-8f81-549b70d3d215
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 660,
+          "y": 590
+        }
+      }
+  "13":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.InvestigationIPFields
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "11"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 77e73730-45a8-44db-8e4d-fcdf86ad0b5d
+      iscommand: false
+      name: Have IP fields been provided?
+      type: condition
+      version: -1
+    taskid: 77e73730-45a8-44db-8e4d-fcdf86ad0b5d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 750
+        }
+      }
+  "14":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.InvestigationUserFields
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "17"
+      "yes":
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 083b7307-bfa9-43d4-86c9-eeb375da45f4
+      iscommand: false
+      name: Have username fields been provided?
+      type: condition
+      version: -1
+    taskid: 083b7307-bfa9-43d4-86c9-eeb375da45f4
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1280,
+          "y": 750
+        }
+      }
+  "15":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: QRadar.DetectedIPs
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "11"
+      "yes":
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1b642c12-b9e1-47fe-8485-d4c00a794d99
+      iscommand: false
+      name: Are there detected IP addresses?
+      type: condition
+      version: -1
+    taskid: 1b642c12-b9e1-47fe-8485-d4c00a794d99
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 670,
+          "y": 1290
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: QRadar.Search.Result
+      value:
+        simple: ${inputs.SearchResults}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 1259eaf4-7c94-4df2-8a1c-50f1dfefcff4
+      iscommand: false
+      name: Set search results
+      script: Set
+      type: regular
+      version: -1
+    taskid: 1259eaf4-7c94-4df2-8a1c-50f1dfefcff4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 660,
+          "y": 440
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e75f0edb-3a58-414c-817f-824d32de9238
+      iscommand: false
+      name: Done user setting
+      type: title
+      version: -1
+    taskid: e75f0edb-3a58-414c-817f-824d32de9238
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1280,
+          "y": 2590
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 2655,
+        "width": 1380,
+        "x": 280,
+        "y": 140
+      }
+    }
+  }
