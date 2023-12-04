@@ -1,0 +1,70 @@
+comment: Entry widget that returns the number of users that participated in a specified
+  Cortex XDR incident.
+commonfields:
+  id: EntryWidgetNumberUsersXDR
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.13.80014
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: EntryWidgetNumberUsersXDR
+nativeimage:
+- "8.3"
+- "8.4"
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('EntryWidgetNumberUsersXDR', 'start', __line__())
+  ### pack version: 6.0.4
+
+
+  incident = demisto.incidents()
+  data = {
+      "Type": 17,
+      "ContentsFormat": "number",
+      "Contents": {
+          "stats": int(incident[0].get('CustomFields', {}).get('xdrusercount', 0)),
+          "params": {
+              "layout": "horizontal",
+              "name": "Users Count",
+              "sign": "",
+              "colors": {
+                  "items": {
+                      "#00CD33": {
+                          "value": -1
+                      },
+                      "#FF9000": {
+                          "value": 0
+                      },
+                      "#ff1744": {
+                          "value": 3
+                      }
+                  }
+              },
+              "type": "above"
+          }
+      }
+  }
+
+  demisto.results(data)
+
+  register_module_line('EntryWidgetNumberUsersXDR', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- dynamic-section
+type: python
