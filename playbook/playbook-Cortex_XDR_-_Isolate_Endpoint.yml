@@ -1,0 +1,454 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.2.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook accepts an XDR endpoint ID and isolates it using the 'Palo
+  Alto Networks Cortex XDR - Investigation and Response' integration.
+id: Cortex XDR - Isolate Endpoint
+inputs:
+- description: The endpoint ID (string) to isolate. You can retrieve the ID using
+    the xdr-get-endpoints command.
+  key: endpoint_id
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: A comma-separated list of hostnames.
+  key: hostname
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: Hostname
+      root: Endpoint
+      transformers:
+      - operator: uniq
+- description: A comma-separated list of IP addresses.
+  key: ip_list
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: Address
+      root: IP
+      transformers:
+      - operator: uniq
+name: Cortex XDR - Isolate Endpoint
+outputs:
+- contextPath: PaloAltoNetworksXDR.Endpoint.endpoint_id
+  description: The endpoint ID.
+- contextPath: PaloAltoNetworksXDR.Endpoint.endpoint_name
+  description: The endpoint name.
+- contextPath: PaloAltoNetworksXDR.Endpoint.endpoint_status
+  description: The status of the endpoint.
+- contextPath: PaloAltoNetworksXDR.Endpoint.ip
+  description: A list of IP addresses.
+- contextPath: PaloAltoNetworksXDR.Endpoint.is_isolated
+  description: Whether the endpoint is isolated.
+- contextPath: Endpoint.Hostname
+  description: The hostname that is mapped to this endpoint.
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f1adb14a-4677-41e4-8e31-6efc7047c635
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: f1adb14a-4677-41e4-8e31-6efc7047c635
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 40,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_id:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PaloAltoNetworksXDR.Endpoint.endpoint_id
+              operator: isNotEmpty
+          root: PaloAltoNetworksXDR.Endpoint.endpoint_id
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Isolates the specified endpoint.
+      id: 5fc9dbc7-ce76-4017-8d3f-8f47d87ab84c
+      iscommand: true
+      name: Cortex XDR - isolate endpoint
+      script: '|||xdr-endpoint-isolate'
+      type: regular
+      version: -1
+    taskid: 5fc9dbc7-ce76-4017-8d3f-8f47d87ab84c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 570,
+          "y": 930
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Cortex XDR - IR
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'Checks if the ''Palo Alto Networks Cortex XDR - Investigation
+        and Response'' integration is enabled. '
+      id: cb9ba187-6e23-4c6c-847b-004dc0b6b241
+      iscommand: false
+      name: Is 'Palo Alto Networks Cortex XDR - Investigation and Response' integration
+        enabled?
+      type: condition
+      version: -1
+    taskid: cb9ba187-6e23-4c6c-847b-004dc0b6b241
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 40,
+          "y": 190
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 559a6fdc-20c3-44c7-82ab-726499c93163
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 559a6fdc-20c3-44c7-82ab-726499c93163
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 40,
+          "y": 1100
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.endpoint_id
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: Endpoint ID
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.ip_list
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.hostname
+          operator: isNotEmpty
+      label: IP or Hostname
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      Endpoint ID:
+      - "10"
+      IP or Hostname:
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if there is any endpoint to isolate.
+      id: 465da07f-5e0a-458f-8efe-f3b1ba853d88
+      iscommand: false
+      name: Is there an endpoint to isolate?
+      type: condition
+      version: -1
+    taskid: 465da07f-5e0a-458f-8efe-f3b1ba853d88
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 570,
+          "y": 370
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      hostname:
+        complex:
+          root: inputs.hostname
+          transformers:
+          - args:
+              delimiter: {}
+            operator: split
+          - operator: uniq
+      ip_list:
+        complex:
+          root: inputs.ip_list
+          transformers:
+          - args:
+              delimiter: {}
+            operator: split
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets a list of endpoints, according to the passed filters. Filtering
+        by multiple fields is concatenated using the AND condition (OR is not supported).
+        Maximum result set size is 100. Offset is the zero-based number of the endpoint
+        from the start of the result set (start by counting from 0).
+      id: ae2ef3ed-1fe0-4026-8dfd-a5193e575f64
+      iscommand: true
+      name: Cortex XDR - get endpoint ID
+      script: '|||xdr-get-endpoints'
+      type: regular
+      version: -1
+    taskid: ae2ef3ed-1fe0-4026-8dfd-a5193e575f64
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 780,
+          "y": 540
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_id_list:
+        complex:
+          root: inputs.endpoint_id
+          transformers:
+          - args:
+              delimiter: {}
+            operator: split
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets a list of endpoints, according to the passed filters. If there
+        are no filters, all endpoints are returned. Filtering by multiple fields will
+        be concatenated using AND condition (OR is not supported). Maximum result
+        set size is 100. Offset is the zero-based number of the endpoint from the
+        start of the result set (start by counting from 0).
+      id: 9116896d-29f0-426d-8c89-7b8d3e14ff25
+      iscommand: true
+      name: Get endpoint status
+      script: '|||xdr-get-endpoints'
+      type: regular
+      version: -1
+    taskid: 9116896d-29f0-426d-8c89-7b8d3e14ff25
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 370,
+          "y": 540
+        }
+      }
+  "11":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                accessor: is_isolated
+                root: PaloAltoNetworksXDR.Endpoint
+          operator: isEqualString
+          right:
+            value:
+              simple: AGENT_UNISOLATED
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                accessor: endpoint_id
+                root: PaloAltoNetworksXDR.Endpoint
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if there is any endpoint ready for isolation.
+      id: 76b781b9-b93b-4480-84f9-d79c839e0cb5
+      iscommand: false
+      name: Is the endpoint ready for isolation?
+      type: condition
+      version: -1
+    taskid: 76b781b9-b93b-4480-84f9-d79c839e0cb5
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 570,
+          "y": 710
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "11_1_yes": 0.61,
+      "2_3_#default#": 0.13,
+      "4_10_Endpoint ID": 0.56,
+      "4_3_#default#": 0.37,
+      "4_8_IP or Hostname": 0.57
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1115,
+        "width": 1120,
+        "x": 40,
+        "y": 50
+      }
+    }
+  }
