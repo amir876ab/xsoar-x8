@@ -1,0 +1,67 @@
+comment: Creates a human readable table from ParseMalware context results.
+commonfields:
+  id: InvestigationSummaryToTable
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.2.0
+    itemVersion: 2.0.8
+    packID: MalwareInvestigationAndResponse
+    packName: Malware Investigation and Response
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+engineinfo: {}
+mainengineinfo: {}
+name: InvestigationSummaryToTable
+nativeimage:
+- "8.3"
+outputs:
+- contextPath: InvestigationSummary.Tactic
+  description: The Malware tactic name.
+  type: String
+- contextPath: InvestigationSummary.Result
+  description: "The result shown in the table as a color emoji and a short description
+    of the finding. For example,  `\U0001F7E2 Not detected`."
+  type: String
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: "register_module_line('InvestigationSummaryToTable', 'start', __line__())\n###
+  pack version: 2.0.8\nfrom enum import Enum\n\n\n\nRESULT = 'Result'\nTACTIC = 'Tactic'\n\n\nclass
+  Result(Enum):\n    SUSPICIOUS = 'Suspicious'\n    NOT_DETECTED = 'Not Detected'\n\n\nRESULT_TO_COLOR
+  = {\n    Result.SUSPICIOUS: \"\U0001F534\",\n    Result.NOT_DETECTED: \"\U0001F7E2\",\n}\n\n\nclass
+  Finding:\n    tactic: str\n    result: Result\n\n    def __init__(self, context_name:
+  str, value: dict):\n        self.context_name = context_name\n        self.tactic
+  = value.get(TACTIC, f'{self.context_name} (missing tactic value)')\n        self.result
+  = Result(value.get(RESULT, Result.NOT_DETECTED.value))\n\n    def to_summary_line(self)
+  -> Dict[str, str]:\n        return {\n            TACTIC: self.tactic,\n            RESULT:
+  f'{RESULT_TO_COLOR[self.result]}  {self.result.value.title()}'\n        }\n\n\ndef
+  get_findings(malware_findings_context: dict) -> List[Finding]:\n    findings = []\n
+  \   for name, value in malware_findings_context.items():\n        if isinstance(value,
+  list):  # when running the script for the second time, values are put in lists.\n
+  \           value = value[-1]  # solves for one or multiple values\n        findings.append(Finding(name,
+  value))\n    return findings\n\n\ndef findings_to_command_results(findings: List[Finding])
+  -> CommandResults:\n    if not findings:\n        return CommandResults(\n            readable_output='###
+  Waiting on entries\\n'\n                            'When `InvestigationSummaryParse`
+  is finished, its results will appear here.'\n        )\n    outputs = list(finding.to_summary_line()
+  for finding in findings)\n    return CommandResults(\n        outputs_prefix='InvestigationSummary',\n
+  \       outputs=outputs,\n        readable_output=tableToMarkdown(\n            '',\n
+  \           outputs,\n            [TACTIC, RESULT],\n        )\n    )\n\n\ndef main():\n
+  \   try:\n        malware_context = json.loads(\n            demisto.incident().get('CustomFields',
+  {}).get('malwareinvestigationsummary', '{}')\n        )\n        return_results(findings_to_command_results(get_findings(malware_context)))\n
+  \   except Exception as e:\n        demisto.error(traceback.format_exc())  # print
+  the traceback\n        return_error(f'Failed to execute InvestigationSummaryToTable.
+  Error: {str(e)}')\n\n\nif __name__ in ['__main__', '__builtin__', 'builtins']:\n
+  \   main()\n\nregister_module_line('InvestigationSummaryToTable', 'end', __line__())\n"
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- dynamic-section
+- field-change-triggered
+type: python
