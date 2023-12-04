@@ -8,7 +8,8 @@
 		"Traps",
 		"Malware",
 		"Brute Force",
-		"CrowdStrike Falcon IDP Detection"
+		"CrowdStrike Falcon IDP Detection",
+		"Access_ronit_copy"
 	],
 	"autoCompleteTags": null,
 	"breachScript": "",
