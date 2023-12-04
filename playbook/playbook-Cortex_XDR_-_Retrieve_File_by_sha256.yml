@@ -1,0 +1,436 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.
+  The playbook facilitates the process of retrieving files from the investigated devices, unzipping the retrieved files, and loading them into the War Room.
+
+  This playbook consists of the following steps:
+  Initially, the sub-playbook 'Cortex XDR - Get File Path from alerts by hash' examines the SHA256 file hashes and retrieves the file paths associated with each hash.
+  As soon as the SHA256 hashes, file paths, and endpoint IDs are obtained, the playbook attempts to retrieve the files from all the investigated devices.
+  Once the file retrieval automation has been completed successfully, the playbook will unzip the files and load them into the War Room.
+
+  Note: When retrieving multiple files, ensure that the SHA256 input is set to run in a loop.
+id: Cortex XDR - Retrieve File by sha256
+inputs:
+- description: SHA256 for the file to be retrieved.
+  key: Sha256
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Cortex XDR - Retrieve File by sha256
+outputs:
+- contextPath: File
+  description: Retrieve the file details command results.
+- contextPath: File.Name
+  description: The full file name (including the file extension).
+  type: String
+- contextPath: File.EntryID
+  description: The ID for locating the file in the War Room.
+  type: String
+- contextPath: File.Size
+  description: The size of the file in bytes.
+  type: Number
+- contextPath: File.MD5
+  description: The MD5 hash of the file.
+  type: String
+- contextPath: File.SHA1
+  description: The SHA1 hash of the file.
+  type: String
+- contextPath: File.SHA256
+  description: The SHA256 hash of the file.
+  type: String
+- contextPath: File.SHA512
+  description: The SHA512 hash of the file.
+  type: String
+- contextPath: File.Extension
+  description: The file extension. For example, 'xls'.
+  type: String
+- contextPath: File.Type
+  description: The file type, as determined by libmagic (same as displayed in the
+    file entries).
+  type: String
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 808eba1f-6338-4e14-865b-28fa19ae0a2e
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 808eba1f-6338-4e14-865b-28fa19ae0a2e
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 270,
+          "y": 200
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Delete field from context.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the permissions section here:
+        https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.10/Cortex-XSOAR-Administrator-Guide/Automations
+      id: e63e712b-b53f-4e65-89ac-eda48db6306c
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: e63e712b-b53f-4e65-89ac-eda48db6306c
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1360
+        }
+      }
+  "7":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_ids:
+        complex:
+          accessor: deviceid
+          root: incident
+          transformers:
+          - operator: uniq
+      generic_file_path:
+        complex:
+          accessor: path
+          root: fileRetrieval
+          transformers:
+          - operator: uniq
+          - operator: LastArrayElement
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieves files from selected endpoints. You can retrieve up to
+        20 files, from no more than 10 endpoints. At least one endpoint ID and one
+        file path are necessary in order to run the command. After running this command,
+        you can use the xdr-action-status-get command with returned action_id, to
+        check the action status.
+      id: 0bf4c23a-bcf9-45d4-854b-91ed0ed66bdb
+      iscommand: true
+      name: Cortex XDR - Retrieve File
+      script: '|||xdr-file-retrieve'
+      type: regular
+      version: -1
+    taskid: 0bf4c23a-bcf9-45d4-854b-91ed0ed66bdb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 70,
+          "y": 680
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      lastZipFileInWarroom:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Unzip a file using fileName or entryID to specify a file. Unzipped
+        files will be loaded to the War Room and names will be put into the context.
+      id: 824dc3ff-ec46-4c61-8f9c-646c4d5a6c1d
+      iscommand: false
+      name: UnZip File
+      script: UnzipFile
+      type: regular
+      version: -1
+    taskid: 824dc3ff-ec46-4c61-8f9c-646c4d5a6c1d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 70,
+          "y": 1190
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      NonFoundHashes:
+        complex:
+          root: inputs.Sha256
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'This playbook assists in retrieving file paths from the Cortex
+        XDR incident by hash. '
+      id: 01f71b03-0597-4ef8-8f9a-45fc154ef61d
+      iscommand: false
+      name: Cortex XDR - Get File Path from alerts by hash
+      playbookId: Cortex XDR - Get File Path from alerts by hash
+      type: playbook
+      version: -1
+    taskid: 01f71b03-0597-4ef8-8f9a-45fc154ef61d
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 270,
+          "y": 340
+        }
+      }
+  "10":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: fileRetrieval
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "11"
+      "yes":
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is there a path for the provided SHA256?
+      id: e1c29b25-5585-4a27-8972-98fb0bfdbee6
+      iscommand: false
+      name: Is there a path for the provided sha256?
+      type: condition
+      version: -1
+    taskid: e1c29b25-5585-4a27-8972-98fb0bfdbee6
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 270,
+          "y": 500
+        }
+      }
+  "11":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: No Path was provided for ${inputs.Sha256}. Cannot retrieve the file
+          without a proper path.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: 62047755-1867-4fd2-88e7-e56a193cad2c
+      iscommand: false
+      name: 'Print Error - No path was found '
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 62047755-1867-4fd2-88e7-e56a193cad2c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 680
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "13"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      entryId:
+        simple: ${lastCompletedTaskEntries}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check whether given entry/entries returned an error. Use ${lastCompletedTaskEntries}
+        to check the previous task entries. If an array is provided, will return yes
+        if one of the entries returned an error.
+      id: 9a36707a-0505-4f36-8b46-7fdf291efee9
+      iscommand: false
+      name: Were any errors?
+      script: isError
+      type: condition
+      version: -1
+    taskid: 9a36707a-0505-4f36-8b46-7fdf291efee9
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 70,
+          "y": 840
+        }
+      }
+  "13":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                accessor: status
+                root: PaloAltoNetworksXDR.RetrievedFiles
+                transformers:
+                - operator: LastArrayElement
+          operator: isEqualString
+          right:
+            value:
+              simple: FAILED
+      label: "yes"
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Did the file retrieval fail?
+      id: 5fd33cc0-7b06-4e45-866b-a939c66e8a6e
+      iscommand: false
+      name: Did the file retrieval fail?
+      type: condition
+      version: -1
+    taskid: 5fd33cc0-7b06-4e45-866b-a939c66e8a6e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 70,
+          "y": 1030
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1225,
+        "width": 790,
+        "x": 70,
+        "y": 200
+      }
+    }
+  }
