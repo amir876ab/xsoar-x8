@@ -1,0 +1,88 @@
+comment: Returns a list of all the users marked as away in Cortex XSOAR.
+commonfields:
+  id: GetAwayUsers
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 1.3.8
+    packID: ShiftManagement
+    packName: Shift Management
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.5.31797
+engineinfo: {}
+mainengineinfo: {}
+name: GetAwayUsers
+nativeimage:
+- "8.3"
+- "8.4"
+outputs:
+- contextPath: AwayUsers.id
+  description: Away user ID.
+  type: String
+- contextPath: AwayUsers.username
+  description: Away user username.
+  type: String
+- contextPath: AwayUsers.name
+  description: Away user name.
+  type: String
+- contextPath: AwayUsers.phone
+  description: Away user phone.
+  type: String
+- contextPath: AwayUsers.roles
+  description: Away user roles.
+  type: Unknown
+- contextPath: AwayUsers.email
+  description: Away user email.
+  type: String
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('GetAwayUsers', 'start', __line__())
+  ### pack version: 1.3.8
+
+
+
+  def main():
+      try:
+          users_command_response: Dict = demisto.executeCommand("getUsers", {})
+          if is_error(users_command_response) or not users_command_response:
+              raise DemistoException(f'Could not retrieve users\nError details: {get_error(users_command_response)}')
+          users_info: List[Dict] = users_command_response[0]['Contents']
+          away_users = [user for user in users_info if user.get('isAway', False)]
+          outputs = [
+              {k: v for k, v in away_user.items() if k in ['id', 'username', 'email', 'name', 'phone', 'roles']}
+              for away_user in away_users]
+          if outputs:
+              hr = tableToMarkdown('Away Users', outputs, headerTransform=string_to_table_header, removeNull=True)
+          else:
+              hr = '###Away Users\nNo team members were found away.'
+          return_results({
+              'Type': entryTypes['note'],
+              'ContentsFormat': formats['markdown'],
+              'Contents': hr,
+              'EntryContext': {'AwayUsers': outputs} if outputs else {}
+          })
+      except Exception as e:
+          return_error(f'Failed to execute GetAwayUsers. Error: {str(e)}')
+
+
+  ''' ENTRY POINT '''
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('GetAwayUsers', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- Shift Management
+- widget
+type: python
