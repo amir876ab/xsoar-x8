@@ -1,0 +1,1906 @@
+{
+	"cacheVersn": 0,
+	"definitionId": "",
+	"fromDate": "0001-01-01T00:00:00Z",
+	"fromDateLicense": "0001-01-01T00:00:00Z",
+	"fromServerVersion": "6.0.0",
+	"hidePivot": false,
+	"hideSearch": false,
+	"id": "Cortex XDR",
+	"isCommon": true,
+	"itemVersion": "6.0.4",
+	"layout": [
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "73cd3050-6415-11eb-b8ff-9fe539e200bc",
+			"id": "73cd3050-6415-11eb-b8ff-9fe539e200bc",
+			"reflectDimensions": false,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "scripts",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "ac4ba4c9-b52a-4ea3-8ddd-752ff0c821c6",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-01-31T22:41:20.146561482Z",
+				"name": "Cortex XDR Connected Endpoints",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"tableColumns": []
+				},
+				"prevName": "Cortex XDR Connected Endpoints",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "XDRConnectedEndpoints",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "number"
+			},
+			"x": 0,
+			"y": 1
+		},
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "d653a970-6415-11eb-b8ff-9fe539e200bc",
+			"id": "d653a970-6415-11eb-b8ff-9fe539e200bc",
+			"reflectDimensions": false,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "scripts",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "0361981e-c627-4c09-8fcc-085ffe0a7e56",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-01-31T22:42:52.531099409Z",
+				"name": " Cortex XDR Disconnected Endpoints",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"tableColumns": []
+				},
+				"prevName": " Cortex XDR Disconnected Endpoints",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "XDRDisconnectedEndpoints",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "number"
+			},
+			"x": 2,
+			"y": 1
+		},
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "18eb3d20-6416-11eb-b8ff-9fe539e200bc",
+			"id": "18eb3d20-6416-11eb-b8ff-9fe539e200bc",
+			"reflectDimensions": false,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "2a2be295-58f7-4807-8bf9-37dcb89f0493",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-01-31T22:45:58.890470112Z",
+				"name": "Cortex XDR Unassigned Incidents",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Unassigned Incidents",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"Cortex XDR Incident\" and status:Active and owner:\"\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "number"
+			},
+			"x": 0,
+			"y": 3
+		},
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "3c0f8400-6416-11eb-b8ff-9fe539e200bc",
+			"id": "3c0f8400-6416-11eb-b8ff-9fe539e200bc",
+			"reflectDimensions": false,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "0057b0a3-cc6a-4811-8e05-98658b878af4",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-01-31T22:46:55.36484948Z",
+				"name": "Cortex XDR Closed Incidents",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Closed Incidents",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"Cortex XDR Incident\" and status:Closed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "number"
+			},
+			"x": 2,
+			"y": 3
+		},
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "0a2995e0-6626-11eb-b982-ab7ceff3dffb",
+			"id": "0a2995e0-6626-11eb-b982-ab7ceff3dffb",
+			"reflectDimensions": false,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "f2974c2d-ba6d-4deb-8d0e-be8122901b37",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-02-03T13:20:54.259563294Z",
+				"name": "Cortex XDR Active High Severity Incidents",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"colors": {
+						"isEnabled": true,
+						"items": {
+							"#FF1B15": {
+								"value": -1
+							}
+						},
+						"type": "above"
+					},
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Active High Severity Incidents",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"Cortex XDR Incident\" and severity:High and status:Active",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 2,
+				"widgetType": "trend"
+			},
+			"x": 0,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "152356c0-6626-11eb-b982-ab7ceff3dffb",
+			"id": "152356c0-6626-11eb-b982-ab7ceff3dffb",
+			"reflectDimensions": false,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "6173e162-ff22-4f6c-835f-92f857225e56",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-02-03T13:21:26.486392167Z",
+				"name": "Cortex XDR Active Medium Severity Incidents",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"colors": {
+						"isEnabled": true,
+						"items": {
+							"#00CD33": {
+								"value": null
+							},
+							"#FAC100": {
+								"value": -1
+							}
+						},
+						"type": "above"
+					},
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Active Medium Severity Incidents",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"Cortex XDR Incident\" and severity:medium and status:Active",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 2,
+				"widgetType": "trend"
+			},
+			"x": 4,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "1e3e6c90-6626-11eb-b982-ab7ceff3dffb",
+			"id": "1e3e6c90-6626-11eb-b982-ab7ceff3dffb",
+			"reflectDimensions": false,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "b49cb3c0-33e0-493d-8462-31929b4509e1",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-02-03T13:22:26.410229241Z",
+				"name": "Cortex XDR Active Low Severity Incidents",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"colors": {
+						"isEnabled": true,
+						"items": {
+							"#418ae6": {
+								"value": -1
+							}
+						},
+						"type": "above"
+					},
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Active Low Severity Incidents",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"Cortex XDR Incident\" and severity:Low and status:Active",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 2,
+				"widgetType": "trend"
+			},
+			"x": 8,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "47a1f980-6626-11eb-b982-ab7ceff3dffb",
+			"id": "47a1f980-6626-11eb-b982-ab7ceff3dffb",
+			"reflectDimensions": false,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 30,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "f39f1990-8c88-4e76-8fa7-a0e564692d77",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-02-03T13:23:21.581809197Z",
+				"name": "Cortex XDR Active Device Control Violations Incidents",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Active Device Control Violations Incidents",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"Cortex XDR Device Control Violations\" and status:Active",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 2,
+				"widgetType": "number"
+			},
+			"x": 0,
+			"y": 2
+		},
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "4e78ebb0-6626-11eb-b982-ab7ceff3dffb",
+			"id": "4e78ebb0-6626-11eb-b982-ab7ceff3dffb",
+			"reflectDimensions": false,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 30,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "2de3d4e6-573a-4c4e-86c1-85d57dbd88b7",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-02-03T13:17:58.925310112Z",
+				"name": "Cortex XDR Closed Device Control Violations",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Closed Device Control Violations",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"Cortex XDR Device Control Violations\" and status:Closed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "number"
+			},
+			"x": 2,
+			"y": 2
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "841288d0-97a4-11eb-b45a-c3f5fab2d0d2",
+			"id": "841288d0-97a4-11eb-b45a-c3f5fab2d0d2",
+			"reflectDimensions": false,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "b0d7015d-ea2d-4590-854e-b922a257f368",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-04-07T13:23:54.614585662Z",
+				"name": "Cortex XDR Top 10 MITRE Tactics",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"xdrmitretactics"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Top 10 MITRE Tactics",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"Cortex XDR Incident\" and -status:Closed and -xdrmitretactics:\"\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 2,
+				"widgetType": "pie"
+			},
+			"x": 8,
+			"y": 7
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "91802fe0-97a4-11eb-b45a-c3f5fab2d0d2",
+			"id": "91802fe0-97a4-11eb-b45a-c3f5fab2d0d2",
+			"reflectDimensions": false,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "0bef45cc-5c29-4504-89c6-9c5f9c742587",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-04-07T13:23:41.530295138Z",
+				"name": "Cortex XDR Top 10 MITRE Techniques",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"xdrmitretechniques"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Top 10 MITRE Techniques",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"Cortex XDR Incident\" -status:Closed  and -xdrmitretechniques:\"\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "pie"
+			},
+			"x": 4,
+			"y": 7
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "adb604f0-97a4-11eb-b45a-c3f5fab2d0d2",
+			"id": "adb604f0-97a4-11eb-b45a-c3f5fab2d0d2",
+			"reflectDimensions": false,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": null,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "d027f9c1-326a-4cca-8854-a3fe08219d1d",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-04-07T13:25:06.830693113Z",
+				"name": "Cortex XDR Top 10 Users",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"xdrusers"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Top 10 Users",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"Cortex XDR Incident\" and -status:Closed and -xdrusers:\"\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "column"
+			},
+			"x": 4,
+			"y": 1
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "ce2209a0-97a4-11eb-b45a-c3f5fab2d0d2",
+			"id": "ce2209a0-97a4-11eb-b45a-c3f5fab2d0d2",
+			"reflectDimensions": false,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "a2d2fd64-e057-4d57-8ee7-dd6ca6cefa42",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-04-07T13:25:59.472449275Z",
+				"name": "Cortex XDR Top 10 Hosts",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"hostnames"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Top 10 Hosts",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"Cortex XDR Incident\" -status:Closed and -hostnames:\"\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "column"
+			},
+			"x": 8,
+			"y": 1
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "f6fdf000-97a4-11eb-b45a-c3f5fab2d0d2",
+			"id": "f6fdf000-97a4-11eb-b45a-c3f5fab2d0d2",
+			"reflectDimensions": false,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "0b674563-66ca-4c41-8eac-134722296026",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-04-07T13:27:10.964416573Z",
+				"name": "Cortex XDR Top 10 Categories",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"xdralertcategory"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Top 10 Categories",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"Cortex XDR Incident\" -status:Closed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "column"
+			},
+			"x": 4,
+			"y": 4
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "3d5e2470-97a5-11eb-b45a-c3f5fab2d0d2",
+			"id": "3d5e2470-97a5-11eb-b45a-c3f5fab2d0d2",
+			"reflectDimensions": false,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "f0021d41-aef6-4870-8f61-2c0bb2df3685",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-04-07T13:29:10.049137856Z",
+				"name": "Cortex XDR Top 10 Alerts",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"xdralertname"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Top 10 Alerts",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"Cortex XDR Incident\" -status:Closed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "column"
+			},
+			"x": 8,
+			"y": 4
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "6ce0c540-97a5-11eb-b45a-c3f5fab2d0d2",
+			"id": "6ce0c540-97a5-11eb-b45a-c3f5fab2d0d2",
+			"reflectDimensions": false,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "24adf3d5-48e2-450a-834d-badbffba52a7",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-04-07T13:30:29.006278544Z",
+				"name": "Cortex XDR Top 10 files",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"xdrfilename"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Top 10 files",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"Cortex XDR Incident\" -status:Closed and -xdrfilename:\"\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "pie"
+			},
+			"x": 0,
+			"y": 4
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "8cd48cb0-97a5-11eb-b45a-c3f5fab2d0d2",
+			"id": "8cd48cb0-97a5-11eb-b45a-c3f5fab2d0d2",
+			"reflectDimensions": false,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "c147b637-9e76-470f-8c9d-cf13361fcb33",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2021-04-07T13:31:21.51411527Z",
+				"name": "Cortex XDR Top 10 File SHA256",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"xdrfilesha256"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Top 10 File SHA256",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"Cortex XDR Incident\" -status:Closed and -xdrfilesha256:\"\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "pie"
+			},
+			"x": 0,
+			"y": 7
+		}
+	],
+	"locked": false,
+	"modulePage": false,
+	"name": "Cortex XDR",
+	"owner": "",
+	"packID": "CortexXDR",
+	"packName": "Cortex XDR by Palo Alto Networks",
+	"packPropagationLabels": [
+		"all"
+	],
+	"period": {
+		"by": "",
+		"byFrom": "days",
+		"byTo": "",
+		"field": "",
+		"fromValue": 30,
+		"toValue": null
+	},
+	"propagationLabels": [],
+	"system": true,
+	"toDate": "0001-01-01T00:00:00Z",
+	"toServerVersion": "",
+	"version": -1
+}
