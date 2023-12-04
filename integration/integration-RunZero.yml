@@ -1,0 +1,975 @@
+category: IT Services
+commonfields:
+  id: RunZero
+  version: -1
+configuration:
+- defaultvalue: https://console.runzero.com
+  display: Server URL
+  name: url
+  required: true
+  type: 0
+- additionalinfo: The API Key to use for connection.
+  display: ""
+  displaypassword: API Key
+  hiddenusername: true
+  name: api_key
+  required: true
+  type: 9
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 1.0.12
+    packID: RunZero
+    packName: RunZero
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  RunZero is a network discovery and asset inventory
+   platform that uncovers every network in use and identifies every device connected – without credentials.
+   Scan your network and build your asset inventory in minutes.
+detaileddescription: "## RunZero Integration Help\n\n### Generate API tokens\nTo get
+  started, you will need an API key / token or API client credentials.\nIf you have
+  administrator access you can generate export API tokens and Organization API keys.
+  \n1. In the RunZero web console, go to the Organizations section.\n2. Click the
+  appropriate organization name.\n3. Scroll down to the export tokens or API tokens
+  section. \n4. Click the button to generate a secure API key in the form of a long
+  random token. \n\n### API Limit\nAPI calls are rate limited.\n\n\nFor further details,
+  see 'Leveraging the API' on page 356 in the\n[RunZero Manual](https://www.runzero.com/docs/runzero-manual.pdf).\n\n\n---\n[View
+  Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/run-zero)"
+display: RunZero
+image: data:image/png;base64,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
+name: RunZero
+script:
+  commands:
+  - arguments:
+    - description: A comma-separated list of asset IDs.
+      isArray: true
+      name: asset_ids
+    - description: 'The query by which to search. For information on the syntax, see:
+        https://www.runzero.com/docs/runzero-manual.pdf page 288.'
+      name: search
+    - description: A comma-separated list of IP addresses.
+      isArray: true
+      name: ips
+    - description: A comma-separated list of hostnames.
+      isArray: true
+      name: hostnames
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Whether to include the attributes section in the returned result.
+      name: display_attributes
+      predefined:
+      - "True"
+      - "False"
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Whether to include a services section in the returned result.
+      name: display_services
+      predefined:
+      - "True"
+      - "False"
+    - defaultValue: "50"
+      description: Limit the number of assets returned.
+      name: limit
+    description: Get assets.
+    name: runzero-asset-search
+    outputs:
+    - contextPath: RunZero.Asset.ID
+      description: Asset service ID.
+      type: UUID
+    - contextPath: RunZero.Asset.Addresses
+      description: Asset addresses.
+      type: Array
+    - contextPath: RunZero.Asset.Asset_Status
+      description: Asset status.
+      type: Boolean
+    - contextPath: RunZero.Asset.Hostname
+      description: Asset hostname.
+      type: Array
+    - contextPath: RunZero.Asset.OS
+      description: Operating system version.
+      type: String
+    - contextPath: RunZero.Asset.Type
+      description: Asset type.
+      type: String
+    - contextPath: RunZero.Asset.Hardware
+      description: Asset hardware.
+      type: String
+    - contextPath: RunZero.Asset.Outlier
+      description: Asset outlier score.
+      type: String
+    - contextPath: RunZero.Asset.MAC_Vendor
+      description: Asset vendor MAC address is allocated to.
+      type: String
+    - contextPath: RunZero.Asset.MAC_Age
+      description: Asset date MAC address was allocated.
+      type: Integer
+    - contextPath: RunZero.Asset.MAC
+      description: Asset MAC address.
+      type: UUID
+    - contextPath: RunZero.Asset.OS_EOL
+      description: Asset operating system end-of-life date.
+      type: String
+    - contextPath: RunZero.Asset.Sources
+      description: Asset data sources.
+      type: String
+    - contextPath: RunZero.Asset.Comments
+      description: Comments attached to the asset.
+      type: String
+    - contextPath: RunZero.Asset.Tags
+      description: Tags attached to the asset.
+      type: Array
+    - contextPath: RunZero.Asset.Svcs
+      description: Number of total service count.
+      type: Integer
+    - contextPath: RunZero.Asset.TCP
+      description: Asset TCP service count.
+      type: Integer
+    - contextPath: RunZero.Asset.UDP
+      description: Asset UDP service count.
+      type: Integer
+    - contextPath: RunZero.Asset.ICMP
+      description: Asset ICMP response.
+      type: Integer
+    - contextPath: RunZero.Asset.ARP
+      description: Asset ARP response.
+      type: Integer
+    - contextPath: RunZero.Asset.SW
+      description: Asset identified software.
+      type: Integer
+    - contextPath: RunZero.Asset.Vulns
+      description: Asset identified vulnerability count.
+      type: Integer
+    - contextPath: RunZero.Asset.RTT/ms
+      description: Asset round-trip time latency.
+      type: Integer
+    - contextPath: RunZero.Asset.Hops
+      description: Asset estimated hop count from scanner.
+      type: Integer
+    - contextPath: RunZero.Asset.Detected
+      description: Asset method of detection.
+      type: String
+    - contextPath: RunZero.Asset.First_Seen
+      description: Datetime of when the asset was first seen.
+      type: String
+    - contextPath: RunZero.Asset.Last_Seen
+      description: Datetime of when the asset was last seen.
+      type: String
+    - contextPath: RunZero.Asset.Explorer
+      description: Name of the RunZero explorer which most recently found the asset.
+      type: String
+    - contextPath: RunZero.Asset.Hosted_Zone
+      description: Asset hosted zone.
+      type: String
+    - contextPath: RunZero.Asset.Site
+      description: Asset site name.
+      type: String
+  - arguments:
+    - description: A comma-separated list of UUIDs of the asset to delete.
+      isArray: true
+      name: asset_ids
+      required: true
+    description: Bulk delete assets.
+    name: runzero-asset-delete
+  - arguments:
+    - description: UUID of the service to retrieve.
+      name: service_id
+    - description: 'The query by which to search. For information on the syntax, see:
+        https://www.runzero.com/docs/runzero-manual.pdf page 288'
+      name: search
+    - description: A comma-separated list of services by addresses.
+      isArray: true
+      name: service_addresses
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Whether to include an attributes section in the returned result.
+      name: display_attributes
+      predefined:
+      - "True"
+      - "False"
+    - defaultValue: "50"
+      description: Limit the number of assets returned.
+      name: limit
+    description: Get services.
+    name: runzero-service-search
+    outputs:
+    - contextPath: RunZero.Service.ID
+      description: Service ID.
+      type: UUID
+    - contextPath: RunZero.Service.Address
+      description: Service addresses.
+      type: String
+    - contextPath: RunZero.Service.Asset_Status
+      description: Service asset status.
+      type: Boolean
+    - contextPath: RunZero.Service.Hostname
+      description: Service hostname.
+      type: Array
+    - contextPath: RunZero.Service.Transport
+      description: Service transport.
+      type: String
+    - contextPath: RunZero.Service.Port
+      description: Service port.
+      type: Integer
+    - contextPath: RunZero.Service.Protocol
+      description: Service protocol.
+      type: Array
+    - contextPath: RunZero.Service.VHost
+      description: Service virtual host.
+      type: Array
+    - contextPath: RunZero.Service.Summary
+      description: Service summary.
+      type: Array
+    - contextPath: RunZero.Service.Hostname
+      description: Service hostname.
+      type: Array
+    - contextPath: RunZero.Service.OS
+      description: Service operating system version.
+      type: String
+    - contextPath: RunZero.Service.Type
+      description: Service type.
+      type: String
+    - contextPath: RunZero.Service.Hardware
+      description: Service hardware.
+      type: String
+    - contextPath: RunZero.Service.Outlier
+      description: Service outlier score.
+      type: String
+    - contextPath: RunZero.Service.MAC_Vendor
+      description: Service vendor MAC address is allocated to.
+      type: String
+    - contextPath: RunZero.Service.MAC_Age
+      description: Service date MAC address was allocated.
+      type: Integer
+    - contextPath: RunZero.Service.MAC
+      description: Service MAC address.
+      type: UUID
+    - contextPath: RunZero.Service.OS_EOL
+      description: Service operating system end-of-life.
+      type: String
+    - contextPath: RunZero.Service.Comments
+      description: Comments attached to the service.
+      type: String
+    - contextPath: RunZero.Service.Tags
+      description: Tags attached to the service.
+      type: Array
+    - contextPath: RunZero.Service.Svcs
+      description: Total service count.
+      type: Integer
+    - contextPath: RunZero.Service.TCP
+      description: TCP service count.
+      type: Integer
+    - contextPath: RunZero.Service.UDP
+      description: UDP service count.
+      type: Integer
+    - contextPath: RunZero.Service.ICMP
+      description: ICMP response.
+      type: Integer
+    - contextPath: RunZero.Service.ARP
+      description: ARP response.
+      type: Integer
+    - contextPath: RunZero.Service.SW
+      description: Identified software.
+      type: Integer
+    - contextPath: RunZero.Service.Vulns
+      description: Identified vulnerabilities.
+      type: Integer
+    - contextPath: RunZero.Service.RTT/ms
+      description: Service round-trip time latency.
+      type: Integer
+    - contextPath: RunZero.Service.Hops
+      description: Estimated hop count from scanner.
+      type: Integer
+    - contextPath: RunZero.Service.Detected
+      description: Method of detection.
+      type: String
+    - contextPath: RunZero.Service.First_Seen
+      description: Datetime of when the service was first seen.
+      type: String
+    - contextPath: RunZero.Service.Last_Seen
+      description: Datetime of when the service was last seen.
+      type: String
+    - contextPath: RunZero.Service.Explorer
+      description: Name of the RunZero explorer which most recently found the asset.
+      type: String
+    - contextPath: RunZero.Service.Hosted_Zone
+      description: Service hosted zone.
+      type: String
+    - contextPath: RunZero.Service.Site
+      description: Service site name.
+      type: String
+  - arguments:
+    - description: UUID of the service to delete.
+      name: service_id
+      required: true
+    description: Delete a service.
+    name: runzero-service-delete
+  - arguments:
+    - description: Asset ID.
+      name: asset_id
+      required: true
+    - description: Comment to add.
+      name: comment
+      required: true
+    description: Add a comment or override an existing asset comment.
+    name: runzero-comment-add
+  - arguments:
+    - description: Asset ID.
+      name: asset_id
+      required: true
+    - description: Tags to add to the asset.
+      name: tags
+      required: true
+    description: Add tag or tags to the asset.
+    name: runzero-tag-add
+  - arguments: []
+    description: Get information about the API key used. Type, Limit, usage etc.
+    name: runzero-quota-get
+    outputs:
+    - contextPath: RunZero.Quota.id
+      description: API key ID.
+      type: UUID
+    - contextPath: RunZero.Quota.client_id
+      description: Client ID.
+      type: UUID
+    - contextPath: RunZero.Quota.organization_id
+      description: Organization ID.
+      type: UUID
+    - contextPath: RunZero.Quota.created_at
+      description: Time the API was created.
+      type: Integer
+    - contextPath: RunZero.Quota.comment
+      description: API key comment.
+      type: String
+    - contextPath: RunZero.Quota.last_used_at
+      description: The time when the API key was last seen.
+      type: Integer
+    - contextPath: RunZero.Quota.last_used_ip
+      description: The IP address last used by the API key.
+      type: String
+    - contextPath: RunZero.Quota.last_used_ua
+      description: The user agent last used by the API key.
+      type: String
+    - contextPath: RunZero.Quota.counter
+      description: The API key usage counter.
+      type: Integer
+    - contextPath: RunZero.Quota.usage_today
+      description: The API key usage today.
+      type: Integer
+    - contextPath: RunZero.Quota.usage_limit
+      description: The API key usage limit.
+      type: Integer
+    - contextPath: RunZero.Quota.token
+      description: The API key.
+      type: String
+    - contextPath: RunZero.Quota.inactive
+      description: Whether the API key is inactive.
+      type: String
+    - contextPath: RunZero.Quota.type
+      description: API key type (org, etc.).
+      type: String
+  - arguments:
+    - description: Asset ID from which to remove specified tags.
+      name: asset_id
+      required: true
+    - description: A comma separated list of tags to delete.
+      isArray: true
+      name: tags
+      required: true
+    description: Delete tags for specific asset.
+    name: runzero-tag-delete
+  - arguments:
+    - description: The wireless LAN ID.
+      name: wireless_id
+    - description: 'The query by which to search. For information on the syntax, see:
+        https://www.runzero.com/docs/runzero-manual.pdf page 288.'
+      name: search
+    - defaultValue: "50"
+      description: Limit the number of wireless LAN returned.
+      name: limit
+    description: Get all wireless LANs.
+    name: runzero-wireless-lan-search
+    outputs:
+    - contextPath: RunZero.WirelessLAN.ID
+      description: Wireless LAN ID.
+      type: UUID
+    - contextPath: RunZero.WirelessLAN.ESSID
+      description: Wireless LAN extended service set identifier (ESSID).
+      type: String
+    - contextPath: RunZero.WirelessLAN.BSSID
+      description: Wireless LAN basic service set identifier (BSSID).
+      type: String
+    - contextPath: RunZero.WirelessLAN.Vendor
+      description: Wireless LAN vendor.
+      type: String
+    - contextPath: RunZero.WirelessLAN.Family
+      description: Wireless LAN family.
+      type: String
+    - contextPath: RunZero.WirelessLAN.Type
+      description: Wireless LAN type.
+      type: String
+    - contextPath: RunZero.WirelessLAN.Auth
+      description: Wireless LAN auth.
+      type: String
+    - contextPath: RunZero.WirelessLAN.Enc
+      description: Wireless LAN encryption.
+      type: String
+    - contextPath: RunZero.WirelessLAN.Sig
+      description: WirelessLAN signal strength.
+      type: Integer
+    - contextPath: RunZero.WirelessLAN.Int
+      description: Wireless LAN interface.
+      type: String
+    - contextPath: RunZero.WirelessLAN.Additional
+      description: Wireless LAN additional information.
+      type: Array
+    - contextPath: RunZero.WirelessLAN.First_seen
+      description: Datetime of when the wireless LAN was first seen.
+      type: String
+    - contextPath: RunZero.WirelessLAN.Last_seen
+      description: Datetime of when the wireless LAN was last seen.
+      type: String
+    - contextPath: RunZero.WirelessLAN.Site
+      description: Wireless LAN site name.
+      type: String
+  - arguments:
+    - description: UUID of the wireless LAN to remove.
+      name: wireless_id
+      required: true
+    description: Remove a wireless LAN.
+    name: runzero-wireless-lan-delete
+  dockerimage: demisto/python3:3.10.12.63474
+  nativeimage:
+  - "8.3"
+  runonce: false
+  script: |
+    register_module_line('RunZero', 'start', __line__())
+    ### pack version: 1.0.12
+
+
+
+    import urllib3
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()
+
+
+    ''' CONSTANTS '''
+
+    MAX_RTT = 1_000_000
+    DEFAULT_LIMIT = 50
+
+    ''' CLIENT CLASS '''
+
+
+    class Client(BaseClient):
+        """Client class to interact with the service API
+
+        This Client implements API calls, and does not contain any XSOAR logic.
+        Should only do requests and return data.
+        It inherits from BaseClient defined in CommonServer Python.
+        Most calls use _http_request() that handles proxy, SSL verification, etc.
+        For this  implementation, no special attributes defined
+        """
+
+        def asset_search(self, params: dict = None):
+            url_suffix = '/org/assets'
+            return self._http_request(method='GET',
+                                      url_suffix=url_suffix,
+                                      params=params,
+                                      headers=self._headers)
+
+        def asset_delete(self, asset_ids: list):
+            url_suffix = '/org/assets/bulk/delete'
+            params_value = f"[{','.join(asset_ids)}]"
+            return self._http_request(method='DELETE',
+                                      url_suffix=url_suffix,
+                                      params={'asset_ids': params_value},
+                                      headers=self._headers)
+
+        def comment_add(self, asset_id, comment):
+            url_suffix = f'/org/assets/{asset_id}/comments'
+            body = {}
+            body['comments'] = comment
+            return self._http_request(method='PATCH',
+                                      url_suffix=url_suffix,
+                                      json_data=body,
+                                      headers=self._headers)
+
+        def tags_add(self, asset_id, tags):
+            url_suffix = f'/org/assets/{asset_id}/tags'
+            body = {}
+            body['tags'] = tags
+            return self._http_request(method='PATCH',
+                                      url_suffix=url_suffix,
+                                      json_data=body,
+                                      headers=self._headers)
+
+        def service_search(self, service_str: str = None):
+            url_suffix = f'/org/services{service_str}' if service_str else '/org/services'
+            return self._http_request(method='GET',
+                                      url_suffix=url_suffix,
+                                      headers=self._headers)
+
+        def service_delete(self, service_id: str):
+            url_suffix = f'/org/services/{service_id}'
+            return self._http_request(method='DELETE',
+                                      url_suffix=url_suffix,
+                                      headers=self._headers)
+
+        def quota_get(self):
+            url_suffix = '/org/key'
+            return self._http_request(method='GET',
+                                      url_suffix=url_suffix,
+                                      headers=self._headers)
+
+        def tag_delete(self, asset_id: str, tags: str):
+            url_suffix = f'/org/assets/{asset_id}/tags'
+            tags_body = {'tags': tags}
+            return self._http_request(method='PATCH',
+                                      url_suffix=url_suffix,
+                                      headers=self._headers,
+                                      json_data=tags_body)
+
+        def wireless_search(self, wireless_search_string: str):
+            url_suffix = f'/org/wireless/{wireless_search_string}' if wireless_search_string else '/org/wireless'
+            return self._http_request(method='GET',
+                                      url_suffix=url_suffix,
+                                      headers=self._headers)
+
+        def wireless_delete(self, wireless_id: str):
+            url_suffix = f'/org/wireless/{wireless_id}'
+            return self._http_request(method='DELETE',
+                                      url_suffix=url_suffix,
+                                      headers=self._headers)
+
+
+    ''' HELPER FUNCTIONS '''
+
+
+    def normalize_rtt(raw_rtt: float) -> float:
+        """ normalizing a number:
+        normalized = (x-min(x))/(max(x)-min(x))
+        min RTT = 0, MAX_RTT = 1_000_000 """
+        if raw_rtt is None:
+            return 0
+        normalized_rtt = raw_rtt / MAX_RTT
+        return round(normalized_rtt, 2)
+
+
+    def parse_raw_asset(raw: dict) -> list:
+        return [{
+            'ID': raw.get('id', ''),
+            'Addresses': raw.get('addresses', []),
+            'Asset_Status': raw.get('alive', ''),
+            'Hostname': raw.get('names', []),
+            'OS': f'{raw.get("os", "")} {raw.get("os_version","")}',
+            'Type': raw.get('type', ''),
+            'Hardware': raw.get('hw', ''),
+            'Outlier': raw.get('outlier_score', 0),
+            'MAC_Vendor': raw.get('mac_vendors', []),
+            'MAC_Age': raw.get('mag_age', ''),
+            'MAC': raw.get('macs', []),
+            'OS_EOL': raw.get('eol_os', ''),
+            'Sources': raw.get('sources', []),
+            'Comments': raw.get('comments', ''),
+            'Tags': raw.get('tags', []),
+            'Svcs': raw.get('service_count', 0),
+            'TCP': raw.get('service_count_tcp', 0),
+            'UDP': raw.get('service_count_udp', 0),
+            'ICMP': raw.get('service_count_icmp', 0),
+            'ARP': raw.get('service_count_arp', 0),
+            'SW': raw.get('software_count', 0),
+            'Vulns': raw.get('vulnerability_count', 0),
+            'RTT/ms': normalize_rtt(raw.get('lowest_rtt', 0)),
+            'Hops': raw.get('lowest_ttl', 0),
+            'Detected': raw.get('detected_by', ''),
+            'First_Seen': timestamp_to_datestring(raw.get('first_seen', '') * 1000),
+            'Last_Seen': timestamp_to_datestring(raw.get('last_seen', '') * 1000),
+            'Explorer': raw.get('agent_name', ''),
+            'Hosted_Zone': raw.get('hosted_zone_name', ''),
+            'Site': raw.get('site_name', ''),
+        }]
+
+
+    def parse_raw_service(raw: dict) -> list:
+        return [{
+            'ID': raw.get('service_id', ''),
+            'Asset_Status': raw.get('alive', ''),
+            'Address': raw.get('service_address', ''),
+            'Transport': raw.get('service_transport', ''),
+            'Port': raw.get('service_port', 0),
+            'Protocol': raw.get('service_protocol', []),
+            'VHost': raw.get('service_vhost', ''),
+            'Summary': raw.get('service_summary', ''),
+            'Hostname': raw.get('names', []),
+            'OS': f"{raw.get('os', '')} {raw.get('os_version', '')}",
+            'Type': raw.get('type', ''),
+            'Hardware': raw.get('hw', ''),
+            'Outlier': raw.get('outlier_score', 0),
+            'MAC_Vendor': raw.get('mac_vendors', []),
+            'MAC_Age': raw.get('newest_mac_age', ''),
+            'MAC': raw.get('macs', []),
+            'OS_EOL': raw.get('eol_os', 0),
+            'Comments': raw.get('comments', ''),
+            'Tags': raw.get('tags', {}),
+            'Svcs': raw.get('service_count', 0),
+            'TCP': raw.get('service_count_tcp', 0),
+            'UDP': raw.get('service_count_udp', 0),
+            'ICMP': raw.get('service_count_icmp', 0),
+            'ARP': raw.get('service_count_arp', 0),
+            'SW': raw.get('software_count', 0),
+            'Vulns': raw.get('vulnerability_count', 0),
+            'RTT/ms': normalize_rtt(raw.get('lowest_rtt', 0)),
+            'Hops': raw.get('lowest_ttl', 0),
+            'Detected': raw.get('detected_by', 0),
+            'First_Seen': timestamp_to_datestring(raw.get('first_seen', '') * 1000),
+            'Last_Seen': timestamp_to_datestring(raw.get('last_seen', '') * 1000),
+            'Explorer': raw.get('agent_name', ''),
+            'Hosted_Zone': raw.get('hosted_zone_name', ''),
+            'Site': raw.get('site_name', ''),
+        }]
+
+
+    def parse_raw_quota_get(raw: dict) -> dict:
+        return {
+            'usage_limit': raw.get('created_at', ''),
+            'usage_today': raw.get('usage_today', ''),
+            'counter': raw.get('counter', ''),
+        }
+
+
+    def parse_raw_wireless(raw: dict) -> list:
+        return [{
+            'ID': raw.get('id', ''),
+            'ESSID': raw.get('essid', ''),
+            'BSSID': raw.get('bssid', ''),
+            'Vendor': raw.get('vendor', ''),
+            'Family': raw.get('family', ''),
+            'Type': raw.get('type', ''),
+            'Auth': raw.get('authentication', ''),
+            'Enc': raw.get('encryption', ''),
+            'Sig': raw.get('signal', 0),
+            'Int': raw.get('interface', ''),
+            'Additional': raw.get('data', {}),
+            'First_seen': timestamp_to_datestring(raw.get('created_at', '')),
+            'Last_seen': timestamp_to_datestring(raw.get('last_seen', '')),
+            'Site': raw.get('site_name', ''),
+        }]
+
+
+    def check_if_valid_options(args: dict, valid_options: set):
+        if len(valid_options.intersection(args.keys())) > 1:
+            return_error(f'Please choose one option from the following: {valid_options}')
+
+
+    def parse_tags_from_list(tags_list: list):
+        return ' -'.join(['', *tags_list])
+
+
+    ''' COMMAND FUNCTIONS '''
+
+
+    def asset_search_command(client: Client, args: dict) -> CommandResults:
+        search_params = {}
+        check_if_valid_options(args, {'ips', 'hostnames', 'asset_ids', 'search'})
+        limit = arg_to_number(args.get('limit', DEFAULT_LIMIT))
+        if args.get('ips'):
+            search_list = ' or address:'.join(argToList(args.get('ips')))
+            search_params = {'search': f'address:{search_list}'}
+        elif args.get('hostnames'):
+            search_list = ' or name:'.join(argToList(args.get('hostnames')))
+            search_params = {'search': f'name:{search_list}'}
+        elif args.get('asset_ids'):
+            search_list = ' or id:'.join(argToList(args.get('asset_ids')))
+            search_params = {'search': f'id:{search_list}'}
+        elif args.get('search'):
+            search_params = {'search': str(args.get('search'))}
+        raw = client.asset_search(search_params)
+        outputs = raw
+        remove_attr = not argToBoolean(args.get('display_attributes', 'False'))
+        remove_svc = not argToBoolean(args.get('display_services', 'False'))
+        message = []
+        if isinstance(outputs, list):
+            raw = raw[:limit]
+            outputs = outputs[:limit]
+            for item in outputs:
+                if remove_attr:
+                    item.pop('attributes', None)
+                if remove_svc:
+                    item.pop('services', None)
+                message.extend(parse_raw_asset(item))
+        if isinstance(outputs, dict):
+            if remove_attr:
+                outputs.pop('attributes')
+            if remove_svc:
+                outputs.pop('services')
+            message.extend(parse_raw_asset(outputs))
+        human_readable = tableToMarkdown('Asset',
+                                         message,
+                                         removeNull=True)
+        return CommandResults(
+            outputs_prefix='RunZero.Asset',
+            outputs_key_field='id',
+            outputs=outputs,
+            raw_response=raw,
+            readable_output=human_readable
+        )
+
+
+    def asset_delete_command(client: Client, args: dict) -> CommandResults:
+        asset_list = argToList(args.get('asset_ids', []))
+        raw = client.asset_delete(asset_list)
+        message = f'Assets {asset_list} deleted successfully.'
+        return CommandResults(
+            outputs_prefix='RunZero.Asset',
+            raw_response=raw,
+            readable_output=message
+        )
+
+
+    def comment_add_command(client: Client, args: dict) -> CommandResults:
+        asset_id = args.get('asset_id', '')
+        comment = args.get('comment', '')
+        raw = client.comment_add(asset_id, comment)
+        message = f'Comment added to {asset_id} successfully.'
+        return CommandResults(
+            raw_response=raw,
+            readable_output=message
+        )
+
+
+    def tags_add_command(client: Client, args: dict) -> CommandResults:
+        asset_id = args.get('asset_id', '')
+        tags_list = argToList(args.get('tags', ''))
+        tags = " ".join(tags_list)
+        raw = client.tags_add(asset_id, tags)
+        message = f'Tags added to {asset_id} successfully.'
+        return CommandResults(
+            outputs_prefix='RunZero.Tag',
+            raw_response=raw,
+            readable_output=message
+        )
+
+
+    def service_search_command(client: Client, args: dict) -> CommandResults:
+        check_if_valid_options(args, {'service_id', 'service_addresses', 'search'})
+        service_string = ''
+        limit = arg_to_number(args.get('limit', DEFAULT_LIMIT))
+        if args.get('service_id'):
+            service_string = f'/{args.get("service_id", "")}'
+        elif args.get('search'):
+            service_string = f'?search={args.get("search", "")}'
+        elif args.get('service_addresses'):
+            service_string = ' or service_address:'.join(argToList(args.get('service_addresses')))
+            service_string = f'?search=service_address:{service_string}'
+        raw = client.service_search(service_string)
+        outputs = raw
+        remove_attr = not argToBoolean(args.get('display_attributes', 'False'))
+        message = []
+        if isinstance(outputs, list):
+            raw = raw[:limit]
+            outputs = outputs[:limit]
+            for item in outputs:
+                if remove_attr:
+                    item.pop('attributes', None)
+                message.extend(parse_raw_service(item))
+        if isinstance(outputs, dict):
+            if remove_attr:
+                outputs.pop('attributes', None)
+            message.extend(parse_raw_service(raw))
+        human_readable = tableToMarkdown('Service',
+                                         message,
+                                         removeNull=True)
+        return CommandResults(
+            outputs_prefix='RunZero.Service',
+            outputs_key_field='service_id',
+            outputs=outputs,
+            raw_response=raw,
+            readable_output=human_readable
+        )
+
+
+    def service_delete_command(client: Client, args: dict) -> CommandResults:
+        service_id = args.get('service_id', '')
+        raw = client.service_delete(service_id)
+        message = f'Service {service_id} deleted successfully.'
+        return CommandResults(
+            outputs_prefix='RunZero.Service',
+            raw_response=raw,
+            readable_output=message
+        )
+
+
+    def quota_get_command(client: Client) -> CommandResults:
+        raw = client.quota_get()
+        message = parse_raw_quota_get(raw)
+        human_readable = tableToMarkdown('Quota',
+                                         message,
+                                         removeNull=False)
+        return CommandResults(
+            outputs_prefix='RunZero.Quota',
+            outputs_key_field='id',
+            outputs=raw,
+            raw_response=raw,
+            readable_output=human_readable
+        )
+
+
+    def tag_delete_command(client: Client, args: dict) -> CommandResults:
+        asset_id = args.get('asset_id', '')
+        tags_list = argToList(args.get('tags', []))
+        tags = parse_tags_from_list(tags_list)
+        raw = client.tag_delete(asset_id, tags)
+        message = f'Tags {tags_list} from asset: {asset_id} deleted successfully.'
+        return CommandResults(
+            outputs_prefix='RunZero.Tag',
+            raw_response=raw,
+            readable_output=message
+        )
+
+
+    def test_module(client: Client) -> str:
+        """Tests API connectivity and authentication'
+
+        Returning 'ok' indicates that the integration works like it is supposed to.
+        Connection to the service is successful.
+        Raises exceptions if something goes wrong.
+
+        :type client: ``Client``
+        :param Client: client to use
+
+        :return: 'ok' if test passed, anything else will fail the test.
+        :rtype: ``str``
+        """
+
+        message: str = ''
+        client.quota_get()
+        message = 'ok'
+        return message
+
+
+    def wireless_lan_search_command(client: Client, args: dict) -> CommandResults:
+        wireless_string = ''
+        check_if_valid_options(args, {'wireless_id', 'search'})
+        limit = arg_to_number(args.get('limit', DEFAULT_LIMIT))
+        if args.get('wireless_id'):
+            wireless_string = f'/{args.get("wireless_id", "")}'
+        elif args.get('search'):
+            wireless_string = f'?search={args.get("search", "")}'
+        raw = client.wireless_search(wireless_string)[:limit]
+        message = []
+        if isinstance(raw, list):
+            raw = raw[:limit]
+            for item_raw in raw:
+                message.extend(parse_raw_wireless(item_raw))
+        if isinstance(raw, dict):
+            message.extend(parse_raw_wireless(raw))
+        human_readable = tableToMarkdown('Wireless',
+                                         message,
+                                         removeNull=True)
+        return CommandResults(
+            outputs_prefix='RunZero.WirelessLAN',
+            outputs_key_field='id',
+            outputs=raw,
+            raw_response=raw,
+            readable_output=human_readable
+        )
+
+
+    def wireless_lan_delete_command(client: Client, args: dict) -> CommandResults:
+        wireless_id = args.get('wireless_id', '')
+        raw = client.wireless_delete(wireless_id)
+        message = f'Wireless LAN {wireless_id} deleted successfully.'
+        return CommandResults(
+            outputs_prefix='RunZero.WirelessLAN',
+            outputs_key_field=None,
+            outputs=None,
+            raw_response=raw,
+            readable_output=message
+        )
+
+
+    ''' MAIN FUNCTION '''
+
+
+    def main() -> None:
+        """main function, parses params and runs command functions
+        :return:
+        :rtype:
+        """
+        params = demisto.params()
+        api_key = params.get('api_key', {}).get('password')
+        base_url = urljoin(params.get('url'), '/api/v1.0')
+        verify_certificate = not params.get('insecure', False)
+        proxy = params.get('proxy', False)
+        demisto.debug(f'Command being called is {demisto.command()}')
+        try:
+            headers = {'Authorization': f'Bearer {api_key}'}
+            client = Client(
+                base_url=base_url,
+                verify=verify_certificate,
+                headers=headers,
+                proxy=proxy)
+
+            args = demisto.args()
+            if demisto.command() == 'test-module':
+                return_results(test_module(client))
+
+            elif demisto.command() == 'runzero-quota-get':
+                return_results(quota_get_command(client))
+
+            elif demisto.command() == 'runzero-asset-search':
+                return_results(asset_search_command(client, args))
+
+            elif demisto.command() == 'runzero-asset-delete':
+                return_results(asset_delete_command(client, args))
+
+            elif demisto.command() == 'runzero-service-search':
+                return_results(service_search_command(client, args))
+
+            elif demisto.command() == 'runzero-service-delete':
+                return_results(service_delete_command(client, args))
+
+            elif demisto.command() == 'runzero-comment-add':
+                return_results(comment_add_command(client, args))
+
+            elif demisto.command() == 'runzero-tag-add':
+                return_results(tags_add_command(client, args))
+
+            elif demisto.command() == 'runzero-tag-delete':
+                return_results(tag_delete_command(client, args))
+
+            elif demisto.command() == 'runzero-wireless-lan-search':
+                return_results(wireless_lan_search_command(client, args))
+
+            elif demisto.command() == 'runzero-wireless-lan-delete':
+                return_results(wireless_lan_delete_command(client, args))
+
+        # Log exceptions and return errors
+        except Exception as e:
+            return_error(f'Failed to execute {demisto.command()} command.\nError:\n{str(e)}')
+
+
+    ''' ENTRY POINT '''
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('RunZero', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
