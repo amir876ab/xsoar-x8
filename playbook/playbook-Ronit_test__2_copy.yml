@@ -1,0 +1,123 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: cfb91f38-e0db-4756-8e6a-ee0204df0000
+inputs: []
+name: Ronit_test__2_copy
+outputs: []
+quiet: true
+sourceplaybookid: 033a29e7-b9fb-48df-849e-0ac5343c5836
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 78b577bf-6137-4ade-8ae6-ce54d257b43f
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 78b577bf-6137-4ade-8ae6-ce54d257b43f
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.addEntitlement
+      id: 3ab86039-09f6-4502-8f4d-1c2a0ecde718
+      iscommand: true
+      name: wwww
+      script: Builtin|||addEntitlement
+      type: regular
+      version: -1
+    taskid: 3ab86039-09f6-4502-8f4d-1c2a0ecde718
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 230
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Add DBot score to context for indicators with custom vendor, score,
+        reliability, and type.
+      id: 322a9eb9-3157-42f7-86df-865226874f58
+      iscommand: false
+      name: ieuie
+      script: AddDBotScoreToContext
+      type: regular
+      version: -1
+    taskid: 322a9eb9-3157-42f7-86df-865226874f58
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 410
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 455,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
