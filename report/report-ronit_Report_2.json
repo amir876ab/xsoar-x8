@@ -1,0 +1,744 @@
+{
+	"cacheVersn": 0,
+	"cronView": false,
+	"dashboard": {
+		"cacheVersn": 0,
+		"commitMessage": "",
+		"definitionId": "",
+		"fromDate": "0001-01-01T00:00:00Z",
+		"fromDateLicense": "0001-01-01T00:00:00Z",
+		"fromServerVersion": "",
+		"hidePivot": false,
+		"hideSearch": false,
+		"id": "",
+		"isCommon": false,
+		"itemVersion": "",
+		"layout": [
+			{
+				"forceRange": false,
+				"h": 1,
+				"i": "57ade7b0-82f4-11ee-bb4d-071d3ec0530a",
+				"id": "57ade7b0-82f4-11ee-bb4d-071d3ec0530a",
+				"reflectDimensions": true,
+				"w": 3,
+				"widget": {
+					"Cache": null,
+					"cacheVersn": 0,
+					"category": "",
+					"commitMessage": "",
+					"dataType": "incidents",
+					"dateRange": {
+						"fromDate": "0001-01-01T00:00:00Z",
+						"fromDateLicense": "0001-01-01T00:00:00Z",
+						"period": {
+							"by": "",
+							"byFrom": "days",
+							"byTo": "",
+							"field": "",
+							"fromValue": 30,
+							"toValue": null
+						},
+						"toDate": "0001-01-01T00:00:00Z"
+					},
+					"definitionId": "",
+					"fromServerVersion": "6.0.0",
+					"id": "f39f1990-8c88-4e76-8fa7-a0e564692d77",
+					"isPredefined": true,
+					"itemVersion": "5.2.5",
+					"modified": "2023-11-14T10:25:23.03738141Z",
+					"name": "Cortex XDR Active Device Control Violations Incidents",
+					"packID": "CortexXDR",
+					"packName": "Cortex XDR by Palo Alto Networks",
+					"packPropagationLabels": [
+						"all"
+					],
+					"params": {
+						"tableColumns": [
+							{
+								"isDefault": true,
+								"key": "id",
+								"position": 0,
+								"width": 110
+							},
+							{
+								"isDefault": true,
+								"key": "name",
+								"position": 2,
+								"width": 300
+							},
+							{
+								"isDefault": true,
+								"key": "type",
+								"position": 3,
+								"width": 200
+							},
+							{
+								"isDefault": true,
+								"key": "severity",
+								"position": 4,
+								"width": 80
+							},
+							{
+								"isDefault": true,
+								"key": "status",
+								"position": 5,
+								"width": 80
+							},
+							{
+								"isDefault": true,
+								"key": "owner",
+								"position": 6,
+								"width": 160
+							},
+							{
+								"isDefault": true,
+								"key": "roles",
+								"position": 7,
+								"width": 160
+							},
+							{
+								"isDefault": true,
+								"key": "playbookId",
+								"position": 8,
+								"width": 150
+							},
+							{
+								"isDefault": true,
+								"key": "occurred",
+								"position": 9,
+								"width": 200
+							},
+							{
+								"isDefault": true,
+								"key": "dueDate",
+								"position": 10,
+								"width": 200
+							}
+						]
+					},
+					"prevName": "Cortex XDR Active Device Control Violations Incidents",
+					"primaryTerm": 1,
+					"propagationLabels": [],
+					"query": "type:\"Cortex XDR Device Control Violations\" and status:Active",
+					"sequenceNumber": 657814,
+					"shouldCommit": false,
+					"sortValues": [
+						"4965"
+					],
+					"toServerVersion": "",
+					"vcShouldIgnore": false,
+					"vcShouldKeepItemLegacyProdMachine": false,
+					"version": 1,
+					"widgetType": "number"
+				},
+				"x": 0,
+				"y": 0
+			},
+			{
+				"forceRange": false,
+				"h": 1,
+				"i": "57ea0650-82f4-11ee-bb4d-071d3ec0530a",
+				"id": "57ea0650-82f4-11ee-bb4d-071d3ec0530a",
+				"reflectDimensions": true,
+				"w": 3,
+				"widget": {
+					"Cache": null,
+					"cacheVersn": 0,
+					"category": "",
+					"commitMessage": "",
+					"dataType": "incidents",
+					"dateRange": {
+						"fromDate": "0001-01-01T00:00:00Z",
+						"fromDateLicense": "0001-01-01T00:00:00Z",
+						"period": {
+							"by": "",
+							"byFrom": "days",
+							"byTo": "",
+							"field": "",
+							"fromValue": 7,
+							"toValue": null
+						},
+						"toDate": "0001-01-01T00:00:00Z"
+					},
+					"definitionId": "",
+					"fromServerVersion": "6.0.0",
+					"id": "f2974c2d-ba6d-4deb-8d0e-be8122901b37",
+					"isPredefined": true,
+					"itemVersion": "5.2.5",
+					"modified": "2023-11-14T10:25:23.038849214Z",
+					"name": "Cortex XDR Active High Severity Incidents",
+					"packID": "CortexXDR",
+					"packName": "Cortex XDR by Palo Alto Networks",
+					"packPropagationLabels": [
+						"all"
+					],
+					"params": {
+						"colors": {
+							"isEnabled": true,
+							"items": {
+								"#FF1B15": {
+									"value": -1
+								}
+							},
+							"type": "above"
+						},
+						"tableColumns": [
+							{
+								"isDefault": true,
+								"key": "id",
+								"position": 0,
+								"width": 110
+							},
+							{
+								"isDefault": true,
+								"key": "name",
+								"position": 2,
+								"width": 300
+							},
+							{
+								"isDefault": true,
+								"key": "type",
+								"position": 3,
+								"width": 200
+							},
+							{
+								"isDefault": true,
+								"key": "severity",
+								"position": 4,
+								"width": 80
+							},
+							{
+								"isDefault": true,
+								"key": "status",
+								"position": 5,
+								"width": 80
+							},
+							{
+								"isDefault": true,
+								"key": "owner",
+								"position": 6,
+								"width": 160
+							},
+							{
+								"isDefault": true,
+								"key": "roles",
+								"position": 7,
+								"width": 160
+							},
+							{
+								"isDefault": true,
+								"key": "playbookId",
+								"position": 8,
+								"width": 150
+							},
+							{
+								"isDefault": true,
+								"key": "occurred",
+								"position": 9,
+								"width": 200
+							},
+							{
+								"isDefault": true,
+								"key": "dueDate",
+								"position": 10,
+								"width": 200
+							}
+						]
+					},
+					"prevName": "Cortex XDR Active High Severity Incidents",
+					"primaryTerm": 1,
+					"propagationLabels": [],
+					"query": "type:\"Cortex XDR Incident\" and severity:High and status:Active",
+					"sequenceNumber": 657829,
+					"shouldCommit": false,
+					"sortValues": [
+						"4980"
+					],
+					"toServerVersion": "",
+					"vcShouldIgnore": false,
+					"vcShouldKeepItemLegacyProdMachine": false,
+					"version": 1,
+					"widgetType": "trend"
+				},
+				"x": 2,
+				"y": 1
+			},
+			{
+				"forceRange": false,
+				"h": 1,
+				"i": "db92b4c0-82f4-11ee-bb4d-071d3ec0530a",
+				"id": "db92b4c0-82f4-11ee-bb4d-071d3ec0530a",
+				"reflectDimensions": true,
+				"w": 3,
+				"widget": {
+					"Cache": null,
+					"cacheVersn": 0,
+					"category": "",
+					"commitMessage": "",
+					"dataType": "incidents",
+					"dateRange": {
+						"fromDate": "0001-01-01T00:00:00Z",
+						"fromDateLicense": "0001-01-01T00:00:00Z",
+						"period": {
+							"by": "",
+							"byFrom": "days",
+							"byTo": "",
+							"field": "",
+							"fromValue": 30,
+							"toValue": null
+						},
+						"toDate": "0001-01-01T00:00:00Z"
+					},
+					"definitionId": "",
+					"fromServerVersion": "6.0.0",
+					"id": "2de3d4e6-573a-4c4e-86c1-85d57dbd88b7",
+					"isPredefined": true,
+					"itemVersion": "5.2.5",
+					"modified": "2023-11-14T10:25:23.038644104Z",
+					"name": "Cortex XDR Closed Device Control Violations",
+					"packID": "CortexXDR",
+					"packName": "Cortex XDR by Palo Alto Networks",
+					"packPropagationLabels": [
+						"all"
+					],
+					"params": {
+						"tableColumns": [
+							{
+								"isDefault": true,
+								"key": "id",
+								"position": 0,
+								"width": 110
+							},
+							{
+								"isDefault": true,
+								"key": "name",
+								"position": 2,
+								"width": 300
+							},
+							{
+								"isDefault": true,
+								"key": "type",
+								"position": 3,
+								"width": 200
+							},
+							{
+								"isDefault": true,
+								"key": "severity",
+								"position": 4,
+								"width": 80
+							},
+							{
+								"isDefault": true,
+								"key": "status",
+								"position": 5,
+								"width": 80
+							},
+							{
+								"isDefault": true,
+								"key": "owner",
+								"position": 6,
+								"width": 160
+							},
+							{
+								"isDefault": true,
+								"key": "roles",
+								"position": 7,
+								"width": 160
+							},
+							{
+								"isDefault": true,
+								"key": "playbookId",
+								"position": 8,
+								"width": 150
+							},
+							{
+								"isDefault": true,
+								"key": "occurred",
+								"position": 9,
+								"width": 200
+							},
+							{
+								"isDefault": true,
+								"key": "dueDate",
+								"position": 10,
+								"width": 200
+							}
+						]
+					},
+					"prevName": "Cortex XDR Closed Device Control Violations",
+					"primaryTerm": 1,
+					"propagationLabels": [],
+					"query": "type:\"Cortex XDR Device Control Violations\" and status:Closed",
+					"sequenceNumber": 657826,
+					"shouldCommit": false,
+					"sortValues": [
+						"4977"
+					],
+					"toServerVersion": "",
+					"vcShouldIgnore": false,
+					"vcShouldKeepItemLegacyProdMachine": false,
+					"version": 1,
+					"widgetType": "number"
+				},
+				"x": 4,
+				"y": 2
+			}
+		],
+		"locked": false,
+		"modified": "0001-01-01T00:00:00Z",
+		"modulePage": false,
+		"name": "ronit_Report_2",
+		"owner": "",
+		"packID": "",
+		"packName": "",
+		"period": {
+			"by": "",
+			"byFrom": "",
+			"byTo": "",
+			"field": "",
+			"fromValue": null,
+			"toValue": null
+		},
+		"prevName": "",
+		"shouldCommit": false,
+		"system": false,
+		"toDate": "0001-01-01T00:00:00Z",
+		"toServerVersion": "",
+		"vcShouldIgnore": false,
+		"vcShouldKeepItemLegacyProdMachine": false,
+		"version": 0
+	},
+	"decoder": {
+		"evidences.fetched": {
+			"type": "date",
+			"value": "02/01/06 3:04:05 PM"
+		},
+		"evidences.markedDate": {
+			"type": "date",
+			"value": "02/01/06 3:04:05 PM"
+		},
+		"evidences.occurred": {
+			"type": "date",
+			"value": "02/01/06 3:04:05 PM"
+		},
+		"incident.dbotStatus.0": {
+			"type": "string",
+			"value": "Pending"
+		},
+		"incident.dbotStatus.1": {
+			"type": "string",
+			"value": "Active"
+		},
+		"incident.dbotStatus.2": {
+			"type": "string",
+			"value": "Closed"
+		},
+		"incident.dbotStatus.3": {
+			"type": "string",
+			"value": "Closed"
+		},
+		"incident.dbotStatus.4": {
+			"type": "string",
+			"value": "On Hold"
+		},
+		"incident.dueDate": {
+			"type": "date",
+			"value": "2006-01-02T15:04:05Z07:00"
+		},
+		"incident.openDuration": {
+			"type": "duration",
+			"value": ""
+		},
+		"incident.phase.": {
+			"type": "string",
+			"value": "Unassigned"
+		},
+		"incident.roles.": {
+			"type": "string",
+			"value": "Unassigned"
+		},
+		"incident.severity.0": {
+			"type": "string",
+			"value": "Unknown"
+		},
+		"incident.severity.0.5": {
+			"type": "string",
+			"value": "Informational"
+		},
+		"incident.severity.1": {
+			"type": "string",
+			"value": "Low"
+		},
+		"incident.severity.2": {
+			"type": "string",
+			"value": "Medium"
+		},
+		"incident.severity.3": {
+			"type": "string",
+			"value": "High"
+		},
+		"incident.severity.4": {
+			"type": "string",
+			"value": "Critical"
+		},
+		"incident.status.0": {
+			"type": "string",
+			"value": "Pending"
+		},
+		"incident.status.1": {
+			"type": "string",
+			"value": "Active"
+		},
+		"incident.status.2": {
+			"type": "string",
+			"value": "Closed"
+		},
+		"incident.status.3": {
+			"type": "string",
+			"value": "Closed"
+		},
+		"incident.status.4": {
+			"type": "string",
+			"value": "On Hold"
+		},
+		"indicators.score.0": {
+			"type": "string",
+			"value": "Unknown"
+		},
+		"indicators.score.1": {
+			"type": "string",
+			"value": "Benign"
+		},
+		"indicators.score.2": {
+			"type": "string",
+			"value": "Suspicious"
+		},
+		"indicators.score.3": {
+			"type": "string",
+			"value": "Malicious"
+		},
+		"investigation.openDuration": {
+			"type": "duration",
+			"value": ""
+		},
+		"investigation.status.0": {
+			"type": "string",
+			"value": "Active"
+		},
+		"investigation.status.1": {
+			"type": "string",
+			"value": "Done"
+		},
+		"investigation.type.0": {
+			"type": "string",
+			"value": "Standard"
+		},
+		"investigation.type.1": {
+			"type": "string",
+			"value": "Restricted"
+		},
+		"investigation.type.9": {
+			"type": "string",
+			"value": "Playground"
+		},
+		"relationships.revoked.": {
+			"type": "string",
+			"value": "Active"
+		},
+		"relationships.revoked.false": {
+			"type": "string",
+			"value": "Active"
+		},
+		"relationships.revoked.true": {
+			"type": "string",
+			"value": "Revoked"
+		}
+	},
+	"definitionId": "",
+	"disableHeader": false,
+	"endingDate": "0001-01-01T00:00:00Z",
+	"fromServerVersion": "",
+	"id": "4c07acf7-b138-4404-8860-1fbd5286c2fc",
+	"itemVersion": "",
+	"latestReportName": "",
+	"latestReportTime": "0001-01-01T00:00:00Z",
+	"latestReportUsername": "",
+	"latestScheduledReportTime": "0001-01-01T00:00:00Z",
+	"locked": false,
+	"name": "ronit_Report_2",
+	"nextScheduledTime": "0001-01-01T00:00:00Z",
+	"orientation": "portrait",
+	"packID": "",
+	"packName": "",
+	"paperSize": "A4",
+	"propagationLabels": [
+		"all"
+	],
+	"recipients": null,
+	"recurrent": false,
+	"reportType": "",
+	"runOnce": false,
+	"runningRoles": null,
+	"runningUser": "",
+	"scheduled": false,
+	"scheduledEntryGuid": "",
+	"sections": [
+		{
+			"autoPageBreak": false,
+			"automation": {
+				"args": null,
+				"id": "",
+				"name": "",
+				"noEvent": false
+			},
+			"data": null,
+			"layout": {
+				"columnPos": 0,
+				"forceRangeMessage": "",
+				"h": 1,
+				"i": "57ade7b0-82f4-11ee-bb4d-071d3ec0530a",
+				"layout": "horizontal",
+				"numberStyle": {
+					"fontSize": "32px"
+				},
+				"reflectDimensions": true,
+				"rowPos": 0,
+				"sign": "",
+				"signAlignment": "left",
+				"style": {},
+				"titleStyle": {
+					"fontSize": "11px"
+				},
+				"valuesFormat": "abbreviated",
+				"w": 3
+			},
+			"query": {
+				"filter": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"query": "type:\"Cortex XDR Device Control Violations\" and status:Active",
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"type": "incident"
+			},
+			"title": "Cortex XDR Active Device Control Violations Incidents",
+			"titleStyle": null,
+			"type": "number"
+		},
+		{
+			"autoPageBreak": false,
+			"automation": {
+				"args": null,
+				"id": "",
+				"name": "",
+				"noEvent": false
+			},
+			"data": null,
+			"layout": {
+				"columnPos": 2,
+				"forceRangeMessage": "",
+				"h": 1,
+				"i": "57ea0650-82f4-11ee-bb4d-071d3ec0530a",
+				"layout": "horizontal",
+				"numberStyle": {
+					"fontSize": "32px"
+				},
+				"reflectDimensions": true,
+				"rowPos": 1,
+				"sign": "",
+				"signAlignment": "left",
+				"style": {},
+				"titleStyle": {
+					"fontSize": "11px"
+				},
+				"valuesFormat": "abbreviated",
+				"w": 3
+			},
+			"query": {
+				"filter": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"query": "type:\"Cortex XDR Incident\" and severity:High and status:Active",
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"type": "incident"
+			},
+			"title": "Cortex XDR Active High Severity Incidents",
+			"titleStyle": null,
+			"type": "trend"
+		},
+		{
+			"autoPageBreak": false,
+			"automation": {
+				"args": null,
+				"id": "",
+				"name": "",
+				"noEvent": false
+			},
+			"data": null,
+			"layout": {
+				"columnPos": 4,
+				"forceRangeMessage": "",
+				"h": 1,
+				"i": "db92b4c0-82f4-11ee-bb4d-071d3ec0530a",
+				"layout": "horizontal",
+				"numberStyle": {
+					"fontSize": "32px"
+				},
+				"reflectDimensions": true,
+				"rowPos": 2,
+				"sign": "",
+				"signAlignment": "left",
+				"style": {},
+				"titleStyle": {
+					"fontSize": "11px"
+				},
+				"valuesFormat": "abbreviated",
+				"w": 3
+			},
+			"query": {
+				"filter": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"query": "type:\"Cortex XDR Device Control Violations\" and status:Closed",
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"type": "incident"
+			},
+			"title": "Cortex XDR Closed Device Control Violations",
+			"titleStyle": null,
+			"type": "number"
+		}
+	],
+	"sensitive": false,
+	"startDate": "0001-01-01T00:00:00Z",
+	"system": false,
+	"times": 0,
+	"timezoneOffset": 0,
+	"toServerVersion": "",
+	"type": "pdf",
+	"userAPIKey": "",
+	"userAPIKeyID": "",
+	"version": -1
+}
