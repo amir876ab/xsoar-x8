@@ -1,0 +1,132 @@
+{
+	"author": "Feedly",
+	"authorImage": "content/packs/FeedFeedly/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"reputation",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Gets indicators from the feed.",
+						"name": "feedly-get-indicators"
+					}
+				],
+				"description": "Ingest articles with indicators, entities and relationships from Feedly into XSOAR.",
+				"id": "Feedly Feed",
+				"name": "Feedly Feed (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "Layout for the Feedly Report indicator type",
+				"name": "Feedly Report"
+			}
+		],
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": [
+			{
+				"details": "Feedly Report",
+				"enhancementScriptNames": [],
+				"reputationScriptName": ""
+			}
+		],
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2023-10-22T19:41:46Z",
+	"currentVersion": "1.0.0",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.38",
+			"name": "Base"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.87",
+			"name": "Common Types"
+		}
+	},
+	"deprecated": false,
+	"description": "Import Articles from Feedly with enriched IOCs",
+	"downloads": 0,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "6.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "FeedFeedly",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/FeedFeedly/FeedlyFeed_image.png",
+			"name": "Feedly Feed"
+		}
+	],
+	"itemVersion": "1.0.0",
+	"keywords": [],
+	"legacy": true,
+	"modules": [],
+	"name": "Feedly",
+	"packID": "FeedFeedly",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "The Feedly feed provides access to articles with entities, IoCs, and relationships from your Feedly account.\n\nIn order to access the Feedly feed, you'll need to generate an access token. You can do it from [here](https://feedly.com/i/team/api).",
+	"searchRank": 20,
+	"serverMaxVersion": "",
+	"serverMinVersion": "6.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@feedly.com",
+		"url": "https://feedly.com/i/landing/threatIntelligence"
+	},
+	"tags": [
+		"TIM",
+		"Threat Intelligence Management",
+		"New",
+		"Free Feed"
+	],
+	"toServerVersion": "",
+	"updated": "2023-10-22T19:41:46Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6674581",
+	"videos": []
+}
