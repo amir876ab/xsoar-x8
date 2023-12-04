@@ -1,0 +1,74 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Maps QRadar event fields.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "QRadar-mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "2.4.41",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 1,
+	"mapping": {
+		"Access": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Dest NT Domain": {
+					"complex": {
+						"filters": [],
+						"root": "destination_networks",
+						"transformers": [
+							{
+								"args": {
+									"separator": {
+										"isContext": false
+									}
+								},
+								"operator": "join"
+							}
+						]
+					}
+				},
+				"Src NT Domain": {
+					"simple": "source_network"
+				},
+				"Src User": {
+					"simple": "offense_source"
+				},
+				"details": {
+					"simple": "description"
+				},
+				"occurred": {
+					"complex": {
+						"filters": [],
+						"root": "start_time",
+						"transformers": [
+							{
+								"operator": "TimeStampToDate"
+							}
+						]
+					}
+				}
+			}
+		}
+	},
+	"name": "QRadar - Incoming Mapper",
+	"nameRaw": "QRadar - Incoming Mapper",
+	"packID": "QRadar",
+	"packName": "IBM QRadar",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
