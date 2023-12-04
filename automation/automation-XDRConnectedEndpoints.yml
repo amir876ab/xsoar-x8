@@ -1,0 +1,80 @@
+args:
+- description: 'The start date by which to filter incidents. Date format will be the
+    same as in the incidents query page, for example: "3 days ago", "2019-01-01T00:00:00
+    +0200").'
+  name: from
+- description: 'The end date by which to filter incidents. Date format will be the
+    same as in the incidents query page, for example: "3 days ago", "2019-01-01T00:00:00
+    +0200").'
+  name: to
+- defaultValue: "100"
+  description: The maximum number of incidents to fetch. The default value is 100.
+  name: limit
+comment: The widget returns the number of the connected endpoints using xdr-get-endpoints
+  command.
+commonfields:
+  id: XDRConnectedEndpoints
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.13.80014
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: XDRConnectedEndpoints
+nativeimage:
+- "8.3"
+- "8.4"
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('XDRConnectedEndpoints', 'start', __line__())
+  ### pack version: 6.0.4
+
+
+
+
+  def main():
+      try:
+          args = demisto.args()
+          last_seen_gte = args.get('from')
+          last_seen_lte = args.get('to')
+
+          get_endpoints_args = {'status': 'connected'}
+
+          if last_seen_gte:
+              get_endpoints_args['last_seen_gte'] = last_seen_gte
+          if last_seen_lte and last_seen_lte != '0001-01-01T00:00:00Z':
+              get_endpoints_args['last_seen_lte'] = last_seen_lte
+
+          res = demisto.executeCommand('xdr-get-endpoints-by-status', get_endpoints_args)
+          if isError(res):
+              return_error(f'Error occurred while trying to get XDR endpoints: {get_error(res)}')
+
+          count = list(res[0].get('EntryContext').values())[0].get('count')
+          return_results(count)
+      except Exception as ex:
+          return_error(f'Failed to execute XDRConnectedEndpoints. Error: {str(ex)}')
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('XDRConnectedEndpoints', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- widget
+type: python
