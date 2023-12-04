@@ -1,0 +1,113 @@
+args:
+- auto: PREDEFINED
+  defaultValue: scatter
+  description: The type of the widget to return.
+  name: returnWidgetType
+  predefined:
+  - scatter
+  - summary
+  - incidents
+- defaultValue: 1 months ago
+  description: 'The start date by which to filter incidents. Date format will be the
+    same as in the incidents query page, for example: "3 days ago", ""2019-01-01T00:00:00
+    +0200").'
+  name: fromDate
+- defaultValue: "500"
+  description: The maximum number of incidents to fetch.
+  name: limit
+- defaultValue: Cortex XDR Incident
+  description: The Cortex XDR incident type.
+  name: incidentType
+- description: Input search query from the dashboard.
+  name: searchQuery
+- defaultValue: "24"
+  description: Period of time (in hours) before retraining the model. Default is "24".
+  name: modelExpiration
+  predefined:
+  - ""
+- auto: PREDEFINED
+  defaultValue: "False"
+  description: Determines whether to force the model to re-train. Default is "False".
+  name: forceRetrain
+  predefined:
+  - "True"
+  - "False"
+- defaultValue: xdralerts.osactorprocesscommandline,xdralerts.actionprocessimagecommandline,xdralerts.causalityactorprocesscommandline,xdralerts.actorprocesscommandline,xdralerts.description
+  description: Comma-separated list of additional incident fields to display, but
+    which will not be taken into account when computing similarity.
+  name: fieldsToDisplay
+comment: Train clustering model on Cortex XDR incident type.
+commonfields:
+  id: DBotGroupXDRIncidents
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.2.0
+    itemVersion: 6.0.4
+    packID: CortexXDR
+    packName: Cortex XDR by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.13.80014
+engineinfo: {}
+mainengineinfo: {}
+name: DBotGroupXDRIncidents
+nativeimage:
+- "8.3"
+- "8.4"
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('DBotGroupXDRIncidents', 'start', __line__())
+  ### pack version: 6.0.4
+
+
+  model_name = 'xdr_clustering'
+  field_for_grouping = 'xdralerts'
+  field_for_name = 'xdralerts.causalityactorprocessimagename'
+
+  return_type = demisto.args()['returnWidgetType']
+
+  if return_type == 'incidents':
+      res = demisto.executeCommand('DBotShowClusteringModelInfo', {
+          'searchQuery': demisto.args().get('searchQuery'),
+          'modelName': model_name,
+          'returnType': 'incidents',
+          'fieldsToDisplay': demisto.args().get('fieldsToDisplay')
+      })
+      demisto.results(res)
+  elif return_type == 'summary':
+      res = demisto.executeCommand('DBotShowClusteringModelInfo', {
+          'modelName': model_name
+      })
+      demisto.results(res)
+  else:
+      args = demisto.args()
+      res = demisto.executeCommand('DBotTrainClustering', {
+          'modelName': model_name,
+          'type': demisto.args().get('incidentType'),
+          'fromDate': demisto.args().get('fromDate'),
+          'limit': demisto.args().get('limit'),
+          'fieldsForClustering': field_for_grouping,
+          'fieldForClusterName': field_for_name,
+          'storeModel': 'True',
+          'searchQuery': demisto.args().get('searchQuery'),
+          'forceRetrain': demisto.args().get('forceRetrain'),
+          'numberOfFeaturesPerField': 500
+      })
+      # we need only the last entry because it's a widget script, and only the widget info should be return
+      demisto.results(res[-1])
+
+  register_module_line('DBotGroupXDRIncidents', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- widget
+timeout: 1h0m0s
+type: python
