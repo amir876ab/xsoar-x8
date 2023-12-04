@@ -1,0 +1,299 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"incidentfield",
+		"incidenttype",
+		"report",
+		"dashboard",
+		"playbook",
+		"classifier"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "This should provide answers to the CTF_1.",
+				"name": "CTF_1",
+				"tags": []
+			}
+		],
+		"classifier": [
+			{
+				"description": "Classifies Cortex XDR incidents.",
+				"id": "Cortex XDR Incident Handler - Classifier CTF",
+				"name": "Cortex XDR Incident Handler - Classifier CTF"
+			},
+			{
+				"description": "Maps incoming Cortex XDR incidents fields.",
+				"id": "XDR - Incoming Mapper CTF",
+				"name": "XDR - Incoming Mapper CTF"
+			}
+		],
+		"dashboard": [
+			{
+				"name": "CTF 1 And 2 Dashboard"
+			}
+		],
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "Part of the CTF pack",
+				"name": "CTF01",
+				"type": "timer"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "CTF01",
+				"playbook": "CTF 1 - Get to know XSOAR8",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Cortex XDR Incident - CTF",
+				"playbook": "Cortex XDR incident handling v3 CTF",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [],
+				"description": "Analyzes suspicious hashes, URLs, domains, and IP addresses.",
+				"id": "OHMYVT_CTF",
+				"name": "OHMYVT_CTF"
+			},
+			{
+				"category": "Endpoint",
+				"commands": [
+					{
+						"description": "Retrieves files from selected endpoints. You can retrieve up to 20 files, from no more than 10 endpoints. At least one endpoint ID and one file path are necessary in order to run the command. After running this command, you can use the xdr-action-status-get command with returned action_id, to check the action status.",
+						"name": "xdr-file-retrieve-ctf"
+					},
+					{
+						"description": "Gets mapping fields from remote incident. Note: This method will not update the current incident, it's here for debugging purposes.",
+						"name": "get-mapping-fields"
+					},
+					{
+						"description": "Isolates the specified endpoint.",
+						"name": "xdr-endpoint-isolate-ctf"
+					},
+					{
+						"description": "Returns additional data for the specified incident, for example, related alerts, file artifacts, network artifacts, and so on.",
+						"name": "xdr-get-incident-extra-data-ctf"
+					},
+					{
+						"description": "Returns a list of alerts and their metadata, which you can filter by built-in arguments or use the custom_filter to input a JSON filter object. \nMultiple filter arguments will be concatenated using the AND operator, while arguments that support a comma-separated list of values will use an OR operator between each value.",
+						"name": "xdr-get-alerts-ctf"
+					}
+				],
+				"description": "Cortex XDR is the world's first detection and response app that natively integrates network, endpoint, and cloud data to stop sophisticated attacks.",
+				"id": "Cortex XDR - IR CTF",
+				"name": "Cortex XDR - IR CTF"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook aims to assit in configuring you env for the Capture The Flag (CTF) game.",
+				"name": "Prepare your CTF"
+			},
+			{
+				"description": "This playbook investigates a “Possible External RDP Brute Force” XDR Alert by gathering user, IP, and hostname information, and investigating if the following suspicious elements exists:\n\n- \"IP Reputation\" - Dbot Score is 2-3 \n- \"Source geolocation\" - RDP Connection made from rare geo-location \n-  Related to campaign - IP address is related to campaign, based on TIM module\n-  Hunting results - the hunt for indicators related to the source IP and the related campaign returned results\n-  XDR Alert search - XDR Alerts that related to the same username and endpoint, and to the MITRE tactics that comes after \"Credential Access\", were found.\n\nSet verdict method:\n* Critical Element - The \"Critical Element\" input allows you to select a specific element that, if identified as suspicious,  the investigation's final verdict will be deemed a \"True Positive\".\n\n* Final Verdict -  Each suspicious element is being added to an array called \"Suspicious Elements\", which is used to count potential security threats. The array size will be compared to a final threshold. If the size is greater than or equal to the threshold, the investigation's final verdict will be deemed a \"True Positive\".\n\n* User Engagement - The \"UserEngagementThreshold\" input allows you to set the number of suspicious elements that trigger user engagement. When this threshold is met, an email will be sent to the user and their manager asking for authorization of RDP activity. If the RDP activity is not authorized by the user, the investigation's final verdict will be deemed a \"True Positive\".\n",
+				"name": "Cortex XDR - Possible External RDP Brute-Force CTF"
+			},
+			{
+				"description": "This playbook is used to loop over every alert in a Cortex XDR incident. \nSupported alert categories:\n- Malware\n- Port Scan.",
+				"name": "Cortex XDR Alerts Handling CTF"
+			},
+			{
+				"description": "This playbook is part of the Cortex XDR by Palo Alto Networks’ pack. This playbook searches alerts related to specific entities from Cortex XDR, on a given timeframe, based on MITRE tactics.\nNote: The playbook's inputs enable manipulating the execution flow. Read the input descriptions for details.",
+				"name": "Cortex XDR - Get entity alerts by MITRE tactics CTF"
+			},
+			{
+				"description": "Get to know XSOAR 8 - Run this playbook and follow the questions.",
+				"name": "CTF 1 - Get to know XSOAR8"
+			},
+			{
+				"description": "This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident.\nThe playbook syncs and updates new XDR alerts that construct the incident and triggers a sub-playbook to handle each alert by type.\nThen, the playbook performs enrichment on the incident’s indicators and hunts for related IOCs.\nBased on the severity, it lets the analyst decide whether to continue to the remediation stage or close the investigation as a false positive.\nAfter the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation. For performing the bidirectional sync, the playbook uses the incoming and outgoing mirroring feature added in XSOAR version 6.0.0. After the Calculate Severity - Generic v2 sub-playbook’s run, Cortex XSOAR will be treated as the single source of truth for the severity field, and it will sync only from Cortex XSOAR to XDR, so manual changes for the severity field in XDR will not update in the XSOAR incident.",
+				"name": "Cortex XDR incident handling v3 CTF"
+			}
+		],
+		"report": [
+			{
+				"description": "",
+				"name": "Monthly Report for our CISO"
+			}
+		],
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2023-11-05T22:31:51Z",
+	"currentVersion": "1.0.2",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.46",
+			"name": "Base"
+		},
+		"BruteForce": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.2.5",
+			"name": "Brute Force"
+		},
+		"CTF02": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.0",
+			"name": "Capture The Flag - 02"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.4.29",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.12.44",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.92",
+			"name": "Common Types"
+		},
+		"CommonWidgets": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.2.35",
+			"name": "Common Widgets"
+		},
+		"CortexXDR": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "6.0.2",
+			"name": "Cortex XDR by Palo Alto Networks"
+		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.37",
+			"name": "Filters And Transformers"
+		},
+		"MalwareInvestigationAndResponse": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.0.8",
+			"name": "Malware Investigation and Response"
+		},
+		"TIM_Processing": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.22",
+			"name": "TIM - Indicator Auto-Processing"
+		}
+	},
+	"deprecated": false,
+	"description": "XSOAR's Capture the flag (CTF)",
+	"downloads": 0,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "8.2.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "ctf01",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/ctf01/CortexXDR-IRCTF_image.png",
+			"name": "Cortex XDR - IR CTF"
+		},
+		{
+			"imagePath": "content/packs/ctf01/OHMYVT_CTF_image.png",
+			"name": "OHMYVT_CTF"
+		},
+		{
+			"imagePath": "content/packs/CortexXDR/CortexXDR-IOC_image.png",
+			"name": "Cortex XDR - IOC"
+		},
+		{
+			"imagePath": "content/packs/CortexXDR/CortexXDR-XQLQueryEngine_image.png",
+			"name": "Cortex XDR - XQL Query Engine"
+		},
+		{
+			"imagePath": "content/packs/CortexXDR/CortexXDR-IR_image.png",
+			"name": "Palo Alto Networks Cortex XDR - Investigation and Response"
+		}
+	],
+	"itemVersion": "1.0.2",
+	"keywords": [],
+	"legacy": true,
+	"modules": [],
+	"name": "Capture The Flag - 01",
+	"packID": "ctf01",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Welcome to XSOAR’s Capture the Flag pack.\n\nThis pack was prepared with small challenges which enables you to get familiar with XSOAR8. \nTo play this game, follow the instructions located within the \"Prepare your CTF\" playbook, that is part of this pack.\n\n\n### Overall notes:   \n\n- The main idea is to get familiar with XSOAR, particularly with XSOAR 8.\n- The playbooks will guide  you throughout the game, follow the instructions and use the hints using the question mark located near each question.\n\n![Prepare Your CTF](https://storage.googleapis.com/marketplace-dist/content/packs/ctf01/readme_images/playbook-Prepare_your_CTF.png)\n![Let's Investigate](https://storage.googleapis.com/marketplace-dist/content/packs/ctf01/readme_images/A.gif)",
+	"searchRank": 20,
+	"serverMaxVersion": "",
+	"serverMinVersion": "8.2.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"New"
+	],
+	"toServerVersion": "",
+	"updated": "2023-11-21T22:08:48Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6955725",
+	"videos": []
+}
