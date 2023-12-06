@@ -39,6 +39,7 @@
 		"widget": null,
 		"wizard": null
 	},
+	"created": "2020-11-09T18:42:40Z",
 	"currentVersion": "2.0.5",
 	"definitionId": "",
 	"dependencies": {
@@ -73,7 +74,6 @@
 	},
 	"deprecated": false,
 	"description": "Got a unique incident? This Content Pack helps you automate the core steps of enrichment and severity calculation for any kind of incident.",
-	"disabledMonthly": false,
 	"downloads": 8516,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
@@ -89,6 +89,7 @@
 	"itemVersion": "2.0.5",
 	"keywords": [],
 	"legacy": true,
+	"modules": [],
 	"name": "Default",
 	"packID": "DefaultPlaybook",
 	"packName": "",
@@ -114,7 +115,7 @@
 		"Core"
 	],
 	"toServerVersion": "",
-	"updated": "2023-09-10T20:45:37Z",
+	"updated": "2023-09-14T09:53:23Z",
 	"useCases": [],
 	"version": -1,
 	"versionInfo": "6319909",
