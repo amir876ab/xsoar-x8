@@ -22,7 +22,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "tasks",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -99,7 +98,6 @@
 				"query": "state:Error",
 				"shouldCommit": false,
 				"size": 5,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -121,7 +119,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "metrics",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -175,7 +172,6 @@
 				],
 				"query": "type:playbook",
 				"shouldCommit": false,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -197,7 +193,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "metrics",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -277,7 +272,6 @@
 				"query": "type:playbook",
 				"shouldCommit": false,
 				"size": 5,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -299,7 +293,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "tasks",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -335,7 +328,6 @@
 				],
 				"query": "taskName:* state:Error automated:F",
 				"shouldCommit": false,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -357,7 +349,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "metrics",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -437,7 +428,6 @@
 				"query": "type:playbook and errorCount:\u003e0",
 				"shouldCommit": false,
 				"size": 5,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -459,7 +449,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "Widget imported",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "tasks",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -536,7 +525,6 @@
 				"query": "taskName:* automated:F",
 				"shouldCommit": true,
 				"size": 5,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -558,7 +546,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "tasks",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -635,7 +622,6 @@
 				"query": "taskName:* automated:T",
 				"shouldCommit": false,
 				"size": 5,
-				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -657,7 +643,6 @@
 				"cacheVersn": 0,
 				"category": "",
 				"commitMessage": "",
-				"created": "0001-01-01T00:00:00Z",
 				"dataType": "tasks",
 				"dateRange": {
 					"fromDate": "0001-01-01T00:00:00Z",
@@ -758,7 +743,9 @@
 				"query": "taskName:* and state:Error",
 				"sequenceNumber": 29456569,
 				"shouldCommit": false,
-				"sizeInBytes": 0,
+				"sortValues": [
+					"598762"
+				],
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
