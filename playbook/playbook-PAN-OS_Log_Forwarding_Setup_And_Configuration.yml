@@ -202,6 +202,8 @@ tasks:
       - "7"
     note: false
     quietmode: 0
+    results:
+    - AreValuesEqual
     scriptarguments:
       left:
         simple: ${inputs.auto_commit}
