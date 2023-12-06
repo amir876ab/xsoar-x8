@@ -53,6 +53,8 @@ script:
       description: Extracted text from the passed image file.
       type: String
   dockerimage: demisto/tesseract:1.0.0.62842
+  nativeimage:
+  - "8.3"
   runonce: false
   script: |
     register_module_line('Image OCR', 'start', __line__())
