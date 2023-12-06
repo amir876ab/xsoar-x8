@@ -299,6 +299,8 @@ tasks:
       - "83"
     note: false
     quietmode: 0
+    results:
+    - AreValuesEqual
     scriptarguments:
       left:
         complex:
@@ -437,6 +439,8 @@ tasks:
       - "82"
     note: false
     quietmode: 0
+    results:
+    - AreValuesEqual
     scriptarguments:
       left:
         complex:
