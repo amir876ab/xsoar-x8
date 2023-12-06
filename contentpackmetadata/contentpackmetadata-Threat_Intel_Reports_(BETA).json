@@ -287,6 +287,7 @@
 		"widget": null,
 		"wizard": null
 	},
+	"created": "2021-11-18T19:57:32Z",
 	"currentVersion": "1.0.11",
 	"definitionId": "",
 	"dependencies": {
@@ -321,7 +322,6 @@
 	},
 	"deprecated": false,
 	"description": "Threat Intel Reports gives the user the ability to create, review, publish, and export threat intelligence reports.",
-	"disabledMonthly": false,
 	"downloads": 5552,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "6.5.0",
@@ -342,6 +342,7 @@
 	"itemVersion": "1.0.11",
 	"keywords": [],
 	"legacy": true,
+	"modules": [],
 	"name": "Threat Intel Reports (BETA)",
 	"packID": "ThreatIntelReports",
 	"packName": "",
@@ -368,7 +369,7 @@
 		"Use Case"
 	],
 	"toServerVersion": "",
-	"updated": "2023-09-10T20:39:37Z",
+	"updated": "2023-09-14T09:38:24Z",
 	"useCases": [
 		"Threat Intelligence Management"
 	],
