@@ -221,6 +221,8 @@ tasks:
       - "8"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: MITRE ATT&CK v2
