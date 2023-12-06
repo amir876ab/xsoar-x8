@@ -19,7 +19,7 @@ inputs:
   required: false
   value:
     complex:
-      root: URL
+      root: URL.Data
 name: Detonate URL - Generic v1.5
 outputs:
 - contextPath: File
