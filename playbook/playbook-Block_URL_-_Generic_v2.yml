@@ -584,6 +584,8 @@ tasks:
       - "23"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: CheckPointFirewall_v2
@@ -762,6 +764,8 @@ tasks:
       - "24"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: sophos_firewall
@@ -1016,6 +1020,8 @@ tasks:
       - "35"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: Forcepoint
@@ -1207,6 +1213,8 @@ tasks:
       - "41"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: Netcraft
@@ -1314,6 +1322,8 @@ tasks:
       - "44"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: Palo Alto Networks - Prisma SASE
