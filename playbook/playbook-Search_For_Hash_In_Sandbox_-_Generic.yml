@@ -87,6 +87,8 @@ tasks:
       - "6"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: CrowdStrike Falcon X
@@ -126,6 +128,8 @@ tasks:
       - "23"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: WildFire-v2
@@ -597,6 +601,8 @@ tasks:
       - "27"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: JoeSecurityV2
