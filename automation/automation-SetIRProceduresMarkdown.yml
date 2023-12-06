@@ -19,6 +19,9 @@ dockerimage: demisto/python3:3.10.12.63474
 engineinfo: {}
 mainengineinfo: {}
 name: SetIRProceduresMarkdown
+nativeimage:
+- "8.3"
+- "8.4"
 pswd: ""
 runas: DBotRole
 runonce: false
