@@ -73,6 +73,7 @@
 		"widget": null,
 		"wizard": null
 	},
+	"created": "2021-05-27T10:56:30Z",
 	"currentVersion": "1.1.24",
 	"definitionId": "",
 	"dependencies": {
@@ -93,7 +94,6 @@
 	},
 	"deprecated": false,
 	"description": "Fetches indicators from MITRE ATT\u0026CK.",
-	"disabledMonthly": false,
 	"downloads": 31020,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
@@ -118,6 +118,7 @@
 		"ATT\u0026CK"
 	],
 	"legacy": true,
+	"modules": [],
 	"name": "MITRE ATT\u0026CK",
 	"packID": "FeedMitreAttackv2",
 	"packName": "",
@@ -140,11 +141,11 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"TIM",
-		"Threat Intelligence Management"
+		"Threat Intelligence Management",
+		"TIM"
 	],
 	"toServerVersion": "",
-	"updated": "2023-11-08T22:30:16Z",
+	"updated": "2023-10-22T19:42:07Z",
 	"useCases": [],
 	"version": -1,
 	"versionInfo": "6674581",
