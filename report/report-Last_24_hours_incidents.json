@@ -5,7 +5,6 @@
 	"dashboard": {
 		"cacheVersn": 0,
 		"commitMessage": "",
-		"created": "0001-01-01T00:00:00Z",
 		"definitionId": "",
 		"fromDate": "0001-01-01T00:00:00Z",
 		"fromDateLicense": "0001-01-01T00:00:00Z",
@@ -28,7 +27,6 @@
 					"cacheVersn": 0,
 					"category": "",
 					"commitMessage": "",
-					"created": "0001-01-01T00:00:00Z",
 					"dataType": "incidents",
 					"dateRange": {
 						"fromDate": "0001-01-01T00:00:00Z",
@@ -58,7 +56,6 @@
 					"prevName": "",
 					"query": "status:Active or status:Pending",
 					"shouldCommit": false,
-					"sizeInBytes": 0,
 					"toServerVersion": "",
 					"vcShouldIgnore": false,
 					"vcShouldKeepItemLegacyProdMachine": false,
@@ -80,7 +77,6 @@
 					"cacheVersn": 0,
 					"category": "",
 					"commitMessage": "",
-					"created": "0001-01-01T00:00:00Z",
 					"dataType": "incidents",
 					"dateRange": {
 						"fromDate": "0001-01-01T00:00:00Z",
@@ -110,7 +106,6 @@
 					"prevName": "",
 					"query": "status:Active or status:Pending",
 					"shouldCommit": false,
-					"sizeInBytes": 0,
 					"toServerVersion": "",
 					"vcShouldIgnore": false,
 					"vcShouldKeepItemLegacyProdMachine": false,
@@ -132,7 +127,6 @@
 					"cacheVersn": 0,
 					"category": "",
 					"commitMessage": "",
-					"created": "0001-01-01T00:00:00Z",
 					"dataType": "incidents",
 					"dateRange": {
 						"fromDate": "0001-01-01T00:00:00Z",
@@ -162,7 +156,6 @@
 					"prevName": "",
 					"query": "",
 					"shouldCommit": false,
-					"sizeInBytes": 0,
 					"toServerVersion": "",
 					"vcShouldIgnore": false,
 					"vcShouldKeepItemLegacyProdMachine": false,
@@ -184,7 +177,6 @@
 					"cacheVersn": 0,
 					"category": "",
 					"commitMessage": "",
-					"created": "0001-01-01T00:00:00Z",
 					"dataType": "incidents",
 					"dateRange": {
 						"fromDate": "0001-01-01T00:00:00Z",
@@ -216,7 +208,6 @@
 					"prevName": "",
 					"query": "status:Active or status:Pending",
 					"shouldCommit": false,
-					"sizeInBytes": 0,
 					"toServerVersion": "",
 					"vcShouldIgnore": false,
 					"vcShouldKeepItemLegacyProdMachine": false,
@@ -238,7 +229,6 @@
 					"cacheVersn": 0,
 					"category": "",
 					"commitMessage": "",
-					"created": "0001-01-01T00:00:00Z",
 					"dataType": "incidents",
 					"dateRange": {
 						"fromDate": "0001-01-01T00:00:00Z",
@@ -270,7 +260,6 @@
 					"prevName": "",
 					"query": "status:Active or status:Pending",
 					"shouldCommit": false,
-					"sizeInBytes": 0,
 					"toServerVersion": "",
 					"vcShouldIgnore": false,
 					"vcShouldKeepItemLegacyProdMachine": false,
@@ -292,7 +281,6 @@
 					"cacheVersn": 0,
 					"category": "",
 					"commitMessage": "",
-					"created": "0001-01-01T00:00:00Z",
 					"dataType": "incidents",
 					"dateRange": {
 						"fromDate": "0001-01-01T00:00:00Z",
@@ -324,7 +312,6 @@
 					"prevName": "",
 					"query": "status:Active or status:Pending",
 					"shouldCommit": false,
-					"sizeInBytes": 0,
 					"toServerVersion": "",
 					"vcShouldIgnore": false,
 					"vcShouldKeepItemLegacyProdMachine": false,
@@ -346,7 +333,6 @@
 					"cacheVersn": 0,
 					"category": "",
 					"commitMessage": "",
-					"created": "0001-01-01T00:00:00Z",
 					"dataType": "incidents",
 					"dateRange": {
 						"fromDate": "0001-01-01T00:00:00Z",
@@ -378,7 +364,6 @@
 					"prevName": "",
 					"query": "status:Active or status:Pending",
 					"shouldCommit": false,
-					"sizeInBytes": 0,
 					"toServerVersion": "",
 					"vcShouldIgnore": false,
 					"vcShouldKeepItemLegacyProdMachine": false,
@@ -400,7 +385,6 @@
 					"cacheVersn": 0,
 					"category": "",
 					"commitMessage": "",
-					"created": "0001-01-01T00:00:00Z",
 					"dataType": "incidents",
 					"dateRange": {
 						"fromDate": "0001-01-01T00:00:00Z",
@@ -473,7 +457,6 @@
 					"prevName": "",
 					"query": "status:Active or status:Pending",
 					"shouldCommit": false,
-					"sizeInBytes": 0,
 					"toServerVersion": "",
 					"vcShouldIgnore": false,
 					"vcShouldKeepItemLegacyProdMachine": false,
@@ -501,7 +484,6 @@
 		},
 		"prevName": "",
 		"shouldCommit": false,
-		"sizeInBytes": 0,
 		"system": false,
 		"toDate": "0001-01-01T00:00:00Z",
 		"toServerVersion": "",
@@ -672,6 +654,7 @@
 	"runningRoles": null,
 	"runningUser": "",
 	"scheduled": false,
+	"scheduledEntryGuid": "",
 	"sections": [
 		{
 			"autoPageBreak": false,
