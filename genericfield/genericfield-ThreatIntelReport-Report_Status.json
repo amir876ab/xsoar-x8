@@ -1,4 +1,5 @@
 {
+	"XDRBuiltInField": false,
 	"aliasTo": "",
 	"aliases": null,
 	"associatedToAll": true,
@@ -20,6 +21,7 @@
 	"group": 4,
 	"hidden": false,
 	"id": "generic_ThreatIntelReport_reportstatus",
+	"ipVersion": "",
 	"isReadOnly": false,
 	"itemVersion": "1.0.11",
 	"locked": false,
@@ -35,6 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
+	"pretty_name": "Report Status",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
@@ -44,6 +47,7 @@
 		"Review",
 		"Published"
 	],
+	"selectValuesMap": null,
 	"sla": 0,
 	"system": false,
 	"systemAssociatedTypes": null,
