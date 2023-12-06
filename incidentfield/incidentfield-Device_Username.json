@@ -1,4 +1,5 @@
 {
+	"XDRBuiltInField": false,
 	"aliasTo": "",
 	"aliases": null,
 	"associatedToAll": true,
@@ -20,6 +21,7 @@
 	"group": 0,
 	"hidden": false,
 	"id": "incident_deviceusername",
+	"ipVersion": "",
 	"isReadOnly": false,
 	"itemVersion": "3.3.89",
 	"locked": false,
@@ -35,11 +37,13 @@
 		"all"
 	],
 	"placeholder": "",
+	"pretty_name": "Device Username",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
 	"script": "",
 	"selectValues": null,
+	"selectValuesMap": null,
 	"sla": 0,
 	"system": false,
 	"systemAssociatedTypes": null,
