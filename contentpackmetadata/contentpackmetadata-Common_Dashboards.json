@@ -59,6 +59,7 @@
 		"widget": null,
 		"wizard": null
 	},
+	"created": "2020-11-09T18:44:34Z",
 	"currentVersion": "1.3.7",
 	"definitionId": "",
 	"dependencies": {
@@ -79,7 +80,6 @@
 	},
 	"deprecated": false,
 	"description": "Frequently used dashboards pack.",
-	"disabledMonthly": false,
 	"downloads": 15091,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
@@ -95,6 +95,7 @@
 	"itemVersion": "1.3.7",
 	"keywords": [],
 	"legacy": true,
+	"modules": [],
 	"name": "Common Dashboards",
 	"packID": "CommonDashboards",
 	"packName": "",
@@ -117,7 +118,7 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-09-10T20:45:18Z",
+	"updated": "2023-09-14T09:52:24Z",
 	"useCases": [],
 	"version": -1,
 	"versionInfo": "6319909",
