@@ -1,0 +1,316 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 1.3.14
+    packID: Gmail
+    packName: Gmail
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook searches Gmail records for all Google users, designed for
+  large companies with over 2500 Google users.
+id: Search all mailboxes - Gmail with polling
+inputs:
+- description: Search for messages sent after a specific date. For example, 2018/05/06
+  key: after
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Search for messages sent before a specific date. For example, 2018/05/09
+  key: before
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Enables partial responses to be retrieved in a comma-separated list.
+    For more information, see https://developers.google.com/gdata/docs/2.0/basics#PartialResponse.
+  key: fields
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Attachments with a certain name or file type. For example, "pdf" or
+    "report.pdf"
+  key: filename
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Specifies the sender. For example, "john"
+  key: from
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Specifies the receiver. For example, "john"
+  key: to
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Whether to search for messages sent with attachments.
+  key: has-attachments
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Messages in any folder, including Spam and Trash. For example, shopping
+  key: in
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: 'Includes messages from SPAM and TRASH in the results. (Default: false)'
+  key: include-spam-trash
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Returns messages with labels that match all of the specified label
+    IDs in a comma-separated list.
+  key: labels-ids
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Words in the subject line. For example, "alert"
+  key: subject
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: 'Returns messages matching the specified query. Supports the same query
+    format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid:
+    is:unread". For more syntax information,see "https://support.google.com/mail/answer/7190?hl=en"'
+  key: query
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Search all mailboxes - Gmail with polling
+outputs:
+- contextPath: Gmail.Mailboxes
+  description: The Gmail mailbox.
+- contextPath: Gmail.ID
+  description: The inner ID of the Gmail message.
+- contextPath: Gmail.ThreadId
+  description: The thread ID.
+- contextPath: Gmail.Format
+  description: The MIME type of the email.
+- contextPath: Gmail.Labels
+  description: The labels of a specific email.
+- contextPath: Gmail.To
+  description: The email address of the receiver.
+- contextPath: Gmail.From
+  description: The email address of the sender.
+- contextPath: Gmail.Cc
+  description: The additional recipient email address (CC).
+- contextPath: Gmail.Bcc
+  description: The additional recipient email address (BCC).
+- contextPath: Gmail.Subject
+  description: The subject of the specific email.
+- contextPath: Gmail.Body
+  description: The content of the email.
+- contextPath: Gmail.Attachments
+  description: The attachments of the email. IDs are separated by commas.
+- contextPath: Gmail.Headers
+  description: All headers of a specific mail (list).
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 543bfdb9-dd11-4956-84d7-613584e8737a
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 543bfdb9-dd11-4956-84d7-613584e8737a
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: dd127952-ee61-4659-82b8-345b555d57e9
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: dd127952-ee61-4659-82b8-345b555d57e9
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+      keysToKeep:
+        simple: Gmail,SearchingAccounts
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Delete field from context.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.10/Cortex-XSOAR-Administrator-Guide/Automations
+      id: 49e6a7e7-5b80-4be3-8a6e-9da4856d252c
+      iscommand: false
+      name: DeleteContext
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 49e6a7e7-5b80-4be3-8a6e-9da4856d252c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      builtincondition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Stop
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 5
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      after:
+        complex:
+          root: inputs.after
+      before:
+        complex:
+          root: inputs.before
+      fields:
+        complex:
+          root: inputs.fields
+      filename:
+        complex:
+          root: inputs.filename
+      from:
+        complex:
+          root: inputs.from
+      has-attachments:
+        complex:
+          root: inputs.has-attachments
+      in:
+        complex:
+          root: inputs.in
+      include-spam-trash:
+        complex:
+          root: inputs.include-spam-trash
+      labels-ids:
+        complex:
+          root: inputs.labels-ids
+      page-token:
+        complex:
+          root: NewPageToken
+      query:
+        complex:
+          root: inputs.query
+      search_from:
+        complex:
+          root: SearchFromAccountIndex
+      search_to:
+        complex:
+          root: SearchToAccountIndex
+      subject:
+        complex:
+          root: inputs.subject
+      to:
+        complex:
+          root: inputs.to
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This playbook should only run as a sub-playbook for the Search-all-mailboxes
+        - Gmail playbook, it should not run alone.
+      id: b377f60a-0aa1-41aa-8692-8a019a6dd430
+      iscommand: false
+      name: Search in mailboxes Gmail (Loop) with polling
+      playbookId: Search in mailboxes Gmail (Loop) with polling
+      type: playbook
+      version: -1
+    taskid: b377f60a-0aa1-41aa-8692-8a019a6dd430
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 560,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
