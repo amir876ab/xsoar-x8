@@ -1,0 +1,115 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Gets indicators from the feed.",
+						"name": "zoom-get-indicators"
+					}
+				],
+				"description": "Use the Zoom Feed integration to get indicators from the feed.",
+				"id": "Zoom Feed",
+				"name": "Zoom Feed"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "1.1.13",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.33",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Use the Zoom Feed to automatically ingest valid indicators such as CIDRs and DomainGlobs from Zoom. The indicators can then be added to firewall allow lists.",
+	"disabledMonthly": false,
+	"downloads": 1750,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.5.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "FeedZoom",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/FeedZoom/ZoomFeed_image.png",
+			"name": "Zoom Feed"
+		}
+	],
+	"itemVersion": "1.1.13",
+	"keywords": [
+		"Zoom",
+		"Feed"
+	],
+	"legacy": true,
+	"name": "Zoom Feed",
+	"packID": "FeedZoom",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Most IT services are moving from on-premise solutions to cloud-based solutions. The public IP addresses, domains, and URLs that function as the endpoints for these solutions are very often not fixed, and the providers of the service publish their details on their websites in a less than ideal format (i.e., HTML) rather than through a proper REST API (i.e., JSON).\n\nThis fact makes it very difficult for IT and Security teams to provide these services with an appropriate level of security and automation. Any changes in the HTML schema of the provider website, will break the automation and has the potential to cause serious disruption to the users and the business. The alternative is to compromise on the security posture of the organization.\n\nOne example of these providers is Zoom.\n\n## What does this pack do?\nThis pack addresses this issue by automating the collection of endpoint data in the form of an indicator feed. This will facilitate validation of the indicators before using them in enforcement points, for example firewalls, proxies, and more.\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.5.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Allow List",
+		"Getting Started",
+		"TIM"
+	],
+	"toServerVersion": "",
+	"updated": "2023-07-25T19:30:23Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6319909",
+	"videos": [
+		"https://www.youtube.com/embed/s9lRtJltTGI"
+	]
+}
