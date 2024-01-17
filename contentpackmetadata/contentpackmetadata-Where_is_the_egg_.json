@@ -1,0 +1,115 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"parsingrule",
+		"xsiamreport",
+		"correlationrule",
+		"modelingrule",
+		"xsiamdashboard"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "try me",
+						"name": "clue"
+					}
+				],
+				"description": "Don't ask, just try.",
+				"id": "",
+				"name": "Where is the egg?"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"currentVersion": "1.0.0",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.11",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Don't ask, just try.",
+	"disabledMonthly": false,
+	"downloads": 611,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "WhereIsTheEgg",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/WhereIsTheEgg/Whereistheegg%3F_image.png",
+			"name": "Where is the egg?"
+		}
+	],
+	"itemVersion": "1.0.0",
+	"keywords": [],
+	"legacy": true,
+	"name": "Where is the egg?",
+	"packID": "WhereIsTheEgg",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2020-11-09T18:42:42Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3343460",
+	"videos": []
+}
