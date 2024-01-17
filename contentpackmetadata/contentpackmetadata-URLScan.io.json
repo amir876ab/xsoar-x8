@@ -1,0 +1,151 @@
+{
+	"author": "urlscan GmbH",
+	"authorImage": "content/packs/UrlScan/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"widget"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Deprecated. No available replacement.",
+				"name": "UrlscanGetHttpTransactions",
+				"tags": [
+					"polling",
+					"UrlScan"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Search for an indicator that is related to former urlscan.io scans.",
+						"name": "urlscan-search"
+					},
+					{
+						"description": "Deprecated. Use the url command instead.",
+						"name": "urlscan-submit"
+					},
+					{
+						"description": "Submits a URL to scan.",
+						"name": "url"
+					},
+					{
+						"description": "Returns the HTTP transaction list for the specified URL. Do not use this command in conjunction with the urlscan-get-http-transactions script.",
+						"name": "urlscan-get-http-transaction-list"
+					},
+					{
+						"description": "Submits a URL to retrieve its UUID.",
+						"name": "urlscan-submit-url-command"
+					},
+					{
+						"description": "Polls the urlscan service regarding the results of the specified URI.",
+						"name": "urlscan-poll-uri"
+					},
+					{
+						"description": "Returns the results page for the specified UUID.",
+						"name": "urlscan-get-result-page"
+					}
+				],
+				"description": "Use urlscan.io integration to perform scans on suspected URLs and see their reputation.",
+				"id": "urlscan.io",
+				"name": "urlscan.io (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": [
+			{
+				"name": "API Call Results for UrlScan"
+			}
+		],
+		"wizard": null
+	},
+	"currentVersion": "1.2.10",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.38",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "urlscan.io Web Threat Intelligence",
+	"disabledMonthly": false,
+	"downloads": 24454,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "UrlScan",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/UrlScan/urlscan.io_image.png",
+			"name": "urlscan.io"
+		}
+	],
+	"itemVersion": "1.2.10",
+	"keywords": [
+		"phishing",
+		"web",
+		"brand impersonation"
+	],
+	"legacy": true,
+	"name": "URLScan.io",
+	"packID": "UrlScan",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Note: Support for this pack moved to the partner on September 21, 2021. Please\ncontact the partner directly via the support link on the right.\n\nurlscan.io is a free service to scan and analyse third-party websites. When a\nURL is submitted to urlscan.io, an automated process will browse to the URL\nlike a regular user and record the activity that this page navigation creates.\nThis includes the domains and IPs contacted, the resources (JavaScript, CSS,\netc) requested from those domains, file downloads that were triggered, as well\nas additional information about the page itself. urlscan.io will take a\nscreenshot of the page, record the DOM content, JavaScript global variables,\ncookies created by the page, and a myriad of other observations. If the site is\ntargeting the users one of the more than 660 brands tracked by urlscan.io, it\nwill be highlighted as potentially malicious in the scan results.\n\nTo use the urlscan.io integration, [sign up for a free user account and create\nan API key first.](https://urlscan.io/user/signup)\n\nurlscan.io has a free user tier which will allow you to perform 50 private\nscans and 5,000 public scans as well as 1,000 searches on our platform. If you\nneed to perform more scans you can subscribe to one of our commercial API plans\navailable on [our product page](https://urlscan.io/products/). If you are also\ninterested in a Threat Intelligence platform subscription you should take a\nlook at our [\"urlscan Pro - Threat Hunting\"\nplatform.](https://urlscan.io/products/urlscanpro/)\n\nThe urlscan.io content pack includes commands for:\n\n* Submitting URLs for scanning with different levels of visibility.\n* Using the urlscan.io Search API to find scans on the platform by a variety of indicators.\n* Retrieves the HTTP transactions made for a given URL using the URLScan integration.\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@urlscan.io",
+		"url": "https://urlscan.io"
+	},
+	"tags": [
+		"Partner Spotlight"
+	],
+	"toServerVersion": "",
+	"updated": "2023-10-22T19:41:33Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6674581",
+	"videos": []
+}
