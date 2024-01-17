@@ -1,0 +1,147 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: d093329c-bfad-4210-8b79-478d63ad66a3
+inputs: []
+name: amir-new
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0f660410-8ada-479f-8691-e264d17955d3
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 0f660410-8ada-479f-8691-e264d17955d3
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: de493524-69b6-48a9-8433-117d4608667a
+      iscommand: false
+      name: Untitled Task
+      type: regular
+      version: -1
+    taskid: de493524-69b6-48a9-8433-117d4608667a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 330
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e843579f-a284-4acd-8d05-4d749ee9f7fe
+      iscommand: false
+      name: Untitled Task
+      type: regular
+      version: -1
+    taskid: e843579f-a284-4acd-8d05-4d749ee9f7fe
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 460,
+          "y": 570
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 12e797ae-50f5-4e18-843f-cafb6bc941df
+      iscommand: false
+      name: Untitled Task
+      type: regular
+      version: -1
+    taskid: 12e797ae-50f5-4e18-843f-cafb6bc941df
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 870
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 915,
+        "width": 400,
+        "x": 440,
+        "y": 50
+      }
+    }
+  }
