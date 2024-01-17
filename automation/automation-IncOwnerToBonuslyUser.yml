@@ -1,0 +1,83 @@
+args:
+- description: Enter JSON STRING like {'email@company':'@bonuslyuser'}
+  name: json
+  required: true
+- description: The username of the Cortex XSOAR incident owner. This will look up
+    the incident owner's email address.
+  name: owner
+  required: true
+comment: This script gets the email address of the incident owner and then returns
+  the incident owner username in Bonusly.
+commonfields:
+  id: IncOwnerToBonuslyUser
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.14
+    packID: Bonusly
+    packName: Bonusly
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: IncOwnerToBonuslyUser
+outputs:
+- contextPath: IncOwnerEmail
+  description: Email address of the incident owner.
+  type: Unknown
+- contextPath: BonuslyUser
+  description: Usernname in Bonusly of the incident owner.
+  type: Unknown
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('IncOwnerToBonuslyUser', 'start', __line__())
+  ### pack version: 1.0.14
+
+
+
+  """
+  Pass in JSON key value lookup then fetches the incident owner and finds the bonusly user
+
+  """
+
+  json_lookup = demisto.args().get('json')
+  if isinstance(json_lookup, str):
+      json_lookup = json.loads(json_lookup)
+
+
+  def inc_owner_bonusly_user():
+      owner_username = demisto.args().get('owner')
+      if owner_username:
+          try:
+              owner_info = demisto.executeCommand('getUserByUsername', {"username": owner_username})[0]
+              owner_email = owner_info.get("EntryContext").get("UserByUsername").get("email")
+              bonusly_user = json_lookup[owner_email]
+              readable_output = "# Incident Owners Email \n" + owner_email + '\n # Bonusly User ' + bonusly_user
+              outputs = {'IncOwnerEmail': owner_email, 'BonuslyUser': bonusly_user}
+              return return_outputs(readable_output, outputs, owner_email)
+          except Exception as ex:
+              return_error("Error: {}".format(ex))
+      else:
+          return_error("Error: Email for owner of incident was not found")
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      inc_owner_bonusly_user()
+
+  register_module_line('IncOwnerToBonuslyUser', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- Bonusly
+- Utilities
+type: python
