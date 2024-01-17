@@ -1,0 +1,424 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: ipinfo_v2
+  version: -1
+configuration:
+- additionalinfo: The API key to use for the connection.
+  display: ""
+  displaypassword: API Token
+  hiddenusername: true
+  name: credentials
+  required: false
+  section: Connect
+  type: 9
+- additionalinfo: Reliability of the source providing the intelligence data.
+  defaultvalue: C - Fairly reliable
+  display: Source Reliability
+  name: integrationReliability
+  options:
+  - A+ - 3rd party enrichment
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  section: Collect
+  type: 15
+- defaultvalue: https://ipinfo.io
+  display: Base URL
+  name: base_url
+  required: true
+  section: Connect
+  type: 0
+- advanced: true
+  display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  section: Connect
+  type: 8
+- advanced: true
+  display: Use system proxy settings
+  name: proxy
+  required: false
+  section: Connect
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 2.1.19
+    packID: ipinfo
+    packName: Ipinfo
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Use the IPinfo.io API to get data about an IP address.
+detaileddescription: "Use the ipinfo.io API to get data about an IP address. \n\n---\n[View
+  Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/ipinfo-v2)"
+display: IPinfo v2
+image: data:image/png;base64,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
+name: ipinfo_v2
+script:
+  commands:
+  - arguments:
+    - default: true
+      description: IP address to query, e.g., 1.1.1.1.
+      isArray: true
+      name: ip
+      required: true
+    description: Check IP reputation (when information is available, returns a JSON
+      with details). Uses all configured Threat Intelligence feeds.
+    name: ip
+    outputs:
+    - contextPath: IPinfo.IP.Address
+      description: The IP address.
+      type: String
+    - contextPath: IPinfo.IP.Hostname
+      description: The IP hostname.
+      type: String
+    - contextPath: IPinfo.IP.ASN
+      description: The IP ASN.
+      type: String
+    - contextPath: IPinfo.IP.ASOwner
+      description: The IP AS owner.
+      type: String
+    - contextPath: IPinfo.IP.Organization.Name
+      description: The IP organization name (Only available in some IPinfo.io plans).
+      type: String
+    - contextPath: IPinfo.IP.Organization.Type
+      description: The IP organization type (Only available in some IPinfo.io plans).
+      type: String
+    - contextPath: IPinfo.IP.Geo.Location
+      description: The IP geographic location (coordinates as lat:lon).
+      type: String
+    - contextPath: IPinfo.IP.Geo.Country
+      description: The IP country.
+      type: String
+    - contextPath: IPinfo.IP.Geo.Description
+      description: The IP location as <City, Region, Postal Code, Country>.
+      type: String
+    - contextPath: IPinfo.IP.Registrar.Abuse.Address
+      description: The physical address registered for receiving abuse reports for
+        the IP. (Only available in some IPinfo.io plans).
+      type: String
+    - contextPath: IPinfo.IP.Registrar.Abuse.Country
+      description: The country where abuse reports are received for the IP. (Only
+        available in some IPinfo.io plans).
+      type: String
+    - contextPath: IPinfo.IP.Registrar.Abuse.Email
+      description: The email address for abuse reports provided by the IP. (Only available
+        in some IPinfo.io plans).
+      type: String
+    - contextPath: IPinfo.IP.Registrar.Abuse.Name
+      description: The name of the abuse report handler received for the IP. (Only
+        available in some IPinfo.io plans).
+      type: String
+    - contextPath: IPinfo.IP.Registrar.Abuse.Network
+      description: The IP range relevant for abuse inquiries provided for the IP.
+        (Only available in some IPinfo.io plans).
+      type: String
+    - contextPath: IP.Address
+      description: The IP address.
+      type: String
+    - contextPath: IP.Hostname
+      description: The IP hostname.
+      type: String
+    - contextPath: IP.ASN
+      description: The IP ASN.
+      type: String
+    - contextPath: IP.Tags
+      description: Tags related the IP use (hosting, proxy, tor, vpn).
+      type: String
+    - contextPath: IP.FeedRelatedIndicators.value
+      description: Names of indicators associated with the IP.
+      type: String
+    - contextPath: IP.FeedRelatedIndicators.type
+      description: Types of indicators associated with the IP.
+      type: String
+    - contextPath: IP.Relationships.EntityA
+      description: The source of the relationship.
+      type: string
+    - contextPath: IP.Relationships.EntityB
+      description: The destination of the relationship.
+      type: string
+    - contextPath: IP.Relationships.Relationship
+      description: The name of the relationship.
+      type: string
+    - contextPath: IP.Relationships.EntityAType
+      description: The type of the source of the relationship.
+      type: string
+    - contextPath: IP.Relationships.EntityBType
+      description: The type of the destination of the relationship.
+      type: string
+    - contextPath: IP.Geo.Location
+      description: The IP geographic location (coordinates as lat:lon).
+      type: String
+    - contextPath: IP.Geo.Country
+      description: The IP country.
+      type: String
+    - contextPath: IP.Geo.Description
+      description: The IP location as <City, Region, Postal Code, Country>.
+      type: String
+    - contextPath: IP.Organization.Name
+      description: The organization of the IP.
+      type: String
+    - contextPath: IP.Organization.Type
+      description: The organization type of the IP.
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+    - contextPath: DBotScore.Reliability
+      description: How reliable the score is (for example, "C - fairly reliable").
+      type: String
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+  dockerimage: demisto/python3:3.10.13.75921
+  runonce: false
+  script: |
+    register_module_line('ipinfo_v2', 'start', __line__())
+    ### pack version: 2.1.19
+
+
+
+    import urllib3
+    import traceback
+    from typing import Dict, Any
+
+    # Disable insecure warnings
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+    BRAND_NAME = "IPinfo"  # matches context output path for faster caching
+
+
+    class Client(BaseClient):
+        def __init__(self, api_key: str, base_url: str, verify_certificate: bool, proxy: bool, reliability: str):
+            """
+            Client to use in the IPinfo integration. Uses BaseClient
+            """
+            super().__init__(base_url=base_url, proxy=proxy, verify=verify_certificate)
+            self.api_key = api_key
+            self.reliability = reliability
+
+        def ipinfo_ip(self, ip: str) -> Dict[str, Any]:
+            return self.http_request(ip)
+
+        def http_request(self, ip: str) -> Dict[str, Any]:
+            """ constructs url with token (if existent), then returns request """
+            return self._http_request(method='GET',
+                                      url_suffix=f'{ip}/json',
+                                      params=assign_params(token=self.api_key),
+                                      timeout=20)
+
+
+    def test_module(client: Client) -> str:
+        """Tests IPinfo by sending a query on 8.8.8.8"""
+        client.ipinfo_ip('8.8.8.8')
+        return 'ok'  # on any failure, an exception is raised
+
+
+    def ipinfo_ip_command(client: Client, ip: str) -> List[List[CommandResults]]:
+        ip_lists = argToList(ip)
+        ip_results = []
+
+        for ip in ip_lists:
+            response = client.ipinfo_ip(ip)
+            ip_results.append(parse_results(ip, response, client.reliability))
+
+        return ip_results
+
+
+    def parse_results(ip: str, raw_result: Dict[str, Any], reliability: str) -> List[CommandResults]:
+        command_results: List[CommandResults] = []
+
+        # default values
+        asn = as_owner = None
+        feed_related_indicators: List[Common.FeedRelatedIndicators] = []
+        relationships: list[EntityRelationship] = []
+        if not raw_result:
+            return command_results
+
+        hostname = str(raw_result.get('hostname', ''))
+        hostname_indicator_type = FeedIndicatorType.URL if urlRegex.find(hostname) else FeedIndicatorType.Domain
+        feed_related_indicators.append(Common.FeedRelatedIndicators(hostname, hostname_indicator_type, 'Hostname'))
+
+        relationships.append(EntityRelationship(name=EntityRelationship.Relationships.RESOLVES_TO,
+                                                entity_a=ip,
+                                                entity_a_type=FeedIndicatorType.IP,
+                                                entity_b=hostname,
+                                                entity_b_type=FeedIndicatorType.Domain,
+                                                brand=BRAND_NAME,
+                                                source_reliability=reliability))
+
+        if 'org' in raw_result:
+            org = raw_result.get('org', '')
+            if ' ' in org:
+                org_parts = org.split(' ')
+                asn, as_owner = org_parts[0], ' '.join(org_parts[1:])
+
+        # example of a field only available on paid accounts
+        if 'asn' in raw_result:
+            asn = demisto.get(raw_result, 'asn.asn')
+            as_owner = demisto.get(raw_result, 'asn.name')
+            as_domain = demisto.get(raw_result, 'asn.domain')
+
+            if as_domain:
+                feed_related_indicators.append(
+                    Common.FeedRelatedIndicators(as_domain, FeedIndicatorType.Domain, 'AS domain'))
+
+        organization = {
+            'Name': demisto.get(raw_result, 'company.name'),
+            'Type': demisto.get(raw_result, 'company.type')
+        } if 'company' in raw_result else None
+
+        company_domain = demisto.get(raw_result, 'company.domain')
+        if company_domain is not None:
+            feed_related_indicators.append(
+                Common.FeedRelatedIndicators(company_domain, FeedIndicatorType.Domain, 'Company domain'))
+
+        abuse = {
+            'Address': demisto.get(raw_result, 'abuse.address'),
+            'Country': demisto.get(raw_result, 'abuse.country'),
+            'Name': demisto.get(raw_result, 'abuse.name'),
+            'Network': demisto.get(raw_result, 'abuse.network'),
+            'Phone': demisto.get(raw_result, 'abuse.phone'),
+            'Email': demisto.get(raw_result, 'abuse.email')
+        } if 'abuse' in raw_result else None
+
+        tags = []
+        for (tag_path, tag_name) in (('privacy.hosting', 'hosting'),
+                                     ('privacy.proxy', 'proxy'),
+                                     ('privacy.tor', 'tor'),
+                                     ('privacy.vpn', 'vpn')):
+            if demisto.get(raw_result, tag_path):
+                tags.append(tag_name)
+
+        city = raw_result.get('city', '')
+        region = raw_result.get('region', '')
+        postal = raw_result.get('postal', '')
+        country = raw_result.get('country', '')
+
+        description = ', '.join(filter(None, [city, region, postal, country]))
+
+        # parses geolocation
+        lat = lon = None
+        loc = raw_result.get('loc', '')  # empty string as default on purpose,
+        if ',' in loc:
+            coordinates = loc.split(',')
+            lat, lon = float(coordinates[0]), float(coordinates[1])
+
+        entry_context = {'Address': raw_result.get('ip'),
+                         'Hostname': hostname,  # type: ignore
+                         'ASN': asn,
+                         'ASOwner': as_owner,
+                         'Tags': tags,  # type: ignore
+                         'Organization': organization,
+                         'Geo': {'Location': loc, 'Country': country, 'Description': description},  # type: ignore
+                         'Registrar': {'Abuse': abuse} if abuse else None}
+
+        outputs_key_field = 'Address'  # marks the ip address
+
+        if DBotScoreReliability.is_valid_type(reliability):
+            dbot_reliability = DBotScoreReliability.get_dbot_score_reliability_from_str(reliability)
+        else:
+            raise Exception("Please provide a valid value for the Source Reliability parameter.")
+
+        indicator = Common.IP(
+            ip=ip,
+            dbot_score=Common.DBotScore(indicator=ip,
+                                        indicator_type=DBotScoreType.IP,
+                                        reliability=dbot_reliability,
+                                        integration_name=BRAND_NAME,
+                                        score=Common.DBotScore.NONE),
+            asn=asn,
+            hostname=hostname,
+            feed_related_indicators=feed_related_indicators,
+            geo_latitude=str(lat) if lat else None,
+            geo_longitude=str(lon) if lon else None,
+            geo_description=description or None,
+            geo_country=country,
+            tags=','.join(tags),
+            organization_name=organization.get('Name') if organization else None,
+            organization_type=organization.get('Type') if organization else None,
+            relationships=relationships)
+
+        if lat and lon:
+            raw_result.update({'lat': lat, 'lng': lon})
+            map_output = CommandResults(raw_response={'lat': lat, 'lng': lon},
+                                        entry_type=EntryType.MAP_ENTRY_TYPE,
+                                        outputs_key_field=outputs_key_field,
+                                        indicator=indicator)
+            command_results.append(map_output)
+
+        # do not change the order of the calls for CommandResults due to an issue where the ip command would not
+        # present all of the information returned from the API.
+        command_results.append(
+            CommandResults(readable_output=tableToMarkdown(f'IPinfo results for {ip}', raw_result),
+                           raw_response=raw_result,
+                           outputs_prefix='IPinfo.IP',
+                           outputs=entry_context,
+                           outputs_key_field=outputs_key_field,
+                           indicator=indicator,
+                           relationships=relationships
+                           )
+        )
+
+        return command_results
+
+
+    def main() -> None:
+        """main function, parses params and runs command functions"""
+
+        params = demisto.params()
+        args = demisto.args()
+        command = demisto.command()
+
+        proxy = params.get('proxy') or False
+        api_key = demisto.get(params, 'credentials.password') or ''
+        insecure = params.get('insecure') or False
+        base_url = params.get('base_url') or "https://ipinfo.io"
+        reliability = params.get('integrationReliability')
+
+        demisto.debug(f'Command being called is {command}')
+
+        try:
+            client = Client(api_key=api_key,
+                            verify_certificate=not insecure,
+                            proxy=proxy,
+                            base_url=base_url,
+                            reliability=reliability)
+
+            if command == 'test-module':
+                return_results(test_module(client))
+
+            elif command == 'ip':
+                ip_command = ipinfo_ip_command(client, **args)
+                return_results(ip_command)
+            else:
+                raise NotImplementedError(f"command {command} is not supported")
+
+        # Log exceptions and return errors
+        except Exception as e:
+            demisto.error(traceback.format_exc())  # print the traceback
+            return_error(f'Failed to execute {command} command.'
+                         f'\nError:\n{str(e)}')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('ipinfo_v2', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
