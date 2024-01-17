@@ -1,0 +1,83 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "e0bc1e9c-7878-40e0-8598-a65c563d270a",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.6.25",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"User Profile": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"City": {
+					"simple": "l"
+				},
+				"Country Name": {
+					"simple": "c"
+				},
+				"Department": {
+					"simple": "department"
+				},
+				"Display Name": {
+					"simple": "displayName"
+				},
+				"Email": {
+					"simple": "mail"
+				},
+				"Employee ID": {
+					"simple": "employeeID"
+				},
+				"Given Name": {
+					"simple": "givenName"
+				},
+				"Mobile Phone": {
+					"simple": "mobile"
+				},
+				"State": {
+					"simple": "st"
+				},
+				"Street Address": {
+					"simple": "streetAddress"
+				},
+				"Surname": {
+					"simple": "sn"
+				},
+				"Title": {
+					"simple": "title"
+				},
+				"Username": {
+					"simple": "userPrincipalName"
+				},
+				"Work Phone": {
+					"simple": "telephoneNumber"
+				},
+				"Zip Code": {
+					"simple": "postalCode"
+				}
+			}
+		}
+	},
+	"name": "User Profile - Active Directory (Incoming)",
+	"nameRaw": "User Profile - Active Directory (Incoming)",
+	"packID": "Active_Directory_Query",
+	"packName": "Active Directory Query",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
