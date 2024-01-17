@@ -1,0 +1,980 @@
+category: Utilities
+commonfields:
+  id: Bonusly
+  version: -1
+configuration:
+- defaultvalue: https://bonus.ly/api/v1/
+  display: Server URL (e.g. https://bonus.ly/api/v1/)
+  name: url
+  required: true
+  type: 0
+- display: API Key
+  name: api_key
+  required: true
+  type: 4
+- display: Incident type
+  name: incidentType
+  required: false
+  type: 13
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- display: Name of the specific Bonusly application (if required)
+  name: application_name
+  required: false
+  type: 0
+- defaultvalue: "20"
+  display: Max. number of bonuses to fetch (Default is 20)
+  name: limit
+  required: false
+  type: 0
+- display: Filter by user email address (given and received)
+  name: user_email
+  required: false
+  type: 0
+- display: Filter by hashtag (e.g., %23teamwork)
+  name: hashtag
+  required: false
+  type: 0
+- defaultvalue: "1"
+  display: Start fetching from X days ago (Defaults is 1 day)
+  name: fetch_time
+  required: false
+  type: 0
+- display: Fetch incidents
+  name: isFetch
+  required: false
+  type: 8
+- defaultvalue: "1"
+  display: Incidents Fetch Interval
+  name: incidentFetchInterval
+  required: false
+  type: 19
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.14
+    packID: Bonusly
+    packName: Bonusly
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: The Bonusly integration is used to interact with the Bonusly platform
+  through the API. Bonusly is an employee recognition platform which enterprises use
+  to for employee recognition.
+detaileddescription: "### Community Contributed Integration\n #### Integration Author:
+  Cortex XSOAR\n No support or maintenance is provided by the author. Customers are
+  encouraged to engage with the user community for questions and guidance at the [Cortex
+  XSOAR Live Discussions](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions).\n***\n##
+  Bonusly\n\nBonus.ly is an employee recognition platform which enterprises use to
+  for employee recognition. We're building tools to help people feel a sense of purpose
+  and progress at work. The platform which also has an API enables employees to recognize
+  each other by providing a point based bonus system. Bonus.ly helps your employees
+  feel connected, engaged, and aligned is mission critical right now. Bonusly makes
+  employee recognition easy and fun, fostering community and creating company-wide
+  alignment. It also provides employees with positive feedback in the work that they
+  are doing. \n\n---\n[View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/bonusly)"
+display: Bonusly (Community Contribution)
+image: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE0AAABNCAIAAABsa37nAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAD/AP8A/6C9p5MAAAAJcEhZcwAAAEgAAABIAEbJaz4AAAAHdElNRQfkBRcFIiTZVXN4AAAAd3RFWHRSYXcgcHJvZmlsZSB0eXBlIDhiaW0ACjhiaW0KICAgICAgNDAKMzg0MjQ5NGQwNDA0MDAwMDAwMDAwMDAwMzg0MjQ5NGQwNDI1MDAwMDAwMDAwMDEwZDQxZDhjZDk4ZjAwYjIwNGU5ODAwOTk4CmVjZjg0MjdlCqZTw44AAACGelRYdFJhdyBwcm9maWxlIHR5cGUgZXhpZgAACNdtTdsJxEAI/LeKK8HXulpOYBNIB1f+uY8LgWTA14yjsH/PAz4dhApaqluYYUKbNkTecMIzyKtFlxZHq/x3hi3YDbKpS+RZC27TIDfzOJA8P47S4AXehOsVFVHR0JizEO+CGSzOLTNqhR8g1S0kaIsYLgAAACV0RVh0UmF3IHByb2ZpbGUgdHlwZSBpcHRjAAppcHRjCiAgICAgICAwCsDW/GYAABQOSURBVHja7Vvpk1zVdf+dc9/S3dM9mzRaRxIDkgCBhQzYYGODy8SAE9uUnbK/xHZVKqnkYz7lD0m+pCpf4lTKxEnKNnbATowBgwFjWyAZ0DYjRhLSSJqtZ+3pfu/de04+vN6XWYSEnUpOUdRU6y33LPec3/nd8+jB43+NWy9CAMD6Ebyqu/Dv7c0frXi38NkkAKCMm+fJ5rggBQClTd14K/2ptzZYlDarJG6SP9O3aesv2qnqpjzQFAWdcsNxcetMvmlT36gIVcN4M7J1f3bYW6hh5Jq9u5u9lydb/LzpaN+Sb/8/3/aSDnuvb1cHR0Rcu0tVmVm15Z4Ps2M3KTfZn0TtSzYw3LREIqor2Xnxlp68JbnhfNuZYwFAtbokIqImN6kqESmpqiqn/2MA6TXphXVFVLWlTgoDEEibqlvCWDcTJ6iTkAKKlSrOWBgQEZEyWFXVQZRqSYuZDIOZiNQDmByLqLMiYIDA2p5LO6N9S3IT8m31Z9ZAvGCV9pihY6N37SvsygVZIiKFEhLnoqRSjqNKXFlLotVKaamyUkrKy3at7CprHEUsatSEEJ/AICKoBQHKSgAIHUpuKd/eNH+SMFdwKLf3zx/6xgGM9CEgcN0lClFAAIUIYCEV2DIqSygtuuXZ1fnplfnppbnp5bn5laU1WxajGnjkszVioVuCPjdJz5bKWbUrKYgQRPzF+x47hN0hyIcxLVCBpaqwS+tlP0JFzmEIRt0AdEDsqJZQnk2Klxeuvj/zweT8lanF6VUvQU5dQCASKAREJJBbr2cvcToQ5G8v7C0g9ADTM5ObdrvVAlIJw8js9gfu3LH/szs+WcTK+/Hld6bOnp4avzY/lwSKrG+NxGqJoFTNbTdBz+Ya0FVqfQORAoKcH/ZR1lSLlWyyaNXXSgCBBBIAAUwfhvYEAw+NHVkcK703N/7G+2+dLk4u5Zyf8xyJdqTfjue25JH19GxTkhQM9kDOOWc6NowT3w8yCNLiQh34djPmJ8CH58GQptezQPtpeMf2TxzbfuR30cTP3/vlmfmLNsdJKJZl8wHcRc+uXQUpDBmqOKogFwRrQdykqhIxERERgwkG0DqOrxmLABIo1ctk/ecOezDVraQMIlCoGKG+R8Ojxx44/Pr0Wz9+96Xr8SL1m4h669lcEUg2tT9ZKBTjLevuvh2PfOrhYnn5J+++jHzLGklBqlpDDg5ioRYihLrV0wzsAQTyiIxyqlBqCqqihVoYE6VmIFBIfgiE0Cy8J3Y+MrZz//fe+s935ifMoF8hK5uoMDU9m6I59ZIqiEgInlKgnF2iJ/d/6gt3fa4Pfa+UfuNZEman0uy0dIkKhWpCbhV2GsWr0eyyLSXOemzyfm57OLQDw3lkMjAeuTREUa2yTfipZpfmtRoQwH2gIxj9mwe+/cyZ5165dBzD3hqS1CK1/K+99eyMXiIArPCtySzpn9zzua/vfTILY4GgAiPtOaaBWkGAOuDUwsQzr/5gwV9boYoSSBHCy5vc7r7tB0duO7r/yB2ZfRmoR+qBPZh1cG+6twnwQEZ9X63hwrfufhrAi5d/Ew77Maw2wcZO8OTV3NnwZLNNjbJX0sd2Pfi1vU/k4DMgEKsuLdzNu6N5capqSYqmdJUW4wFTrhlzTe2iW7ySLB2/OPHcpdfu3X3oybsfOWLGcvBJ2RAxGrm30+iNRbMJ4bYh9827n16srLxdPIcBL0LCClVlEESbH0HC6+1Po+wl2GUGv3L08SFkfcDCWbCIqLZkmjYHEJEAiSdxRit+XDZJ458CQpYYFNny6zMnxz84/9jBh754+LEdNBgAgRpD61Wjupc8ZVIMc983Pv6l6y/PXq7MUQYpAJNuib3WFnYDVr5wsKwP337fbmz3AR8egxRwKtqAdD07JlXtLL+qChER50hcgYpD0bOTL/39m985hYsxREi0ehm6Vm6qFmsmMszsQ8ew68k7H/HWlMEQTdN+SqnUOwGldUs5JxgxAw/uO5qB56up3SXNCGZDqaYoVrTWAGGNWVaDON5u3ild/IcX/+Xd+MIaXAy3yb6EQD5MP7yH93x8X2EXl13aGXUljXrqSUSI5Y7+ffuxm5Fm/UZ2ZUi6bulCBUnzQ5iZWFmNgcdpI1aNHUrzbKLWDfBlKv7jq8+cxgcRrMApadqsoh2ucH3NBDCYgSHk799/T6biBWoAsDb+25SeZHH7yP48fEajMHa8uH6DNGtowKE1mRLCBc3NU3YOmXmE8whXOOd8X7lOnilpRNb20xUqfu83Py5iLSKxcGmvjnWZBFIY4QB8ZM/hfsnCSq9Y6J2HBD7M/m17QngGSioNJKN1blaIqNmjlFoZ4oHyFf9Ob+++PQf6+/uzQaYcR9dXihcXLk8uXtWMIouE6sVALRz3m3fnzr9w8fWnb3u8APiqzW/spS0RGfAojYyEAwuurKFSt+3UXU9SsGrWhNv7Bj1Q3bT1R3duggZIqPnzYzsP3fnlO/qQITCDHSSGLKL0u9LZ/37nlfeXr5qCF5NL0YwjqUByheDl8V8dve2eIxht1m0dJVWVQH3IjeSGz61Ntdm9Ll3ilhSkRBZ9QS5v8gSmFMOvI0rQpp1DxIohFHagkIXJwISgLEw//FEMPNH3ib/91F9+ZsfRzCJCMU3sL0moV3XhlQu/jiBp54UNhYigPkw+k1fX45Jeq2cAolk/yCBggFsv20zX5xH7SoGaDIJAOYAJYbLq9anXr/4ohr/9sa/dO3S7WVNGY69GsLYfb3/w3hyKbtMcgkIZ7PG6taPnv4iGfhDCN2CkQKATl5EoqjZstr3ULkvDnUGkVdKHiBjkQXaj/2vHnuqXrOcIICGkOdYGOh8tnJs9H8Elajd2ZzUpiBVpX17dEOvUTwYMcYr+aqDAKJTAHpt6Jqz/odTItm3NZ9uLiTQDPwtzpz92ZM8hWhOvDq0IajRiNzF9qQLbfKLR3ZM1KGIha/EamZ7cQCNmep/JiEIEVcTIQOgFEIWoCjW3eVrty1Ks3Nqjp4xDsxOEfPC9o3dlEmOE67XOipBPU4szJUSy0WGUqqo6ga6iUlxbgGGSHnpuGBioZlEBYGAI3BdmTFPKqV9mxTmIg2DdPZw6gUEG2FvYWaAcudYGwvBStLqC8oYLS98i0HksFqNVYu5Vgbi+1zubVSJSwNWa3fRHA+SCnMd+ijTrkEWZkiSpIGZwWl164hgyRAYAgQvoy3lZklZUaLjkKmWUa/ir1/mbpFhXgIsr14qyrF76K5rh9wb+FMCpANy82RhkQPmwzyemppYlLbhlW1lzZdeUh9rc2OkK7aWBqt0E96OAwMWQ8evnK75z3NL3t+hJiu67nSlK4qSaThlKqspgBvdnCjk/hDTQvAIwVHHRYmXJQgRuPTcooOlmljIqkatIyrtXF8cADNcplXVSETuosClieXz6ksvAkoCkDdmu50+p6pkkiFPyru4cAxSQy2f6yKKuqkAViNReWZiO4ar+bH1mi3sJYHLAVOnasqyRab3ASUAmi5A3qtUOKMOdmpmYWZuXDGlvu3AvSl8IFZdESARpkZTqqRYoi8xIfpuJyTemroOyiNHx6YslJPVo7LpGhQrUwSWwp69MlD1bjzdUqSLt9/MF5BpG6cBG9XKyiPIbF95OAhVVAKym2zt7+FNJySBKKqu2pBDXWDeRwgMfGNoTxMxNeVJVOctn5ycncCXu3q81HJuorUAncfXU1Ljm2NYuVlUDg0R39m0vIMutd7U9xIqLIcdLp84WL2jGrA8Su+hZ5fsMxZqsRiVX5fi1GhaqBhjbvi+vGRZurrrWx7S39NP3flFCFENs99ZUnNqEdA6lZ0++MI/VxEsfnS6eIMoJbt+5P4RH1dTR0vHVggLCtIrKy2deX8rF1lgASqQ94ryXP6GqsdiFtTSvVPmIVAx4LNi7KxxGoo3DIuUYTvq9E9dOPTv58zmUS4hLSCpIIrgErgJbhi3BrpKbQ+nfJp5/e/qs5o0jadQ2Id9iyPQd2nXARxemqF7GKohKSN649tbZ+QuSh22Upc6SBqzXfzIpYXapaEfEwdRriBIMsA39R3YePDc1xX0kjYdSRBb9/MP3X7xUvvbUPY/dgX1ZeAE4PblNICUk5/TiT0689M78hB2kiBotBql6YLMmB0f2H/B3+yADJqDGaTZFhdjE6EXM/PTMqzZPFi7d1vUET6xtWaennqoqBtPL8zEkCyMqKemYAvEc/GNj975w5U1no5hISdMzeCGNPKeD+ubMu+enJu8YOnBgeO+2bH/oZ5zahbXlidlL48WLi/6aG+CKaYHpRBQkXr5Cnz38cAY+pyFIaGt9LVxidA32R6d+dsnOSIGEXAv8hOs83emppxDgmenS3ArKBQTNzKoPj+Duyh64d+fhXxff04KJKKGUOFWQwpIgz7O2Mls6/ebSaQMihUAd1IRG+sl5sLVGRwgkyiAmRsndv/2+B7NHQhiuF7MaOZ9GY0KuBPfq7PE3L59020xECWosTK0iGCjaJijW8yd8mllZuI65XSioEnM6RqHpFs0i/KO7Pz3+4uRCWImD6i2U3kgUsyAQComIVJuzSDudxwoQecpB2exA/sv3f2EAGdPmEKp6M4GNoadk8tkTP6sUELGV9I26QaWtuZukjXdkBVgXZeVCcUpqV9YbMQb50GPB4ScOfpqWrE8mPQcFU7qxqzpBRSTltVMRaWEDU0aWQWHi9S96f/rxp+4we3zAg6kyIFrDTkACGwFXsPDdXz17NVhKgiaAyZ2sUAseW69fEaNxqOdnJmNI55mUD5OH96VDjz+056g/J1kJWFq77Tr4bd1gzSFDCl9NX+wHRXn66OOPbnsgCxPAowbbpml7HsNWILNYeea3P5goTSUFJLRZprdJT+XOERILtaGen728gBUHraLW2qMNjAENIvMX9339M0P3mTkbqGFwGxfeU0hIYYj9MgaLwZ8d+/JX9n++H36151ZQerqdsmRwDrqA8ndOf/+Nhfdk0CTqtGex7CJmz1892PtflTzjVqLD2/btzew0YAOuUmwpIaJKRFmEd+49nJjk2tRVTdQn47FJ24PmZVTvUrCSB844P4g5WNAxf+e3Pv3VR7c9UICXVd8QpxQe0ikVgoVEkEVE//rej16+cjwaRsRuq+Mn6+pJIGJEGkbe0d1HfJAP0xp7xMQMhDD3Dh06uPtAslQuLawmUQRVVM+4QSACMRETk5LnyJQ0XOVRGX5q7JFv3v/Vu4MDORgfhqnWM5CAlMg4aAwtovKdsz986fKv7ZAXsa3Nj21B1w3Os50KZYNTMxMT+OAYDgqUFA2XVmku44EC0IN9d93xydvG44snp85OzF6cLxVLrpKIS2eGABgin7x+L79ncMc9uw/fv+vIfuzog+en55+QenVPk3YEG8PNY+27J5/9xfTxaBvHiJvPOW+ankSwgUx7K6+e/+3dB2/LghjgtLK0CHswAt2O7GBw5P6xuypjlSJWFsvLi6WlShwlzjFzLgiHC0PDmYEhFEIEAZggHsigSi8QoOrSabmYkgh6AdP/fPz7J4sTMmRiWN2IGbtBPVXVwiFPv730zudve/hj3lhAEqjXfFCPankzIdIGGgI3wAPbUZDsLpdVV5vLMIABMZihaTnpGn4JbMJYgzuVTD7z2g/G3fV4G8VIhG7C3Dh17RZJIRDnYYnWnvvdiwsoJy13tZiEAIGAlZm5WmPZB2WgITQD9aEG8JDyEjVCVJuRKQQaA0VEP51//e9e+adxvuYGOOnFtN8sf6Zi4YK8f2Lm3Muzb/7xyGc9cgEMt9ol9TATo8b6eCCATBMQb2ZG6kRrFQ8QErgYEpNcx/z33/mvX105WRpy5UBVkw853NesZ3tASI2tTaVCVgfxw5MvjD66+/7wsEIz6ikJgQicjj40oqB5ckSJqM70NYyiVReZ9G9HVIYsI3pj9cTzb790OZpxw2R91HljfLiPYHrXFa6exVb9wHCsTt3UpSv7x/YNoJ9IOL1I1zulpI6zvZpXNa2NMbmIZBXxuFz5j5PPP3f6pZlwxRYoYudqWedDDlM39BRqnd9BS5WvvobAPi250vilidF9ewZp0ACeGCJNR8LWf1Mb4hOII7GgEuwFXH/2wovfO/GT0+VLyaCJA7GQ6ilH434BKTZi6DfQs9bRbLBQK05DLiWVifHxvuH8SHaECC5dgSqvPyoCALBwMdmENCIpwU7qtZ+d/+W/n3j+xPy5lYKL8xpT4liJOjjDGrdyY3pS7XvB9nn3zunzOkLwlcPIC0v04Oi9T97z6GGM5uAHYB+eOMdsus3NqzI72AhagS1i9UzlwvELJ89cmyzaZe1jCShClwm29aYft/IdxNbmb1VVCTFJkkls6L127eS5q5MP7Lr7E2NHb8vvKyBnDJuqiRqHBgIoSQy7iNLllatnrk2euX7+0tr0ahC7nDoP0jTN1a7Lh96Zbf7csrBQwL6JVMs2K/6u/PbRbXtGh3aP9G3LBWF64GlhyzZeKq9ML89PL85cX5ldiFYitRIyQnYsjkQgH75sbCg3OE+tqsKoIEYIk+GKS5bjq+9PXfMucka9gHyIMuBIEtiYXGxEPGhAkiUwBE43cYb7e9azXh7SP5wKESRkhCDlkriSNA07M5RMerYmgJJKT/zd/ZuY35uebeAWgBIcxAGJOjKkXpUTUe1+mLThRPofhJ5EVB1L6Mx1tfPxXho2W6rz51un5418X9bMZTUrv/5dH7ED2+RG92cnu7aRGo0mbivfVd8suVXff7ahvOZZ6ZtVErckN1hXmum8rm1Es3vbdcZH8FFzu/xf+Z73BvXsNgNAm3VTB/f/h6vn/zr5UN/Rtbp002WjV4dxM77D7iX/A0Hi3PDdGz4yAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA1LTIzVDA1OjM0OjM2LTA0OjAw9qD8hgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNS0yM1QwNTozNDozNi0wNDowMIf9RDoAAAARdEVYdGV4aWY6Q29sb3JTcGFjZQAxD5sCSQAAABh0RVh0ZXhpZjpFeGlmSW1hZ2VMZW5ndGgAMjU2jD+bKAAAABd0RVh0ZXhpZjpFeGlmSW1hZ2VXaWR0aAAyNTYRoB46AAAAEnRFWHRleGlmOkV4aWZPZmZzZXQAMjZTG6JlAAAAVHRFWHRleGlmOlVzZXJDb21tZW50ADY1LCA4MywgNjcsIDczLCA3MywgMCwgMCwgMCwgNDksIDQ2LCA0OCwgNDYsIDUwLCA1NiwgNDUsIDUwLCA0OCwgNzGvcGxvAAAAAElFTkSuQmCC
+name: Bonusly
+script:
+  commands:
+  - arguments:
+    - defaultValue: "20"
+      description: 'Number of bonuses to retrieve (min: 1, max: 100) Default: 20.'
+      name: limit
+    - description: The start time by which to filter returned bonuses. e.g., 2015-10-28T21:26:50Z.
+      name: start-time
+    - description: The end time by which to filter returned bonuses, e.g., 2015-10-28T21:26:50Z.
+      name: end-time
+    - description: Email address of the bonus giver by which to filter results.
+      name: giver-email
+    - description: Email address of the bonus receiver by which to filter results.
+      name: receiver-email
+    - description: Email address of the bonus giver or receiver by which to filter
+        results. this email
+      name: user-email
+    - description: 'Filter to get a list of bonuses by a hashtag Example: %23teamwork'
+      name: hashtag
+    - description: Whether to include child responses of the bonus.
+      name: include-children
+    - description: Whether to show private bonuses. Requires Admin API key.
+      name: show-private-bonuses
+    description: Gets a list of bonuses based on the supplied filters.
+    name: bonusly-list-bonuses
+    outputs:
+    - contextPath: Bonusly.Bonus.id
+      description: Bonus ID.
+      type: String
+    - contextPath: Bonusly.Bonus.created_at
+      description: Date the bonus was created (given), e.g., 2015-10-28T21:26:50Z.
+      type: Date
+    - contextPath: Bonusly.Bonus.reason
+      description: 'The bonus message, e.g., "For signing up for the world''s favorite
+        employee recognition solution! #problem-solving"'
+      type: String
+    - contextPath: Bonusly.Bonus.reason_html
+      description: HTML representation of the bonus.
+      type: String
+    - contextPath: Bonusly.Bonus.amount
+      description: Number of points given in the bonus.
+      type: Number
+    - contextPath: Bonusly.Bonus.amount_with_currency
+      description: Number and currency of points given in the bonus.
+      type: String
+    - contextPath: Bonusly.Bonus.value
+      description: 'Hash tag included in the bonus, e.g., #problem-solving.'
+      type: String
+    - contextPath: Bonusly.Bonus.giver.id
+      description: ID of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.short_name
+      description: Short name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.display_name
+      description: Display name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.username
+      description: Username of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.email
+      description: Email address of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.path
+      description: URL path of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.full_pic_url
+      description: URL path to the full picture of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.profile_pic_url
+      description: URL path to the profile picture of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.first_name
+      description: First name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.last_name
+      description: Last name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.last_active_at
+      description: Last time the bonus giver was active when available.
+      type: Unknown
+    - contextPath: Bonusly.Bonus.giver.external_unique_id
+      description: Unique ID for the bonus giver (external).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.budget_boost
+      description: Whether a boost was given for the bonus.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.user_mode
+      description: User mode of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.country
+      description: Country where the bonus giver resides.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.time_zone
+      description: Timezone of the bonus giver, e.g., America/Los_Angeles.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.*custom_property_name*
+      description: Custom properties given in the bonus.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.can_give
+      description: Whether the giver can give bonuses.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.earning_balance
+      description: Available earning balance.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.earning_balance_with_currency
+      description: Earning balance of the bonus giver (with currency).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.lifetime_earnings
+      description: Lifetime earnings of the bonus giver.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.lifetime_earnings_with_currency
+      description: Lifetime earnings of the bonus giver (with currency).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.can_receive
+      description: Whether the bonus giver can receive bonuses.
+      type: Boolean
+    - contextPath: Bonusly.Bonus.giver.giving_balance
+      description: Points balance of the bonus giver.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.giving_balance_with_currency
+      description: Points balance of the bonus giver (with currency).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.status
+      description: Status of the bonus giver, e.g., archived.
+      type: String
+    - contextPath: Bonusly.Bonus.receiver
+      description: Bonus receiver.
+      type: Unknown
+    - contextPath: Bonusly.Bonus.child_count
+      description: Count of the child add-on bonuses.
+      type: Number
+    - contextPath: Bonusly.Bonus.via
+      description: Bonus source, e.g., Web.
+      type: String
+    - contextPath: Bonusly.Bonus.family_amount
+      description: Family bonus balance.
+      type: Number
+  - arguments:
+    - description: The email address of the bonus giver.
+      name: giver-email
+      required: true
+    - description: "The bonus message, e.g., \n+10 @george and @john for #execution
+        with that customer #collaboration with the team, and #integrity on the known
+        vulnerabilities to the application. \n\n+10 @francesco because he is fast
+        and detailed\n"
+      name: reason
+      required: true
+    - description: The parent bonus ID with which to associate this bonus, e.g., 24abcdef1234567890abcdef.
+      name: parent-bonus-id
+    description: Creates a Bonusly bonus.
+    name: bonusly-create-bonus
+    outputs:
+    - contextPath: Bonusly.Bonus.id
+      description: Bonus ID.
+      type: String
+    - contextPath: Bonusly.Bonus.created_at
+      description: Date the bonus was created (given), e.g., 2015-10-28T21:26:50Z.
+      type: Date
+    - contextPath: Bonusly.Bonus.reason
+      description: 'The bonus message, e.g., "For signing up for the world''s favorite
+        employee recognition solution! #problem-solving"'
+      type: String
+    - contextPath: Bonusly.Bonus.reason_html
+      description: HTML representation of the bonus.
+      type: String
+    - contextPath: Bonusly.Bonus.amount
+      description: Number of points given in the bonus.
+      type: Number
+    - contextPath: Bonusly.Bonus.amount_with_currency
+      description: Number and currency of points given in the bonus.
+      type: String
+    - contextPath: Bonusly.Bonus.value
+      description: 'Hash tag included in the bonus, e.g., #problem-solving.'
+      type: String
+    - contextPath: Bonusly.Bonus.giver.id
+      description: ID of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.short_name
+      description: Short name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.display_name
+      description: Display name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.username
+      description: Username of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.email
+      description: Email address of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.path
+      description: URL path of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.full_pic_url
+      description: URL path to the full picture of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.profile_pic_url
+      description: URL path to the profile picture of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.first_name
+      description: First name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.last_name
+      description: Last name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.last_active_at
+      description: Last time the bonus giver was active when available.
+      type: Unknown
+    - contextPath: Bonusly.Bonus.giver.external_unique_id
+      description: Unique ID for the bonus giver (external).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.budget_boost
+      description: Whether a boost was given for the bonus.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.user_mode
+      description: User mode of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.country
+      description: Country where the bonus giver resides.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.time_zone
+      description: Timezone of the bonus giver, e.g., America/Los_Angeles.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.*custom_property_name*
+      description: Custom properties given in the bonus.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.can_give
+      description: Whether the giver can give bonuses.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.earning_balance
+      description: Available earning balance
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.earning_balance_with_currency
+      description: Earning balance of the bonus giver (with currency).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.lifetime_earnings
+      description: Lifetime earnings of the bonus giver.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.lifetime_earnings_with_currency
+      description: Lifetime earnings of the bonus giver (with currency).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.can_receive
+      description: Whether the bonus giver can receive bonuses.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.giving_balance
+      description: Points balance of the bonus giver.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.giving_balance_with_currency
+      description: Points balance of the bonus giver (with currency).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.status
+      description: Status of the bonus giver, e.g., archived.
+      type: String
+    - contextPath: Bonusly.Bonus.receiver
+      description: Bonus receiver.
+      type: Unknown
+    - contextPath: Bonusly.Bonus.child_count
+      description: Count of the child add-on bonuses.
+      type: Number
+    - contextPath: Bonusly.Bonus.via
+      description: Bonus source, e.g., Web.
+      type: String
+    - contextPath: Bonusly.Bonus.family_amount
+      description: Family bonus balance.
+      type: Number
+  - arguments:
+    - description: ID of the bonus to get information for.
+      name: id
+      required: true
+    description: Gets a bonus by bonus ID.
+    name: bonusly-get-bonus
+    outputs:
+    - contextPath: Bonusly.Bonus.id
+      description: Bonus ID.
+      type: String
+    - contextPath: Bonusly.Bonus.created_at
+      description: Date the bonus was created (given), e.g., 2015-10-28T21:26:50Z.
+      type: Date
+    - contextPath: Bonusly.Bonus.reason
+      description: 'The bonus message, e.g., "For signing up for the world''s favorite
+        employee recognition solution! #problem-solving"'
+      type: String
+    - contextPath: Bonusly.Bonus.reason_html
+      description: HTML representation of the bonus.
+      type: String
+    - contextPath: Bonusly.Bonus.amount
+      description: Number of points given in the bonus.
+      type: Number
+    - contextPath: Bonusly.Bonus.amount_with_currency
+      description: Number and currency of points given in the bonus.
+      type: String
+    - contextPath: Bonusly.Bonus.value
+      description: 'Hash tag included in the bonus, e.g., #problem-solving.'
+      type: String
+    - contextPath: Bonusly.Bonus.giver.id
+      description: ID of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.short_name
+      description: Short name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.display_name
+      description: Display name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.username
+      description: Username of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.email
+      description: Email address of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.path
+      description: URL path of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.full_pic_url
+      description: URL path to the full picture of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.profile_pic_url
+      description: URL path to the profile picture of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.first_name
+      description: First name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.last_name
+      description: Last name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.last_active_at
+      description: Last time the bonus giver was active when available.
+      type: Unknown
+    - contextPath: Bonusly.Bonus.giver.external_unique_id
+      description: Unique ID of the bonus giver (external).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.budget_boost
+      description: Whether a boost was given for the bonus.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.user_mode
+      description: User mode of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.country
+      description: Country where the bonus giver resides.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.time_zone
+      description: Timezone of the bonus giver, e.g., America/Los_Angeles.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.*custom_property_name*
+      description: Custom properties given in the bonus.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.can_give
+      description: Whether the giver can give bonuses.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.earning_balance
+      description: Available earning balance.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.earning_balance_with_currency
+      description: Earning balance of the bonus giver (with currency).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.lifetime_earnings
+      description: Lifetime earnings of the bonus giver.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.lifetime_earnings_with_currency
+      description: Lifetime earnings of the bonus giver (with currency).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.can_receive
+      description: Whether the bonus giver can receive bonuses.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.giving_balance
+      description: Points balance of the bonus giver.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.giving_balance_with_currency
+      description: Points balance of the bonus giver (with currency).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.status
+      description: Status of the bonus giver, e.g., archived.
+      type: String
+    - contextPath: Bonusly.Bonus.receiver
+      description: Bonus receiver.
+      type: Unknown
+    - contextPath: Bonusly.Bonus.child_count
+      description: Count of the child add-on bonuses.
+      type: Number
+    - contextPath: Bonusly.Bonus.via
+      description: Bonus source, e.g., Web.
+      type: String
+    - contextPath: Bonusly.Bonus.family_amount
+      description: Family bonus balance.
+      type: Number
+  - arguments:
+    - description: 'ID of the bonus to update. '
+      name: id
+      required: true
+    - description: 'Example +10 @francesco @bumblebee for #integrity #collaboration
+        #execution'
+      name: reason
+      required: true
+    description: Updates a bonus.
+    name: bonusly-update-bonus
+    outputs:
+    - contextPath: Bonusly.Bonus.id
+      description: Bonus ID.
+      type: String
+    - contextPath: Bonusly.Bonus.created_at
+      description: Date the bonus was created (given), e.g., 2015-10-28T21:26:50Z.
+      type: Date
+    - contextPath: Bonusly.Bonus.reason
+      description: 'The bonus message, e.g., "For signing up for the world''s favorite
+        employee recognition solution! #problem-solving"'
+      type: String
+    - contextPath: Bonusly.Bonus.reason_html
+      description: HTML representation of the bonus.
+      type: String
+    - contextPath: Bonusly.Bonus.amount
+      description: Number of points given in the bonus.
+      type: Number
+    - contextPath: Bonusly.Bonus.amount_with_currency
+      description: Number and currency of points given in the bonus.
+      type: String
+    - contextPath: Bonusly.Bonus.value
+      description: 'Hash tag included in the bonus, e.g., #problem-solving.'
+      type: String
+    - contextPath: Bonusly.Bonus.giver.id
+      description: ID of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.short_name
+      description: Short name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.display_name
+      description: Display name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.username
+      description: Username of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.email
+      description: Email address of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.path
+      description: URL path of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.full_pic_url
+      description: URL path to the full picture of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.profile_pic_url
+      description: URL path to the profile picture of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.first_name
+      description: First name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.last_name
+      description: Last name of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.last_active_at
+      description: Last time the bonus giver was active when available.
+      type: Unknown
+    - contextPath: Bonusly.Bonus.giver.external_unique_id
+      description: Unique ID for the bonus giver (external).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.budget_boost
+      description: Whether a boost was given for the bonus.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.user_mode
+      description: User mode of the bonus giver.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.country
+      description: Country where the bonus giver resides.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.time_zone
+      description: Timezone of the bonus giver, e.g., America/Los_Angeles.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.*custom_property_name*
+      description: Custom properties given in the bonus.
+      type: String
+    - contextPath: Bonusly.Bonus.giver.can_give
+      description: Whether the giver can give bonuses.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.earning_balance
+      description: Available earning balance.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.earning_balance_with_currency
+      description: Earning balance of the bonus giver (with currency).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.lifetime_earnings
+      description: Lifetime earnings of the bonus giver.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.lifetime_earnings_with_currency
+      description: Lifetime earnings of the bonus giver (with currency).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.can_receive
+      description: Whether the bonus giver can receive bonuses.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.giving_balance
+      description: Points balance of the bonus giver.
+      type: Number
+    - contextPath: Bonusly.Bonus.giver.giving_balance_with_currency
+      description: Points balance of the bonus giver (with currency).
+      type: String
+    - contextPath: Bonusly.Bonus.giver.status
+      description: Status of the bonus giver, e.g., archived.
+      type: String
+    - contextPath: Bonusly.Bonus.receiver
+      description: Bonus receiver.
+      type: Unknown
+    - contextPath: Bonusly.Bonus.child_count
+      description: Count of the child add-on bonuses.
+      type: Number
+    - contextPath: Bonusly.Bonus.via
+      description: Bonus source, e.g., Web.
+      type: String
+    - contextPath: Bonusly.Bonus.family_amount
+      description: Family bonus balance.
+      type: Number
+  - arguments:
+    - description: ID of the bonus to delete.
+      name: id
+      required: true
+    description: Deletes a bonus by bonus ID.
+    name: bonusly-delete-bonus
+    outputs:
+    - contextPath: Bonusly.Bonus.message
+      description: Message
+      type: Unknown
+  dockerimage: demisto/python3:3.10.12.63474
+  isfetch: true
+  runonce: false
+  script: |
+    register_module_line('Bonusly', 'start', __line__())
+    ### pack version: 1.0.14
+
+
+    """Bonusly Integration for Cortex XSOAR (aka DBot)
+
+    This integration only has a few commands and more maybe added depending on feedback.
+
+    """
+
+    import json
+
+    import urllib3
+
+
+    import dateparser
+
+    # IMPORTS
+
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()
+
+    # CONSTANTS
+    DATE_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
+
+
+    # Client Class
+    class Client(BaseClient):
+        """
+
+        This is the base client used for Bonusly http requests
+
+        """
+
+        def bonusly_test(self):
+            suffix = 'bonuses'
+            return self._http_request('GET', suffix)
+
+        def bonusly_list_bonuses_http_request(self, url_params) -> dict:
+            """
+            Gets a list of bonusly bonuses
+                Args:
+                    limit=20 - defaults to 20
+                    skip=0 - skip
+                    start_time=%Y-%m-%dT%H:%M:%SZ -
+                    end_time=%Y-%m-%dT%H:%M:%SZ
+                    giver_email=person@company.com - giver email address
+                    receiver_email=otherperson@company.com - receiver email address
+                    user_email=someperson@company.com - user email address
+                    hashtag=%23#collaboration - hashtag to filter on
+                    include_children=false - include children responses
+                    custom_property_name='somename' - filter on some customer property
+                    show_private_bonuses=false - show private bonuses if admin API key
+
+            """
+            suffix = 'bonuses'
+            params = url_params
+            params['limit'] = url_params.get('limit', 20)
+            params['skip'] = 0
+            an_hour_ago_date = dateparser.parse('1 hour ago')
+            assert an_hour_ago_date is not None
+            start_time = an_hour_ago_date.strftime(DATE_FORMAT)
+            now_date = datetime.utcnow()
+            assert now_date is not None
+            end_time = now_date.strftime(DATE_FORMAT)
+            if url_params.get('start_time') is not None:
+                start_time_date = dateparser.parse(url_params['start_time'])
+                assert start_time_date is not None, f'failed parsing {url_params["start_time"]}'
+                start_time = start_time_date.strftime(DATE_FORMAT)
+            if url_params.get('end_time') is not None:
+                end_time_date = dateparser.parse(url_params['end_time'])
+                assert end_time_date is not None
+                end_time = end_time_date.strftime(DATE_FORMAT)
+            params['start_time'] = start_time
+            params['end_time'] = end_time
+            params['giver_email'] = url_params.get('giver_email', '')
+            params['receiver_email'] = url_params.get('receiver_email', '')
+            params['user_email'] = url_params.get('user_email', '')
+            params['include_children'] = url_params.get('include_children', 'false')
+            params['show_private_bonuses'] = url_params.get('show_private_bonuses', 'false')
+            resp = self._http_request('GET', suffix, params=params)
+            return resp
+
+        def bonusly_get_bonus_http_request(self, url_params) -> dict:
+            """
+            Get a bonusly based on an ID
+                Args:
+                    id - id of bonusly bonus to fetch
+            """
+            id = url_params['id']
+            result = self._http_request(
+                method='GET',
+                url_suffix='/bonuses/' + id
+            )
+            return result
+
+        def bonusly_create_bonus_http_request(self, url_params) -> dict:
+            """
+            Creates a bonusly using a giver_email and a reason
+
+                Args:
+                    giver_email - person@company.com
+                    reason - they did a great job with #integrity
+
+            """
+
+            values = {'giver_email': url_params.get('giver_email'), 'reason': url_params.get('reason')}
+            valstring = json.dumps(values)
+            return self._http_request(method='POST', url_suffix='bonuses', data=valstring)
+
+        def bonusly_update_bonus_http_request(self, url_params) -> dict:
+            """
+            Updates a bonusly using
+                Args:
+                    id - id of bonusly to update
+                    reason - reason for bonusly
+            """
+            values = {'reason': url_params['reason']}
+            valstring = json.dumps(values)
+            id = url_params.get('id')
+            result = self._http_request(
+                method='PUT',
+                url_suffix='/bonuses/' + id,
+                data=valstring
+            )
+            return result
+
+        def bonusly_delete_bonus_http_request(self, url_params) -> dict:
+            """
+            Deletes a bonusly
+            Args:
+                    id - of bonusly bonus
+            """
+            id = url_params['id']
+            result = self._http_request(
+                method='DELETE',
+                url_suffix='/bonuses/' + id
+            )
+            return result
+
+        def list_incidents(self, last_fetch_date, fetch_params):
+            """
+            returns an array of JSON bonuses
+            """
+            url_params = {}
+            url_params['application_name'] = fetch_params.get('application_name', None)
+            url_params['limit'] = fetch_params.get('limit')
+            url_params['user_email'] = fetch_params.get('user_email')
+            url_params['hashtag'] = fetch_params.get('hashtag')
+            url_params['start_date'] = last_fetch_date
+            demisto.debug('URL Params being called is ' + str(url_params))
+            resp = self.bonusly_list_bonuses_http_request(url_params)
+            return resp.get('result', [])
+
+
+    def test_module(client):
+        """
+        Returns:
+            'ok' if test passed, anything else will fail the test.
+        """
+
+        result = client.bonusly_test()
+        if result.get('success'):
+            return 'ok'
+        else:
+            return 'Test failed Message:' + json.dumps(result)
+
+
+    def bonusly_list_bonuses_command(client, args):
+        """
+           Returns:
+               list of bonuses based on the bonusly_list_bonuses_http_request
+        """
+        resp = client.bonusly_list_bonuses_http_request(args)
+        result = resp.get('result')
+        readable_output = tableToMarkdown('Latest Updates From Bonus.ly', result)
+        outputs = {
+            'Bonusly.Bonus': result
+        }
+
+        return (
+            readable_output,
+            outputs,
+            resp  # raw response - the original response
+        )
+
+
+    def bonusly_get_bonus_command(client, args):
+        resp = client.bonusly_get_bonus_http_request(args)
+        result = resp.get('result')
+        readable_output = tableToMarkdown('Latest Updates From Bonus.ly', result)
+        outputs = {
+            'Bonusly.Bonus': result
+        }
+
+        return (
+            readable_output,
+            outputs,
+            resp  # raw response - the original response
+        )
+
+
+    def bonusly_create_bonus_command(client, args):
+        resp = client.bonusly_create_bonus_http_request(args)
+        result = resp.get('result')
+        readable_output = tableToMarkdown('Latest Updates From Bonus.ly', result)
+        outputs = {
+            'Bonusly.Bonus': result
+        }
+
+        return (
+            readable_output,
+            outputs,
+            resp  # raw response - the original response
+        )
+
+
+    def bonusly_update_bonus_command(client, args):
+        resp = client.bonusly_update_bonus_http_request(args)
+        result = resp.get('result')
+        readable_output = tableToMarkdown('Message Deleted From Bonus.ly', result)
+        outputs = {
+            'Bonusly.Bonus': result
+        }
+
+        return (
+            readable_output,
+            outputs,
+            resp  # raw response - the original response
+        )
+
+
+    def bonusly_delete_bonus_command(client, args):
+        resp = client.bonusly_delete_bonus_http_request(args)
+        result_text = resp.get('message')
+        res_message = []
+        res_message_table = {'Message': result_text}
+        res_message.append(res_message_table)
+        readable_output = tableToMarkdown('Latest Updates From Bonus.ly', res_message_table)
+        outputs = {
+            'Bonusly.Bonus.message': result_text
+        }
+
+        return (
+            readable_output,
+            outputs,
+            resp  # raw response - the original response
+        )
+
+
+    def fetch_incidents(client, last_run, first_fetch_time, fetch_params):
+        """
+        This function will execute each interval (default is 1 minute).
+
+        Args:
+            client (Client): client
+            last_run (dateparser.time): The greatest incident created_time we fetched from last fetch
+            first_fetch_time (dateparser.time): If last_run is None then fetch all incidents since first_fetch_time
+
+        Returns:
+            next_run: This will be last_run in the next fetch-incidents
+            incidents: Incidents that will be created in Demisto
+            :param fetch_params params from integration settings
+        """
+        # Get the last fetch time, if exists
+        last_fetch = last_run.get('last_fetch')
+
+        # Handle first time fetch
+        if last_fetch is None:
+            last_fetch = dateparser.parse(first_fetch_time)
+        else:
+            last_fetch = dateparser.parse(last_fetch)
+
+        latest_created_time = last_fetch
+        incidents = []
+        last_fetch_date = last_fetch.strftime('%Y-%m-%dT%H:%M:%SZ')
+        items = client.list_incidents(last_fetch_date=last_fetch_date, fetch_params=fetch_params)
+        for item in items:
+            incident_created_time = dateparser.parse(item['created_at'])
+            assert incident_created_time is not None, f'failed parsing {item["created_at"]}'
+            incident = {
+                'name': 'New Bonusly - ' + item['reason'],
+                'occurred': incident_created_time.strftime(DATE_FORMAT),
+                'type': fetch_params.get('incidentType'),
+                'rawJSON': json.dumps(item)
+            }
+
+            # If created time is greater than latest created time then set latest created time
+            # to incident created time
+            if incident_created_time.timestamp() > latest_created_time.timestamp():
+                latest_created_time = incident_created_time
+
+            # if the last time fetched is before the current incident time then add it to the list of incidents
+            if last_fetch.timestamp() < incident_created_time.timestamp():
+                incidents.append(incident)
+
+        next_run = {'last_fetch': latest_created_time.strftime(DATE_FORMAT)}
+        return next_run, incidents
+
+
+    def main():
+        """
+            PARSE AND VALIDATE INTEGRATION PARAMS
+        """
+
+        # set default params
+        params = demisto.params()
+        base_url = params.get('url')
+        api_key = params.get('api_key')
+        # is_fetch = params.get('isFetch')
+        # inc_type = params.get('incidentType')
+        verify_certificate = not params.get('insecure', False)
+
+        # Fetch Params
+        proxy = params.get('proxy', False)
+
+        # get the service API url
+        # base_url = urljoin(demisto.params()['url'], '/api/v1/suffix')
+        # How much time before the first fetch to retrieve incidents
+        first_fetch_time = demisto.params().get('fetch_time', '1 day').strip()
+
+        LOG(f'Command being called is {demisto.command()}')
+        try:
+            bearer_token = 'Bearer ' + api_key
+            client = Client(
+                base_url=base_url,
+                verify=verify_certificate,
+                headers={'Authorization': bearer_token, 'Content-Type': 'application/json'},
+                proxy=proxy)
+
+            if demisto.command() == 'test-module':
+                # This is the call made when pressing the integration Test button.
+                result = test_module(client)
+                demisto.results(result)
+
+            elif demisto.command() == 'fetch-incidents':
+                # Set and define the fetch incidents command to run after activated via integration settings.
+                next_run, incidents = fetch_incidents(
+                    client=client,
+                    last_run=demisto.getLastRun(),
+                    first_fetch_time=first_fetch_time, fetch_params=params)
+
+                demisto.setLastRun(next_run)
+                demisto.incidents(incidents)
+
+            elif demisto.command() == 'bonusly-list-bonuses':
+                return_outputs(*bonusly_list_bonuses_command(client, demisto.args()))
+            elif demisto.command() == 'bonusly-get-bonus':
+                return_outputs(*bonusly_get_bonus_command(client, demisto.args()))
+            elif demisto.command() == 'bonusly-create-bonus':
+                return_outputs(*bonusly_create_bonus_command(client, demisto.args()))
+            elif demisto.command() == 'bonusly-update-bonus':
+                return_outputs(*bonusly_update_bonus_command(client, demisto.args()))
+            elif demisto.command() == 'bonusly-delete-bonus':
+                return_outputs(*bonusly_delete_bonus_command(client, demisto.args()))
+
+        # Log exceptions
+        except Exception as e:
+            if 'Error in API call [404]' in str(e):
+                return_error(f'Failed to execute {demisto.command()} command. Error: 404 Error URL Not Found Or Invalid')
+
+            return_error(f'Failed to execute {demisto.command()} command. Error: {str(e)}')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('Bonusly', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
