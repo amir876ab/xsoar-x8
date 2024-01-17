@@ -1,0 +1,1197 @@
+category: Identity and Access Management
+commonfields:
+  id: Hello IAM World
+  version: -1
+configuration:
+- display: Base URL
+  name: url
+  required: true
+  type: 0
+- display: Username
+  name: credentials
+  required: true
+  type: 9
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- defaultvalue: "true"
+  display: Allow creating users
+  name: create_user_enabled
+  required: false
+  type: 8
+- defaultvalue: "true"
+  display: Allow updating users
+  name: update_user_enabled
+  required: false
+  type: 8
+- defaultvalue: "true"
+  display: Allow enabling users
+  name: enable_user_enabled
+  required: false
+  type: 8
+- defaultvalue: "true"
+  display: Allow disabling users
+  name: disable_user_enabled
+  required: false
+  type: 8
+- defaultvalue: "true"
+  display: Automatically create user if not found in update command
+  name: create_if_not_exists
+  required: false
+  type: 8
+- defaultvalue: User Profile - IAM Template (Incoming)
+  display: Incoming Mapper
+  name: mapper_in
+  required: true
+  type: 0
+- defaultvalue: User Profile - IAM Template (Outgoing)
+  display: Outgoing Mapper
+  name: mapper_out
+  required: true
+  type: 0
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.1.7
+    packID: HelloIAMWorld
+    packName: Hello World IAM
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: An Identity and Access Management integration template.
+detaileddescription: |-
+  ## Hello IAM World
+  - This section explains how to configure the instance of Hello IAM World in Cortex XSOAR.
+
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/hello-iam-world)
+display: Hello World IAM
+image: data:image/png;base64,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
+name: Hello IAM World
+script:
+  commands:
+  - arguments:
+    - description: User Profile indicator details.
+      name: user-profile
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "true"
+      description: When set to true, after the command execution the status of the
+        user in the 3rd-party integration will be active.
+      name: allow-enable
+      predefined:
+      - "true"
+      - "false"
+    description: Creates a user.
+    execution: true
+    name: iam-create-user
+    outputs:
+    - contextPath: IAM.Vendor.active
+      description: When true, indicates that the employee's status is active in the
+        3rd-party integration.
+      type: Boolean
+    - contextPath: IAM.Vendor.brand
+      description: Name of the integration.
+      type: String
+    - contextPath: IAM.Vendor.details
+      description: Provides the raw data from the 3rd-party integration.
+      type: string
+    - contextPath: IAM.Vendor.email
+      description: The employee's email address.
+      type: String
+    - contextPath: IAM.Vendor.errorCode
+      description: HTTP error response code.
+      type: Number
+    - contextPath: IAM.Vendor.errorMessage
+      description: Reason why the API failed.
+      type: String
+    - contextPath: IAM.Vendor.id
+      description: The employee's user ID in the app.
+      type: String
+    - contextPath: IAM.Vendor.instanceName
+      description: Name of the integration instance.
+      type: string
+    - contextPath: IAM.Vendor.success
+      description: When true, indicates that the command was executed successfully.
+      type: Boolean
+    - contextPath: IAM.Vendor.username
+      description: The employee's username in the app.
+      type: String
+  - arguments:
+    - description: A User Profile indicator.
+      name: user-profile
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "true"
+      description: When set to true, after the command execution the status of the
+        user in the 3rd-party integration will be active.
+      name: allow-enable
+      predefined:
+      - "true"
+      - "false"
+    description: Updates an existing user with the data passed in the user-profile
+      argument.
+    execution: true
+    name: iam-update-user
+    outputs:
+    - contextPath: IAM.Vendor.active
+      description: When true, indicates that the employee's status is active in the
+        3rd-party integration.
+      type: Boolean
+    - contextPath: IAM.Vendor.brand
+      description: Name of the integration.
+      type: String
+    - contextPath: IAM.Vendor.details
+      description: Provides the raw data from the 3rd-party integration.
+      type: string
+    - contextPath: IAM.Vendor.email
+      description: The employee's email address.
+      type: String
+    - contextPath: IAM.Vendor.errorCode
+      description: HTTP error response code.
+      type: Number
+    - contextPath: IAM.Vendor.errorMessage
+      description: Reason why the API failed.
+      type: String
+    - contextPath: IAM.Vendor.id
+      description: The employee's user ID in the app.
+      type: String
+    - contextPath: IAM.Vendor.instanceName
+      description: Name of the integration instance.
+      type: string
+    - contextPath: IAM.Vendor.success
+      description: When true, indicates that the command was executed successfully.
+      type: Boolean
+    - contextPath: IAM.Vendor.username
+      description: The employee's username in the app.
+      type: String
+  - arguments:
+    - description: A User Profile indicator.
+      name: user-profile
+      required: true
+    description: Retrieves a single user resource.
+    name: iam-get-user
+    outputs:
+    - contextPath: IAM.Vendor.active
+      description: When true, indicates that the employee's status is active in the
+        3rd-party integration.
+      type: Boolean
+    - contextPath: IAM.Vendor.brand
+      description: Name of the integration.
+      type: String
+    - contextPath: IAM.Vendor.details
+      description: Provides the raw data from the 3rd-party integration.
+      type: string
+    - contextPath: IAM.Vendor.email
+      description: The employee's email address.
+      type: String
+    - contextPath: IAM.Vendor.errorCode
+      description: HTTP error response code.
+      type: Number
+    - contextPath: IAM.Vendor.errorMessage
+      description: Reason why the API failed.
+      type: String
+    - contextPath: IAM.Vendor.id
+      description: The employee's user ID in the app.
+      type: String
+    - contextPath: IAM.Vendor.instanceName
+      description: Name of the integration instance.
+      type: string
+    - contextPath: IAM.Vendor.success
+      description: When true, indicates that the command was executed successfully.
+      type: Boolean
+    - contextPath: IAM.Vendor.username
+      description: The employee's username in the app.
+      type: String
+  - arguments:
+    - description: A User Profile indicator.
+      name: user-profile
+      required: true
+    description: Disable an active user.
+    execution: true
+    name: iam-disable-user
+    outputs:
+    - contextPath: IAM.Vendor.active
+      description: When true, indicates that the employee's status is active in the
+        3rd-party integration.
+      type: Boolean
+    - contextPath: IAM.Vendor.brand
+      description: Name of the integration.
+      type: String
+    - contextPath: IAM.Vendor.details
+      description: Provides the raw data from the 3rd-party integration.
+      type: string
+    - contextPath: IAM.Vendor.email
+      description: The employee's email address.
+      type: String
+    - contextPath: IAM.Vendor.errorCode
+      description: HTTP error response code.
+      type: Number
+    - contextPath: IAM.Vendor.errorMessage
+      description: Reason why the API failed.
+      type: String
+    - contextPath: IAM.Vendor.id
+      description: The employee's user ID in the app.
+      type: String
+    - contextPath: IAM.Vendor.instanceName
+      description: Name of the integration instance.
+      type: string
+    - contextPath: IAM.Vendor.success
+      description: When true, indicates that the command was executed successfully.
+      type: Boolean
+    - contextPath: IAM.Vendor.username
+      description: The employee's username in the app.
+      type: String
+  - arguments: []
+    description: Retrieves a User Profile schema, which holds all of the user fields
+      within the application. Used for outgoing-mapping through the Get Schema option.
+    name: get-mapping-fields
+  dockerimage: demisto/python3:3.10.12.63474
+  ismappable: true
+  isremotesyncout: true
+  runonce: false
+  script: |
+    register_module_line('Hello IAM World', 'start', __line__())
+    ### pack version: 1.1.7
+
+
+
+    ### GENERATED CODE ###: from IAMApiModule import *
+    # This code was inserted in place of an API module.
+    register_module_line('IAMApiModule', 'start', __line__(), wrapper=-3)
+
+
+
+
+
+    class IAMErrors(object):
+        """
+        An enum class to manually handle errors in IAM integrations
+        :return: None
+        :rtype: ``None``
+        """
+        BAD_REQUEST = 400, 'Bad request - failed to perform operation'
+        USER_DOES_NOT_EXIST = 404, 'User does not exist'
+        USER_ALREADY_EXISTS = 409, 'User already exists'
+
+
+    class IAMActions(object):
+        """
+        Enum: contains all the IAM actions (e.g. get, update, create, etc.)
+        :return: None
+        :rtype: ``None``
+        """
+        GET_USER = 'get'
+        UPDATE_USER = 'update'
+        CREATE_USER = 'create'
+        DISABLE_USER = 'disable'
+        ENABLE_USER = 'enable'
+
+
+    class IAMVendorActionResult:
+        """ This class is used in IAMUserProfile class to represent actions data.
+        :return: None
+        :rtype: ``None``
+        """
+
+        def __init__(self, success=True, active=None, iden=None, username=None, email=None, error_code=None,
+                     error_message=None, details=None, skip=False, skip_reason=None, action=None, return_error=False):
+            """ Sets the outputs and readable outputs attributes according to the given arguments.
+
+            :param success: (bool) whether or not the command succeeded.
+            :param active:  (bool) whether or not the user status is active.
+            :param iden: (str) the user ID.
+            :param username: (str) the username of the user.
+            :param email:  (str) the email of the user.
+            :param error_code: (str or int) the error code of the response, if exists.
+            :param error_message: (str) the error details of the response, if exists.
+            :param details: (dict) the full response.
+            :param skip: (bool) whether or not the command is skipped.
+            :param skip_reason: (str) If the command is skipped, describes the reason.
+            :param action: (IAMActions) An enum object represents the action taken (get, update, create, etc).
+            :param return_error: (bool) Whether or not to return an error entry.
+            """
+            self._brand = demisto.callingContext.get('context', {}).get('IntegrationBrand')
+            self._instance_name = demisto.callingContext.get('context', {}).get('IntegrationInstance')
+            self._success = success
+            self._active = active
+            self._iden = iden
+            self._username = username
+            self._email = email
+            self._error_code = error_code
+            self._error_message = error_message
+            self._details = details
+            self._skip = skip
+            self._skip_reason = skip_reason
+            self._action = action
+            self._return_error = return_error
+
+        def should_return_error(self):
+            return self._return_error
+
+        def create_outputs(self):
+            """ Sets the outputs in `_outputs` attribute.
+            """
+            outputs = {
+                'brand': self._brand,
+                'instanceName': self._instance_name,
+                'action': self._action,
+                'success': self._success,
+                'active': self._active,
+                'id': self._iden,
+                'username': self._username,
+                'email': self._email,
+                'errorCode': self._error_code,
+                'errorMessage': self._error_message,
+                'details': self._details,
+                'skipped': self._skip,
+                'reason': self._skip_reason
+            }
+            return outputs
+
+        def create_readable_outputs(self, outputs):
+            """ Sets the human readable output in `_readable_output` attribute.
+
+            :param outputs: (dict) the command outputs.
+            """
+            title = self._action.title() + ' User Results ({})'.format(self._brand)
+
+            if not self._skip:
+                headers = ["brand", "instanceName", "success", "active", "id", "username",
+                           "email", "errorCode", "errorMessage", "details"]
+            else:
+                headers = ["brand", "instanceName", "skipped", "reason"]
+
+            readable_output = tableToMarkdown(
+                name=title,
+                t=outputs,
+                headers=headers,
+                removeNull=True
+            )
+
+            return readable_output
+
+
+    class IAMUserProfile:
+        """ A User Profile object class for IAM integrations.
+
+        :type _user_profile: ``str``
+        :param _user_profile: The user profile information.
+
+        :type _user_profile_delta: ``str``
+        :param _user_profile_delta: The user profile delta.
+
+        :type _vendor_action_results: ``list``
+        :param _vendor_action_results: A List of data returned from the vendor.
+
+        :return: None
+        :rtype: ``None``
+        """
+
+        DEFAULT_INCIDENT_TYPE = 'User Profile'
+        CREATE_INCIDENT_TYPE = 'User Profile - Create'
+        UPDATE_INCIDENT_TYPE = 'User Profile - Update'
+        DISABLE_INCIDENT_TYPE = 'User Profile - Disable'
+        ENABLE_INCIDENT_TYPE = 'User Profile - Enable'
+
+        def __init__(self, user_profile, mapper: str, incident_type: str, user_profile_delta=None):
+            self._user_profile = safe_load_json(user_profile)
+            # Mapping is added here for GET USER commands, where we need to map Cortex XSOAR fields to the given app fields.
+            self.mapped_user_profile = None
+            self.mapped_user_profile = self.map_object(mapper, incident_type, map_old_data=True) if \
+                mapper else self._user_profile
+            self._user_profile_delta = safe_load_json(user_profile_delta) if user_profile_delta else {}
+            self._vendor_action_results: List = []
+
+        def get_attribute(self, item, use_old_user_data=False, user_profile_data: Optional[Dict] = None):
+            user_profile = user_profile_data if user_profile_data else self._user_profile
+            if use_old_user_data and user_profile.get('olduserdata', {}).get(item):
+                return user_profile.get('olduserdata', {}).get(item)
+            return user_profile.get(item)
+
+        def to_entry(self):
+            """ Generates a XSOAR IAM entry from the data in _vendor_action_results.
+            Note: Currently we are using only the first element of the list, in the future we will support multiple results.
+
+            :return: A XSOAR entry.
+            :rtype: ``dict``
+            """
+
+            outputs = self._vendor_action_results[0].create_outputs()
+            readable_output = self._vendor_action_results[0].create_readable_outputs(outputs)
+
+            entry_context = {
+                'IAM.UserProfile(val.email && val.email == obj.email)': self._user_profile,
+                'IAM.Vendor(val.instanceName && val.instanceName == obj.instanceName && '
+                'val.email && val.email == obj.email)': outputs
+            }
+
+            return_entry = {
+                'ContentsFormat': EntryFormat.JSON,
+                'Contents': outputs,
+                'EntryContext': entry_context
+            }
+
+            if self._vendor_action_results[0].should_return_error():
+                return_entry['Type'] = EntryType.ERROR
+            else:
+                return_entry['Type'] = EntryType.NOTE
+                return_entry['HumanReadable'] = readable_output
+
+            return return_entry
+
+        def return_outputs(self):
+            return_results(self.to_entry())
+
+        def set_result(self, success=True, active=None, iden=None, username=None, email=None, error_code=None,
+                       error_message=None, details=None, skip=False, skip_reason=None, action=None, return_error=False):
+            """ Sets the outputs and readable outputs attributes according to the given arguments.
+
+            :param success: (bool) whether or not the command succeeded.
+            :param active:  (bool) whether or not the user status is active.
+            :param iden: (str) the user ID.
+            :param username: (str) the username of the user.
+            :param email:  (str) the email of the user.
+            :param error_code: (str or int) the error code of the response, if exists.
+            :param error_message: (str) the error details of the response, if exists.
+            :param details: (dict) the full response.
+            :param skip: (bool) whether or not the command is skipped.
+            :param skip_reason: (str) If the command is skipped, describes the reason.
+            :param action: (IAMActions) An enum object represents the action taken (get, update, create, etc).
+            :param return_error: (bool) Whether or not to return an error entry.
+            """
+            if not email:
+                email = self.get_attribute('email')
+
+            if not details:
+                details = self.mapped_user_profile
+
+            vendor_action_result = IAMVendorActionResult(
+                success=success,
+                active=active,
+                iden=iden,
+                username=username,
+                email=email,
+                error_code=error_code,
+                error_message=error_message if error_message else '',
+                details=details,
+                skip=skip,
+                skip_reason=skip_reason if skip_reason else '',
+                action=action,
+                return_error=return_error
+            )
+
+            self._vendor_action_results.append(vendor_action_result)
+
+        def map_object(self, mapper_name, incident_type, map_old_data: bool = False):
+            """ Returns the user data, in an application data format.
+
+            :type mapper_name: ``str``
+            :param mapper_name: The outgoing mapper from XSOAR to the application.
+
+            :type incident_type: ``str``
+            :param incident_type: The incident type used.
+
+            :type map_old_data ``bool``
+            :param map_old_data: Whether to map old data as well.
+
+            :return: the user data, in the app data format.
+            :rtype: ``dict``
+            """
+            if self.mapped_user_profile:
+                if not map_old_data:
+                    return {k: v for k, v in self.mapped_user_profile.items() if k != 'olduserdata'}
+                return self.mapped_user_profile
+            if incident_type not in [IAMUserProfile.CREATE_INCIDENT_TYPE, IAMUserProfile.UPDATE_INCIDENT_TYPE,
+                                     IAMUserProfile.DISABLE_INCIDENT_TYPE,
+                                     IAMUserProfile.ENABLE_INCIDENT_TYPE]:
+                raise DemistoException('You must provide a valid incident type to the map_object function.')
+            if not self._user_profile:
+                raise DemistoException('You must provide the user profile data.')
+            app_data = demisto.mapObject(self._user_profile, mapper_name, incident_type)
+            if map_old_data and 'olduserdata' in self._user_profile:
+                app_data['olduserdata'] = demisto.mapObject(self._user_profile.get('olduserdata', {}), mapper_name,
+                                                            incident_type)
+            return app_data
+
+        def update_with_app_data(self, app_data, mapper_name, incident_type=None):
+            """ updates the user_profile attribute according to the given app_data
+
+            :type app_data: ``dict``
+            :param app_data: The user data in app
+
+            :type mapper_name: ``str``
+            :param mapper_name: Incoming mapper name
+
+            :type incident_type: ``str``
+            :param incident_type: Optional - incident type
+            """
+            if not incident_type:
+                incident_type = IAMUserProfile.DEFAULT_INCIDENT_TYPE
+            if not isinstance(app_data, dict):
+                app_data = safe_load_json(app_data)
+            self._user_profile = demisto.mapObject(app_data, mapper_name, incident_type)
+
+        def get_first_available_iam_user_attr(self, iam_attrs: List[str], use_old_user_data: bool = False):
+            # Special treatment for ID field, because he is not included in outgoing mappers.
+            for iam_attr in iam_attrs:
+                # Special treatment for ID field, because he is not included in outgoing mappers.
+                if iam_attr == 'id':
+                    if attr_value := self.get_attribute(iam_attr, use_old_user_data):
+                        return iam_attr, attr_value
+                if attr_value := self.get_attribute(iam_attr, use_old_user_data, self.mapped_user_profile):
+                    # Special treatment for emails, as mapper maps it to a list object.
+                    if iam_attr == 'emails' and not isinstance(attr_value, str):
+                        if isinstance(attr_value, dict):
+                            attr_value = attr_value.get('value')
+                        elif isinstance(attr_value, list):
+                            if not attr_value:
+                                continue
+                            attr_value = next((email.get('value') for email in attr_value if email.get('primary', False)),
+                                              attr_value[0].get('value', ''))
+                    return iam_attr, attr_value
+
+            raise DemistoException('Your user profile argument must contain at least one attribute that is mapped into one'
+                                   f' of the following attributes in the outgoing mapper: {iam_attrs}')
+
+        def set_user_is_already_disabled(self, details):
+            self.set_result(
+                action=IAMActions.DISABLE_USER,
+                skip=True,
+                skip_reason='User is already disabled.',
+                details=details
+            )
+
+        def set_user_is_already_enabled(self, details):
+            self.set_result(
+                action=IAMActions.ENABLE_USER,
+                skip=True,
+                skip_reason='User is already enabled.',
+                details=details
+            )
+
+
+    class IAMUserAppData:
+        """ Holds user attributes retrieved from an application.
+
+        :type id: ``str``
+        :param id: The ID of the user.
+
+        :type username: ``str``
+        :param username: The username of the user.
+
+        :type is_active: ``bool``
+        :param is_active: Whether or not the user is active in the application.
+
+        :type full_data: ``dict``
+        :param full_data: The full data of the user in the application.
+
+        :return: None
+        :rtype: ``None``
+        """
+
+        def __init__(self, user_id, username, is_active, app_data, email=None):
+            self.id = user_id
+            self.username = username
+            self.is_active = is_active
+            self.full_data = app_data
+            self.email = email
+
+
+    class IAMCommand:
+        """ A class that implements the IAM CRUD commands - should be used.
+
+        :type id: ``str``
+        :param id: The ID of the user.
+
+        :type username: ``str``
+        :param username: The username of the user.
+
+        :type is_active: ``bool``
+        :param is_active: Whether or not the user is active in the application.
+
+        :type full_data: ``dict``
+        :param full_data: The full data of the user in the application.
+
+        :return: None
+        :rtype: ``None``
+        """
+
+        def __init__(self, is_create_enabled=True, is_enable_enabled=True, is_disable_enabled=True, is_update_enabled=True,
+                     create_if_not_exists=True, mapper_in=None, mapper_out=None, get_user_iam_attrs=None):
+            """ The IAMCommand c'tor
+
+            :param is_create_enabled: (bool) Whether or not to allow creating users in the application.
+            :param is_enable_enabled: (bool) Whether or not to allow enabling users in the application.
+            :param is_disable_enabled: (bool) Whether or not to allow disabling users in the application.
+            :param is_update_enabled: (bool) Whether or not to allow updating users in the application.
+            :param create_if_not_exists: (bool) Whether or not to create a user if does not exist in the application.
+            :param mapper_in: (str) Incoming mapper from the application to Cortex XSOAR
+            :param mapper_out: (str) Outgoing mapper from the Cortex XSOAR to the application
+            :param get_user_iam_attrs (List[str]): List of IAM attributes supported by integration by precedence
+                                                            order to get user details.
+            """
+            if get_user_iam_attrs is None:
+                get_user_iam_attrs = ['email']
+            self.is_create_enabled = is_create_enabled
+            self.is_enable_enabled = is_enable_enabled
+            self.is_disable_enabled = is_disable_enabled
+            self.is_update_enabled = is_update_enabled
+            self.create_if_not_exists = create_if_not_exists
+            self.mapper_in = mapper_in
+            self.mapper_out = mapper_out
+            self.get_user_iam_attrs = get_user_iam_attrs
+
+        def get_user(self, client, args):
+            """ Searches a user in the application and updates the user profile object with the data.
+                If not found, the error details will be resulted instead.
+            :param client: (Client) The integration Client object that implements a get_user() method
+            :param args: (dict) The `iam-get-user` command arguments
+            :return: (IAMUserProfile) The user profile object.
+            """
+            user_profile = IAMUserProfile(user_profile=args.get('user-profile'), mapper=self.mapper_out,
+                                          incident_type=IAMUserProfile.UPDATE_INCIDENT_TYPE)
+            try:
+                iam_attribute, iam_attribute_val = user_profile.get_first_available_iam_user_attr(self.get_user_iam_attrs)
+                user_app_data = client.get_user(iam_attribute, iam_attribute_val)
+                if not user_app_data:
+                    error_code, error_message = IAMErrors.USER_DOES_NOT_EXIST
+                    user_profile.set_result(action=IAMActions.GET_USER,
+                                            success=False,
+                                            error_code=error_code,
+                                            error_message=error_message)
+                else:
+                    user_profile.update_with_app_data(user_app_data.full_data, self.mapper_in)
+                    user_profile.set_result(
+                        action=IAMActions.GET_USER,
+                        active=user_app_data.is_active,
+                        iden=user_app_data.id,
+                        email=user_profile.get_attribute('email') or user_app_data.email,
+                        username=user_app_data.username,
+                        details=user_app_data.full_data
+                    )
+
+            except Exception as e:
+                client.handle_exception(user_profile, e, IAMActions.GET_USER)
+
+            return user_profile
+
+        def disable_user(self, client, args):
+            """ Disables a user in the application and updates the user profile object with the updated data.
+                If not found, the command will be skipped.
+
+            :param client: (Client) The integration Client object that implements get_user() and disable_user() methods
+            :param args: (dict) The `iam-disable-user` command arguments
+            :return: (IAMUserProfile) The user profile object.
+            """
+            user_profile = IAMUserProfile(user_profile=args.get('user-profile'), mapper=self.mapper_out,
+                                          incident_type=IAMUserProfile.UPDATE_INCIDENT_TYPE)
+            if not self.is_disable_enabled:
+                user_profile.set_result(action=IAMActions.DISABLE_USER,
+                                        skip=True,
+                                        skip_reason='Command is disabled.')
+            else:
+                try:
+                    iam_attribute, iam_attribute_val = user_profile.get_first_available_iam_user_attr(
+                        self.get_user_iam_attrs)
+                    user_app_data = client.get_user(iam_attribute, iam_attribute_val)
+                    if not user_app_data:
+                        _, error_message = IAMErrors.USER_DOES_NOT_EXIST
+                        user_profile.set_result(action=IAMActions.DISABLE_USER,
+                                                skip=True,
+                                                skip_reason=error_message)
+                    else:
+                        if user_app_data.is_active:
+                            disabled_user = client.disable_user(user_app_data.id)
+                            user_profile.set_result(
+                                action=IAMActions.DISABLE_USER,
+                                active=False,
+                                iden=disabled_user.id,
+                                email=user_profile.get_attribute('email') or user_app_data.email,
+                                username=disabled_user.username,
+                                details=disabled_user.full_data
+                            )
+                        else:
+                            user_profile.set_user_is_already_disabled(user_app_data.full_data)
+
+                except Exception as e:
+                    client.handle_exception(user_profile, e, IAMActions.DISABLE_USER)
+
+            return user_profile
+
+        def enable_user(self, client, args):
+            """ Enables a user in the application and updates the user profile object with the updated data.
+                If not found, the command will be skipped.
+
+            :param client: (Client) The integration Client object that implements get_user(),
+                                    enable_user() and handle_exception methods
+            :param args: (dict) The `iam-enable-user` command arguments
+            :return: (IAMUserProfile) The user profile object.
+            """
+            user_profile = IAMUserProfile(user_profile=args.get('user-profile'), mapper=self.mapper_out,
+                                          incident_type=IAMUserProfile.UPDATE_INCIDENT_TYPE)
+            if not self.is_enable_enabled:
+                user_profile.set_result(action=IAMActions.ENABLE_USER,
+                                        skip=True,
+                                        skip_reason='Command is disabled.')
+            else:
+                try:
+                    iam_attribute, iam_attribute_val = user_profile.get_first_available_iam_user_attr(
+                        self.get_user_iam_attrs)
+                    user_app_data = client.get_user(iam_attribute, iam_attribute_val)
+                    if not user_app_data:
+                        _, error_message = IAMErrors.USER_DOES_NOT_EXIST
+                        user_profile.set_result(action=IAMActions.ENABLE_USER,
+                                                skip=True,
+                                                skip_reason=error_message)
+                    else:
+                        if not user_app_data.is_active:
+                            enabled_user = client.enable_user(user_app_data.id)
+                            user_profile.set_result(
+                                action=IAMActions.ENABLE_USER,
+                                active=True,
+                                iden=enabled_user.id,
+                                email=user_profile.get_attribute('email') or user_app_data.email,
+                                username=enabled_user.username,
+                                details=enabled_user.full_data
+                            )
+                        else:
+                            user_profile.set_user_is_already_enabled(user_app_data.full_data)
+
+                except Exception as e:
+                    client.handle_exception(user_profile, e, IAMActions.ENABLE_USER)
+
+            return user_profile
+
+        def create_user(self, client, args):
+            """ Creates a user in the application and updates the user profile object with the data.
+                If a user in the app already holds the email in the given user profile, updates
+                its data with the given data.
+
+            :param client: (Client) A Client object that implements get_user(), create_user() and update_user() methods
+            :param args: (dict) The `iam-create-user` command arguments
+            :return: (IAMUserProfile) The user profile object.
+            """
+            user_profile = IAMUserProfile(user_profile=args.get('user-profile'), mapper=self.mapper_out,
+                                          incident_type=IAMUserProfile.CREATE_INCIDENT_TYPE)
+            if not self.is_create_enabled:
+                user_profile.set_result(action=IAMActions.CREATE_USER,
+                                        skip=True,
+                                        skip_reason='Command is disabled.')
+            else:
+                try:
+                    iam_attribute, iam_attribute_val = user_profile.get_first_available_iam_user_attr(
+                        self.get_user_iam_attrs)
+                    user_app_data = client.get_user(iam_attribute, iam_attribute_val)
+                    if user_app_data:
+                        # if user exists, update it
+                        user_profile = self.update_user(client, args)
+
+                    else:
+                        app_profile = user_profile.map_object(self.mapper_out, IAMUserProfile.CREATE_INCIDENT_TYPE)
+                        created_user = client.create_user(app_profile)
+                        user_profile.set_result(
+                            action=IAMActions.CREATE_USER,
+                            active=created_user.is_active,
+                            iden=created_user.id,
+                            email=user_profile.get_attribute('email') or created_user.email,
+                            username=created_user.username,
+                            details=created_user.full_data
+                        )
+
+                except Exception as e:
+                    client.handle_exception(user_profile, e, IAMActions.CREATE_USER)
+
+            return user_profile
+
+        def update_user(self, client, args):
+            """ Creates a user in the application and updates the user profile object with the data.
+                If the user is disabled and `allow-enable` argument is `true`, also enables the user.
+                If the user does not exist in the app and the `create-if-not-exist` parameter is checked, creates the user.
+
+            :param client: (Client) A Client object that implements get_user(), create_user() and update_user() methods
+            :param args: (dict) The `iam-update-user` command arguments
+            :return: (IAMUserProfile) The user profile object.
+            """
+            user_profile = IAMUserProfile(user_profile=args.get('user-profile'), mapper=self.mapper_out,
+                                          incident_type=IAMUserProfile.UPDATE_INCIDENT_TYPE)
+            allow_enable = args.get('allow-enable') == 'true' and self.is_enable_enabled
+            if not self.is_update_enabled:
+                user_profile.set_result(action=IAMActions.UPDATE_USER,
+                                        skip=True,
+                                        skip_reason='Command is disabled.')
+            else:
+                try:
+                    iam_attribute, iam_attribute_val = user_profile.get_first_available_iam_user_attr(
+                        self.get_user_iam_attrs, use_old_user_data=True)
+                    user_app_data = client.get_user(iam_attribute, iam_attribute_val)
+                    if user_app_data:
+                        app_profile = user_profile.map_object(self.mapper_out, IAMUserProfile.UPDATE_INCIDENT_TYPE)
+
+                        if allow_enable and not user_app_data.is_active:
+                            client.enable_user(user_app_data.id)
+
+                        updated_user = client.update_user(user_app_data.id, app_profile)
+
+                        if updated_user.is_active is None:
+                            updated_user.is_active = True if allow_enable else user_app_data.is_active
+
+                        user_profile.set_result(
+                            action=IAMActions.UPDATE_USER,
+                            active=updated_user.is_active,
+                            iden=updated_user.id,
+                            email=user_profile.get_attribute('email') or updated_user.email or user_app_data.email,
+                            username=updated_user.username,
+                            details=updated_user.full_data
+                        )
+                    else:
+                        if self.create_if_not_exists:
+                            user_profile = self.create_user(client, args)
+                        else:
+                            _, error_message = IAMErrors.USER_DOES_NOT_EXIST
+                            user_profile.set_result(action=IAMActions.UPDATE_USER,
+                                                    skip=True,
+                                                    skip_reason=error_message)
+
+                except Exception as e:
+                    client.handle_exception(user_profile, e, IAMActions.UPDATE_USER)
+
+            return user_profile
+
+
+    def get_first_primary_email_by_scim_schema(res: Dict):
+        return next((email.get('value') for email in res.get('emails', []) if email.get('primary')), None)
+
+    register_module_line('IAMApiModule', 'end', __line__(), wrapper=1)
+    ### END GENERATED CODE ###
+    import traceback
+    import urllib3
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()
+
+    ERROR_CODES_TO_SKIP = [
+        404
+    ]
+
+    '''CLIENT CLASS'''
+
+
+    class Client(BaseClient):
+        """ A client class that implements logic to authenticate with the application. """
+
+        def test(self):
+            """ Tests connectivity with the application. """
+
+            uri = '/test'  # TODO: replace to a valid test API endpoint
+            self._http_request(method='GET', url_suffix=uri)
+
+        def get_user(self, filter_name: str, filter_value: str) -> Optional[IAMUserAppData]:
+            """ Queries the user in the application using REST API by its email, and returns an IAMUserAppData object
+            that holds the user_id, username, is_active and app_data attributes given in the query response.
+
+            :type filter_name: ``str``
+            :param filter_name: Filter name to filter the needed user by. E.g, 'email', 'username'.
+
+            :type filter_value: ``str``
+            :param filter_value: Value of the filter.
+
+            :return: An IAMUserAppData object if user exists, None otherwise.
+            :rtype: ``Optional[IAMUserAppData]``
+            """
+            uri = '/users'  # TODO: replace to the correct GET User API endpoint
+            query_params = {filter_name: filter_value}  # TODO: make sure you pass the correct query parameters
+
+            res = self._http_request(
+                method='GET',
+                url_suffix=uri,
+                params=query_params
+            )
+
+            if res and len(res.get('result', [])) == 1:  # TODO: make sure you verify a single result was retrieved
+                user_app_data = res.get('result')[0]  # TODO: get the user_id, username, is_active and user_app_data
+
+                user_id = user_app_data.get('user_id')
+                is_active = user_app_data.get('active')
+                username = user_app_data.get('user_name')
+
+                return IAMUserAppData(user_id, username, is_active, user_app_data)
+            return None
+
+        def create_user(self, user_data: Dict[str, Any]) -> IAMUserAppData:
+            """ Creates a user in the application using REST API.
+
+            :type user_data: ``Dict[str, Any]``
+            :param user_data: User data in the application format
+
+            :return: An IAMUserAppData object that contains the data of the created user in the application.
+            :rtype: ``IAMUserAppData``
+            """
+            uri = '/users'  # TODO: replace to the correct CREATE User API endpoint
+            res = self._http_request(
+                method='POST',
+                url_suffix=uri,
+                json_data=user_data
+            )
+            user_app_data = res.get('result')  # TODO: get the user_id, username, is_active and user_app_data
+            user_id = user_app_data.get('user_id')
+            is_active = user_app_data.get('active')
+            username = user_app_data.get('user_name')
+
+            return IAMUserAppData(user_id, username, is_active, user_app_data)
+
+        def update_user(self, user_id: str, user_data: Dict[str, Any]) -> IAMUserAppData:
+            """ Updates a user in the application using REST API.
+
+            :type user_id: ``str``
+            :param user_id: ID of the user in the application
+
+            :type user_data: ``Dict[str, Any]``
+            :param user_data: User data in the application format
+
+            :return: An IAMUserAppData object that contains the data of the updated user in the application.
+            :rtype: ``IAMUserAppData``
+            """
+            uri = f'/users/{user_id}'  # TODO: replace to the correct UPDATE User API endpoint
+            res = self._http_request(
+                method='PATCH',
+                url_suffix=uri,
+                json_data=user_data
+            )
+
+            user_app_data = res.get('result')
+            user_id = user_app_data.get('user_id')
+            is_active = user_app_data.get('active')
+            username = user_app_data.get('user_name')
+
+            return IAMUserAppData(user_id, username, is_active, user_app_data)
+
+        def enable_user(self, user_id: str) -> IAMUserAppData:
+            """ Enables a user in the application using REST API.
+
+            :type user_id: ``str``
+            :param user_id: ID of the user in the application
+
+            :return: An IAMUserAppData object that contains the data of the user in the application.
+            :rtype: ``IAMUserAppData``
+            """
+            # Note: ENABLE user API endpoints might vary between different APIs.
+            # In this example, we use the same endpoint as in update_user() method,
+            # But other APIs might have a unique endpoint for this request.
+
+            user_data = {'active': True}  # TODO: make sure you pass the correct query parameters
+            return self.update_user(user_id, user_data)
+
+        def disable_user(self, user_id: str) -> IAMUserAppData:
+            """ Disables a user in the application using REST API.
+
+            :type user_id: ``str``
+            :param user_id: ID of the user in the application
+
+            :return: An IAMUserAppData object that contains the data of the user in the application.
+            :rtype: ``IAMUserAppData``
+            """
+            # Note: DISABLE user API endpoints might vary between different APIs.
+            # In this example, we use the same endpoint as in update_user() method,
+            # But other APIs might have a unique endpoint for this request.
+
+            user_data = {'active': False}  # TODO: make sure you pass the correct query parameters
+            return self.update_user(user_id, user_data)
+
+        def get_app_fields(self) -> Dict[str, Any]:
+            """ Gets a dictionary of the user schema fields in the application and their description.
+
+            :return: The user schema fields dictionary
+            :rtype: ``Dict[str, str]``
+            """
+
+            uri = '/schema'  # TODO: replace to the correct GET Schema API endpoint
+            res = self._http_request(
+                method='GET',
+                url_suffix=uri
+            )
+
+            fields = res.get('result', [])
+            return {field.get('name'): field.get('description') for field in fields}
+
+        @staticmethod
+        def handle_exception(user_profile: IAMUserProfile,
+                             e: Union[DemistoException, Exception],
+                             action: IAMActions):
+            """ Handles failed responses from the application API by setting the User Profile object with the result.
+                The result entity should contain the following data:
+                1. action        (``IAMActions``)       The failed action                       Required
+                2. success       (``bool``)             The success status                      Optional (by default, True)
+                3. skip          (``bool``)             Whether or not the command was skipped  Optional (by default, False)
+                3. skip_reason   (``str``)              Skip reason                             Optional (by default, None)
+                4. error_code    (``Union[str, int]``)  HTTP error code                         Optional (by default, None)
+                5. error_message (``str``)              The error description                   Optional (by default, None)
+
+                Note: This is the place to determine how to handle specific edge cases from the API, e.g.,
+                when a DISABLE action was made on a user which is already disabled and therefore we can't
+                perform another DISABLE action.
+
+            :type user_profile: ``IAMUserProfile``
+            :param user_profile: The user profile object
+
+            :type e: ``Union[DemistoException, Exception]``
+            :param e: The exception object - if type is DemistoException, holds the response json object (`res` attribute)
+
+            :type action: ``IAMActions``
+            :param action: An enum represents the current action (GET, UPDATE, CREATE, DISABLE or ENABLE)
+            """
+            if isinstance(e, DemistoException) and e.res is not None:
+                error_code = e.res.status_code
+
+                if action == IAMActions.DISABLE_USER and error_code in ERROR_CODES_TO_SKIP:
+                    skip_message = 'Users is already disabled or does not exist in the system.'
+                    user_profile.set_result(action=action,
+                                            skip=True,
+                                            skip_reason=skip_message)
+
+                try:
+                    resp = e.res.json()
+                    error_message = get_error_details(resp)
+                except ValueError:
+                    error_message = str(e)
+            else:
+                error_code = ''
+                error_message = str(e)
+
+            user_profile.set_result(action=action,
+                                    success=False,
+                                    error_code=error_code,
+                                    error_message=error_message)
+
+            demisto.error(traceback.format_exc())
+
+
+    '''HELPER FUNCTIONS'''
+
+
+    def get_error_details(res: Dict[str, Any]) -> str:
+        """ Parses the error details retrieved from the application and outputs the resulted string.
+
+        :type res: ``Dict[str, Any]``
+        :param res: The error data retrieved from the application.
+
+        :return: The parsed error details.
+        :rtype: ``str``
+        """
+        message = res.get('error', {}).get('message')  # TODO: make sure you parse the error details correctly
+        details = res.get('error', {}).get('detail')
+        return f'{message}: {details}'
+
+
+    '''COMMAND FUNCTIONS'''
+
+
+    def test_module(client: Client):
+        """ Tests connectivity with the client. """
+
+        client.test()
+        return_results('ok')
+
+
+    def get_mapping_fields(client: Client) -> GetMappingFieldsResponse:
+        """ Creates and returns a GetMappingFieldsResponse object of the user schema in the application
+
+        :param client: (Client) The integration Client object that implements a get_app_fields() method
+        :return: (GetMappingFieldsResponse) An object that represents the user schema
+        """
+        app_fields = client.get_app_fields()
+        incident_type_scheme = SchemeTypeMapping(type_name=IAMUserProfile.DEFAULT_INCIDENT_TYPE)
+
+        for field, description in app_fields.items():
+            incident_type_scheme.add_field(field, description)
+
+        return GetMappingFieldsResponse([incident_type_scheme])
+
+
+    def main():
+        user_profile = None
+        params = demisto.params()
+        base_url = urljoin(params['url'].strip('/'), '/api/now/')
+        username = params.get('credentials', {}).get('identifier')
+        password = params.get('credentials', {}).get('password')
+        mapper_in = params.get('mapper_in')
+        mapper_out = params.get('mapper_out')
+        verify_certificate = not params.get('insecure', False)
+        proxy = params.get('proxy', False)
+        command = demisto.command()
+        args = demisto.args()
+
+        is_create_enabled = params.get("create_user_enabled")
+        is_enable_enabled = params.get("enable_user_enabled")
+        is_disable_enabled = params.get("disable_user_enabled")
+        is_update_enabled = params.get("update_user_enabled")
+        create_if_not_exists = params.get("create_if_not_exists")
+
+        iam_command = IAMCommand(is_create_enabled, is_enable_enabled, is_disable_enabled, is_update_enabled,
+                                 create_if_not_exists, mapper_in, mapper_out,
+                                 get_user_iam_attrs=['id', 'username',
+                                                     'email'])  # TODO: fill here the app attributes to search users by
+
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+
+        client = Client(
+            base_url=base_url,
+            verify=verify_certificate,
+            proxy=proxy,
+            headers=headers,
+            ok_codes=(200, 201),
+            auth=(username, password)
+        )
+
+        demisto.debug(f'Command being called is {command}')
+
+        '''CRUD commands'''
+
+        if command == 'iam-get-user':
+            user_profile = iam_command.get_user(client, args)
+
+        elif command == 'iam-create-user':
+            user_profile = iam_command.create_user(client, args)
+
+        elif command == 'iam-update-user':
+            user_profile = iam_command.update_user(client, args)
+
+        elif command == 'iam-disable-user':
+            user_profile = iam_command.disable_user(client, args)
+
+        if user_profile:
+            return_results(user_profile)
+
+        '''non-CRUD commands'''
+
+        try:
+            if command == 'test-module':
+                test_module(client)
+
+            elif command == 'get-mapping-fields':
+                return_results(get_mapping_fields(client))
+
+        except Exception:
+            # For any other integration command exception, return an error
+            return_error(f'Failed to execute {command} command.')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('Hello IAM World', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
