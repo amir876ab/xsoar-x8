@@ -1,0 +1,83 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Maps a user data to a User Profile data.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "User Profile - HelloIAMWorld (Incoming)",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.1.7",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"User Profile": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"City": {
+					"simple": "city"
+				},
+				"Cost Center": {
+					"simple": "cost_center"
+				},
+				"Country Name": {
+					"simple": "country"
+				},
+				"Department": {
+					"simple": "department"
+				},
+				"Display Name": {
+					"simple": "name"
+				},
+				"Email": {
+					"simple": "email"
+				},
+				"Employee ID": {
+					"simple": "employee_number"
+				},
+				"Given Name": {
+					"simple": "first_name"
+				},
+				"Manager Name": {
+					"simple": "manager"
+				},
+				"Mobile Phone": {
+					"simple": "mobile_phone"
+				},
+				"State": {
+					"simple": "state"
+				},
+				"Street Address": {
+					"simple": "street"
+				},
+				"Surname": {
+					"simple": "last_name"
+				},
+				"Title": {
+					"simple": "title"
+				},
+				"Zip Code": {
+					"simple": "zip"
+				}
+			}
+		}
+	},
+	"name": "User Profile - HelloIAMWorld (Incoming)",
+	"nameRaw": "User Profile - HelloIAMWorld (Incoming)",
+	"packID": "HelloIAMWorld",
+	"packName": "Hello World IAM",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
