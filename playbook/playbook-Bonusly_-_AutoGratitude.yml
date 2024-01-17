@@ -1,0 +1,319 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.14
+    packID: Bonusly
+    packName: Bonusly
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: AutoGratitude is a playbook to give back a positive gratitude to security
+  engineers and developers when they successfully complete an SLA
+id: Bonusly - AutoGratitude
+inputs:
+- description: "Create a Lookup JSON List In The Lists Section Containing XSOAR Email
+    To Bonusly User\n\n{\n\"xsoar_user1@your_company.com\":\"@bonusly_user1\", \n\"xsoar_user2@paloaltonetworks.com\":\"@bonusly_user2\"\n}"
+  key: BonuslyLookupList
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: ${lists.Bonusly - Email To User Lookup}
+- description: 'Add a giver email or set this before hand. '
+  key: GiverEmail
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: bonusly_bot@companyname.com
+- description: "Add a Bonusly reason like \nGreat job completing the incident on time
+    +10 #hashtag "
+  key: GiverReason
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: 'Great job completing the incident on time +10 #collaboration '
+- description: 'If Check SLA is set to true then it will first see if the owner has
+    met the SLA agreement. '
+  key: CheckSLA
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "false"
+name: Bonusly - AutoGratitude
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 84151b03-0828-43e2-8838-bd8fc13f7af3
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 84151b03-0828-43e2-8838-bd8fc13f7af3
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 50
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.CheckSLA
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 39037e26-3452-4fac-88e2-034037ea47b0
+      iscommand: false
+      name: Check SLA
+      type: condition
+      version: -1
+    taskid: 39037e26-3452-4fac-88e2-034037ea47b0
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 195
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.detectionsla.breachTriggered
+          operator: isEqualString
+          right:
+            value:
+              simple: "false"
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.remediationsla.breachTriggered
+          operator: isEqualString
+          right:
+            value:
+              simple: "false"
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1ba35c08-1089-4c27-8f6e-68d0801c7168
+      iscommand: false
+      name: Did they meet the SLA Times?
+      type: condition
+      version: -1
+    taskid: 1ba35c08-1089-4c27-8f6e-68d0801c7168
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 570,
+          "y": 370
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: '* Add Tasks For Review'
+      id: 91f3d416-125b-4a76-888f-7669433b3874
+      iscommand: false
+      name: Pause & Review Why SLA Was Breached
+      type: regular
+      version: -1
+    taskid: 91f3d416-125b-4a76-888f-7669433b3874
+    timertriggers:
+    - action: start
+      fieldname: timetoassignment
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 592.5,
+          "y": 720
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3811d137-a7c0-4564-8e65-635b2c0f3009
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 3811d137-a7c0-4564-8e65-635b2c0f3009
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": 895
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      json:
+        simple: ${lists.Bonusly - Email To User Lookup}
+      owner:
+        simple: ${incident.owner}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'This script will get the owner of the incidents email address
+        and then return the Bonusly username '
+      id: 5b2ba623-f2be-4473-819a-2666eef274bf
+      iscommand: false
+      name: Convert Owner Email To Bonusly User
+      script: IncOwnerToBonuslyUser
+      type: regular
+      version: -1
+    taskid: 5b2ba623-f2be-4473-819a-2666eef274bf
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 500
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      giver-email:
+        simple: ${inputs.GiverEmail}
+      reason:
+        simple: ${inputs.GiverReason} ${BonuslyUser.[0]}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Creates a bonusly bonus
+      id: cdd91c30-4f40-4fea-8041-5830c39472db
+      iscommand: true
+      name: Bonusly - Create Bonus
+      script: '|||bonusly-create-bonus'
+      type: regular
+      version: -1
+    taskid: cdd91c30-4f40-4fea-8041-5830c39472db
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 710
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 910,
+        "width": 810,
+        "x": 162.5,
+        "y": 50
+      }
+    }
+  }
