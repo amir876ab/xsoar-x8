@@ -1,0 +1,419 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Cloud Services"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"incidentfield",
+		"incidenttype",
+		"classifier",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "Classifies Google Drive Incidents.",
+				"id": "Google Drive",
+				"name": "Google Drive - Classifier"
+			},
+			{
+				"description": "Maps incoming Google Drive incident fields.",
+				"id": "Google Drive-mapper",
+				"name": "Google Drive - Incoming Mapper"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "The added parent object(s).",
+				"name": "Google Drive Activity Added Parents",
+				"type": "grid"
+			},
+			{
+				"description": "True if this is the user making the request.",
+				"name": "Google Drive Activity Assigned Current User",
+				"type": "boolean"
+			},
+			{
+				"description": "Indicates the object originated externally and was uploaded to Drive.",
+				"name": "Google Drive Activity Uploaded",
+				"type": "boolean"
+			},
+			{
+				"description": "",
+				"name": "Google Drive Activity Identified As",
+				"type": "shortText"
+			},
+			{
+				"description": "The sub-type of this event.",
+				"name": "Google Drive Activity Assignment Subtype",
+				"type": "shortText"
+			},
+			{
+				"description": "A user whose account has since been deleted.",
+				"name": "Google Drive Activity Assigned Deleted User",
+				"type": "boolean"
+			},
+			{
+				"description": "A Drive item which is a file.",
+				"name": "Google Drive Activity Copied Item Is File",
+				"type": "boolean"
+			},
+			{
+				"description": "The removed parent object(s).",
+				"name": "Google Drive Activity Removed Parents",
+				"type": "grid"
+			},
+			{
+				"description": "The target Drive item. The format is \"items/ITEM_ID\".",
+				"name": "Google Drive Activity Copied Item Name",
+				"type": "shortText"
+			},
+			{
+				"description": "The type of delete action taken.",
+				"name": "Google Drive Activity Delete Type",
+				"type": "shortText"
+			},
+			{
+				"description": "Indicates the object was newly created (e.g. as a blank document), not derived from a Drive object or external object.",
+				"name": "Google Drive Activity Created New",
+				"type": "boolean"
+			},
+			{
+				"description": "The set of permissions added by this change.",
+				"name": "Google Drive Activity Added Permissions",
+				"type": "grid"
+			},
+			{
+				"description": "The title of the shared drive.",
+				"name": "Google Drive Activity Copied Shared Drive Title",
+				"type": "shortText"
+			},
+			{
+				"description": "The sub-type of this event.",
+				"name": "Google Drive Activity Suggestion Subtype",
+				"type": "shortText"
+			},
+			{
+				"description": "The reference type corresponding to this event.",
+				"name": "Google Drive Activity Reference Type",
+				"type": "shortText"
+			},
+			{
+				"description": "Users who are mentioned in this comment.",
+				"name": "Google Drive Activity Mentioned Users",
+				"type": "grid"
+			},
+			{
+				"description": "The new title of the drive object.",
+				"name": "Google Drive Activity New Title",
+				"type": "shortText"
+			},
+			{
+				"description": "The type of a Drive folder.",
+				"name": "Google Drive Activity Copied Folder Type",
+				"type": "shortText"
+			},
+			{
+				"description": "The type of Data Leak Prevention (DLP) change.",
+				"name": "Google Drive Activity DLP Change Type",
+				"type": "shortText"
+			},
+			{
+				"description": "The user to whom the comment was assigned.",
+				"name": "Google Drive Activity Assigned Person Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Google Drive Activity Targets",
+				"type": "grid"
+			},
+			{
+				"description": "The title of the Drive item.",
+				"name": "Google Drive Activity Copied Item Title",
+				"type": "shortText"
+			},
+			{
+				"description": "The set of permissions removed by this change.",
+				"name": "Google Drive Activity Removed Permissions",
+				"type": "grid"
+			},
+			{
+				"description": "The sub-type of this event.",
+				"name": "Google Drive Activity Post Subtype",
+				"type": "shortText"
+			},
+			{
+				"description": "The previous title of the drive object.",
+				"name": "Google Drive Activity Old Title",
+				"type": "shortText"
+			},
+			{
+				"description": "The type of restore action taken.",
+				"name": "Google Drive Activity Restore Type",
+				"type": "shortText"
+			},
+			{
+				"description": "The resource name of the shared drive.",
+				"name": "Google Drive Activity Copied Shared Drive Name",
+				"type": "shortText"
+			},
+			{
+				"description": "The set of changes made to restrictions.",
+				"name": "Google Drive Activity Restriction Changes",
+				"type": "grid"
+			},
+			{
+				"description": "A user about whom nothing is currently known.",
+				"name": "Google Drive Activity Assigned Unknown User",
+				"type": "boolean"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Google Drive Activity",
+				"playbook": "",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "IT Services",
+				"commands": [
+					{
+						"description": "Deprecated. Use the 'google-drive-drive-create' command instead.",
+						"name": "google-drive-create"
+					},
+					{
+						"description": "Creates a new Team Drive. The name argument specifies the name of the Team Drive. The specified user will be the first organizer.\nThis shared drive/team drive feature is available only with G Suite Enterprise, Enterprise for Education, G Suite Essentials, Business, Education, and Nonprofits edition.",
+						"name": "google-drive-drive-create"
+					},
+					{
+						"description": "Lists the changes for a user or shared drive.",
+						"name": "google-drive-changes-list"
+					},
+					{
+						"description": "Query past activity in Google Drive.",
+						"name": "google-drive-activity-list"
+					},
+					{
+						"description": "Lists the user's shared drives.",
+						"name": "google-drive-drives-list"
+					},
+					{
+						"description": "Gets a user shared drives.",
+						"name": "google-drive-drive-get"
+					},
+					{
+						"description": "Deletes a shared drive.",
+						"name": "google-drive-drive-delete"
+					},
+					{
+						"description": "Lists the user's shared drives.",
+						"name": "google-drive-files-list"
+					},
+					{
+						"description": "Get a single file.",
+						"name": "google-drive-file-get"
+					},
+					{
+						"description": "Creates a new file.",
+						"name": "google-drive-file-upload"
+					},
+					{
+						"description": "Download a single file.",
+						"name": "google-drive-file-download"
+					},
+					{
+						"description": "Updates a file's content.",
+						"name": "google-drive-file-replace-existing"
+					},
+					{
+						"description": "Permanently deletes a file owned by the user without moving it to the trash. If the file belongs to a shared drive the user must be an organizer on the parent. If the target is a folder, all descendants owned by the user are also deleted.",
+						"name": "google-drive-file-delete"
+					},
+					{
+						"description": "Lists a file's or shared drive's permissions.",
+						"name": "google-drive-file-permissions-list"
+					},
+					{
+						"description": "Creates a permission for a file or shared drive.",
+						"name": "google-drive-file-permission-create"
+					},
+					{
+						"description": "Updates a permission with patch semantics.",
+						"name": "google-drive-file-permission-update"
+					},
+					{
+						"description": "Delete a permission.",
+						"name": "google-drive-file-permission-delete"
+					},
+					{
+						"description": "Modify labels to file.",
+						"name": "google-drive-file-modify-label"
+					},
+					{
+						"description": "Google Drive get labels.",
+						"name": "google-drive-get-labels"
+					},
+					{
+						"description": "Modify labels to file.",
+						"name": "google-drive-get-file-labels"
+					},
+					{
+						"description": "Make a copy of a Google Drive file.",
+						"name": "google-drive-file-copy"
+					}
+				],
+				"description": "Google Drive allows users to store files on their servers, synchronize files across devices, and share files. This integration helps you to create a new drive, query past activity, and view change logs performed by the users.",
+				"id": "GoogleDrive",
+				"name": "Google Drive"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "Google Drive Activity Layout",
+				"name": "Google Drive Activity"
+			}
+		],
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "0001-01-01T00:00:00Z",
+	"currentVersion": "1.2.45",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.37",
+			"name": "Base"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.87",
+			"name": "Common Types"
+		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.32",
+			"name": "Filters And Transformers"
+		},
+		"GoogleChronicleBackstory": {
+			"author": "Chronicle",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.0.5",
+			"name": "Chronicle"
+		},
+		"NIST": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.9",
+			"name": "NIST"
+		},
+		"Phishing": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.5.26",
+			"name": "Phishing"
+		},
+		"RiskIQDigitalFootprint": {
+			"author": "RiskIQ",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.12",
+			"name": "RiskIQ Digital Footprint"
+		},
+		"SANS": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.5",
+			"name": "SANS"
+		}
+	},
+	"deprecated": false,
+	"description": "Google Drive allows users to store files on their servers, synchronize files across devices, and share files. This integration helps you to create a new drive, query past activity and view change logs performed by the users, as well as list drives and files, and manage their permissions.",
+	"downloads": 1854,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "GoogleDrive",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/GoogleDrive/GoogleDrive_image.png",
+			"name": "Google Drive"
+		},
+		{
+			"imagePath": "content/packs/GoogleChronicleBackstory/GoogleChronicleBackstory_image.png",
+			"name": "Chronicle"
+		},
+		{
+			"imagePath": "content/packs/RiskIQDigitalFootprint/RiskIQDigitalFootprint_image.png",
+			"name": "RiskIQ Digital Footprint"
+		}
+	],
+	"itemVersion": "1.2.45",
+	"keywords": [],
+	"legacy": true,
+	"modules": null,
+	"name": "Google Drive",
+	"packID": "GoogleDrive",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "# Google Drive\nThis pack includes XSIAM content.\n\nTo configure the ingestion of data from Google Workspace, see the information [here](https://docs.paloaltonetworks.com/cortex/cortex-xdr/cortex-xdr-pro-admin/external-data-ingestion/ingest-authentication-logs-and-data/ingest-logs-and-data-from-google-workspace).\n\n* Pay attention: Timestamp parsing is available for UTC (+0000) timezone of the following formats:\n  * %Y-%m-%dT%H:%M:%SZ - UTC (+0000) format.\n  * %Y-%m-%dT%H:%M:E3SZ - UTC (+0000) format with 3 digits of fractional precision.",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-10-15T19:22:18Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6608983",
+	"videos": []
+}
