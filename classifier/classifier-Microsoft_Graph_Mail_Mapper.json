@@ -1,0 +1,316 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Maps incoming Microsoft Graph Mail phishing email message fields.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Microsoft Graph Mail Mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.5.19",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 1,
+	"mapping": {
+		"Phishing": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Attachment Count": {
+					"complex": {
+						"filters": [],
+						"root": "Attachments",
+						"transformers": [
+							{
+								"operator": "count"
+							}
+						]
+					}
+				},
+				"Attachment Extension": {
+					"complex": {
+						"accessor": "name",
+						"filters": [],
+						"root": "Attachments",
+						"transformers": [
+							{
+								"args": {
+									"separator": {
+										"isContext": false,
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "join"
+							},
+							{
+								"args": {
+									"from": {
+										"isContext": false,
+										"value": {
+											"simple": "."
+										}
+									}
+								},
+								"operator": "substringFrom"
+							}
+						]
+					}
+				},
+				"Attachment Name": {
+					"complex": {
+						"accessor": "name",
+						"filters": [],
+						"root": "Attachments",
+						"transformers": [
+							{
+								"args": {
+									"separator": {
+										"isContext": false,
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "join"
+							}
+						]
+					}
+				},
+				"Categories": {
+					"complex": {
+						"filters": [],
+						"root": "Categories",
+						"transformers": [
+							{
+								"args": {
+									"separator": {
+										"isContext": false,
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "join"
+							}
+						]
+					}
+				},
+				"Email Body Format": {
+					"simple": "BodyType"
+				},
+				"Email CC": {
+					"complex": {
+						"filters": [],
+						"root": "Cc",
+						"transformers": [
+							{
+								"args": {
+									"separator": {
+										"isContext": false,
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "join"
+							}
+						]
+					}
+				},
+				"Email From": {
+					"simple": "From"
+				},
+				"Email HTML": {
+					"simple": "Body"
+				},
+				"Email Headers": {
+					"complex": {
+						"filters": [],
+						"root": " ",
+						"transformers": []
+					}
+				},
+				"Email Message ID": {
+					"complex": {
+						"accessor": "value",
+						"filters": [
+							[
+								{
+									"left": {
+										"isContext": true,
+										"value": {
+											"simple": "Headers.name"
+										}
+									},
+									"operator": "isEqualString",
+									"right": {
+										"isContext": false,
+										"value": {
+											"simple": "Message-ID"
+										}
+									}
+								}
+							]
+						],
+						"root": "Headers",
+						"transformers": []
+					}
+				},
+				"Email Received": {
+					"simple": "received_representing.email_address"
+				},
+				"Email Reply To": {
+					"complex": {
+						"accessor": "value",
+						"filters": [
+							[
+								{
+									"left": {
+										"isContext": true,
+										"value": {
+											"simple": "Headers.name"
+										}
+									},
+									"operator": "isEqualString",
+									"right": {
+										"isContext": false,
+										"value": {
+											"simple": "Return-Path"
+										}
+									}
+								}
+							]
+						],
+						"root": "Headers",
+						"transformers": []
+					}
+				},
+				"Email Return Path": {
+					"complex": {
+						"accessor": "value",
+						"filters": [
+							[
+								{
+									"left": {
+										"isContext": true,
+										"value": {
+											"simple": "Headers.name"
+										}
+									},
+									"operator": "isEqualString",
+									"right": {
+										"isContext": false,
+										"value": {
+											"simple": "Return-Path"
+										}
+									}
+								}
+							]
+						],
+						"root": "Headers",
+						"transformers": []
+					}
+				},
+				"Email Sender IP": {
+					"complex": {
+						"accessor": "value",
+						"filters": [
+							[
+								{
+									"left": {
+										"isContext": true,
+										"value": {
+											"simple": "headers.name"
+										}
+									},
+									"operator": "isEqualString",
+									"right": {
+										"isContext": false,
+										"value": {
+											"simple": "X-Originating-IP"
+										}
+									}
+								}
+							]
+						],
+						"root": "headers",
+						"transformers": [
+							{
+								"args": {
+									"chars": {
+										"isContext": false,
+										"value": {
+											"simple": "[]"
+										}
+									}
+								},
+								"operator": "StripChars"
+							}
+						]
+					}
+				},
+				"Email Size": {
+					"simple": "size"
+				},
+				"Email Subject": {
+					"simple": "Subject"
+				},
+				"Email To": {
+					"complex": {
+						"filters": [],
+						"root": "To",
+						"transformers": [
+							{
+								"args": {
+									"separator": {
+										"isContext": false,
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "join"
+							}
+						]
+					}
+				},
+				"Email To Count": {
+					"complex": {
+						"filters": [],
+						"root": "To",
+						"transformers": [
+							{
+								"operator": "count"
+							}
+						]
+					}
+				},
+				"Phishing Reporter Email Headers": {
+					"simple": "Headers"
+				}
+			}
+		},
+		"dbot_classification_incident_type_all": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {}
+		}
+	},
+	"name": "Microsoft Graph Mail Mapper",
+	"nameRaw": "Microsoft Graph Mail Mapper",
+	"packID": "MicrosoftGraphMail",
+	"packName": "Microsoft Graph Mail",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
