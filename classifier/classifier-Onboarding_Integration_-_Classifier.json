@@ -1,0 +1,32 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "Phishing",
+	"definitionId": "",
+	"description": "Classifies Onboarding integration incidents.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "OnboardingIntegration",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.1.2",
+	"keyTypeMap": {},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Onboarding Integration - Classifier",
+	"nameRaw": "Onboarding Integration - Classifier",
+	"packID": "OnboardingIntegration",
+	"packName": "OnboardingIntegration",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
