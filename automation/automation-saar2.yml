@@ -1,0 +1,121 @@
+commonfields:
+  id: e27682f0-44a1-46f3-86c6-85ae04344476
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/powershell:7.1.4.24032
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: saar2
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  """Base Script for Cortex XSOAR
+  This is an empty script with some basic structure according
+  to the code conventions.
+  MAKE SURE YOU REVIEW/REPLACE ALL THE COMMENTS MARKED AS "TODO"
+  """
+
+  from typing import Dict, Any
+  import traceback
+
+
+  ''' STANDALONE FUNCTION '''
+
+
+  # TODO: REMOVE the following dummy function:
+  def basescript_dummy(dummy: str) -> Dict[str, str]:
+      """Returns a simple python dict with the information provided
+      in the input (dummy).
+      :type dummy: ``str``
+      :param dummy: string to add in the dummy dict that is returned
+      :return: dict as {"dummy": dummy}
+      :rtype: ``str``
+      """
+
+      API = "-----BEGIN RSA PRIVATE KEY-----
+  MIIEogIBAAKCAQEA8R05fg0MLUjR+3bNNY2QcboIWXgfIXKfJCy+XvdeyilwsKl0
+  p0j6aatnHi3lA5toiocblJwcIIuFEJPbgNZ+LpJZ8gaBcCucSNpnknjDqOCzmMnh
+  z5+dRgP+SJcsPKbcgc/Bdkezh76+RO9LSAsNu6Z802rPz7QKDvuPhVlQ8eaak/Hk
+  P7V+EfBHOBB91GY4cUulh/fcOMNA3wBGE5N18+DjnigToXaIf9bOpnUuiM+7ttrJ
+  8FsPB2PCXO4WWxzdl6BC5Zv3GnNysNsNkcMr5Tz6InnjNRaBI/oNnpKJRcHG7wmA
+  lYSI/pM4BHQiSYdrWpKqdPY28GT7ZgJ5byxP8QIDAQABAoIBAC5O6ZrfEKal5MaC
+  M7mEXeipzS651mjLJeuBuHJu2kLDoMQdV61FY+rlo6F1ORXvRC3O8yogrXpGsaDU
+  dQUSrRtuul20iCmuBo8re1bzYMjPl07R/0+sHT20SKNSfYmMlq9L4qE/9igtJ0gA
+  GZpVnSacPD8ytYTz1Da6c/8tf1FmFHqlUGhjjMPKbKlcP9AsaTdC6mF9p+0b6rkR
+  LKm06XcgKJLKmlfLfqbqb0IEP900hPdskgy2QDk8c7yvuYVKF+pWIEAir/rxOcl1
+  SNvvsyINXhyOWBqtNxbdl205l2jl7fec+DZgA1N4ImFNFJwgnTvH/OHPhHwlLzkH
+  uMu22lECgYEA+/g+6wcbAEAu0yTg5VPc1IBAodsubzrfkGqp5AGG+TvVCBH5wIGY
+  iResQOafq6e1dK4ziXbDQSJwANVaJcS/gaELQx2d7sXf5CzFNam/Ed5NRF7bAJTi
+  LqEmbDrbHHYtKnawVSBqRgu9XhJWDJg7ANe1epO6AbCUiU4kf/zDpyUCgYEA9PiH
+  KdYGHpFHad6Sekp4+CeMIUy/eMXCLMifParHX6ePOtBaEelNbEUurcsm+BnRms8a
+  3cRKPBk1TqzzV92ePBWJSuf3MkvOa/JwtYekH4YFaGXz7V0z+zd/5B+p6EvCmWNR
+  1MSZ2cTHnhS0LywjXaEARxcQG7YHK0AELG0wYd0CgYAkKMr2tY1VauCNYoR3xKIz
+  SLh9wdOXGM7OjdAVrXZuO/zlbJb33mFCg0gwBCiz3Jx4wysYNhftOAD0zaljNCn7
+  c14HYq+wfWsU9qvSeKq36LwT7LznB3ayFGRMMeIR4o+2wVOq070MklC5uE3q/smw
+  5EPh9GNELNAUKEeqql51lQKBgEz9UtWGKzQuKoiOZ/DBORWcsEDC8yZM2MLkZo+l
+  /bUFX1F3q+cXMLsHXy1FvMCatLJ3xpTOHRqYPZW1a2FBCHsPta9yCdGn2383mc6j
+  i6RQpaBy8l+2PCEHB0212dtk/ArjGRPKmiPD4YzAKwTsVU0WzZSKHgjng4dHPkiM
+  JHmNAoGASSrvj8AxpFw3Pnx3xEczWYI4CjwN8dQpFsZVIpu/xQV1jBoGGhXwfd6b
+  GWvLtqxjr7kuccEyKy82NE8mvh1Z7PytqB3oausDSUT4Xzqo/lOAWloCfa4nxn5e
+  c6iSiubS3NbPRHzhcQ+g11M2FW1Hd/hVPQ3O2+vEihgBLL6b9Lg=
+  -----END RSA PRIVATE KEY-----"
+      return {"dummy": dummy}
+  # TODO: ADD HERE THE FUNCTIONS TO INTERACT WITH YOUR PRODUCT API
+
+
+  ''' COMMAND FUNCTION '''
+
+
+  # TODO: REMOVE the following dummy command function
+  def basescript_dummy_command(args: Dict[str, Any]) -> CommandResults:
+
+      dummy = args.get('dummy', 'example dummy')
+
+      if not dummy:
+          raise ValueError('dummy not specified')
+
+      # Call the standalone function and get the raw response
+      result = basescript_dummy(dummy)
+
+      return CommandResults(
+          outputs_prefix='BaseScript',
+          outputs_key_field='',
+          outputs=result,
+      )
+  # TODO: ADD additional command functions that translate Cortex XSOAR inputs/outputs
+
+
+  ''' MAIN FUNCTION '''
+
+
+  def main():
+      try:
+          # TODO: replace the invoked command function with yours
+          return_results(basescript_dummy_command(demisto.args()))
+      except Exception as ex:
+          demisto.error(traceback.format_exc())  # print the traceback
+          return_error(f'Failed to execute BaseScript. Error: {str(ex)}')
+
+
+  ''' ENTRY POINT '''
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
