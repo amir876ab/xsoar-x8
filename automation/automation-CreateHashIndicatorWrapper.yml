@@ -1,0 +1,415 @@
+args:
+- description: Array of SHA256 hashes.
+  isArray: true
+  name: hash
+  required: true
+- auto: PREDEFINED
+  description: The action to apply to the hash - allow or block.
+  name: action
+  predefined:
+  - allow
+  - block
+  required: true
+comment: This is a wrapper to allow or block hash lists from Cortex XDR, MSDE or CrowdStrike.
+commonfields:
+  id: CreateHashIndicatorWrapper
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.4.9
+    packID: Malware
+    packName: Malware Core
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+engineinfo: {}
+mainengineinfo: {}
+name: CreateHashIndicatorWrapper
+outputs:
+- contextPath: MicrosoftATP.Indicators.id
+  description: Created by the system when the indicator is ingested. Generated GUID/unique
+    identifier.
+  type: String
+- contextPath: MicrosoftATP.Indicators.action
+  description: 'The action to apply if the indicator is matched within the targetProduct
+    security tool. Possible values: "unknown", "allow", "block", or "alert".'
+  type: String
+- contextPath: MicrosoftATP.Indicators.additionalInformation
+  description: A catchall area where extra data from the indicator not covered by
+    the other indicator properties may be placed. Data placed into additionalInformation
+    is typically not utilized by the targetProduct security tool.
+  type: String
+- contextPath: MicrosoftATP.Indicators.azureTenantId
+  description: Stamped by the system when the indicator is ingested. The Azure Active
+    Directory submitting client tenant ID.
+  type: String
+- contextPath: MicrosoftATP.Indicators.confidence
+  description: An integer representing confidence the indicator data accurately identifies
+    malicious behavior. Possible values are 0 – 100, with 100 being the highest.
+  type: Number
+- contextPath: MicrosoftATP.Indicators.description
+  description: Brief description (100 characters or less) of the threat represented
+    by the indicator.
+  type: String
+- contextPath: MicrosoftATP.Indicators.diamondModel
+  description: 'The area of the Diamond Model in which this indicator exists. Possible
+    values: "unknown", "adversary", "capability", "infrastructure", and "victim".'
+  type: String
+- contextPath: MicrosoftATP.Indicators.domainName
+  description: Domain name associated with this indicator. Should be in the format
+    subdomain.domain.topleveldomain.
+  type: String
+- contextPath: MicrosoftATP.Indicators.expirationDateTime
+  description: 'DateTime string indicating when the indicator expires. To avoid stale
+    indicators persisting in the system, all indicators must have an expiration date.
+    The timestamp type represents date and time information in ISO 8601 format and
+    is always in UTC time. For example, midnight UTC on Jan 1, 2014 looks like: ''2014-01-01T00:00:00Z'''
+  type: Date
+- contextPath: MicrosoftATP.Indicators.externalId
+  description: An identification number that ties the indicator back to the indicator
+    provider’s system (for example, a foreign key).
+  type: String
+- contextPath: MicrosoftATP.Indicators.fileCompileDateTime
+  description: 'DateTime the file was compiled. The timestamp type represents date
+    and time information in ISO 8601 format and is always in UTC time. For example,
+    midnight UTC on Jan 1, 2014 looks like: ''2014-01-01T00:00:00Z'''
+  type: Date
+- contextPath: MicrosoftATP.Indicators.fileCreatedDateTime
+  description: 'DateTime the file was created.The Timestamp type represents date and
+    time information in ISO 8601 format and is always in UTC time. For example, midnight
+    UTC on Jan 1, 2014 looks like: ''2014-01-01T00:00:00Z'''
+  type: Date
+- contextPath: MicrosoftATP.Indicators.fileHashType
+  description: 'The type of hash stored in fileHashValue. Possible values: "unknown",
+    "sha1", "sha256", "md5", "authenticodeHash256", "lsHash", and "ctph".'
+  type: String
+- contextPath: MicrosoftATP.Indicators.fileHashValue
+  description: The file hash value.
+  type: String
+- contextPath: MicrosoftATP.Indicators.fileMutexName
+  description: The Mutex name used in file-based detections.
+  type: String
+- contextPath: MicrosoftATP.Indicators.fileName
+  description: The name of the file if the indicator is file-based. Multiple file
+    names may be delimited by commas.
+  type: String
+- contextPath: MicrosoftATP.Indicators.filePacker
+  description: The packer used to build the file in question.
+  type: String
+- contextPath: MicrosoftATP.Indicators.filePath
+  description: The path of the file indicating a compromise. Can be a Windows or *nix
+    style path.
+  type: String
+- contextPath: MicrosoftATP.Indicators.fileSize
+  description: The size of the file in bytes.
+  type: Number
+- contextPath: MicrosoftATP.Indicators.fileType
+  description: The text description of the type of file. For example, “Word Document”
+    or “Binary”.
+  type: String
+- contextPath: MicrosoftATP.Indicators.ingestedDateTime
+  description: 'The timestamp the indicator was ingested into the system. The Timestamp
+    type represents date and time information in ISO 8601 format and is always in
+    UTC time. For example, midnight UTC on Jan 1, 2014 looks like: ''2014-01-01T00:00:00Z'''
+  type: Date
+- contextPath: MicrosoftATP.Indicators.isActive
+  description: Used to deactivate indicators within the system. By default, any indicator
+    submitted is set as active. However, providers may submit existing indicators
+    with this set to ‘False’ to deactivate indicators in the system.
+  type: Boolean
+- contextPath: MicrosoftATP.Indicators.knownFalsePositives
+  description: Scenarios in which the indicator may cause false positives. This should
+    be human-readable text.
+  type: String
+- contextPath: MicrosoftATP.Indicators.lastReportedDateTime
+  description: 'The last time the indicator was seen. The timestamp type represents
+    date and time information in ISO 8601 format and is always in UTC time. For example,
+    midnight UTC on Jan 1, 2014 looks like: ''2014-01-01T00:00:00Z'''
+  type: Date
+- contextPath: MicrosoftATP.Indicators.networkCidrBlock
+  description: The CIDR Block notation representation of the network referenced in
+    this indicator. Use only if the source and destination cannot be identified.
+  type: String
+- contextPath: MicrosoftATP.Indicators.networkDestinationAsn
+  description: The destination autonomous system identifier of the network referenced
+    in the indicator.
+  type: Number
+- contextPath: MicrosoftATP.Indicators.networkDestinationCidrBlock
+  description: The CIDR Block notation representation of the destination network in
+    this indicator.
+  type: String
+- contextPath: MicrosoftATP.Indicators.networkDestinationIPv4
+  description: The IPv4 IP address destination.
+  type: String
+- contextPath: MicrosoftATP.Indicators.networkDestinationIPv6
+  description: The IPv6 IP address destination.
+  type: String
+- contextPath: MicrosoftATP.Indicators.networkDestinationPort
+  description: The TCP port destination.
+  type: Number
+- contextPath: MicrosoftATP.Indicators.networkIPv4
+  description: The IPv4 IP address.
+  type: String
+- contextPath: MicrosoftATP.Indicators.networkIPv6
+  description: The IPv6 IP address.
+  type: String
+- contextPath: MicrosoftATP.Indicators.networkPort
+  description: The TCP port.
+  type: Number
+- contextPath: MicrosoftATP.Indicators.networkProtocol
+  description: The decimal representation of the protocol field in the IPv4 header.
+  type: Number
+- contextPath: MicrosoftATP.Indicators.networkSourceAsn
+  description: The source autonomous system identifier of the network referenced in
+    the indicator.
+  type: Number
+- contextPath: MicrosoftATP.Indicators.networkSourceCidrBlock
+  description: The CIDR Block notation representation of the source network in this
+    indicator.
+  type: String
+- contextPath: MicrosoftATP.Indicators.networkSourceIPv4
+  description: The IPv4 IP address source.
+  type: String
+- contextPath: MicrosoftATP.Indicators.networkSourceIPv6
+  description: The IPv6 IP address source.
+  type: String
+- contextPath: MicrosoftATP.Indicators.networkSourcePort
+  description: The TCP port source.
+  type: Number
+- contextPath: MicrosoftATP.Indicators.passiveOnly
+  description: Determines if the indicator should trigger an event that is visible
+    to an end-user. When set to ‘true,’ security tools do not notify the end user
+    that a ‘hit’ has occurred. This is most often treated as audit or silent mode
+    by security products where they simply log that a match occurred but do not perform
+    the action. Default value is false.
+  type: Boolean
+- contextPath: MicrosoftATP.Indicators.severity
+  description: 'An integer representing the severity of the malicious behavior identified
+    by the data within the indicator. Possible values: "Informational", "Low", "MediumLow",
+    "MediumHigh", and "High", where High is the most severe and Informational is not
+    severe at all.'
+  type: Number
+- contextPath: MicrosoftATP.Indicators.targetProduct
+  description: A string representing a single security product to which the indicator
+    should be applied.
+  type: String
+- contextPath: MicrosoftATP.Indicators.threatType
+  description: 'Each indicator must have a valid Indicator Threat Type. Possible values:
+    "Botnet", "C2", "CryptoMining", "Darknet", "DDoS", "MaliciousUrl", "Malware",
+    "Phishing", "Proxy", "PUA", and "WatchList".'
+  type: String
+- contextPath: MicrosoftATP.Indicators.tlpLevel
+  description: 'Traffic Light Protocol value for the indicator. Possible values: "unknown",
+    "white", "green", "amber", and "red".'
+  type: String
+- contextPath: MicrosoftATP.Indicators.url
+  description: Uniform Resource Locator. This URL complies with RFC 1738.
+  type: String
+- contextPath: MicrosoftATP.Indicators.userAgent
+  description: User-Agent string from a web request that could indicate compromise.
+  type: String
+- contextPath: MicrosoftATP.Indicators.vendorInformation
+  description: Information about the vendor.
+  type: String
+- contextPath: File.Name
+  description: The full file name (including file extension).
+  type: String
+- contextPath: File.Size
+  description: The size of the file in bytes.
+  type: Number
+- contextPath: File.MD5
+  description: The MD5 hash of the file.
+  type: String
+- contextPath: File.SHA1
+  description: The SHA1 hash of the file.
+  type: String
+- contextPath: File.SHA256
+  description: The SHA256 hash of the file.
+  type: String
+- contextPath: File.SHA512
+  description: The SHA512 hash of the file.
+  type: String
+- contextPath: File.Type
+  description: The file type, as determined by libmagic (same as displayed in file
+    entries).
+  type: String
+- contextPath: File.Path
+  description: The path where the file is located.
+  type: String
+- contextPath: CrowdStrike.IOC.Type
+  description: The type of the IOC.
+  type: string
+- contextPath: CrowdStrike.IOC.Value
+  description: The string representation of the indicator.
+  type: string
+- contextPath: CrowdStrike.IOC.ID
+  description: The full ID of the indicator (type:value).
+  type: string
+- contextPath: CrowdStrike.IOC.Policy
+  description: The policy of the indicator.
+  type: string
+- contextPath: CrowdStrike.IOC.Source
+  description: The source of the IOC.
+  type: string
+- contextPath: CrowdStrike.IOC.ShareLevel
+  description: The level at which the indicator will be shared.
+  type: string
+- contextPath: CrowdStrike.IOC.Expiration
+  description: The datetime the indicator will expire.
+  type: string
+- contextPath: CrowdStrike.IOC.Description
+  description: The description of the IOC.
+  type: string
+- contextPath: CrowdStrike.IOC.CreatedTime
+  description: The datetime the IOC was created.
+  type: string
+- contextPath: CrowdStrike.IOC.CreatedBy
+  description: The identity of the user/process who created the IOC.
+  type: string
+- contextPath: CrowdStrike.IOC.ModifiedTime
+  description: The date and time the indicator was last modified.
+  type: string
+- contextPath: CrowdStrike.IOC.ModifiedBy
+  description: The identity of the user/process who last updated the IOC.
+  type: string
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('CreateHashIndicatorWrapper', 'start', __line__())
+  ### pack version: 1.4.9
+  from typing import Tuple
+
+
+
+  ''' STANDALONE FUNCTION '''
+
+  INCIDENT_ID = demisto.incident().get('id')
+
+  XDR_ACTIONS = {
+      'allow': 'xdr-whitelist-files',
+      'block': 'xdr-blacklist-files'
+  }
+
+  MSDE_ACTIONS = {
+      'allow': 'Allowed',
+      'block': 'AlertAndBlock',
+  }
+
+  CROWDSTRIKE_ACTIONS = {
+      'allow': {'action': 'allow',
+                'description': f'Whitelisted based on XSOAR inc {INCIDENT_ID}',
+                'severity': 'low'},
+      'block': {'action': 'prevent',
+                'description': f'Blacklisted based on XSOAR inc {INCIDENT_ID}',
+                'severity': 'high'}
+  }
+
+
+  def create_commands(hashes: List[str], action: str) -> List[CommandRunner.Command]:
+      """
+      Create a list of `Command` of the allow/block hash command to `Cortex XDR`, `CrowdstrikeFalcon`,
+       `Microsoft Defender Advanced Threat Protection`
+
+      :param hashes: The hashes list
+      :param action: The action to have (one of {'allow', 'block'})
+      :return: A list of `Command`
+      """
+
+      msde_action = MSDE_ACTIONS.get(action)
+      crowdstrike_commands, crowdstrike_args_lst = get_crowdstrike_commands_args(hashes, action)
+      return [CommandRunner.Command(commands=XDR_ACTIONS.get(action),
+                                    args_lst={'hash_list': ','.join(hashes)}),
+              CommandRunner.Command(commands='microsoft-atp-sc-indicator-create',
+                                    args_lst=[{'indicator_value': h,
+                                               'indicator_type': 'FileSha256',
+                                               'action': msde_action,
+                                               'indicator_description': f'XSOAR - related incident {INCIDENT_ID}',
+                                               'indicator_title': f'XSOAR - related incident {INCIDENT_ID}'}
+                                              for h in hashes]),
+              CommandRunner.Command(commands=crowdstrike_commands,
+                                    args_lst=crowdstrike_args_lst)
+              ]
+
+
+  def get_crowdstrike_commands_args(hashes: List[str], action: str) -> Tuple[List[str], List[dict]]:
+      """
+      Get the commands and args that supposed to run the action on the hashes in CrowdstrikeFalcon
+
+      :param hashes: The hashes list
+      :param action: The action to have (one of {'allow', 'block'})
+      :return: A tuple: first is a list of commands to run, and the second is the list of args to run
+      """
+      cs_search_command_executer = CommandRunner.Command(commands='cs-falcon-search-custom-iocs',
+                                                         args_lst={'values': ','.join(hashes)},
+                                                         brand='CrowdstrikeFalcon')
+      search_results, errors_search = CommandRunner.execute_commands(
+          cs_search_command_executer,
+          extract_contents=True)
+      commands, args_lst = [], []
+      ioc_metadata = CROWDSTRIKE_ACTIONS[action]
+      for search_res in search_results:
+          search_results_hashes = [ioc.get('value') for ioc in search_res.result.get('resources', [])]
+          new_hashes = [h for h in hashes if h not in search_results_hashes]
+          for h in new_hashes:
+              commands.append('cs-falcon-upload-custom-ioc')
+              args_lst.append({'ioc_type': 'sha256',
+                               'platforms': 'linux,mac,windows',
+                               'applied_globally': 'true',
+                               'value': h,
+                               **ioc_metadata})
+          for ioc in search_res.result.get('resources', []):
+              commands.append('cs-falcon-update-custom-ioc')
+              args_lst.append({'ioc_id': ioc.get('id'),
+                               **ioc_metadata})
+      return commands, args_lst
+
+
+  def run_hash_action(hashes: List[str], action: str) -> list:
+      """
+      Given arguments to the command, returns a list of results to return
+
+      :param action: action to perform (allow or block)
+      :param hashes: list of hashes
+
+      :return: list of results to return
+      :rtype: ``list``
+      """
+      commands = create_commands(hashes, action)
+      return CommandRunner.run_commands_with_summary(commands)
+
+
+  ''' MAIN FUNCTION '''
+
+
+  def main():  # pragma: no cover
+      args = demisto.args()
+      hashes = argToList(args.get('hash'))
+      action = args.get('action')
+      if not hashes:
+          raise ValueError('hash not specified')
+      if not action or action not in {'allow', 'block'}:
+          raise ValueError('Action not specified or not in allowed actions')
+      try:
+          return_results(run_hash_action(hashes, action))
+      except Exception as ex:
+          return_error(f'Failed to execute HashWrapper. Error: {str(ex)}')
+
+
+  ''' ENTRY POINT '''
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('CreateHashIndicatorWrapper', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- basescript
+type: python
