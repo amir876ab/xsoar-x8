@@ -1,0 +1,180 @@
+{
+	"aliasTo": "",
+	"aliases": null,
+	"associatedToAll": true,
+	"associatedTypes": null,
+	"autoCompleteTags": null,
+	"breachScript": "",
+	"cacheVersn": 0,
+	"caseInsensitive": true,
+	"cliName": "amitgrid",
+	"closeForm": false,
+	"columns": [
+		{
+			"displayName": "amit-inner-grid-shorttext",
+			"fieldCalcScript": "",
+			"isDefault": true,
+			"isReadOnly": false,
+			"key": "amitinnergridshorttext",
+			"orgType": "shortText",
+			"required": false,
+			"script": "",
+			"selectValues": null,
+			"type": "shortText",
+			"width": 150
+		},
+		{
+			"displayName": "amit-inner-grid-bool",
+			"fieldCalcScript": "",
+			"isDefault": true,
+			"isReadOnly": false,
+			"key": "amitinnergridbool",
+			"orgType": "boolean",
+			"required": false,
+			"script": "",
+			"selectValues": null,
+			"type": "boolean",
+			"width": 150
+		},
+		{
+			"displayName": "amit-inner-grid-url",
+			"fieldCalcScript": "",
+			"isDefault": true,
+			"isReadOnly": false,
+			"key": "amitinnergridurl",
+			"orgType": "url",
+			"required": false,
+			"script": "",
+			"selectValues": null,
+			"type": "url",
+			"width": 150
+		},
+		{
+			"displayName": "amit-inner-grid-single-select",
+			"fieldCalcScript": "",
+			"isDefault": true,
+			"isReadOnly": false,
+			"key": "amitinnergridsingleselect",
+			"orgType": "singleSelect",
+			"required": false,
+			"script": "",
+			"selectValues": [
+				"a",
+				"b",
+				"c"
+			],
+			"type": "singleSelect",
+			"width": 150
+		},
+		{
+			"displayName": "amit-inner-grid-multi-select",
+			"fieldCalcScript": "",
+			"isDefault": true,
+			"isReadOnly": false,
+			"key": "amitinnergridmultiselect",
+			"orgType": "multiSelect",
+			"required": false,
+			"script": "",
+			"selectValues": [
+				"a",
+				"b",
+				"c"
+			],
+			"type": "multiSelect",
+			"width": 150
+		},
+		{
+			"displayName": "amit-inner-grid-number",
+			"fieldCalcScript": "",
+			"isDefault": true,
+			"isReadOnly": false,
+			"key": "amitinnergridnumber",
+			"orgType": "number",
+			"required": false,
+			"script": "",
+			"selectValues": null,
+			"type": "number",
+			"width": 150
+		},
+		{
+			"displayName": "amit-inner-grid-date",
+			"fieldCalcScript": "",
+			"isDefault": true,
+			"isReadOnly": false,
+			"key": "amitinnergriddate",
+			"orgType": "date",
+			"required": false,
+			"script": "",
+			"selectValues": null,
+			"type": "date",
+			"width": 150
+		},
+		{
+			"displayName": "amit-inner-grid-longtext",
+			"fieldCalcScript": "",
+			"isDefault": true,
+			"isReadOnly": false,
+			"key": "amitinnergridlongtext",
+			"orgType": "longText",
+			"required": false,
+			"script": "",
+			"selectValues": null,
+			"type": "longText",
+			"width": 150
+		}
+	],
+	"content": false,
+	"defaultRows": [
+		{
+			"amitinnergridsingleselect": "a",
+			"columnheader1": ""
+		},
+		{
+			"amitinnergridsingleselect": "a"
+		},
+		{
+			"amitinnergridsingleselect": "a"
+		}
+	],
+	"definitionId": "",
+	"description": "",
+	"editForm": true,
+	"fieldCalcScript": "",
+	"fromServerVersion": "",
+	"group": 0,
+	"hidden": false,
+	"id": "incident_amitgrid",
+	"isReadOnly": false,
+	"itemVersion": "",
+	"locked": false,
+	"mergeStrategy": "",
+	"name": "amit-grid",
+	"neverSetAsRequired": false,
+	"openEnded": false,
+	"orgType": "grid",
+	"ownerOnly": false,
+	"packID": "",
+	"packName": "",
+	"placeholder": "",
+	"propagationLabels": [
+		"all"
+	],
+	"required": false,
+	"runScriptAfterUpdate": false,
+	"script": "",
+	"selectValues": null,
+	"sla": 0,
+	"system": false,
+	"systemAssociatedTypes": null,
+	"template": "",
+	"threshold": 72,
+	"toServerVersion": "",
+	"type": "grid",
+	"unmapped": false,
+	"unsearchable": false,
+	"useAsKpi": false,
+	"validatedError": "",
+	"validationRegex": "",
+	"version": -1,
+	"x2_fields": ""
+}
