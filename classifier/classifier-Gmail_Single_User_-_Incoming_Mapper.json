@@ -1,0 +1,148 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Maps incoming Gmail phishing email messages fields.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Gmail Single User-mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.3.11",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"Phishing": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Attachment Count": {
+					"complex": {
+						"filters": [],
+						"root": "Attachments",
+						"transformers": [
+							{
+								"operator": "count"
+							}
+						]
+					}
+				},
+				"Attachment Extension": {
+					"complex": {
+						"filters": [],
+						"root": "Attachment Names",
+						"transformers": [
+							{
+								"args": {
+									"delimiter": {
+										"isContext": false,
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "splitAndTrim"
+							},
+							{
+								"args": {
+									"regex": {
+										"isContext": false,
+										"value": {
+											"simple": ".*\\."
+										}
+									},
+									"replaceWith": {
+										"isContext": false
+									}
+								},
+								"operator": "replaceMatch"
+							}
+						]
+					}
+				},
+				"Attachment Name": {
+					"complex": {
+						"filters": [],
+						"root": "Attachment Names",
+						"transformers": []
+					}
+				},
+				"Email BCC": {
+					"complex": {
+						"filters": [],
+						"root": "Bcc",
+						"transformers": []
+					}
+				},
+				"Email Body": {
+					"complex": {
+						"filters": [],
+						"root": "Body",
+						"transformers": []
+					}
+				},
+				"Email Body Format": {
+					"complex": {
+						"filters": [],
+						"root": "Format",
+						"transformers": []
+					}
+				},
+				"Email CC": {
+					"complex": {
+						"filters": [],
+						"root": "Cc",
+						"transformers": []
+					}
+				},
+				"Email From": {
+					"complex": {
+						"filters": [],
+						"root": "From",
+						"transformers": []
+					}
+				},
+				"Email HTML": {
+					"simple": "Html"
+				},
+				"Email Message ID": {
+					"complex": {
+						"filters": [],
+						"root": "ID",
+						"transformers": []
+					}
+				},
+				"Email Subject": {
+					"complex": {
+						"filters": [],
+						"root": "Subject",
+						"transformers": []
+					}
+				},
+				"Email To": {
+					"complex": {
+						"filters": [],
+						"root": "To",
+						"transformers": []
+					}
+				}
+			}
+		}
+	},
+	"name": "Gmail Single User - Incoming Mapper",
+	"nameRaw": "Gmail Single User - Incoming Mapper",
+	"packID": "GmailSingleUser",
+	"packName": "Gmail Single User",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
