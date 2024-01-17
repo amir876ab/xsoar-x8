@@ -1,0 +1,421 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.5.19
+    packID: MicrosoftGraphMail
+    packName: Microsoft Graph Mail
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook retrieves the original email using the Microsoft Graph Mail integration.
+  Note: You must have the necessary permissions in the Microsoft Graph Mail integration as described in the [message-get API](https://docs.microsoft.com/en-us/graph/api/message-get) and the [user-list-messages API](https://docs.microsoft.com/en-us/graph/api/user-list-messages)
+id: Get Original Email - Microsoft Graph Mail
+inputs:
+- description: The email address of the reporting user.
+  key: UserID
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The InReplyTo header in the forwarded email.
+  key: MessageID
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The number of pages of emails to return (maximum is 10 emails per page).
+  key: PagesToPull
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "10"
+name: Get Original Email - Microsoft Graph Mail
+outputs:
+- contextPath: File
+  description: The original email as an EML file.
+  type: string
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5607d1c6-85b0-4181-8b10-bb3a5b113c6f
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 5607d1c6-85b0-4181-8b10-bb3a5b113c6f
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": -20,
+          "y": 160
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d2eca123-db35-4b27-88d8-a8b77ffd6784
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: d2eca123-db35-4b27-88d8-a8b77ffd6784
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -20,
+          "y": 1590
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "14"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      brandname:
+        simple: MicrosoftGraphMail
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if an integration brand is available.
+      id: 0db04b60-0358-4214-851a-42598fa48cd3
+      iscommand: false
+      name: Is Microsoft Graph Mail enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: 0db04b60-0358-4214-851a-42598fa48cd3
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -20,
+          "y": 310
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    reputationcalc: 2
+    scriptarguments:
+      odata:
+        simple: $filter=internetMessageId eq '${EncodedMessageID}'
+      pages_to_pull:
+        complex:
+          root: inputs.PagesToPull
+      user_id:
+        complex:
+          root: inputs.UserID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: MicrosoftGraphMail
+      description: Gets the properties of returned emails. Typically shows partial
+        results. Use the "page_size" and "pages_to_pull" arguments to get all results.
+      id: 8e468b02-e02c-4aeb-804c-0b73dfa0b1c8
+      iscommand: true
+      name: Search for messages by encoded MessageID
+      script: MicrosoftGraphMail|||msgraph-mail-list-emails
+      type: regular
+      version: -1
+    taskid: 8e468b02-e02c-4aeb-804c-0b73dfa0b1c8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -20,
+          "y": 905
+        }
+      }
+  "12":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: InternetMessageID
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: MSGraphMail.InternetMessageID
+                    operator: isEqualString
+                    right:
+                      iscontext: true
+                      value:
+                        simple: inputs.MessageID
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: MSGraphMail.UserID
+                    operator: isEqualString
+                    right:
+                      iscontext: true
+                      value:
+                        simple: inputs.UserID
+                root: MSGraphMail
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "Yes"
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "Yes":
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Verifies that an email object with a message ID that matches the
+        InReplyTo ID of the forwarded email was found.
+      id: 2775b599-4846-4049-8c4e-1e2e660f27c5
+      iscommand: false
+      name: Was a matching email found?
+      type: condition
+      version: -1
+    taskid: 2775b599-4846-4049-8c4e-1e2e660f27c5
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -20,
+          "y": 1090
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    reputationcalc: 2
+    scriptarguments:
+      message_id:
+        complex:
+          accessor: ID
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: MSGraphMail.InternetMessageID
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: inputs.MessageID
+          - - left:
+                iscontext: true
+                value:
+                  simple: MSGraphMail.UserID
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: inputs.UserID
+          root: MSGraphMail
+          transformers:
+          - args:
+              chars:
+                value:
+                  simple: <>
+            operator: StripChars
+          - operator: uniq
+      user_id:
+        complex:
+          root: inputs.UserID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: MicrosoftGraphMail
+      description: Retrieves an email message by message ID and uploads the content
+        as an EML file.
+      id: e2653b70-6db7-4385-8281-0c31a7b5c91c
+      iscommand: true
+      name: Get original email
+      script: MicrosoftGraphMail|||msgraph-mail-get-email-as-eml
+      type: regular
+      version: -1
+    taskid: e2653b70-6db7-4385-8281-0c31a7b5c91c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -20,
+          "y": 1310
+        }
+      }
+  "14":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.UserID
+          operator: isExists
+          right:
+            value: {}
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.MessageID
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Verifies that the required input values exist for retrieving the
+        original email.
+      id: 43134294-3804-4b55-8591-9845b146370f
+      iscommand: false
+      name: Verify required inputs
+      type: condition
+      version: -1
+    taskid: 43134294-3804-4b55-8591-9845b146370f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -20,
+          "y": 510
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: EncodedMessageID
+      value:
+        complex:
+          root: inputs.MessageID
+          transformers:
+          - operator: URLEncode
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Since the MessageID may contain special characters, it should be
+        URL encoded in order to use it in the next task.
+      id: 062e413e-5f77-48bf-8f26-fffdaf91b333
+      iscommand: false
+      name: Set EncodedMessageID
+      script: Set
+      type: regular
+      version: -1
+    taskid: 062e413e-5f77-48bf-8f26-fffdaf91b333
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -20,
+          "y": 720
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "10_14_yes": 0.57,
+      "10_2_#default#": 0.31,
+      "12_13_Yes": 0.58,
+      "12_2_#default#": 0.78,
+      "14_2_#default#": 0.37
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1495,
+        "width": 380,
+        "x": -20,
+        "y": 160
+      }
+    }
+  }
