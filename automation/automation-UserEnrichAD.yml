@@ -1,0 +1,50 @@
+args:
+- default: true
+  description: Name of user
+  name: name
+  required: true
+comment: Deprecated. Use ADGetUser instead.
+commonfields:
+  id: UserEnrichAD
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.6.25
+    packID: Active_Directory_Query
+    packName: Active Directory Query
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dependson:
+  must:
+  - activedir|||ad-search
+deprecated: true
+dockerimage: demisto/python:2.7.18.27799
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: UserEnrichAD
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('UserEnrichAD', 'start', __line__())
+  ### pack version: 1.6.25
+
+
+
+  demisto.results(demisto.executeCommand("ADGetUser", demisto.args()))
+
+  register_module_line('UserEnrichAD', 'end', __line__())
+scripttarget: 0
+subtype: python2
+system: true
+tags:
+- enhancement
+- active directory
+- user
+type: python
