@@ -1,0 +1,79 @@
+args:
+- description: The URL to search the transaction list for.
+  name: url
+  required: true
+- defaultValue: "5"
+  description: The wait time between two polling actions(In Seconds) of UrlScan results
+    page, please note that you may encounter rate-limit error if the time set is too
+    low.
+  name: wait_time_for_polling
+- defaultValue: "60"
+  description: How many seconds to wait for the scan id result
+  name: timeout
+- defaultValue: "20"
+  description: Limits the results in the war room(Maximum limit allowed is 100)
+  name: limit
+comment: Deprecated. No available replacement.
+commonfields:
+  id: UrlscanGetHttpTransactions
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.2.10
+    packID: UrlScan
+    packName: URLScan.io
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dependson:
+  must:
+  - urlscan.io|||urlscan-get-http-transaction-list
+  - urlscan.io|||urlscan-submit-url-command
+  - urlscan.io|||urlscan-poll-uri
+deprecated: true
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: UrlscanGetHttpTransactions
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  // pack version: 1.2.10
+  var url = args.url;
+  var limit = args.limitl;
+  var defaultWaitTime = Number(args.wait_time_for_polling)
+
+  uuid = executeCommand('urlscan-submit-url-command', {'url': url})[0].Contents;
+  uri = executeCommand('urlscan-get-result-page', {'uuid': uuid})[0].Contents;
+
+  var resStatusCode = 404
+  var waitedTime = 0
+  while(resStatusCode == 404 && waitedTime < Number(args.timeout)) {
+      var resStatusCode = executeCommand('urlscan-poll-uri', {'uri': uri})[0].Contents;
+
+      if (resStatusCode == 200) {
+          break;
+      }
+      wait(defaultWaitTime);
+      waitedTime = waitedTime + defaultWaitTime;
+  }
+  if(resStatusCode == 200) {
+      return executeCommand('urlscan-get-http-transaction-list', {'uuid': uuid, 'url': url, 'limit': limit});
+  } else {
+      if(waitedTime >= Number(args.timeout)){
+          return 'Could not get result from UrlScan, please try to increase the timeout.'
+      } else {
+          return 'Could not get result from UrlScan, possible rate-limit issues.'
+      }
+  }
+scripttarget: 0
+system: true
+tags:
+- polling
+- UrlScan
+type: javascript
