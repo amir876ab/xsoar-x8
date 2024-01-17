@@ -1,0 +1,32 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "Access",
+	"definitionId": "",
+	"description": "Classifies Onboarding integration incidents.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "dc5d582a-59a9-4bf1-892b-307adc719233",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.1.2",
+	"keyTypeMap": {},
+	"locked": false,
+	"logicalVersion": 1,
+	"mapping": null,
+	"name": "Onboarding Integration - Classifier_copy",
+	"nameRaw": "Onboarding Integration - Classifier_copy",
+	"packID": "",
+	"packName": "OnboardingIntegration",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "OnboardingIntegration",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
