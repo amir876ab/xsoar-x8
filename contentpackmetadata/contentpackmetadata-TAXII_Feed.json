@@ -1,0 +1,149 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"indicatorfield"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": [
+			{
+				"description": "",
+				"name": "STIX Indicator Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "STIX Indicator Description",
+				"type": "longText"
+			},
+			{
+				"description": "",
+				"name": "STIX TTP Title",
+				"type": "shortText"
+			}
+		],
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Allows you to test your feed and to make sure you can fetch indicators successfuly.",
+						"name": "taxii2-get-indicators"
+					},
+					{
+						"description": "Gets the list of collections from the discovery service.",
+						"name": "taxii2-get-collections"
+					},
+					{
+						"description": "WARNING: This command will reset your fetch history.",
+						"name": "taxii2-reset-fetch-indicators"
+					}
+				],
+				"description": "Ingests indicator feeds from TAXII 2.0 and 2.1 servers.",
+				"id": "TAXII 2 Feed",
+				"name": "TAXII 2 Feed"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Gets indicators from the the feed.",
+						"name": "get-indicators"
+					}
+				],
+				"description": "Ingests indicator feeds from TAXII 1.x servers.",
+				"id": "TAXIIFeed",
+				"name": "TAXII Feed"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "1.2.0",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.37",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Ingest indicator feeds from TAXII 1 and TAXII 2 servers.",
+	"disabledMonthly": false,
+	"downloads": 23610,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.5.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "FeedTAXII",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/FeedTAXII/TAXII2Feed_image.png",
+			"name": "TAXII 2 Feed"
+		},
+		{
+			"imagePath": "content/packs/FeedTAXII/TAXIIFeed_image.png",
+			"name": "TAXII Feed"
+		}
+	],
+	"itemVersion": "1.2.0",
+	"keywords": [],
+	"legacy": true,
+	"name": "TAXII Feed",
+	"packID": "FeedTAXII",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.5.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Generic Feed",
+		"TIM"
+	],
+	"toServerVersion": "",
+	"updated": "2023-10-16T19:27:40Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6617721",
+	"videos": []
+}
