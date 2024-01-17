@@ -1,0 +1,452 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.6.25
+    packID: Active_Directory_Query
+    packName: Active Directory Query
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  Active Directory Investigation playbook provides tools and guidance to investigate changes and manipulation in Active Directory containers, ACLs, Schema, and objects.
+  This playbook uses a 3rd party tool provided by Microsoft to scan the Active Directory access list, trees, and objects.
+  Additional investigative information is provided for manual investigation.
+id: Active Directory Investigation
+inputs: []
+name: Active Directory Investigation
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1e402223-77fd-4729-898d-51d541d65526
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 1e402223-77fd-4729-898d-51d541d65526
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -110
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Review the AdminSDHolder permissions to make sure there are no
+        unwanted users/groups. - \n\n1. AdminSDHolder is a container that exists in
+        every Active Directory domain for a particular purpose. \nThe Access Control
+        List (ACL) of the AdminSDHolder object is used as a template to copy permissions
+        to all “protected groups” in Active Directory and their members. \nProtected
+        groups include privileged groups such as Domain Admins, Administrators, Enterprise
+        Admins, and Schema Admins. \nThis includes other groups that give login rights
+        to domain controllers, which can be enough access to perpetrate attacks and
+        to compromise the domain.\n\n\n2. Active Directory will take the ACL of the
+        AdminSDHolder object and apply it to all protected users and groups periodically
+        to make sure the access to these objects is secure. This works, in theory,
+        because the default ACL for AdminSDHolder is very restrictive. \nHowever,
+        if an attacker can manipulate the ACL for AdminSDHolder, those permissions
+        will automatically be applied to all protected objects. \nThis will give an
+        attacker a way to create persistent access to privileged accounts within the
+        domain.\n\n\n3. The AdminSDHolder permissions are pushed down to all protected
+        objects by the SDProp process. By default, this happens every 60 minutes,
+        but this interval can be changed by modifying a registry key value. \nThis
+        means that if an administrator sees an inappropriate permission on a protected
+        object and removes it, within an hour, those permissions will be restored
+        by SDProp.\n\n\n4. More information about AdminSDHolder: -\nhttps://docs.microsoft.com/en-us/previous-versions/technet-magazine/ee361593(v=msdn.10)?redirectedfrom=MSDN#id0250006\n\n\n5.
+        Review the permissions for the AdminSDHolder container for unwanted users/groups
+        by selecting the container > Properties > Security > Advanced.\n"
+      id: ea482bb2-97ea-417d-815b-3d4cff43e48a
+      iscommand: false
+      name: Review the Active Directory AdminSDHolder permissions
+      type: regular
+      version: -1
+    taskid: ea482bb2-97ea-417d-815b-3d4cff43e48a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 20
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Identify compromised accounts. \nAttackers will aim for a high
+        privileged domain account that will enable them to spread and deliver the
+        malicious payload to as many endpoints/servers as possible. \n\nTo simplify
+        the work of creating and documenting the delegation model in Active Directory,
+        a tool with a GUI in PowerShell is provided below.\nThis tool creates reports
+        of the access control list for all of your Active Directory objects. With
+        these reports, you can see what/where, and when permissions have been set.\n\nTo
+        run the script, the minimum requirements are: PowerShell 2.0 and Windows 7/Windows
+        Server 2008 (Windows Server 2003 can be used, but it will have limited functionality).\n\nEnable
+        unsigned scripting in PowerShell by using the command:\nSet-ExecutionPolicy
+        Unrestricted.\n\nIf you are not a local admin and cannot set it on your machine,
+        you can set it for your profile:\nSet-ExecutionPolicy Unrestricted - Scope
+        CurrentUser.\nYou do not need Powershell Module for Active Directory.\n\nMicrosoft
+        article about Active Directory forensics with ACL Scanner:\nhttps://docs.microsoft.com/en-us/archive/blogs/pfesweplat/forensics-active-directory-acl-investigation\n\nMicrosoft
+        article about AD ACL scanner tool:\nhttps://docs.microsoft.com/en-us/archive/blogs/pfesweplat/take-control-over-ad-permissions-and-the-ad-acl-scanner-tool\n\nAD
+        ACL Scanner Github project:\nhttps://github.com/canix1/ADACLScanner\n"
+      id: 63dc8892-db0a-46d4-8dc6-1517a4033576
+      iscommand: false
+      name: Run the Active Directory ACL Scanner
+      type: regular
+      version: -1
+    taskid: 63dc8892-db0a-46d4-8dc6-1517a4033576
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 220
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    form:
+      description: ""
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: "List the compromised users. \nCan be in CSV Format."
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      sender: ""
+      title: List compromised users
+      totalanswers: 0
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: List compromised users
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Sends an email to the configured users requesting they review
+        the report and supply a list of the compromised users. Supports CSV format.\n "
+      id: 5dbb4398-13fb-4ccd-89af-a0e21515ea39
+      iscommand: false
+      name: Review the Active Directory ACL Scanner report
+      type: collection
+      version: -1
+    taskid: 5dbb4398-13fb-4ccd-89af-a0e21515ea39
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 400
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: "0"
+                root: List compromised users.Answers
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: ''''''
+      id: 6183f496-bd4a-46e8-898f-2f2cdfcd901b
+      iscommand: false
+      name: Was a compromised account detected?
+      type: condition
+      version: -1
+    taskid: 6183f496-bd4a-46e8-898f-2f2cdfcd901b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 580
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Partial list of domain controller events to pay attention to:
+        \nNote: If ACL Scanner returned positive results, search for more events around
+        the time and date of the results.\n\n4794 DSRM account password change attempt
+        - If this isn’t expected, could be malicious.\n4780 ACLs set on admin accounts
+        - If this isn’t expected, could be malicious.\n4739/643 Domain Policy was
+        changed - If this isn’t expected, could be malicious.\n4713/617 Kerberos policy
+        was changed - If this isn’t expected, could be malicious.\n4724/628 Attempt
+        to reset an account’s password - Monitor for admin & sensitive account PW
+        reset.\n4735/639 Security-enabled local group changed- Monitor admin/sensitive
+        group membership changes.\n4737/641 Security-enabled global group changed
+        -Monitor admin/sensitive group membership changes.\n4755/659 Security-enabled
+        universal group changed - Monitor admin & sensitive group membership."
+      id: c6fbeaa0-7dc1-4fc0-82dd-03ca65a1a096
+      iscommand: false
+      name: Review the Active Directory event log
+      type: regular
+      version: -1
+    taskid: c6fbeaa0-7dc1-4fc0-82dd-03ca65a1a096
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1170
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Remediate the issues identified in the Active Directory event log
+        review.
+      id: 7b689888-a6bf-4e18-8a52-9ee621221e31
+      iscommand: false
+      name: Remediate according to the Active Directory event log findings
+      type: regular
+      version: -1
+    taskid: 7b689888-a6bf-4e18-8a52-9ee621221e31
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1330
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 385f5cda-bfd6-4a47-8ff3-b3feb3b0d68c
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 385f5cda-bfd6-4a47-8ff3-b3feb3b0d68c
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1490
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      username:
+        complex:
+          accessor: usernames
+          root: incident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Disable an Active Directory user account.
+      id: 6a4bdd2c-2da3-4e74-8a16-c19246c2ac38
+      iscommand: true
+      name: Disable compromised account in Active Directory
+      script: '|||ad-disable-account'
+      type: regular
+      version: -1
+    taskid: 6a4bdd2c-2da3-4e74-8a16-c19246c2ac38
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 990
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      usernames:
+        complex:
+          accessor: "0"
+          root: List compromised users.Answers
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Change the properties of an incident.
+      id: cbc24d77-b993-4c15-8b14-8f9ba64d90b9
+      iscommand: true
+      name: Set Compromised users
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: cbc24d77-b993-4c15-8b14-8f9ba64d90b9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 830
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "4_6_#default#": 0.16
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1665,
+        "width": 380,
+        "x": 450,
+        "y": -110
+      }
+    }
+  }
