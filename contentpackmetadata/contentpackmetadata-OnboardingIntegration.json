@@ -1,0 +1,164 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook",
+		"classifier"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Cleanup the incidents and indicators created by OnboardingIntegration\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.10/Cortex-XSOAR-Administrator-Guide/Automations",
+				"name": "OnboardingCleanup",
+				"tags": []
+			}
+		],
+		"classifier": [
+			{
+				"description": "Classifies Onboarding integration incidents.",
+				"id": "OnboardingIntegration",
+				"name": "Onboarding Integration - Classifier"
+			},
+			{
+				"description": "Maps incoming Onboarding integration incident fields.",
+				"id": "OnboardingIntegration-mapper",
+				"name": "Onboarding Integration - Incoming Mapper"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "Gets the simulated reputation of the IP address.",
+						"name": "demo-ip"
+					},
+					{
+						"description": "Gets the simulated reputation of the URL address.",
+						"name": "demo-url"
+					},
+					{
+						"description": "Gets the simulated reputation of the domain.",
+						"name": "demo-domain"
+					},
+					{
+						"description": "Gets the simulated reputation of the file hash.",
+						"name": "demo-file"
+					},
+					{
+						"description": "Gets the simulated reputation of the email address.",
+						"name": "demo-email"
+					}
+				],
+				"description": "Creates mock email incidents using one of two randomly selected HTML templates. Textual content is randomly generated and defined to include some text (100 random words) and the following data (at least 5 of each data type): IP addresses, URLs, SHA-1 hashes, SHA-256 hashes, MD5 hashes, email addresses, domain names.",
+				"id": "OnboardingIntegration",
+				"name": "OnboardingIntegration"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook is part of the on-boarding experience, and focuses on phishing scenarios. To use this playbook, you'll need to enable the `on-boarding` integration and configure incidents of type `Phishing`. For more information, refer to the on-boarding walkthroughs in the help section.",
+				"name": "PhishingDemo-Onboarding"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "1.1.2",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.21",
+			"name": "Base"
+		},
+		"Phishing": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.5.25",
+			"name": "Phishing"
+		},
+		"rasterize": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.21",
+			"name": "Rasterize"
+		}
+	},
+	"deprecated": false,
+	"description": "Creates mock email incidents using one of two randomly selected HTML templates. Textual content is randomly generated and defined to include some text (100 random words) and the following data (at least 5 of each data type): IP addresses, URLs, SHA-1 hashes, SHA-256 hashes, MD5 hashes, email addresses, domain names.",
+	"disabledMonthly": false,
+	"downloads": 1791,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "OnboardingIntegration",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/OnboardingIntegration/OnboardingIntegration_image.png",
+			"name": "OnboardingIntegration"
+		},
+		{
+			"imagePath": "content/packs/rasterize/Rasterize_image.png",
+			"name": "Rasterize"
+		}
+	],
+	"itemVersion": "1.1.2",
+	"keywords": [],
+	"legacy": true,
+	"name": "OnboardingIntegration",
+	"packID": "OnboardingIntegration",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-07-25T19:31:48Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "5866730",
+	"videos": []
+}
