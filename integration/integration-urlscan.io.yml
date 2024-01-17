@@ -1,0 +1,1352 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: urlscan.io
+  version: -1
+configuration:
+- display: ""
+  displaypassword: API Key (only required for scanning URLs)
+  hiddenusername: true
+  name: creds_apikey
+  required: false
+  section: Connect
+  type: 9
+- additionalinfo: Determines the visibility level of the scan.
+  display: Scan Visibility
+  name: scan_visibility
+  options:
+  - public
+  - private
+  - unlisted
+  required: true
+  section: Collect
+  type: 15
+- additionalinfo: Reliability of the source providing the intelligence data.
+  defaultvalue: C - Fairly reliable
+  display: Source Reliability
+  name: integrationReliability
+  options:
+  - A+ - 3rd party enrichment
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  section: Collect
+  type: 15
+- advanced: true
+  defaultvalue: "1"
+  display: URL Threshold. Minimum number of positive results from urlscan.io to consider
+    the URL malicious.
+  name: url_threshold
+  required: false
+  section: Collect
+  type: 0
+- additionalinfo: User Agent to perform requests
+  advanced: true
+  display: User Agent
+  name: useragent
+  required: false
+  section: Connect
+  type: 0
+- additionalinfo: Create relationships between indicators as part of Enrichment.
+  advanced: true
+  defaultvalue: "true"
+  display: Create relationships
+  name: create_relationships
+  required: false
+  section: Collect
+  type: 8
+- advanced: true
+  display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  section: Connect
+  type: 8
+- advanced: true
+  display: Use system proxy settings
+  name: proxy
+  required: false
+  section: Connect
+  type: 8
+- advanced: true
+  defaultvalue: "false"
+  display: Enable public submissions by default.
+  hidden: true
+  name: is_public
+  required: false
+  section: Connect
+  type: 8
+- advanced: true
+  display: API Key (only required for scanning URLs)
+  hidden: true
+  name: apikey
+  required: false
+  section: Connect
+  type: 4
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.2.10
+    packID: UrlScan
+    packName: URLScan.io
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Use urlscan.io integration to perform scans on suspected URLs and see
+  their reputation.
+detaileddescription: "### Partner Contributed Integration\n#### Integration Author:
+  urlscan GmbH\nSupport and maintenance for this integration are provided by the author.
+  Please use the following contact details:\n- **Email**: [support@urlscan.io](mailto:support@urlscan.io)\n-
+  **URL**: [https://urlscan.io](https://urlscan.io)\n***\nThis integration checks
+  domain information from the urlscan.io Database.\nIn order to submit URLs to scan,
+  an API key is required.\nWe recommend submitting the URLs as private or unlisted,
+  \nas publicly listed submitted URLs will be available to the public.\nContact urlscan.io
+  to obtain an API key.\n\nNotice: Submitting indicators using the ***urlscan-search***
+  command of this integration might make the indicator data publicly available.  See
+  the vendor’s documentation for more details.\n\n---\n[View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/urlscanio)"
+display: urlscan.io (Partner Contribution)
+image: data:image/png;base64,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
+name: urlscan.io
+script:
+  commands:
+  - arguments:
+    - default: true
+      description: A parameter for which to search (as a string), for example an IP
+        address, file name, SHA256 hash, URL, domain, and so on.
+      name: searchParameter
+      required: true
+    - auto: PREDEFINED
+      description: The search type. When advanced, allows to query multiple search
+        parameters.
+      name: searchType
+      predefined:
+      - advanced
+    - defaultValue: "20"
+      description: The maximum number of results to return. Default is 20.
+      name: limit
+    description: Search for an indicator that is related to former urlscan.io scans.
+    name: urlscan-search
+    outputs:
+    - contextPath: URLScan.URL
+      description: The URL.
+      type: string
+    - contextPath: URLScan.Domain
+      description: The domain of the scanned URL.
+      type: string
+    - contextPath: URLScan.ASN
+      description: The ASN of the scanned URL.
+      type: string
+    - contextPath: URLScan.IP
+      description: The IP address of the scanned URL.
+      type: string
+    - contextPath: URLScan.ScanID
+      description: The scan ID of the scanned URL.
+      type: string
+    - contextPath: URLScan.ScanDate
+      description: The date that the URL was last scanned.
+      type: string
+    - contextPath: URLScan.Hash
+      description: The SHA256 hash of the scanned file.
+      type: string
+    - contextPath: URLScan.FileName
+      description: The file name of the scanned file.
+      type: string
+    - contextPath: URLScan.FileSize
+      description: The size of the scanned file.
+      type: number
+    - contextPath: URLScan.FileType
+      description: File type of the file scanned.
+      type: string
+    polling: true
+  - arguments:
+    - description: The URL to scan.
+      isArray: true
+      name: url
+      required: true
+    - defaultValue: "60"
+      description: The amount of time (in seconds) to wait for the scan ID result
+        before timeout. Default is 60.
+      name: timeout
+    - auto: PREDEFINED
+      description: The submission visibility. If specified, overrides the 'public'
+        parameter.
+      name: scan_visibility
+      predefined:
+      - public
+      - private
+      - unlisted
+    - description: The submission type. Can be "public" or "private".
+      name: public
+    - defaultValue: "20"
+      description: The maximum number of Limits the returned list of Certificates,
+        IP's and ASN's.
+      name: limit
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Determines whether a scan should continue if one of the URLs is
+        on block list.
+      isArray: true
+      name: continue_on_blacklisted_urls
+      predefined:
+      - "true"
+      - "false"
+    - description: User agent to perform request.
+      name: useragent
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Whether to use the URL as the file name.
+      name: use_url_as_name
+      predefined:
+      - "false"
+      - "true"
+    deprecated: true
+    description: Deprecated. Use the url command instead.
+    name: urlscan-submit
+    outputs:
+    - contextPath: URL.Data
+      description: The URL submitted for scanning.
+      type: string
+    - contextPath: URL.Malicious.Vendor
+      description: For malicious URLs, the vendor that made the decision.
+      type: string
+    - contextPath: URL.Malicious.Description
+      description: For malicious URLs, the reason that the vendor made the decision.
+      type: string
+    - contextPath: URLScan.RelatedIPs
+      description: IP addresses related to the the scanned URL.
+      type: string
+    - contextPath: URLScan.RelatedASNs
+      description: ASNs related to the scanned URL.
+      type: string
+    - contextPath: URLScan.Countries
+      description: Countries associated with the scanned URL.
+      type: string
+    - contextPath: URLScan.RelatedHash
+      description: File hashes related to the scanned URL.
+      type: string
+    - contextPath: URLScan.Subdomains
+      description: Subdomains related to the scanned URL.
+      type: string
+    - contextPath: URLScan.ASN
+      description: ASN of the scanned URL.
+      type: string
+    - contextPath: URLScan.Data
+      description: URL of the file.
+      type: string
+    - contextPath: URLScan.Malicious.Vendor
+      description: The vendor reporting the malicious indicator for the file.
+      type: string
+    - contextPath: URLScan.Malicious.Description
+      description: A description of the malicious indicator.
+      type: string
+    - contextPath: URLScan.File.Hash
+      description: SHA256 of file found.
+      type: string
+    - contextPath: URLScan.File.FileName
+      description: File name of file found.
+      type: string
+    - contextPath: URLScan.File.FileType
+      description: File type of the file found.
+      type: string
+    - contextPath: URLScan.File.Hostname
+      description: URL where the file was found.
+      type: string
+    - contextPath: URLScan.Certificates
+      description: Certificates found for the URL scanned.
+      type: string
+    - contextPath: DBotScore.Score
+      description: Score retrieved for Dbot.
+      type: number
+    - contextPath: DBotScore.Type
+      description: Type of indicator tested for.
+      type: string
+    - contextPath: DBotScore.Vendor
+      description: Vendor who provided DBot Score.
+      type: string
+    - contextPath: DBotScore.Indicator
+      description: Indicator URLScan tested for.
+      type: string
+    - contextPath: URLScan.RedirectedURLs
+      description: Redirected URLs from the URL scanned.
+      type: string
+    - contextPath: URLScan.EffectiveURL
+      description: Effective URL of the original URL.
+      type: string
+    polling: true
+  - arguments:
+    - default: true
+      description: Url to scan.
+      isArray: true
+      name: url
+      required: true
+    - auto: PREDEFINED
+      description: The submission visibility. If specified, overrides the 'public'
+        parameter.
+      name: scan_visibility
+      predefined:
+      - public
+      - private
+      - unlisted
+    - defaultValue: "60"
+      description: The amount of time (in seconds) to wait for the scan ID result
+        before timeout. Default is 60.
+      name: timeout
+    - description: The submission type. Can be "public" or "private".
+      name: public
+    - defaultValue: "20"
+      description: The maximum number of results to return.
+      name: limit
+    - defaultValue: "5"
+      description: The amount of time (in seconds) to wait between tries if the API
+        rate limit is exceeded.
+      name: wait
+    - defaultValue: "0"
+      description: Number of retries for the API rate limit. Default is 0.
+      name: retries
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Determines whether a scan should continue if one of the URLs is
+        on block list.
+      isArray: true
+      name: continue_on_blacklisted_urls
+      predefined:
+      - "true"
+      - "false"
+    - description: User agent to perform request.
+      name: useragent
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Whether to use the URL as the file name.
+      name: use_url_as_name
+      predefined:
+      - "false"
+      - "true"
+    description: Submits a URL to scan.
+    name: url
+    outputs:
+    - contextPath: URL.Data
+      description: The URL submitted for scanning.
+      type: string
+    - contextPath: URL.Malicious.Vendor
+      description: For malicious URLs, the vendor that made the decision.
+      type: string
+    - contextPath: URL.Malicious.Description
+      description: For malicious URLs, the reason that the vendor made the decision.
+      type: string
+    - contextPath: URL.Relationships.EntityA
+      description: The source of the relationship.
+      type: string
+    - contextPath: URL.Relationships.EntityB
+      description: The destination of the relationship.
+      type: string
+    - contextPath: URL.Relationships.Relationship
+      description: The name of the relationship.
+      type: string
+    - contextPath: URL.Relationships.EntityAType
+      description: The type of the source of the relationship.
+      type: string
+    - contextPath: URL.Relationships.EntityBType
+      description: The type of the destination of the relationship.
+      type: string
+    - contextPath: URLScan.RelatedIPs
+      description: The IP addresses related to the scanned URL.
+      type: string
+    - contextPath: URLScan.RelatedASNs
+      description: The ASNs related to the scanned URL.
+      type: string
+    - contextPath: URLScan.Countries
+      description: The countries associated with the scanned URL.
+      type: string
+    - contextPath: URLScan.RelatedHash
+      description: File hashes related to the scanned URL.
+      type: string
+    - contextPath: URLScan.Subdomains
+      description: Subdomains associated with the scanned URL.
+      type: string
+    - contextPath: URLScan.ASN
+      description: The ASN of the scanned URL.
+      type: string
+    - contextPath: URLScan.Data
+      description: The URL of the file.
+      type: string
+    - contextPath: URLScan.Malicious.Vendor
+      description: The vendor that reported the malicious indicator for the file.
+      type: string
+    - contextPath: URLScan.Malicious.Description
+      description: A description of the malicious indicator.
+      type: string
+    - contextPath: URLScan.File.Hash
+      description: The SHA256 hash of file.
+      type: string
+    - contextPath: URLScan.File.FileName
+      description: The name of the file.
+      type: string
+    - contextPath: URLScan.File.FileType
+      description: The file type.
+      type: string
+    - contextPath: URLScan.File.Hostname
+      description: The URL of the file.
+      type: string
+    - contextPath: File.SHA256
+      description: The SHA256 hash of the file.
+      type: string
+    - contextPath: File.Name
+      description: The name of the file.
+      type: string
+    - contextPath: File.Type
+      description: The file type.
+      type: string
+    - contextPath: File.Hostname
+      description: The URL of the file.
+      type: string
+    - contextPath: URLScan.Certificates
+      description: The certificates found for the scanned URL.
+      type: string
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: string
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: string
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: string
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: string
+    - contextPath: URLScan.RedirectedURLs
+      description: Redirected URLs from the scanned URL.
+      type: string
+    - contextPath: URLScan.EffectiveURL
+      description: Effective URL of the original URL.
+      type: string
+    - contextPath: URL.ASN
+      description: The URL ASN.
+      type: String
+    - contextPath: URL.FeedRelatedIndicators.value
+      description: Indicators that are associated with the URL.
+      type: String
+    - contextPath: URL.FeedRelatedIndicators.type
+      description: the type of the indicators that are associated with the URL.
+      type: String
+    - contextPath: URL.Geo.Country
+      description: The URL country.
+      type: String
+    - contextPath: URL.ASOwner
+      description: The URL AS owner.
+      type: String
+    - contextPath: URL.Tags
+      description: Tags that are associated with the URL.
+      type: String
+    - contextPath: URL.ResultPage
+      description: Page in the URLScan UI displaying the scan result.
+      type: String
+    polling: true
+  - arguments:
+    - description: The UUID of the URL for which to search the transaction list.
+      name: uuid
+      required: true
+    - defaultValue: "20"
+      description: The maximum number of results to return to the War Room. Maximum
+        is 100. Default is 20.
+      name: limit
+    - description: The URL for which to search the transaction list.
+      name: url
+      required: true
+    deprecated: true
+    description: Returns the HTTP transaction list for the specified URL. Do not use
+      this command in conjunction with the urlscan-get-http-transactions script.
+    name: urlscan-get-http-transaction-list
+    outputs:
+    - contextPath: URLScan.URL
+      description: The URL address that was scanned.
+      type: string
+    - contextPath: URLScan.httpTransaction
+      description: A link to the HTTP transaction made during the search for the specified
+        URL.
+      type: string
+    polling: true
+  - arguments:
+    - description: The URL sought after.
+      name: url
+      required: true
+    deprecated: true
+    description: Submits a URL to retrieve its UUID.
+    name: urlscan-submit-url-command
+    polling: true
+  - arguments:
+    - description: The URI for which to get the results.
+      name: uri
+      required: true
+    deprecated: true
+    description: Polls the urlscan service regarding the results of the specified
+      URI.
+    name: urlscan-poll-uri
+  - arguments:
+    - description: The UUID of the URL for which to search.
+      name: uuid
+      required: true
+    deprecated: true
+    description: Returns the results page for the specified UUID.
+    name: urlscan-get-result-page
+  dockerimage: demisto/python3:3.10.13.78623
+  runonce: false
+  script: |
+    register_module_line('urlscan.io', 'start', __line__())
+    ### pack version: 1.2.10
+
+
+
+    '''IMPORTS'''
+    import collections
+    import json as JSON
+    import time
+    from urllib.parse import urlparse
+
+    import urllib3
+    import requests
+    from requests.utils import quote  # type: ignore
+
+    """ POLLING FUNCTIONS"""
+    try:
+        from Queue import Queue
+    except ImportError:
+        from queue import Queue  # type: ignore
+
+    # disable insecure warnings
+    urllib3.disable_warnings()
+
+    '''GLOBAL VARS'''
+    BLACKLISTED_URL_ERROR_MESSAGES = [
+        'The submitted domain is on our blacklist. For your own safety we did not perform this scan...',
+        'The submitted domain is on our blacklist, we will not scan it.'
+    ]
+    BRAND = 'urlscan.io'
+
+    """ RELATIONSHIP TYPE"""
+    RELATIONSHIP_TYPE = {
+        'page': {
+            'domain': {
+                'indicator_type': FeedIndicatorType.Domain,
+                'name': EntityRelationship.Relationships.HOSTED_ON,
+                'detect_type': False
+            },
+            'ip': {
+                'indicator_type': FeedIndicatorType.IP,
+                'name': EntityRelationship.Relationships.HOSTED_ON,
+                'detect_type': False
+            }
+        }
+    }
+
+
+    class Client:
+        def __init__(self, api_key='', user_agent='', scan_visibility=None, threshold=None, use_ssl=False,
+                     reliability=DBotScoreReliability.C):
+            self.base_url = 'https://urlscan.io/'
+            self.base_api_url = 'https://urlscan.io/api/v1/'
+            self.api_key = api_key
+            self.user_agent = user_agent
+            self.threshold = threshold
+            self.scan_visibility = scan_visibility
+            self.use_ssl = use_ssl
+            self.reliability = reliability
+
+
+    '''HELPER FUNCTIONS'''
+
+
+    def detect_ip_type(indicator):
+        """
+        Helper function which detects wheather an IP is a IP or IPv6 by string
+        """
+        indicator_type = ''
+        if '::' in indicator:
+            indicator_type = FeedIndicatorType.IPv6
+        else:
+            indicator_type = FeedIndicatorType.IP
+        return indicator_type
+
+
+    def schedule_polling(items_to_schedule, next_polling_interval):
+        """
+        Schedules a polling command for the items in the list.
+        Args:
+            items_to_schedule: List of items to schedule.
+            next_polling_interval: The time in seconds for the scheduled command to re-run
+        """
+        # Prepare scheduled url entries
+        args = demisto.args()
+        polling_args = {}
+        for arg in args:
+            if arg != 'url':
+                polling_args[arg] = args[arg]
+        polling_args['url'] = items_to_schedule
+        polling_args['polling'] = True
+        scheduled_items = ScheduledCommand(
+            command=demisto.command(),
+            args=polling_args,
+            items_remaining=len(items_to_schedule),
+            next_run_in_seconds=next_polling_interval
+        )
+        return CommandResults(scheduled_command=scheduled_items)
+
+
+    def http_request(client, method, url_suffix, json=None, retries=0):
+        headers = {'API-Key': client.api_key,
+                   'Accept': 'application/json'}
+        if client.user_agent:
+            headers['User-Agent'] = client.user_agent
+        if method == 'POST':
+            headers.update({'Content-Type': 'application/json'})
+        demisto.debug(
+            'requesting https request with method: {}, url: {}, data: {}'.format(method, client.base_api_url + url_suffix,
+                                                                                 json))
+        r = requests.request(
+            method,
+            client.base_api_url + url_suffix,
+            data=json,
+            headers=headers,
+            verify=client.use_ssl
+        )
+
+        rate_limit_remaining = int(r.headers.get('X-Rate-Limit-Remaining', 99))
+        rate_limit_reset_after = int(r.headers.get('X-Rate-Limit-Reset-After', 60))
+        limit_action = r.headers.get('X-Rate-Limit-Action', 'search')
+        limit_window = r.headers.get('X-Rate-Limit-Window', 'minute')
+        if rate_limit_remaining < 10:
+            return_warning('Your available rate limit remaining is {} and is about to be exhausted. '
+                           'The rate limit will reset at {}'.format(str(rate_limit_remaining),
+                                                                    r.headers.get("X-Rate-Limit-Reset")))
+        if r.status_code != 200:
+            if r.status_code == 429:
+                if ScheduledCommand.supports_polling():
+                    return {}, ErrorTypes.QUOTA_ERROR, rate_limit_reset_after
+                if retries <= 0:
+                    # Error in API call to URLScan.io [429] - Too Many Requests
+                    return_error(f'You have exceeded your {limit_action} limit for this {limit_window}. The rate limit will'
+                                 f' reset in {rate_limit_reset_after} seconds')
+                else:
+                    time.sleep(rate_limit_reset_after)  # pylint: disable=sleep-exists
+                    return http_request(method, url_suffix, json, rate_limit_reset_after, retries - 1)
+
+            response_json = r.json()
+            error_description = response_json.get('description')
+            should_continue_on_blacklisted_urls = argToBoolean(demisto.args().get('continue_on_blacklisted_urls', False))
+            if should_continue_on_blacklisted_urls and error_description in BLACKLISTED_URL_ERROR_MESSAGES:
+                response_json['url_is_blacklisted'] = True
+                requested_url = JSON.loads(json)['url']
+                blacklisted_message = 'The URL {} is blacklisted, no results will be returned for it.'.format(requested_url)
+                demisto.results(blacklisted_message)
+                return response_json, ErrorTypes.GENERAL_ERROR, None
+
+            response_json['is_error'] = True
+            response_json['error_string'] = 'Error in API call to URLScan.io [%d] - %s: %s' % (r.status_code, r.reason,
+                                                                                               error_description)
+            return response_json, ErrorTypes.GENERAL_ERROR, None
+        return r.json(), None, None
+
+
+    # Allows nested keys to be accessible
+    def makehash():
+        return collections.defaultdict(makehash)
+
+
+    def schedule_and_report(command_results, items_to_schedule, execution_metrics, rate_limit_reset_after):
+        """
+        Before the command is done running, or going to raise an error, we need to dump all the currently collected data
+        Args:
+            command_results: List of CommandResults objects
+            items_to_schedule: List of urls to schedule
+            execution_metrics: ExecutionMetrics object
+            rate_limit_reset_after: The time in seconds for the scheduled command to re-run
+        """
+        if ScheduledCommand.supports_polling() and len(items_to_schedule) > 0:
+            command_results.append(schedule_polling(items_to_schedule, rate_limit_reset_after))
+        if execution_metrics.metrics is not None and execution_metrics.is_supported():
+            command_results.append(execution_metrics.metrics)
+
+
+    def get_result_page(client):
+        uuid = demisto.args().get('uuid')
+        uri = client.base_api_url + 'result/{}'.format(uuid)
+        return uri
+
+
+    def polling(client, uuid):
+        TIMEOUT = int(demisto.args().get('timeout', 60))
+        uri = client.base_api_url + 'result/{}'.format(uuid)
+
+        headers = {'API-Key': client.api_key}
+        if client.user_agent:
+            headers['User-Agent'] = client.user_agent
+        ready = poll(
+            lambda: requests.get(uri, headers=headers, verify=client.use_ssl).status_code == 200,
+            step=5,
+            ignore_exceptions=(requests.exceptions.ConnectionError),
+            timeout=int(TIMEOUT)
+        )
+        return ready
+
+
+    def poll_uri(client):
+        uri = demisto.args().get('uri')
+        demisto.results(requests.get(uri, verify=client.use_ssl).status_code)
+
+
+    def step_constant(step):
+        return step
+
+
+    def is_truthy(val):
+        return bool(val)
+
+
+    def poll(target, step, args=(), kwargs=None, timeout=60,
+             check_success=is_truthy, step_function=step_constant,
+             ignore_exceptions=(), collect_values=None, **k):
+        kwargs = kwargs or dict()
+        values = collect_values or Queue()
+
+        max_time = time.time() + timeout
+        tries = 0
+        # According to the doc - The most efficient approach would be to wait at least 10 seconds before starting to poll
+        time.sleep(10)
+        while True:
+            demisto.debug('Number of Polling attempts: {}'.format(tries))
+            try:
+                val = target(*args, **kwargs)
+                last_item = val
+            except ignore_exceptions as e:
+                last_item = e
+                demisto.debug('Polling request failed with exception {}'.format(str(e)))
+            else:
+                if check_success(val):
+                    return val
+            demisto.debug('Polling request returned False')
+            values.put(last_item)
+            tries += 1
+            if max_time is not None and time.time() >= max_time:
+                demisto.results('The operation timed out. Please try again with a longer timeout period.')
+                demisto.debug('The operation timed out.')
+                return False
+            time.sleep(step)  # pylint: disable=sleep-exists
+            step = step_function(step)
+
+
+    '''MAIN FUNCTIONS'''
+
+
+    def urlscan_submit_url(client, url):
+        submission_dict = {}
+        if demisto.args().get('scan_visibility'):
+            submission_dict['visibility'] = demisto.args().get('scan_visibility')
+        elif client.scan_visibility:
+            submission_dict['visibility'] = client.scan_visibility
+        elif demisto.args().get('public'):
+            if demisto.args().get('public') == 'public':
+                submission_dict['visibility'] = 'public'
+        elif demisto.params().get('is_public') is True:
+            # this parameter is now hidden and it is default value is false.
+            # Hence, we do not expect to be entering this code block,
+            # and it is merely here for Backward Compatibility reasons.
+            submission_dict['visibility'] = 'public'
+
+        submission_dict['url'] = url
+
+        if demisto.args().get('useragent'):
+            submission_dict['customagent'] = demisto.args().get('useragent')
+        elif demisto.params().get('useragent'):
+            submission_dict['customagent'] = demisto.params().get('useragent')
+
+        sub_json = json.dumps(submission_dict)
+        retries = int(demisto.args().get('retries', 0))
+        r, metric, rate_limit_reset_after = http_request(client, 'POST', 'scan/', sub_json, retries)
+        return r, metric, rate_limit_reset_after
+
+
+    def create_relationship(scan_type, field, entity_a, entity_a_type, entity_b, entity_b_type, reliability):
+        """
+        Create a single relation with the given arguments.
+        """
+        return EntityRelationship(name=RELATIONSHIP_TYPE.get(scan_type, {}).get(field, {}).get('name', ''),
+                                  entity_a=entity_a,
+                                  entity_a_type=entity_a_type,
+                                  entity_b=entity_b,
+                                  entity_b_type=entity_b_type,
+                                  source_reliability=reliability,
+                                  brand=BRAND)
+
+
+    def create_list_relationships(scans_dict, url, reliability):
+        """
+        Creates a list of EntityRelationships object from all of the lists in scans_dict according to RELATIONSHIP_TYPE dict.
+        """
+        relationships_list = []
+        for scan_name, scan_dict in scans_dict.items():
+            fields = RELATIONSHIP_TYPE.get(scan_name, {}).keys()
+            for field in fields:
+                indicators = scan_dict.get(field)
+                if not isinstance(indicators, list):
+                    indicators = [indicators]
+                relationship_dict = RELATIONSHIP_TYPE.get(scan_name, {}).get(field, {})
+                indicator_type = relationship_dict.get('indicator_type', '')
+                for indicator in indicators:
+                    # For a case where the destination side does not exist
+                    if not indicator:
+                        pass
+                    # For a case where the type of the IP indicator should be detected, whether its IPv6/IP
+                    if not indicator_type and relationship_dict.get('detect_type'):
+                        indicator_type = detect_ip_type(indicator)
+                    relationship = create_relationship(scan_type=scan_name, field=field, entity_a=url,
+                                                       entity_a_type=FeedIndicatorType.URL, entity_b=indicator,
+                                                       entity_b_type=indicator_type, reliability=reliability)
+                    relationships_list.append(relationship)
+        return relationships_list
+
+
+    def format_results(client, uuid, use_url_as_name):
+        # Scan Lists sometimes returns empty
+        num_of_attempts = 0
+        relationships = []
+        response, _, _ = urlscan_submit_request(client, uuid)
+        scan_lists = response.get('lists')
+        while scan_lists is None:
+            try:
+                num_of_attempts += 1
+                demisto.debug('Attempting to get scan lists {} times'.format(num_of_attempts))
+                response, _, _ = urlscan_submit_request(client, uuid)
+                scan_lists = response.get('lists')
+            except Exception:
+                if num_of_attempts == 5:
+                    break
+                demisto.debug('Could not get scan lists, sleeping for 5 minutes before trying again')
+                time.sleep(5)
+        scan_data = response.get('data', {})
+        scan_lists = response.get('lists', {})
+        scan_tasks = response.get('task', {})
+        scan_page = response.get('page', {})
+        scan_stats = response.get('stats', {})
+        scan_meta = response.get('meta', {})
+        url_query = scan_tasks.get('url', {})
+        scan_verdicts = response.get('verdicts', {})
+        ec = makehash()
+        dbot_score = makehash()
+        human_readable = makehash()
+        cont = makehash()
+        file_context = makehash()
+        url_cont = makehash()
+
+        feed_related_indicators = []
+
+        cont['ResultPage'] = client.base_url + 'result/{}'.format(uuid)
+
+        LIMIT = int(demisto.args().get('limit', 20))
+        if 'certificates' in scan_lists:
+            cert_md = []
+            cert_ec = []
+            certs = scan_lists['certificates']
+            for x in certs[:LIMIT]:
+                info, ec_info = cert_format(x)
+                cert_md.append(info)
+                cert_ec.append(ec_info)
+            CERT_HEADERS = ['Subject Name', 'Issuer', 'Validity']
+            cont['Certificates'] = cert_ec
+        url_cont['Data'] = url_query
+        if 'urls' in scan_lists:
+            url_cont['Data'] = demisto.args().get('url')
+            cont['URL'] = demisto.args().get('url')
+            if isinstance(scan_lists.get('urls'), list):
+                for url in scan_lists['urls']:
+                    feed_related_indicators.append({'value': url, 'type': 'URL'})
+        # effective url of the submitted url
+        human_readable['Effective URL'] = scan_page.get('url')
+        cont['EffectiveURL'] = scan_page.get('url')
+        if 'uuid' in scan_tasks:
+            ec['URLScan']['UUID'] = scan_tasks['uuid']
+        if 'ips' in scan_lists:
+            ip_asn_MD = []
+            ip_ec_info = makehash()
+            ip_list = scan_lists['ips']
+            asn_list = scan_lists['asns']
+
+            ip_asn_dict = dict(zip(ip_list, asn_list))
+            i = 1
+            for k in ip_asn_dict:
+                if i - 1 == LIMIT:
+                    break
+                v = ip_asn_dict[k]
+                ip_info = {
+                    'Count': i,
+                    'IP': k,
+                    'ASN': v
+                }
+                ip_ec_info[i]['IP'] = k
+                ip_ec_info[i]['ASN'] = v
+                ip_asn_MD.append(ip_info)
+                i = i + 1
+            cont['RelatedIPs'] = ip_ec_info
+            if isinstance(scan_lists.get('ips'), list):
+                for ip in scan_lists.get('ips'):
+                    feed_related_indicators.append({'value': ip, 'type': 'IP'})
+            IP_HEADERS = ['Count', 'IP', 'ASN']
+        if 'links' in scan_data:
+            links = []
+            for o in scan_data['links']:
+                if 'href' in o:
+                    links.append(o['href'])
+            cont['links'] = links
+        # add redirected URLs
+        if 'requests' in scan_data:
+            redirected_urls = []
+            for o in scan_data['requests']:
+                if 'redirectResponse' in o['request']:
+                    if 'url' in o['request']['redirectResponse']:
+                        url = o['request']['redirectResponse']['url']
+                        redirected_urls.append(url)
+            cont['RedirectedURLs'] = redirected_urls
+        if 'countries' in scan_lists:
+            countries = scan_lists['countries']
+            human_readable['Associated Countries'] = countries
+            cont['Country'] = countries
+        if None not in scan_lists.get('hashes', []):
+            hashes = scan_lists.get('hashes', [])
+            cont['RelatedHash'] = hashes
+            human_readable['Related Hashes'] = hashes
+            for hashe in hashes:
+                feed_related_indicators.append({'value': hashe, 'type': 'File'})
+        if 'domains' in scan_lists:
+            subdomains = scan_lists.get('domains', [])
+            cont['Subdomains'] = subdomains
+            human_readable['Subdomains'] = subdomains
+            for domain in subdomains:
+                feed_related_indicators.append({'value': domain, 'type': 'Domain'})
+        if 'linkDomains' in scan_lists:
+            link_domains = scan_lists.get('domains', [])
+            for domain in link_domains:
+                feed_related_indicators.append({'value': domain, 'type': 'Domain'})
+        if 'asn' in scan_page:
+            cont['ASN'] = scan_page['asn']
+            url_cont['ASN'] = scan_page.get('asn')
+        if 'asnname' in scan_page:
+            url_cont['ASOwner'] = scan_page['asnname']
+        if 'country' in scan_page:
+            url_cont['Geo']['Country'] = scan_page['country']
+        if 'domain' in scan_page:
+            feed_related_indicators.append({'value': scan_page['domain'], 'type': 'Domain'})
+        if 'ip' in scan_page:
+            feed_related_indicators.append({'value': scan_page['ip'], 'type': 'IP'})
+        if 'url' in scan_page:
+            feed_related_indicators.append({'value': scan_page['url'], 'type': 'URL'})
+        if 'overall' in scan_verdicts:
+            human_readable['Malicious URLs Found'] = scan_stats['malicious']
+            if scan_verdicts['overall'].get('malicious'):
+                human_readable['Verdict'] = 'Malicious'
+                url_cont['Data'] = demisto.args().get('url')
+                cont['Data'] = demisto.args().get('url')
+                dbot_score['Indicator'] = demisto.args().get('url')
+                url_cont['Malicious']['Vendor'] = 'urlscan.io'
+                cont['Malicious']['Vendor'] = 'urlscan.io'
+                dbot_score['Vendor'] = 'urlscan.io'
+                url_cont['Malicious']['Description'] = 'Match found in Urlscan.io database'
+                cont['Malicious']['Description'] = 'Match found in Urlscan.io database'
+                dbot_score['Score'] = 3
+                dbot_score['Type'] = 'url'
+            else:
+                dbot_score['Vendor'] = 'urlscan.io'
+                dbot_score['Indicator'] = demisto.args().get('url')
+                dbot_score['Score'] = 0
+                dbot_score['Type'] = 'url'
+                human_readable['Verdict'] = 'Unknown'
+            dbot_score['Reliability'] = client.reliability
+        if 'urlscan' in scan_verdicts and 'tags' in scan_verdicts['urlscan']:
+            url_cont['Tags'] = scan_verdicts['urlscan']['tags']
+        processors_data = scan_meta['processors']
+        if 'download' in processors_data and len(scan_meta['processors']['download']['data']) > 0:
+            meta_data = processors_data['download']['data'][0]
+            sha256 = meta_data['sha256']
+            filename = meta_data['filename']
+            filesize = meta_data['filesize']
+            filetype = meta_data['mimeType']
+            human_readable['File']['Hash'] = sha256
+            cont['File']['Hash'] = sha256
+            file_context['SHA256'] = sha256
+            human_readable['File']['Name'] = filename
+            cont['File']['FileName'] = filename
+            file_context['Name'] = filename
+            human_readable['File']['Size'] = filesize
+            cont['File']['FileSize'] = filesize
+            file_context['Size'] = filesize
+            human_readable['File']['Type'] = filetype
+            cont['File']['FileType'] = filetype
+            file_context['Type'] = filetype
+            file_context['Hostname'] = demisto.args().get('url')
+        if feed_related_indicators:
+            related_indicators = []
+            for related_indicator in feed_related_indicators:
+                related_indicators.append(Common.FeedRelatedIndicators(value=related_indicator['value'],
+                                                                       indicator_type=related_indicator['type']))
+            url_cont['FeedRelatedIndicators'] = related_indicators
+        if demisto.params().get('create_relationships') is True:
+            relationships = create_list_relationships({'page': scan_page}, url_query,
+                                                      client.reliability)
+        outputs = {
+            'URLScan(val.URL && val.URL == obj.URL)': cont,
+            outputPaths['file']: file_context
+        }
+
+        if 'screenshotURL' in scan_tasks:
+            human_readable['Screenshot'] = scan_tasks['screenshotURL']
+            screen_path = scan_tasks['screenshotURL']
+            response_img = requests.request("GET", screen_path, verify=client.use_ssl)
+            if use_url_as_name:
+                screenshot_name = cont['EffectiveURL'].replace('http://', '').replace('https://', '').replace('/', '_')
+            else:
+                screenshot_name = 'screenshot'
+            stored_img = fileResult('{}.png'.format(screenshot_name), response_img.content)
+
+        dbot_score = Common.DBotScore(indicator=dbot_score.get('Indicator'), indicator_type=dbot_score.get('Type'),
+                                      integration_name=BRAND, score=dbot_score.get('Score'),
+                                      reliability=dbot_score.get('Reliability'))
+
+        url = Common.URL(url=url_cont.get('Data'), dbot_score=dbot_score, relationships=relationships,
+                         feed_related_indicators=url_cont.get('FeedRelatedIndicators'))
+
+        command_result = CommandResults(
+            readable_output=tableToMarkdown('{} - Scan Results'.format(url_query), human_readable),
+            outputs=outputs,
+            indicator=url,
+            raw_response=response,
+            relationships=relationships
+        )
+
+        demisto.results(command_result.to_context())
+
+        if len(cert_md) > 0:
+            demisto.results({
+                'Type': entryTypes['note'],
+                'ContentsFormat': formats['markdown'],
+                'Contents': tableToMarkdown('Certificates', cert_md, CERT_HEADERS),
+                'HumanReadable': tableToMarkdown('Certificates', cert_md, CERT_HEADERS)
+            })
+        if 'ips' in scan_lists:
+            if isinstance(scan_lists.get('ips'), list):
+                feed_related_indicators += scan_lists.get('ips')
+            demisto.results({
+                'Type': entryTypes['note'],
+                'ContentsFormat': formats['markdown'],
+                'Contents': tableToMarkdown('Related IPs and ASNs', ip_asn_MD, IP_HEADERS),
+                'HumanReadable': tableToMarkdown('Related IPs and ASNs', ip_asn_MD, IP_HEADERS)
+            })
+
+        if 'screenshotURL' in scan_tasks:
+            demisto.results({
+                'Type': entryTypes['image'],
+                'ContentsFormat': formats['text'],
+                'File': stored_img['File'],
+                'FileID': stored_img['FileID'],
+                'Contents': ''
+            })
+
+
+    def urlscan_submit_request(client, uuid):
+        response, metrics, _ = http_request(client, 'GET', 'result/{}'.format(uuid))
+        return response, metrics, _
+
+
+    def get_urlscan_submit_results_polling(client, uuid, use_url_as_name):
+        ready = polling(client, uuid)
+        if ready is True:
+            format_results(client, uuid, use_url_as_name)
+
+
+    def urlscan_submit_command(client):
+        execution_metrics = ExecutionMetrics()
+        command_results: list = []
+        items_to_schedule: list = []
+        rate_limit_reset_after: int = 60
+
+        urls = argToList(demisto.args().get('url'))
+        for url in urls:
+            demisto.args()['url'] = url
+            response, metrics, rate_limit_reset_after = urlscan_submit_url(client, url)
+            if response.get('url_is_blacklisted') or response.get('is_error'):
+                execution_metrics.general_error += 1
+                if response.get('is_error'):
+                    schedule_and_report(command_results=command_results, items_to_schedule=items_to_schedule,
+                                        execution_metrics=execution_metrics, rate_limit_reset_after=rate_limit_reset_after)
+                    return_results(results=command_results)
+                    return_error(response.get('error_string'))
+                continue
+            if metrics == ErrorTypes.QUOTA_ERROR:
+                if not is_scheduled_command_retry():
+                    execution_metrics.quota_error += 1
+                items_to_schedule.append(url)
+                continue
+            uuid = response.get('uuid')
+            use_url_as_name = True if demisto.args()['use_url_as_name'] == 'true' else False
+            get_urlscan_submit_results_polling(client, uuid, use_url_as_name)
+            execution_metrics.success += 1
+        schedule_and_report(command_results=command_results, items_to_schedule=items_to_schedule,
+                            execution_metrics=execution_metrics, rate_limit_reset_after=rate_limit_reset_after)
+        return command_results
+
+
+    def urlscan_search(client, search_type, query):
+
+        if search_type == 'advanced':
+            r, _, _ = http_request(client, 'GET', 'search/?q=' + query)
+        else:
+            r, _, _ = http_request(client, 'GET', 'search/?q=' + search_type + ':"' + query + '"')
+
+        return r
+
+
+    def cert_format(x):
+        valid_to = datetime.fromtimestamp(x['validTo']).strftime('%Y-%m-%d %H:%M:%S')
+        valid_from = datetime.fromtimestamp(x['validFrom']).strftime('%Y-%m-%d %H:%M:%S')
+        info = {
+            'Subject Name': x['subjectName'],
+            'Issuer': x['issuer'],
+            'Validity': "{} - {}".format(valid_to, valid_from)
+        }
+        ec_info = {
+            'SubjectName': x['subjectName'],
+            'Issuer': x['issuer'],
+            'ValidFrom': valid_from,
+            'ValidTo': valid_to
+        }
+        return info, ec_info
+
+
+    def urlscan_search_command(client):
+        LIMIT = int(demisto.args().get('limit'))
+        HUMAN_READBALE_HEADERS = ['URL', 'Domain', 'IP', 'ASN', 'Scan ID', 'Scan Date']
+        raw_query = demisto.args().get('searchParameter', '')
+        search_type = demisto.args().get('searchType', '')
+        if not search_type:
+            if is_ip_valid(raw_query, accept_v6_ips=True):
+                search_type = 'ip'
+            else:
+                # Parsing query to see if it's a url
+                parsed = urlparse(raw_query)
+                # Checks to see if Netloc is present. If it's not a url, Netloc will not exist
+                if parsed.netloc == '' and len(raw_query) == 64:
+                    search_type = 'hash'
+                else:
+                    search_type = 'page.url'
+
+        # Making the query string safe for Elastic Search
+        query = quote(raw_query, safe='')
+
+        r = urlscan_search(client, search_type, query)
+
+        if r['total'] == 0:
+            demisto.results('No results found for {}'.format(raw_query))
+            return
+        if r['total'] > 0:
+            demisto.results('{} results found for {}'.format(r['total'], raw_query))
+
+        # Opening empty string for url comparison
+        last_url = ''
+        hr_md = []
+        cont_array = []
+        ip_array = []
+        dom_array = []
+        url_array = []
+
+        for res in r['results'][:LIMIT]:
+            ec = makehash()
+            cont = makehash()
+            url_cont = makehash()
+            ip_cont = makehash()
+            dom_cont = makehash()
+            file_context = makehash()
+            res_dict = res
+            res_tasks = res_dict['task']
+            res_page = res_dict['page']
+
+            if last_url == res_tasks['url']:
+                continue
+
+            human_readable = makehash()
+
+            if 'url' in res_tasks:
+                url = res_tasks['url']
+                human_readable['URL'] = url
+                cont['URL'] = url
+                url_cont['Data'] = url
+            if 'domain' in res_page:
+                domain = res_page['domain']
+                human_readable['Domain'] = domain
+                cont['Domain'] = domain
+                dom_cont['Name'] = domain
+            if 'asn' in res_page:
+                asn = res_page['asn']
+                cont['ASN'] = asn
+                ip_cont['ASN'] = asn
+                human_readable['ASN'] = asn
+            if 'ip' in res_page:
+                ip = res_page['ip']
+                cont['IP'] = ip
+                ip_cont['Address'] = ip
+                human_readable['IP'] = ip
+            if '_id' in res_dict:
+                scanID = res_dict['_id']
+                cont['ScanID'] = scanID
+                human_readable['Scan ID'] = scanID
+            if 'time' in res_tasks:
+                scanDate = res_tasks['time']
+                cont['ScanDate'] = scanDate
+                human_readable['Scan Date'] = scanDate
+            if 'files' in res_dict:
+                HUMAN_READBALE_HEADERS = ['URL', 'Domain', 'IP', 'ASN', 'Scan ID', 'Scan Date', 'File']
+                files = res_dict['files'][0]
+                sha256 = files['sha256']
+                filename = files['filename']
+                filesize = files['filesize']
+                filetype = files['mimeType']
+                url = res_tasks['url']
+                human_readable['File']['Hash'] = sha256
+                cont['Hash'] = sha256
+                file_context['SHA256'] = sha256
+                human_readable['File']['Name'] = filename
+                cont['FileName'] = filename
+                file_context['File']['Name'] = filename
+                human_readable['File']['Size'] = filesize
+                cont['FileSize'] = filesize
+                file_context['Size'] = filesize
+                human_readable['File']['Type'] = filetype
+                cont['FileType'] = filetype
+                file_context['File']['Type'] = filetype
+                file_context['File']['Hostname'] = url
+
+            ec[outputPaths['file']] = file_context
+            hr_md.append(human_readable)
+            cont_array.append(cont)
+            ip_array.append(ip_cont)
+            url_array.append(url_cont)
+            dom_array.append(dom_cont)
+
+            # Storing last url in memory for comparison on next loop
+            last_url = url
+
+        ec = ({
+            'URLScan(val.URL && val.URL == obj.URL)': cont_array,
+            'URL': url_array,
+            'IP': ip_array,
+            'Domain': dom_array
+        })
+        demisto.results({
+            'Type': entryTypes['note'],
+            'ContentsFormat': formats['markdown'],
+            'Contents': r,
+            'HumanReadable': tableToMarkdown('URLScan.io query results for {}'.format(raw_query), hr_md,
+                                             HUMAN_READBALE_HEADERS, removeNull=True),
+            'EntryContext': ec
+        })
+
+
+    def format_http_transaction_list(client):
+        url = demisto.args().get('url')
+        uuid = demisto.args().get('uuid')
+
+        # Scan Lists sometimes returns empty
+        scan_lists = {}  # type: dict
+        while not scan_lists:
+            response, _, _ = urlscan_submit_request(client, uuid)
+            scan_lists = response.get('lists', {})
+
+        limit = int(demisto.args().get('limit'))
+        metadata = None
+        if limit > 100:
+            limit = 100
+            metadata = "Limited the data to the first 100 http transactions"
+
+        url_list = scan_lists.get('urls', [])[:limit]
+
+        context = {
+            'URL': url,
+            'httpTransaction': url_list
+        }
+
+        ec = {
+            'URLScan(val.URL && val.URL == obj.URL)': context,
+        }
+
+        human_readable = tableToMarkdown('{} - http transaction list'.format(url), url_list, ['URLs'], metadata=metadata)
+        return_outputs(human_readable, ec, response)
+
+
+    """COMMAND FUNCTIONS"""
+
+
+    def main():
+        params = demisto.params()
+
+        api_key = params.get('apikey') or (params.get('creds_apikey') or {}).get('password', '')
+        # to safeguard the visibility of the scan,
+        # if the customer did not choose a visibility, we will set it to private by default.
+        scan_visibility = params.get('scan_visibility', 'private')
+        threshold = int(params.get('url_threshold', '1'))
+        use_ssl = not params.get('insecure', False)
+        reliability = params.get('integrationReliability')
+        reliability = reliability if reliability else DBotScoreReliability.C
+
+        if DBotScoreReliability.is_valid_type(reliability):
+            reliability = DBotScoreReliability.get_dbot_score_reliability_from_str(reliability)
+        else:
+            Exception("Please provide a valid value for the Source Reliability parameter.")
+
+        demisto_version = get_demisto_version_as_str()
+        instance_name = demisto.callingContext.get('context', {}).get('IntegrationInstance')
+        client = Client(
+            api_key=api_key,
+            user_agent='xsoar-{}/urlscan-{}'.format(demisto_version, instance_name),
+            scan_visibility=scan_visibility,
+            threshold=threshold,
+            use_ssl=use_ssl,
+            reliability=reliability
+        )
+
+        try:
+            handle_proxy()
+            if demisto.command() == 'test-module':
+                search_type = 'ip'
+                query = '8.8.8.8'
+                urlscan_search(client, search_type, query)
+                demisto.results('ok')
+            if demisto.command() in {'urlscan-submit', 'url'}:
+                results = urlscan_submit_command(client)
+                return_results(results=results)
+            if demisto.command() == 'urlscan-search':
+                urlscan_search_command(client)
+            if demisto.command() == 'urlscan-submit-url-command':
+                url = demisto.args().get('url')
+                result, _, _ = urlscan_submit_url(client, url)
+                demisto.results(result.get('uuid'))
+            if demisto.command() == 'urlscan-get-http-transaction-list':
+                format_http_transaction_list(client)
+            if demisto.command() == 'urlscan-get-result-page':
+                demisto.results(get_result_page(client))
+            if demisto.command() == 'urlscan-poll-uri':
+                poll_uri(client)
+
+        except Exception as e:
+            LOG(e)
+            LOG.print_log(False)
+            return_error(e)
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('urlscan.io', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
