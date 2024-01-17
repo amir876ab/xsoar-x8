@@ -1,0 +1,87 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 175246e0-93a5-4233-8b13-bd26da7219d3
+inputs: []
+name: new-amir
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e470af4d-2efc-49a2-8e0d-5c73fd5ed1a5
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: e470af4d-2efc-49a2-8e0d-5c73fd5ed1a5
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0f9b69df-93c4-437d-8586-7fa230a2a442
+      iscommand: false
+      name: Untitled Task
+      type: regular
+      version: -1
+    taskid: 0f9b69df-93c4-437d-8586-7fa230a2a442
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 460,
+          "y": 350
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 395,
+        "width": 390,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
