@@ -1,0 +1,123 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "Phishing",
+	"definitionId": "",
+	"description": "Maps incoming Onboarding integration incident fields.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "OnboardingIntegration-mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.1.2",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"Phishing": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Email BCC": {
+					"simple": "BCC"
+				},
+				"Email Body": {
+					"simple": "Text"
+				},
+				"Email Body HTML": {
+					"simple": "Body"
+				},
+				"Email CC": {
+					"simple": "CC"
+				},
+				"Email From": {
+					"simple": "From"
+				},
+				"Email HTML": {
+					"simple": "Body"
+				},
+				"Email Message ID": {
+					"simple": "Message-ID"
+				},
+				"Email Received": {
+					"simple": "Received"
+				},
+				"Email Reply To": {
+					"simple": "Reply-To"
+				},
+				"Email Sender IP": {
+					"complex": {
+						"filters": [],
+						"root": "Received",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"isContext": false,
+										"value": {
+											"simple": "("
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"isContext": false,
+										"value": {
+											"simple": ")"
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"Email Subject": {
+					"simple": "Subject"
+				},
+				"Email To": {
+					"simple": "To"
+				},
+				"Email To Count": {
+					"complex": {
+						"filters": [],
+						"root": "To",
+						"transformers": [
+							{
+								"args": {
+									"delimiter": {
+										"isContext": false,
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "splitAndTrim"
+							},
+							{
+								"operator": "count"
+							}
+						]
+					}
+				}
+			}
+		}
+	},
+	"name": "Onboarding Integration - Incoming Mapper",
+	"nameRaw": "Onboarding Integration - Incoming Mapper",
+	"packID": "OnboardingIntegration",
+	"packName": "OnboardingIntegration",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
