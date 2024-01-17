@@ -1,0 +1,294 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Email"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook",
+		"classifier"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "Classifies Gmail phishing email messages.",
+				"id": "Gmail",
+				"name": "Gmail - Classifier"
+			},
+			{
+				"description": "Maps incoming Gmail phishing email message fields.",
+				"id": "Gmail-mapper",
+				"name": "Gmail - Incoming Mapper"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Email",
+				"commands": [
+					{
+						"description": "Lists all labels in the user's mailbox.",
+						"name": "gmail-list-labels"
+					},
+					{
+						"description": "Deletes a Gmail user.",
+						"name": "gmail-delete-user"
+					},
+					{
+						"description": "Lists all tokens associated with a specified user.",
+						"name": "gmail-get-tokens-for-user"
+					},
+					{
+						"description": "Gets information for a specified user.",
+						"name": "gmail-get-user"
+					},
+					{
+						"description": "Retrieves a list of all Google roles for a specified user.",
+						"name": "gmail-get-user-roles"
+					},
+					{
+						"description": "Retrieves attachments from a sent Gmail message.",
+						"name": "gmail-get-attachments"
+					},
+					{
+						"description": "Retrieves the Gmail message sent to a specified user.",
+						"name": "gmail-get-mail"
+					},
+					{
+						"description": "Searches for Gmail records for a specific Google user.",
+						"name": "gmail-search"
+					},
+					{
+						"description": "Searches the Gmail records for all Google users. (For more than 2500 accounts, use with the `Search all mailboxes - Gmail with polling` playbook).",
+						"name": "gmail-search-all-mailboxes"
+					},
+					{
+						"description": "Lists all Google users in a domain.",
+						"name": "gmail-list-users"
+					},
+					{
+						"description": "Revokes a role for a specified Google user.",
+						"name": "gmail-revoke-user-role"
+					},
+					{
+						"description": "Creates a new Gmail user.",
+						"name": "gmail-create-user"
+					},
+					{
+						"description": "Deletes an email in the user's mailbox.",
+						"name": "gmail-delete-mail"
+					},
+					{
+						"description": "Returns all messages in a thread.",
+						"name": "gmail-get-thread"
+					},
+					{
+						"description": "Moves an email to a different folder.",
+						"name": "gmail-move-mail"
+					},
+					{
+						"description": "Moves an email to a different mailbox.",
+						"name": "gmail-move-mail-to-mailbox"
+					},
+					{
+						"description": "Adds a rule for email deletion by address.",
+						"name": "gmail-add-delete-filter"
+					},
+					{
+						"description": "Adds a new filter.",
+						"name": "gmail-add-filter"
+					},
+					{
+						"description": "Lists all filters in a user's mailbox.",
+						"name": "gmail-list-filters"
+					},
+					{
+						"description": "Removes a Filter.",
+						"name": "gmail-remove-filter"
+					},
+					{
+						"description": "Hides a user's contact information in the Global Directory, for example email address and profile information.",
+						"name": "gmail-hide-user-in-directory"
+					},
+					{
+						"description": "Sets the password for the user.",
+						"name": "gmail-set-password"
+					},
+					{
+						"description": "Returns the auto-reply message set for the user-account.",
+						"name": "gmail-get-autoreply"
+					},
+					{
+						"description": "Sets the auto-reply for the user. Note: If the body is not set, the current body will be deleted.",
+						"name": "gmail-set-autoreply"
+					},
+					{
+						"description": "Adds a delegate to the mailbox, without sending any verification email. The delegate user must be a member of the same G Suite organization as the delegator user and must be added using their primary email address, and not an email alias.",
+						"name": "gmail-delegate-user-mailbox"
+					},
+					{
+						"description": "Sends mail using Gmail.",
+						"name": "send-mail"
+					},
+					{
+						"description": "Replies to a mail using Gmail.",
+						"name": "reply-mail"
+					},
+					{
+						"description": "Removes a delegate from the mailbox without sending any verification email. The delegate user must be a member of the same G Suite organization as the delegator user using their primary email address, and not an email alias.",
+						"name": "gmail-remove-delegated-mailbox"
+					},
+					{
+						"description": "Gets details of a specific role.",
+						"name": "gmail-get-role"
+					},
+					{
+						"description": "Creates a forwarding address. If ownership verification is required, a message will be sent to the recipient and the resource's verification status will be set to pending; otherwise, the resource will be created with verification status set to accepted. This method is only available to service account clients that have been delegated domain-wide authority. The special value \"me\" can be used to indicate the authenticated user.",
+						"name": "gmail-forwarding-address-add"
+					},
+					{
+						"description": "Updates the auto-forwarding setting for the specified account. A verified forwarding address must be specified when auto-forwarding is enabled.",
+						"name": "gmail-forwarding-address-update"
+					},
+					{
+						"description": "Creates a custom \"from\" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias. If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to pending; otherwise, the resource will be created with verification status set to accepted. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.\n\nThis command is only available to service account clients who have been delegated domain-wide authority.",
+						"name": "gmail-send-as-add"
+					},
+					{
+						"description": "Gets the specified forwarding address or a list of the forwarding addresses for the specified account.",
+						"name": "gmail-forwarding-address-get"
+					},
+					{
+						"description": "Deletes the specified forwarding address and revokes any verification that may have been required. This method is only available to service account clients that have been delegated domain-wide authority.",
+						"name": "gmail-forwarding-address-remove"
+					},
+					{
+						"description": "Lists the forwarding addresses for the specified account.",
+						"name": "gmail-forwarding-address-list"
+					}
+				],
+				"description": "Gmail API and user management (This integration replaces the Gmail functionality in the GoogleApps API and G Suite integration).",
+				"id": "Gmail",
+				"name": "Gmail"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This v2 playbook uses the reporter's email headers to retrieve the original email. This decreases the number of tasks to retrieve the original email. \nUse this playbook to retrieve the original email using the Gmail integration, including headers and attachments.\nNote: You must have the necessary Google Apps Domain-Wide Delegation of Authority permissions in your Gmail service to execute global search.\n",
+				"name": "Get Original Email - Gmail v2"
+			},
+			{
+				"description": "This playbook searches Gmail records for all Google users, designed for large companies with over 2500 Google users.",
+				"name": "Search all mailboxes - Gmail with polling"
+			},
+			{
+				"description": "This playbook searches Gmail to identify and delete emails with similar attributes to the malicious email.",
+				"name": "Search And Delete Emails - Gmail"
+			},
+			{
+				"description": "This playbook should only run as a sub-playbook for the Search-all-mailboxes - Gmail playbook, it should not run alone.",
+				"name": "Search in mailboxes Gmail (Loop) with polling"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "1.3.14",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.37",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.12.34",
+			"name": "Common Scripts"
+		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.33",
+			"name": "Filters And Transformers"
+		},
+		"Phishing": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.5.26",
+			"name": "Phishing"
+		}
+	},
+	"deprecated": false,
+	"description": "Gmail API and user management (This integration replaces the Gmail functionality in the GoogleApps API and G Suite integration).",
+	"disabledMonthly": false,
+	"downloads": 10935,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Gmail",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Gmail/Gmail_image.png",
+			"name": "Gmail"
+		}
+	],
+	"itemVersion": "1.3.14",
+	"keywords": [
+		"Google"
+	],
+	"legacy": true,
+	"name": "Gmail",
+	"packID": "Gmail",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-10-18T09:23:03Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6636841",
+	"videos": []
+}
