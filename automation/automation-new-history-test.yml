@@ -1,0 +1,38 @@
+commonfields:
+  id: 48ce6bf9-3789-408a-8028-96a8bdc9ef2c
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.13.80593
+enabled: true
+engineinfo:
+  engine: 6b950b6e-aaa7-4a68-929f-4615ffc17ef4
+mainengineinfo: {}
+name: new-history-test
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |2
+
+  # line 1 TODO: ADD additional command functions that translate XSOAR inputs/outputs
+
+  # line 2 TODO:
+
+  # line 4 TODO:after restore to 2
+
+  # line 5 TODO:after restore to 2
+
+  # line 6 TODO:after restore to 2
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
