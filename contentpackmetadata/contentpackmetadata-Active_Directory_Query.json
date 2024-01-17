@@ -1,0 +1,338 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Authentication \u0026 Identity Management"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook",
+		"classifier"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Send an approval email to the manager of the employee with the given email allowing the manager to reply directly into the incident",
+				"name": "SendEmailToManager",
+				"tags": [
+					"communication"
+				]
+			},
+			{
+				"description": "Deprecated. Use ADGetUser instead.",
+				"name": "UserEnrichAD",
+				"tags": [
+					"enhancement",
+					"active directory",
+					"user"
+				]
+			},
+			{
+				"description": "Generates password,\nSet an AD user account with this password.\nEnable the account.\nSend mail to the user with the account information.\nThis script is running `send-mail` command, make sure there is a matching Integration configurated.",
+				"name": "IAMInitADUser",
+				"tags": [
+					"IAM",
+					"active directory",
+					"Utility"
+				]
+			},
+			{
+				"description": "Deprecated. Use the ad-get-user command in the Active Directory v2 integration instead.account['Groups'] = demisto.get( Use Active Directory to retrieve detailed information about a user account. The user can be specified by name, email or as an Active Directory Distinguished Name (DN).\nIf no filter is provided, the result will show all users.",
+				"name": "ADGetUser",
+				"tags": [
+					"active directory",
+					"enhancement",
+					"username"
+				]
+			}
+		],
+		"classifier": [
+			{
+				"description": "",
+				"id": "b5955000-e398-4b82-885f-9068fda553e8",
+				"name": "User Profile - Active Directory (Outgoing)"
+			},
+			{
+				"description": "",
+				"id": "e0bc1e9c-7878-40e0-8598-a65c563d270a",
+				"name": "User Profile - Active Directory (Incoming)"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Authentication \u0026 Identity Management",
+				"commands": [
+					{
+						"description": "Expires the password of an Active Directory user.",
+						"name": "ad-expire-password"
+					},
+					{
+						"description": "Creates an Active Directory user. This command requires a secure connection (SSL,TLS).",
+						"name": "ad-create-user"
+					},
+					{
+						"description": "Runs Active Directory queries.",
+						"name": "ad-search"
+					},
+					{
+						"description": "Adds an Active Directory user or computer to a group.",
+						"name": "ad-add-to-group"
+					},
+					{
+						"description": "Removes an Active Directory user or computer from a group.",
+						"name": "ad-remove-from-group"
+					},
+					{
+						"description": "Updates attributes of an existing Active Directory user.",
+						"name": "ad-update-user"
+					},
+					{
+						"description": "Deletes an Active Directory user.",
+						"name": "ad-delete-user"
+					},
+					{
+						"description": "Creates an Active Directory contact.",
+						"name": "ad-create-contact"
+					},
+					{
+						"description": "Updates attributes of an existing Active Directory contact.",
+						"name": "ad-update-contact"
+					},
+					{
+						"description": "Disables an Active Directory user account.",
+						"name": "ad-disable-account"
+					},
+					{
+						"description": "Enables a previously disabled Active Directory account.",
+						"name": "ad-enable-account"
+					},
+					{
+						"description": "Unlocks a previously locked Active Directory user account.",
+						"name": "ad-unlock-account"
+					},
+					{
+						"description": "Sets a new password for an Active Directory user. This command requires a secure connection (SSL,TLS).",
+						"name": "ad-set-new-password"
+					},
+					{
+						"description": "Modifies the computer organizational unit within a domain.",
+						"name": "ad-modify-computer-ou"
+					},
+					{
+						"description": "Modifies the user organizational unit within a domain.",
+						"name": "ad-modify-user-ou"
+					},
+					{
+						"description": "Retrieves detailed information about a user account. The user can be specified by name, email address, or as an Active Directory Distinguished Name (DN). If no filter is specified, all users are returned.",
+						"name": "ad-get-user"
+					},
+					{
+						"description": "Retrieves detailed information about a computer account. The computer can be specified by name, email address, or as an Active Directory Distinguished Name (DN). If no filters are provided, all computers are returned.",
+						"name": "ad-get-computer"
+					},
+					{
+						"description": "Retrieves the list of users or computers that are members of the specified group.",
+						"name": "ad-get-group-members"
+					},
+					{
+						"description": "Creates a new security or distribution Active Directory group.",
+						"name": "ad-create-group"
+					},
+					{
+						"description": "Deletes an existing Active Directory security or distribution group.",
+						"name": "ad-delete-group"
+					},
+					{
+						"description": "Creates an Active Directory user. This command requires a secure connection (SSL,TLS).",
+						"name": "iam-create-user"
+					},
+					{
+						"description": "Retrieves a single user resource.",
+						"name": "iam-get-user"
+					},
+					{
+						"description": "Updates an existing user with the data in the User Profile indicator that is passed in the user-profile argument.",
+						"name": "iam-update-user"
+					},
+					{
+						"description": "Disables a user.",
+						"name": "iam-disable-user"
+					},
+					{
+						"description": "Retrieves a User Profile schema which holds all of the user fields in the application. Used for outgoing mapping through the Get Schema option.",
+						"name": "get-mapping-fields"
+					},
+					{
+						"description": "Updates attributes of an existing Active Directory group.",
+						"name": "ad-update-group"
+					},
+					{
+						"description": "Modifies the AD account attribute \"Password Never Expire\".",
+						"name": "ad-modify-password-never-expire"
+					},
+					{
+						"description": "Test given credentials.",
+						"name": "ad-test-credentials"
+					}
+				],
+				"description": "The Active Directory Query integration enables you to access and manage Active Directory objects (users, contacts, and computers).",
+				"id": "Active Directory Query v2",
+				"name": "Active Directory Query v2"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Takes an email address or a username of a user account in Active Directory, and returns the email address of the user's manager.",
+				"name": "Active Directory - Get User Manager Details"
+			},
+			{
+				"description": "Active Directory Investigation playbook provides tools and guidance to investigate changes and manipulation in Active Directory containers, ACLs, Schema, and objects.\nThis playbook uses a 3rd party tool provided by Microsoft to scan the Active Directory access list, trees, and objects.\nAdditional investigative information is provided for manual investigation.",
+				"name": "Active Directory Investigation"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "1.6.25",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.37",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.12.31",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.87",
+			"name": "Common Types"
+		},
+		"Gmail": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.3.13",
+			"name": "Gmail"
+		},
+		"GmailSingleUser": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.3.11",
+			"name": "Gmail Single User"
+		},
+		"MailSenderNew": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.22",
+			"name": "Mail Sender (New)"
+		},
+		"MicrosoftGraphMail": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.5.17",
+			"name": "Microsoft Graph Mail"
+		}
+	},
+	"deprecated": false,
+	"description": "Active Directory Query integration enables you to access and manage Active Directory objects (users, contacts, and computers).",
+	"disabledMonthly": false,
+	"downloads": 47043,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Active_Directory_Query",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Active_Directory_Query/ActiveDirectoryQueryv2_image.png",
+			"name": "Active Directory Query v2"
+		},
+		{
+			"imagePath": "content/packs/MicrosoftGraphMail/MicrosoftGraphMailSingleUser_image.png",
+			"name": "Microsoft Graph Mail Single User"
+		},
+		{
+			"imagePath": "content/packs/MicrosoftGraphMail/MicrosoftGraphMail_image.png",
+			"name": "O365 Outlook Mail (Using Graph API)"
+		},
+		{
+			"imagePath": "content/packs/MailSenderNew/MailSender%28New%29_image.png",
+			"name": "Mail Sender (New)"
+		},
+		{
+			"imagePath": "content/packs/Gmail/Gmail_image.png",
+			"name": "Gmail"
+		},
+		{
+			"imagePath": "content/packs/GmailSingleUser/GmailSingleUser_image.png",
+			"name": "Gmail Single User"
+		}
+	],
+	"itemVersion": "1.6.25",
+	"keywords": [
+		"Active Directory"
+	],
+	"legacy": true,
+	"name": "Active Directory Query",
+	"packID": "Active_Directory_Query",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Use the Active Directory Query content pack to access and manage Active Directory objects (users, contacts, and computers) and run AD queries.\n\n\n## What does this pack do?\n- Retrieve detailed information about user accounts in Active Directory. \n- Create, update, and delete users and contacts in Active Directory.\n- Add or remove users from groups in Active Directory.\n- Enable or disable a user account in Active Directory.\n- Based on an email address or a username of a user account in Active Directory, return the email address and/or username of the user's manager.\n- Investigate changes in Active Directory containers, ACLs, Schema, and objects.\n\n\nAs part of this pack, you will get an integration, a playbook to investigate changes in Active Directory, a playbook to access a user's manager's email address or username, 2 classifiers, and 4 scripts:\n- **ADGetUser**: Retrieves detailed information about a user account. \n- **IAMInitADUser**: Generates and sets an AD user account with a password, and enables the account. \n- **SendEmailToManager**: Sends an approval email to the manager of the employee with the given email allowing the manager to reply directly in the incident.\n- **UserEnrichAD**: Enriches a username with Active Directory data.\n\n## How does this pack work?\nCreate an instance of the **Active Directory Query v2** integration.\nThis integration can be used along with the Identity Lifecycle Management premium pack. For more information, see [Identity Lifecycle Management](https://xsoar.pan.dev/docs/reference/articles/identity-lifecycle-management) article.\n\nFor more information, see [Active Directory Query v2](https://xsoar.pan.dev/docs/reference/integrations/active-directory-query-v2)\n\n![Playbook Image](https://storage.googleapis.com/marketplace-dist/content/packs/Active_Directory_Query/readme_images/Active_Directory_-_Get_User_Manager_Details.png)\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Trending"
+	],
+	"toServerVersion": "",
+	"updated": "2023-10-10T09:30:11Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6560427",
+	"videos": []
+}
