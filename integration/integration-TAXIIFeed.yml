@@ -1,0 +1,1548 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: TAXIIFeed
+  version: -1
+configuration:
+- defaultvalue: "true"
+  display: Fetch indicators
+  name: feed
+  required: false
+  type: 8
+- additionalinfo: Indicators from this integration instance will be marked with this
+    reputation
+  display: Indicator Reputation
+  name: feedReputation
+  options:
+  - None
+  - Good
+  - Suspicious
+  - Bad
+  required: false
+  type: 18
+- additionalinfo: Reliability of the source providing the intelligence data
+  display: Source Reliability
+  name: feedReliability
+  options:
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  type: 15
+- additionalinfo: The Traffic Light Protocol (TLP) designation to apply to indicators
+    fetched from the feed
+  display: Traffic Light Protocol Color
+  name: tlp_color
+  options:
+  - RED
+  - AMBER
+  - GREEN
+  - WHITE
+  required: false
+  type: 15
+- display: ""
+  name: feedExpirationPolicy
+  options:
+  - never
+  - interval
+  - indicatorType
+  - suddenDeath
+  required: false
+  type: 17
+- display: ""
+  name: feedExpirationInterval
+  required: false
+  type: 1
+- defaultvalue: "240"
+  display: Feed Fetch Interval
+  name: feedFetchInterval
+  required: false
+  type: 19
+- additionalinfo: When selected, the exclusion list is ignored for indicators from
+    this feed. This means that if an indicator from this feed is on the exclusion
+    list, the indicator might still be added to the system.
+  display: Bypass exclusion list
+  name: feedBypassExclusionList
+  required: false
+  type: 8
+- additionalinfo: TAXII discovery service endpoint. For example, http://hailataxii.com/taxii-discovery-service
+  display: Discovery Service
+  name: discovery_service
+  required: true
+  type: 0
+- additionalinfo: Collection name to fetch indicators from.
+  display: Collection
+  name: collection
+  required: false
+  type: 0
+- additionalinfo: Subscription ID for the TAXII consumer.
+  display: Subscription ID
+  name: subscription_id
+  required: false
+  type: 0
+- display: Name (To use the API key click the "?" icon)
+  name: credentials
+  required: false
+  type: 9
+- display: Certificate File as Text
+  displaypassword: Key File as Text
+  name: creds_certificate
+  required: false
+  type: 9
+- additionalinfo: Add a certificate file as text to connect to the TAXII server
+  display: Certificate File as Text
+  hidden: true
+  name: cert_text
+  required: false
+  type: 12
+- additionalinfo: Add a key file as text to connect to the TAXII server
+  display: Key File as Text
+  hidden: true
+  name: key_text
+  required: false
+  type: 4
+- additionalinfo: Time (in seconds) before HTTP requests timeout.
+  defaultvalue: "20"
+  display: Request Timeout
+  name: polling_timeout
+  required: false
+  type: 0
+- additionalinfo: Used by a TAXII Client to request information from a TAXII Server.
+  display: Poll Service
+  name: poll_service
+  required: false
+  type: 0
+- additionalinfo: The time interval for the first fetch (retroactive). <number> <time
+    unit> of type minute/hour/day. For example, 1 minute, 12 hours, 7 days.
+  defaultvalue: 1 day
+  display: First Fetch Time
+  name: initial_interval
+  required: false
+  type: 0
+- additionalinfo: Supports CSV values.
+  display: Tags
+  name: feedTags
+  required: false
+  type: 0
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 1.2.0
+    packID: FeedTAXII
+    packName: TAXII Feed
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Ingests indicator feeds from TAXII 1.x servers.
+detaileddescription: "TAXII Feed integration is a TAXII client that ingests indicators
+  from TAXII feeds. The integration will fetch new indicators after they are published.\n\n#
+  Connect the TAXII Feed Integration to a TAXII Server\nTo connect the TAXII Feed
+  integration to a TAXII server you'll need to configure the following parameters.\n*
+  **Discovery Service** - Available TAXII services and their use can be communicated
+  via the TAXII Discovery Service. The Discovery Service provides a requester with
+  a list of TAXII Services and how these Services can be invoked.\n* **Collection**
+  - A Collection is an interface to a logical repository of CTI objects provided by
+  a TAXII Server. This will usually be the feed name. If you do not know which collections\nare
+  available to you, you can leave it empty and press the Test button. In the error
+  message you will receive a list of available collections for the specified discovery
+  path.\n* **Subscription ID** (Optional) - TAXII defines Subscription IDs. When a
+  Consumer successfully establishes a subscription on a TAXII Server, the server assigns
+  that\nsubscription a *Subscription ID* value. From then on, both the Consumer and
+  the Server refer to this subscription in messages using this Subscription ID value.\n*
+  **Poll Service** (Optional) - Used by a TAXII Client to request information from
+  a TAXII Server. If not provided, will be fetched from the discovery service.\n\n#
+  Authentication\n* **Username + Password** - Username and Password for TAXII servers
+  that require basic authentication. \nThese fields also support the use of API key
+  headers. To use API key headers, specify the header name and value in the following
+  format:\n`_header:<header_name>` in the **Username** field and the header value
+  in the **Password** field.\n\n\n## Step by step configuration\nAs an example, we'll
+  use the public TAXII threat intelligence feed by Abuse_ch accessible via _Hail a
+  TAXII_. These are the feed instance configuration parameters for our example.\n\n**Indicator
+  Reputation** - Because this is just an example, we can leave the default value.
+  Ordinarily you would set the reputation based on the specific feed's information
+  about what type of indicators they are returning, i.e., whether they are good or
+  bad.\n\n**Source Reliability** - Because this is just an example, we can leave the
+  default value. Ordinarily you would set the reliability according to your level
+  of trust in this feed.\n\n**Indicator Expiration Method** - For this example, we
+  can leave the default value here. Ordinarily you would set the value according to
+  the type of feed you were fetching from. As an example, let's that you are a customer
+  of a Cloud Services provider and you want to add the URLs from which that provider
+  serves up many of the services you use to your network firewall exclusion list.
+  Assuming that that same Cloud Services provider maintains an up-to-date feed of
+  the URLs from which they currently provide service, you would probably want to configure
+  a feed integration instance with this parameter set to `Expire indicators when they
+  disappear from feed` so that you don't continue to mark a given URL with a `Good`
+  reputation after it is no longer being used by your Cloud Services provider.\n\n**Feed
+  Fetch Interval** - For this example, we can leave the default value here.\n\n**Discovery
+  Service** - Enter `http://hailataxii.com/taxii-discovery-service`.\n\n**Collection**
+  - Enter `guest.Abuse_ch`.\n\n**Subscription ID** - No need to enter a value here
+  for this example since the TAXII server we are addressing does not require it so
+  we'll leave it blank.\n\n**Username** - Enter `guest`.\n\n**Password** - Enter `guest`.\n\n**Request
+  Timeout** - Let's increase the number to `80` seconds since the request may take
+  a while to complete.\n\n**Poll Service** - We don't have to enter a value here for
+  this example because the poll service will be determined dynamically in the integration
+  code if it is not explicitly provided.\n\n**API Key** - We don't have to enter a
+  value here for this example because the TAXII server we are addressing doesn't require
+  an API key.\n\n**API Header Name** - We don't have to enter a value here for this
+  example because the TAXII server we are addressing doesn't require an API header
+  name.\n\n**First Fetch Time** - Since this example feed isn't very high volume,
+  let's enter `500 days`  to make sure we fetch a sufficient number of indicators.\n\nClick
+  the `Test` button and ensure that a green `Success` message is returned.\n\nNow
+  we have successfully configured an instance for the TAXII threat intelligence feed
+  by Abuse_ch accessible via _Hail a TAXII_, once we enable `Fetches indicators` the
+  instance will start pulling indicators.\n\nBy clicking `Mapping` in the integration
+  instance, we can map indicator data returned by the feed to actual indicator fields
+  in Cortex XSOAR.\nWe can use `Set up a new classification rule` using actual data
+  from the feed.\n\n\n---\n[View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/taxii-feed)"
+display: TAXII Feed
+image: data:image/png;base64,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
+name: TAXIIFeed
+script:
+  commands:
+  - arguments:
+    - defaultValue: "50"
+      description: The maximum number of results to return.
+      name: limit
+    - defaultValue: 1 day
+      description: The time interval for the first fetch (retroactive). <number> <time
+        unit> of type minute/hour/day. For example, 1 minute, 12 hours, 7 days.
+      name: initial_interval
+    description: Gets indicators from the the feed.
+    name: get-indicators
+    outputs:
+    - contextPath: TAXII.Indicator.Value
+      description: The indicator value.
+      type: String
+    - contextPath: TAXII.Indicator.Type
+      description: The indicator type.
+      type: String
+    - contextPath: TAXII.Indicator.Title
+      description: The observable title.
+      type: String
+    - contextPath: TAXII.Indicator.Description
+      description: The observable description.
+      type: String
+    - contextPath: TAXII.Indicator.Stixindicatordescription
+      description: The indicator description.
+      type: String
+    - contextPath: TAXII.Indicator.Stixindicatorname
+      description: The indicator title.
+      type: String
+    - contextPath: TAXII.Indicator.Stixttptitle
+      description: The ttp title.
+      type: String
+    - contextPath: TAXII.Indicator.Stixmalwaretypes
+      description: The stix malware type.
+      type: String
+    - contextPath: TAXII.Indicator.Confidence
+      description: The indicator confidence.
+      type: String
+    - contextPath: TAXII.Indicator.Score
+      description: The indicator DBot score.
+      type: String
+    - contextPath: TAXII.Indicator.Relationships
+      description: The indicator relationships.
+      type: String
+    - contextPath: TAXII.Indicator.Fields
+      description: The indicator fields.
+      type: Unknown
+    - contextPath: TAXII.Indicator.Rawjson
+      description: The indicator rawJSON value.
+      type: Unknown
+  dockerimage: demisto/taxii:1.0.0.76522
+  feed: true
+  runonce: false
+  script: |
+    register_module_line('TAXIIFeed', 'start', __line__())
+    ### pack version: 1.2.0
+
+
+    import tempfile
+    from typing import Dict, Optional
+
+
+    ''' IMPORTS '''
+    import urllib3
+    import collections
+
+    import cabby
+    import requests
+    from lxml import etree
+    import dateutil.parser
+    from bs4 import BeautifulSoup
+    from netaddr import IPNetwork
+    from six import string_types
+
+    # TAXII11 import
+
+    import uuid
+    import dateutil
+    import pytz
+
+    # disable insecure warnings
+    urllib3.disable_warnings()
+
+    EPOCH = datetime.utcfromtimestamp(0).replace(tzinfo=pytz.UTC)
+    INTEGRATION_NAME = 'TAXII1'
+
+
+    class AddressObject(object):
+        """
+        Implements address object indicator decoding
+        based on: https://stixproject.github.io/data-model/1.2/AddressObj/AddressObjectType/
+        """
+
+        @staticmethod
+        def decode(props, **kwargs):
+            result: List[Dict[str, str]] = []
+
+            indicator = props.find('Address_Value')
+            if indicator is None or indicator.string is None:
+                return result
+
+            indicator = indicator.string.encode('ascii', 'replace').decode()
+            category = props.get('category', None)
+            address_list = indicator.split('##comma##')
+
+            if category == 'e-mail':
+                return [{'indicator': address, 'type': 'Email'} for address in address_list]
+
+            try:
+                for address in address_list:
+                    ip = IPNetwork(address)
+                    if ip.version == 4:
+                        if len(address.split('/')) > 1:
+                            type_ = 'CIDR'
+                        else:
+                            type_ = 'IP'
+                    elif ip.version == 6:
+                        if len(address.split('/')) > 1:
+                            type_ = 'IPv6CIDR'
+                        else:
+                            type_ = 'IPv6'
+                    else:
+                        LOG('Unknown ip version: {!r}'.format(ip.version))
+                        return []
+
+                    result.append({'indicator': address, 'type': type_})
+
+            except Exception:
+                return result
+
+            return result
+
+
+    class DomainNameObject(object):
+        """
+        Implements domain object indicator decoding
+        based on: https://stixproject.github.io/data-model/1.2/DomainNameObj/DomainNameObjectType/
+        """
+
+        @staticmethod
+        def decode(props, **kwargs):
+            dtype = props.get('type', 'FQDN')
+            if dtype != 'FQDN':
+                return []
+
+            domain = props.find('Value')
+            if domain is None or domain.string is None:
+                return []
+
+            return [{
+                'indicator': domain.string.encode('ascii', 'replace').decode(),
+                'type': 'Domain'
+            }]
+
+
+    class FileObject(object):
+        """
+        Implements file object indicator decoding
+        based on: https://stixproject.github.io/data-model/1.2/FileObj/FileObjectType/
+        """
+
+        @staticmethod
+        def _decode_basic_props(props):
+            result = {}
+
+            name = next((c for c in props if c.name == 'File_Name'), None)
+            if name is not None:
+                result['stix_file_name'] = name.text
+
+            size = next((c for c in props if c.name == 'File_Size'), None)
+            if size is not None:
+                result['stix_file_size'] = size.text
+
+            file_format = next((c for c in props if c.name == 'File_Format'), None)
+            if file_format is not None:
+                result['stix_file_format'] = file_format.text
+
+            return result
+
+        @staticmethod
+        def decode(props, **kwargs):
+            result = []
+
+            bprops = FileObject._decode_basic_props(props)
+
+            hashes = props.find_all('Hash')
+            for h in hashes:
+                htype = h.find('Type')
+                if htype is None:
+                    continue
+                htype = htype.string.lower()
+                if htype not in ['md5', 'sha1', 'sha256', 'ssdeep']:
+                    continue
+
+                value = h.find('Simple_Hash_Value')
+                if value is None:
+                    continue
+                value = value.string.lower()
+
+                result.append({
+                    'indicator': value,
+                    'htype': htype,
+                    'type': 'File'
+                })
+
+            for r in result:
+                for r2 in result:
+                    if r['htype'] == r2['htype']:
+                        continue
+
+                    r['stix_file_{}'.format(r2['htype'])] = r2['indicator']
+
+                r.update(bprops)
+
+            return result
+
+
+    class URIObject(object):
+        """
+        Implements URI object indicator decoding
+        based on: https://stixproject.github.io/data-model/1.2/URIObj/URIObjectType/
+        """
+
+        @staticmethod
+        def decode(props, **kwargs):
+            utype = props.get('type', 'URL')
+            if utype == 'URL':
+                type_ = 'URL'
+            elif utype == 'Domain Name':
+                type_ = 'Domain'
+            else:
+                return []
+
+            url = props.find('Value')
+            if url is None or url.string is None:
+                return []
+
+            return [{
+                'indicator': url.string.encode('utf8', 'replace').decode(),
+                'type': type_
+            }]
+
+
+    class SocketAddressObject(object):
+        """
+        Implements socket address object indicator decoding
+        based on: https://stixproject.github.io/data-model/1.2/SocketAddressObj/SocketAddressObjectType/
+        """
+
+        @staticmethod
+        def decode(props, **kwargs):
+            ip = props.get('ip_address', None)
+            if ip:
+                return AddressObject.decode(ip)
+            return []
+
+
+    class LinkObject(object):
+        """
+        Implements link object indicator decoding
+        based on: https://stixproject.github.io/data-model/1.2/LinkObj/LinkObjectType/
+        """
+
+        @staticmethod
+        def decode(props, **kwargs):
+            ltype = props.get('type', 'URL')
+            if ltype != 'URL':
+                LOG('Unhandled LinkObjectType type: {}'.format(ltype))
+                return []
+            value = props.get('value', None)
+            if value is None:
+                LOG('no value in observable LinkObject')
+                return []
+            if not isinstance(value, string_types):
+                value = value.get('value', None)
+                if value is None:
+                    LOG('no value in observable LinkObject')
+                    return []
+            return [{
+                'indicator': value,
+                'type': ltype
+            }]
+
+
+    class HTTPSessionObject(object):
+        """
+        Implements http session object indicator decoding
+        based on: https://stixproject.github.io/data-model/1.2/HTTPSessionObj/HTTPSessionObjectType/
+        """
+
+        @staticmethod
+        def decode(props, **kwargs):
+            if 'http_request_response' in props.keys():
+                tmp = props['http_request_response']
+
+                if len(tmp) == 1:
+                    item = tmp[0]
+                    http_client_request = item.get('http_client_request', None)
+                    if http_client_request is not None:
+                        http_request_header = http_client_request.get('http_request_header', None)
+                        if http_request_header is not None:
+                            raw_header = http_request_header.get('raw_header', None)
+                            if raw_header is not None:
+                                return [{
+                                    'indicator': raw_header.split('\n')[0],
+                                    'type': 'http-session',  # we don't support this type natively in demisto
+                                    'header': raw_header
+                                }]
+                else:
+                    LOG('multiple HTTPSessionObjectTypes not supported')
+            return []
+
+
+    class StixDecode(object):
+        """
+        Decode STIX strings formatted as xml, and extract indicators from them
+        """
+        DECODERS = {
+            'DomainNameObjectType': DomainNameObject.decode,
+            'FileObjectType': FileObject.decode,
+            'WindowsFileObjectType': FileObject.decode,
+            'URIObjectType': URIObject.decode,
+            'AddressObjectType': AddressObject.decode,
+            'SocketAddressObjectType': SocketAddressObject.decode,
+            'LinkObjectType': LinkObject.decode,
+            'HTTPSessionObjectType': HTTPSessionObject.decode,
+        }
+
+        @staticmethod
+        def object_extract_properties(props, kwargs):
+            type_ = props.get('xsi:type').rsplit(':')[-1]
+
+            if type_ not in StixDecode.DECODERS:
+                LOG('Unhandled cybox Object type: {!r} - {!r}'.format(type_, props))
+                return []
+
+            return StixDecode.DECODERS[type_](props, **kwargs)
+
+        @staticmethod
+        def _parse_stix_timestamp(stix_timestamp):
+            dt = dateutil.parser.parse(stix_timestamp)
+
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=pytz.UTC)
+            delta = dt - EPOCH
+            return int(delta.total_seconds() * 1000)
+
+        @staticmethod
+        def _deduplicate(indicators):
+            result = {}
+
+            for iv in indicators:
+                result['{}:{}'.format(iv['indicator'], iv['type'])] = iv
+
+            return list(result.values())
+
+        @staticmethod
+        def decode(content, **kwargs):
+            observable_result = []
+            indicator_result: Dict[str, dict] = {}
+            ttp_result: Dict[str, dict] = {}
+
+            package = BeautifulSoup(content, 'xml')
+
+            if package.contents[0].name != 'STIX_Package':
+                return None, None, None, None
+
+            package = package.contents[0]
+
+            timestamp = package.get('timestamp', None)
+            if timestamp is not None:
+                timestamp = StixDecode._parse_stix_timestamp(timestamp)
+
+            # extract the Observable info
+            if observables := package.find_all('Observable'):
+                pprops = package_extract_properties(package)
+                for o in observables:
+                    try:
+                        gprops = observable_extract_properties(o)
+
+                        obj = next((ob for ob in o if ob.name == 'Object'), None)
+                        if obj is None:
+                            continue
+
+                        # main properties
+                        properties = next((c for c in obj if c.name == 'Properties'), None)
+                        if properties is not None:
+                            for r in StixDecode.object_extract_properties(properties, kwargs):
+                                r.update(gprops)
+                                r.update(pprops)
+
+                                observable_result.append(r)
+
+                        # then related objects
+                        related = next((c for c in obj if c.name == 'Related_Objects'), None)
+                        if related is not None:
+                            for robj in related:
+                                if robj.name != 'Related_Object':
+                                    continue
+
+                                properties = next((c for c in robj if c.name == 'Properties'), None)
+                                if properties is None:
+                                    continue
+
+                                for r in StixDecode.object_extract_properties(properties, kwargs):
+                                    r.update(gprops)
+                                    r.update(pprops)
+                                    observable_result.append(r)
+                    except Exception as e:
+                        demisto.error(f"Error for {str(o)} with message {str(e)}")
+
+            # extract the Indicator info
+            if indicators := package.find_all('Indicator'):
+
+                if observables:
+                    indicator_ref = observables[0].get('idref')
+
+                    if indicator_ref:
+                        indicator_info = indicator_extract_properties(indicators[0])
+                        indicator_result[indicator_ref] = indicator_info
+
+            # extract the TTP info
+            if ttp := package.find_all('TTP'):
+                ttp_info: Dict[str, str] = {}
+
+                id_ref = ttp[0].get('id')
+
+                title = next((c for c in ttp[0] if c.name == 'Title'), None)
+                if title is not None:
+                    title = title.text
+                    ttp_info['stix_ttp_title'] = title
+
+                description = next((c for c in ttp[0] if c.name == 'Description'), None)
+                if description is not None:
+                    description = description.text
+                    ttp_info['ttp_description'] = description
+
+                if behavior := package.find_all('Behavior'):
+                    if behavior[0].find_all('Malware'):
+                        ttp_info.update(ttp_extract_properties(package.find_all('Malware_Instance')[0], 'Malware'))
+
+                    elif behavior[0].find_all('Attack_Patterns'):
+                        ttp_info.update(ttp_extract_properties(package.find_all('Attack_Pattern')[0], 'Attack Pattern'))
+
+                    ttp_result[id_ref] = ttp_info
+
+            return timestamp, StixDecode._deduplicate(observable_result), indicator_result, ttp_result
+
+
+    class Taxii11(object):
+        """
+        TAXII 1 client utilities class
+        """
+        MESSAGE_BINDING = 'urn:taxii.mitre.org:message:xml:1.1'
+        SERVICES = 'urn:taxii.mitre.org:services:1.1'
+        PROTOCOLS = {
+            'http': 'urn:taxii.mitre.org:protocol:http:1.0',
+            'https': 'urn:taxii.mitre.org:protocol:https:1.0'
+        }
+        # 2014-12-19T00:00:00Z
+        TAXII_DT_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
+
+        @staticmethod
+        def new_message_id():
+            return str(uuid.uuid4())
+
+        @staticmethod
+        def discovery_request(message_id=None):
+            if message_id is None:
+                message_id = Taxii11.new_message_id()
+
+            return f'''<Discovery_Request xmlns="http://taxii.mitre.org/messages/taxii_xml_binding-1.1" message_id="{message_id}"/>'''
+
+        @staticmethod
+        def collection_information_request(message_id=None):
+            if message_id is None:
+                message_id = Taxii11.new_message_id()
+
+            return '''<taxii_11:Collection_Information_Request xmlns:taxii_11=
+            "http://taxii.mitre.org/messages/taxii_xml_binding-1.1" message_id="{}"/>'''.format(
+                message_id)
+
+        @staticmethod
+        def poll_request(
+                collection_name,
+                exclusive_begin_timestamp,
+                inclusive_end_timestamp,
+                message_id=None,
+                subscription_id=None):
+            if message_id is None:
+                message_id = Taxii11.new_message_id()
+
+            exclusive_begin_timestamp = exclusive_begin_timestamp.strftime(Taxii11.TAXII_DT_FORMAT)
+            inclusive_end_timestamp = inclusive_end_timestamp.strftime(Taxii11.TAXII_DT_FORMAT)
+
+            result = [
+                '<taxii_11:Poll_Request xmlns:taxii_11="http://taxii.mitre.org/messages/taxii_xml_binding-1.1"',
+                'message_id="{}"'.format(message_id),
+                'collection_name="{}"'.format(collection_name)
+            ]
+            if subscription_id is not None:
+                result.append('subscription_id="{}"'.format(subscription_id))
+            result.append('>')
+            result.append('<taxii_11:Exclusive_Begin_Timestamp>{}</taxii_11:Exclusive_Begin_Timestamp>'.format(
+                exclusive_begin_timestamp))
+            result.append(
+                '<taxii_11:Inclusive_End_Timestamp>{}</taxii_11:Inclusive_End_Timestamp>'.format(inclusive_end_timestamp))
+
+            if subscription_id is None:
+                result.append(
+                    '<taxii_11:Poll_Parameters allow_asynch="false"><taxii_11:Response_Type>'
+                    'FULL</taxii_11:Response_Type></taxii_11:Poll_Parameters>')
+
+            result.append('</taxii_11:Poll_Request>')
+
+            return '\n'.join(result)
+
+        @staticmethod
+        def poll_fulfillment_request(result_id, result_part_number, collection_name, message_id=None):
+            if message_id is None:
+                message_id = Taxii11.new_message_id()
+
+            return f'''<taxii_11:Poll_Fulfillment xmlns:taxii_11="http://taxii.mitre.org/messages/taxii_xml_binding-1.1"
+                        message_id="{message_id}" collection_name="{collection_name}" result_id="{result_id}"
+                        result_part_number="{result_part_number}"/>'''
+
+        @staticmethod
+        def headers(content_type=None, accept=None, services=None, protocol=None):
+            if content_type is None:
+                content_type = Taxii11.MESSAGE_BINDING
+
+            if accept is None:
+                accept = Taxii11.MESSAGE_BINDING
+
+            if services is None:
+                services = Taxii11.SERVICES
+
+            if protocol is None:
+                protocol = 'urn:taxii.mitre.org:protocol:http:1.0'
+            if protocol in Taxii11.PROTOCOLS:
+                protocol = Taxii11.PROTOCOLS[protocol]
+
+            return {
+                'Content-Type': 'application/xml',
+                'X-TAXII-Content-Type': content_type,
+                'X-TAXII-Accept': accept,
+                'X-TAXII-Services': services,
+                'X-TAXII-Protocol': protocol
+            }
+
+        @staticmethod
+        def parse_timestamp_label(timestamp_label):
+            try:
+                dt = dateutil.parser.parse(timestamp_label)
+
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=pytz.UTC)
+                delta = dt - EPOCH
+                return int(delta.total_seconds() * 1000)
+
+            except Exception:
+                return None
+
+
+    class TAXIIClient(object):
+        def __init__(self, insecure: bool = True, polling_timeout: int = 20, initial_interval: str = '1 day',
+                     discovery_service: str = '', poll_service: str = None, collection: str = None,
+                     credentials: dict = None, creds_certificate: dict = {}, cert_text: str = None, key_text: str = None,
+                     feedTags: str = None, tlp_color: Optional[str] = None, **kwargs):
+            """
+            TAXII Client
+            :param insecure: Set to true to ignore https certificate
+            :param polling_timeout: Time before send request timeout
+            :param initial_interval: Interval between each read from TAXII server
+            :param discovery_service: TAXII server discovery service
+            :param poll_service: TAXII poll service
+            :param collection: TAXII collection
+            :param credentials: Username and password dict for basic auth
+            :param cert_text: Certificate File as Text
+            :param cert_key_text: Key File as Text - type 9 (credentials)
+            :param key_text: Key File as Text - type 4 (secret) - deprecated
+            :param kwargs:
+            """
+            self.discovered_poll_service = None
+            self.last_taxii_run = demisto.getLastRun()
+            if isinstance(self.last_taxii_run, dict):
+                self.last_taxii_run = self.last_taxii_run.get('time')
+            self.last_stix_package_ts = None
+            self.last_taxii_content_ts = None
+            self.verify_cert = not insecure
+            self.polling_timeout = polling_timeout
+            try:
+                self.polling_timeout = int(self.polling_timeout)
+            except (ValueError, TypeError):
+                raise TypeError('Please provide a valid integer for "Polling Timeout"')
+            self.initial_interval = initial_interval
+            self.initial_interval = interval_in_sec(self.initial_interval)
+            if self.initial_interval is None:
+                self.initial_interval = 86400
+
+            self.discovery_service = discovery_service
+            self.poll_service = poll_service
+            self.collection = collection
+
+            self.api_key = None
+            self.api_header = None
+            self.username = None
+            self.password = None
+            self.crt = None
+            self.tags = argToList(feedTags)
+            self.tlp_color = tlp_color
+            self.ttps: Dict[str, dict] = {}
+            # authentication
+            if credentials:
+                if '_header:' in credentials.get('identifier', None):
+                    self.api_header = credentials.get('identifier', None).split('_header:')[1]
+                    self.api_key = credentials.get('password', None)
+                else:
+                    self.username = credentials.get('identifier', None)
+                    self.password = credentials.get('password', None)
+
+            cert_text = replace_spaces_in_credential(creds_certificate.get('identifier')) or cert_text
+            key_text = creds_certificate.get('password') or key_text
+            if (cert_text and not key_text) or (not cert_text and key_text):
+                raise Exception('You can not configure either certificate text or key, both are required.')
+            if cert_text and key_text:
+                cert_text_list = cert_text.split('-----')
+                # replace spaces with newline characters
+                cert_text_fixed = '-----'.join(
+                    cert_text_list[:2] + [cert_text_list[2].replace(' ', '\n')] + cert_text_list[3:])
+                cf = tempfile.NamedTemporaryFile(delete=False)
+                cf.write(cert_text_fixed.encode())
+                cf.flush()
+
+                key_text_list = key_text.split('-----')
+                # replace spaces with newline characters
+                key_text_fixed = '-----'.join(key_text_list[:2] + [key_text_list[2].replace(' ', '\n')] + key_text_list[3:])
+                kf = tempfile.NamedTemporaryFile(delete=False)
+                kf.write(key_text_fixed.encode())
+                kf.flush()
+                self.crt = (cf.name, kf.name)
+
+            if collection is None or collection == '':
+                all_collections = self.get_all_collections()
+                return_error(f"No collection set. Here is a list of all accessible collections: "
+                             f"{str(all_collections)}")
+
+        def get_all_collections(self, is_raise_error=False):
+            """Gets a list of all collections listed in the discovery service instance.
+
+            Args:
+                is_raise_error(bool): Whether to raise an error when one occurs.
+
+            Returns:
+                list. A list of all collection names in discovery service.
+            """
+            if self.discovery_service:
+                taxii_client = cabby.create_client(discovery_path=self.discovery_service)
+                if self.username:
+                    taxii_client.set_auth(username=str(self.username), password=self.password, verify_ssl=self.verify_cert)
+                elif self.api_key:
+                    taxii_client.set_auth(username=str(self.api_key), verify_ssl=self.verify_cert)
+                else:
+                    taxii_client.set_auth(verify_ssl=self.verify_cert)
+
+                try:
+                    all_collections = taxii_client.get_collections()
+                    return [collection.name for collection in all_collections]
+                except Exception as e:
+                    if is_raise_error:
+                        raise ConnectionError()
+                    return_error(f'{INTEGRATION_NAME} - An error occurred when trying to fetch available collections.\n{e}')
+
+            return []
+
+        def _send_request(self, url, headers, data, stream=False):
+            if self.api_key is not None and self.api_header is not None:
+                headers[self.api_header] = self.api_key
+
+            rkwargs = dict(
+                stream=stream,
+                verify=self.verify_cert,
+                timeout=self.polling_timeout,
+                headers=headers,
+                cert=self.crt,
+                data=data
+            )
+
+            if self.username is not None and self.password is not None:
+                rkwargs['auth'] = (self.username, self.password)
+
+            r = requests.post(
+                url,
+                **rkwargs
+            )
+
+            try:
+                r.raise_for_status()
+            except Exception:
+                demisto.debug(
+                    '{} - exception in request: {!r} {!r}'.format(INTEGRATION_NAME, r.status_code, r.content)
+                )
+                raise
+
+            return r
+
+        @staticmethod
+        def _raise_for_taxii_error(response):
+            if response.contents[0].name != 'Status_Message':
+                return
+
+            if response.contents[0]['status_type'] == 'SUCCESS':
+                return
+
+            raise RuntimeError('{} - error returned by TAXII Server: {}'.format(
+                INTEGRATION_NAME, response.contents[0]['status_type']
+            ))
+
+        def _discover_poll_service(self):
+            # let's start from discovering the available services
+            req = Taxii11.discovery_request()
+            reqhdrs = Taxii11.headers(
+                protocol=self.discovery_service.split(':', 1)[0]
+            )
+            result = self._send_request(
+                url=self.discovery_service,
+                headers=reqhdrs,
+                data=req
+            )
+
+            result = BeautifulSoup(result.text, 'xml')
+            self._raise_for_taxii_error(result)
+
+            # from here we look for a good collection management service
+            coll_services = result.find_all(
+                'Service_Instance',
+                service_type='COLLECTION_MANAGEMENT'
+            )
+            if len(coll_services) == 0:
+                raise RuntimeError('{} - Collection management service not found'.format(INTEGRATION_NAME))
+
+            selected_coll_service = None
+            for coll_service in coll_services:
+                address = coll_service.find('Address')
+                if address is None:
+                    LOG(
+                        '{} - Collection management service with no address: {!r}'.format(
+                            INTEGRATION_NAME, coll_service
+                        )
+                    )
+                    continue
+                address = address.string
+
+                if selected_coll_service is None:
+                    selected_coll_service = address
+                    continue
+
+                msgbindings = coll_service.find_all('Message_Binding')
+                if len(msgbindings) != 0:
+                    for msgbinding in msgbindings:
+                        if msgbinding.string == Taxii11.MESSAGE_BINDING:
+                            selected_coll_service = address
+                            break
+
+            if selected_coll_service is None:
+                raise RuntimeError(
+                    '{} - Collection management service not found'.format(INTEGRATION_NAME)
+                )
+
+            # from here we look for the correct poll service
+            req = Taxii11.collection_information_request()
+            reqhdrs = Taxii11.headers(
+                protocol=selected_coll_service.split(':', 1)[0]
+            )
+            result = self._send_request(
+                url=selected_coll_service,
+                headers=reqhdrs,
+                data=req
+            )
+
+            result = BeautifulSoup(result.text, 'xml')
+            self._raise_for_taxii_error(result)
+
+            # from here we look for the collection
+            collections_found = result.find_all('Collection', collection_name=self.collection)
+            if len(collections_found) == 0:
+                raise RuntimeError(f'{INTEGRATION_NAME} - collection {self.collection} not found')
+
+            # and the right poll service
+            poll_service = None
+            for coll in collections_found:
+                pservice = coll.find('Polling_Service')
+                if pservice is None:
+                    LOG('{} - Collection with no Polling_Service: {!r}'.format(INTEGRATION_NAME, coll))
+                    continue
+
+                address = pservice.find('Address')
+                if address is None:
+                    LOG('{} - Collection with no Address: {!r}'.format(INTEGRATION_NAME, coll))
+                    continue
+                address = address.string
+
+                if poll_service is None:
+                    poll_service = address
+                    continue
+                msgbindings = coll_service.find_all('Message_Binding')
+                if len(msgbindings) != 0:
+                    for msgbinding in msgbindings:
+                        if msgbinding.string == Taxii11.MESSAGE_BINDING:
+                            poll_service = address
+                            break
+
+            if poll_service is None:
+                raise RuntimeError('{} - No valid Polling Service found'.format(INTEGRATION_NAME))
+
+            return poll_service
+
+        def _poll_collection(self, poll_service, begin, end):
+            req = Taxii11.poll_request(
+                collection_name=self.collection,
+                exclusive_begin_timestamp=begin,
+                inclusive_end_timestamp=end
+            )
+            reqhdrs = Taxii11.headers(
+                protocol=poll_service.split(':', 1)[0]
+            )
+            result = self._send_request(
+                url=poll_service,
+                headers=reqhdrs,
+                data=req,
+                stream=True
+            )
+            result.raw.decode_content = True
+
+            while True:
+                result_part_number = None
+                result_id = None
+                more = None
+                tag_stack = collections.deque()  # type: ignore
+                observables = []
+                indicators: Dict[str, dict] = {}
+
+                try:
+                    for action, element in etree.iterparse(result.raw, events=('start', 'end'), recover=True):
+                        if action == 'start':
+                            tag_stack.append(element.tag)
+
+                        else:
+                            last_tag = tag_stack.pop()
+                            if last_tag != element.tag:
+                                raise RuntimeError(
+                                    '{} - error parsing poll response, mismatched tags'.format(INTEGRATION_NAME))
+
+                        if action == 'end' and element.tag.endswith('Status_Message') and len(tag_stack) == 0:
+                            self._raise_for_taxii_error(
+                                BeautifulSoup(etree.tostring(element, encoding='unicode'), 'xml')
+                            )
+                            return
+
+                        elif action == 'end' and element.tag.endswith('Poll_Response') and len(tag_stack) == 0:
+                            result_id = element.get('result_id', None)
+                            more = element.get('more', None)
+                            result_part_number = element.get('result_part_number', None)
+                            if result_part_number is not None:
+                                result_part_number = int(result_part_number)
+
+                        elif action == 'end' and element.tag.endswith('Content_Block') and len(tag_stack) == 1:
+                            for c in element:
+                                if c.tag.endswith('Content'):
+                                    if len(c) == 0:
+                                        continue
+
+                                    content = etree.tostring(c[0], encoding='unicode')
+                                    timestamp, observable, indicator, ttp = StixDecode.decode(content)
+                                    if observable:
+                                        observables.append(observable[0])
+                                    if indicator:
+                                        indicators.update(indicator)
+                                    if ttp:
+                                        self.ttps.update(ttp)
+
+                                    if timestamp:
+                                        if self.last_stix_package_ts is None or timestamp > self.last_stix_package_ts:
+                                            self.last_stix_package_ts = timestamp
+
+                                elif c.tag.endswith('Timestamp_Label'):
+                                    timestamp = Taxii11.parse_timestamp_label(c.text)
+
+                                    if timestamp:
+                                        if self.last_taxii_content_ts is None or timestamp > self.last_taxii_content_ts:
+                                            self.last_taxii_content_ts = timestamp
+
+                            element.clear()
+
+                finally:
+                    result.close()
+
+                if not more or more == '0' or more.lower() == 'false':
+                    break
+
+                if result_id is None or result_part_number is None:
+                    break
+
+                req = Taxii11.poll_fulfillment_request(
+                    collection_name=self.collection,
+                    result_id=result_id,
+                    result_part_number=result_part_number + 1
+                )
+                result = self._send_request(
+                    url=poll_service,
+                    headers=reqhdrs,
+                    data=req,
+                    stream=True
+                )
+
+            for observable in observables:
+
+                if indicator_ref := observable.get('indicator_ref'):
+                    if indicator_info := indicators.get(indicator_ref):
+                        observable.update(indicator_info)
+
+                ttp_ref = observable.get('ttp_ref', [])
+                relationships = []
+
+                for reference in ttp_ref:
+                    if relationship := self.ttps.get(reference):
+                        relationships.append(relationship)
+                if relationships:
+                    observable['relationships'] = relationships
+
+                yield observable
+
+        def _incremental_poll_collection(self, poll_service, begin, end):
+            """Polls collection in increments of 10 days"""
+            cbegin = begin
+            dt = timedelta(days=10)
+
+            self.last_stix_package_ts = None
+            self.last_taxii_content_ts = None
+
+            while cbegin < end:
+                cend = min(end, cbegin + dt)
+
+                result = self._poll_collection(
+                    poll_service=poll_service,
+                    begin=cbegin,
+                    end=cend
+                )
+
+                for i in result:
+                    yield i
+
+                if self.last_taxii_content_ts is not None:
+                    self.last_taxii_run = self.last_taxii_content_ts
+
+                cbegin = cend
+
+        def build_iterator(self, now):
+            """Creates an indicator iterator from the TAXII feed"""
+            if self.poll_service is not None:
+                discovered_poll_service = self.poll_service
+            else:
+                discovered_poll_service = self._discover_poll_service()
+
+            last_run = self.last_taxii_run
+
+            if last_run is None:
+                last_run = now - (self.initial_interval * 1000)
+                self.last_taxii_run = last_run
+
+            begin = datetime.utcfromtimestamp(last_run / 1000)
+            begin = begin.replace(microsecond=0, tzinfo=pytz.UTC)
+
+            end = datetime.utcfromtimestamp(now / 1000)
+            end = end.replace(tzinfo=pytz.UTC)
+
+            # lower time precision - solve issues with certain taxii servers
+            end = end.replace(second=0, microsecond=0)
+            begin = begin.replace(second=0, microsecond=0)
+            return self._incremental_poll_collection(
+                discovered_poll_service,
+                begin=begin,
+                end=end
+            )
+
+
+    """ Helper Methods """
+
+
+    def package_extract_properties(package):
+        """Extracts properties from the STIX package"""
+        result: Dict[str, str] = {}
+
+        header = package.find_all('STIX_Header')
+        if len(header) == 0:
+            return result
+
+        # share level
+        mstructures = header[0].find_all('Marking_Structure')
+        for ms in mstructures:
+            type_ = ms.get('xsi:type')
+            if type_ is result:
+                continue
+
+            color = ms.get('color')
+            if color is result:
+                continue
+
+            type_ = type_.lower()
+            if 'tlpmarkingstructuretype' not in type_:
+                continue
+
+            result['share_level'] = color.lower()  # To keep backward compatibility
+            result['TLP'] = color.upper()  # https://www.us-cert.gov/tlp
+            break
+
+        # decode title
+        title = next((c for c in header[0] if c.name == 'Title'), None)
+        if title is not None:
+            result['stix_package_title'] = title.text
+
+        # decode description
+        description = next((c for c in header[0] if c.name == 'Description'), None)
+        if description is not None:
+            result['stix_package_description'] = description.text
+
+        # decode description
+        sdescription = next((c for c in header[0] if c.name == 'Short_Description'), None)
+        if sdescription is not None:
+            result['stix_package_short_description'] = sdescription.text
+
+        # decode identity name from information_source
+        information_source = next((c for c in header[0] if c.name == 'Information_Source'), None)
+        if information_source is not None:
+            identity = next((c for c in information_source if c.name == 'Identity'), None)
+            if identity is not None:
+                name = next((c for c in identity if c.name == 'Name'))
+                if name is not None:
+                    result['stix_package_information_source'] = name.text
+
+        return result
+
+
+    def observable_extract_properties(observable):
+        """Extracts properties from observable"""
+        result: Dict[str, str] = {}
+
+        if id_ref := observable.get('id'):
+            result['indicator_ref'] = id_ref
+
+        title = next((c for c in observable if c.name == 'Title'), None)
+        if title is not None:
+            title = title.text
+            result['stix_title'] = title
+
+        description = next((c for c in observable if c.name == 'Description'), None)
+        if description is not None:
+            description = description.text
+            result['stix_description'] = description
+
+        return result
+
+
+    def indicator_extract_properties(indicator) -> Dict[str, Any]:
+        """Extracts the Indicator properties
+
+        Args:
+            indicator (bs4.element.Tag): The Indicator content in xml.
+
+        Returns:
+            dict: The ttp properties in a dict {'property': 'value'}. (The value can be a list)
+
+        """
+
+        result: Dict[str, Any] = {}
+
+        title = next((c for c in indicator if c.name == 'Title'), None)
+        if title is not None:
+            title = title.text
+            result['stix_indicator_name'] = title
+
+        description = next((c for c in indicator if c.name == 'Description'), None)
+        if description is not None:
+            description = description.text
+            result['stix_indicator_description'] = description
+
+        confidence = next((c for c in indicator if c.name == 'Confidence'), None)
+        if confidence is not None:
+            value = next((c for c in confidence if c.name == 'Value'), None)
+            if value is not None:
+                value = value.text
+                result['confidence'] = value
+
+        if indicated_ttp := indicator.find_all('Indicated_TTP'):
+            result['ttp_ref'] = []
+            # Each indicator can be related to few ttps
+            for ttp_value in indicated_ttp:
+                ttp = next((c for c in ttp_value if c.name == 'TTP'), None)
+                if ttp is not None:
+                    value = ttp.get('idref')
+                    result['ttp_ref'].append(value)
+
+        return result
+
+
+    def ttp_extract_properties(ttp, behavior) -> Dict[str, str]:
+        """Extracts the TTP properties
+
+        Args:
+            ttp (bs4.element.Tag): The TTP content in xml.
+            behavior (str): The TTP behavior ['Malware', 'Attack Pattern'].
+
+        Returns:
+            dict: The ttp properties in a dict {'property': 'value'}.
+
+        """
+
+        result = {'type': behavior}
+
+        if behavior == 'Malware':
+            type_ = next((c for c in ttp if c.name == 'Type'), None)
+            if type_ is not None:
+                type_ = type_.text
+                result['malware_type'] = type_
+
+            name = next((c for c in ttp if c.name == 'Name'), None)
+            if name is not None:
+                name = name.text
+                result['indicator'] = name
+
+            title = next((c for c in ttp if c.name == 'Title'), None)
+            if title is not None:
+                title = title.text
+                result['title'] = title
+
+        if behavior == 'Attack Pattern':
+            id_ref = next((c for c in ttp if c.name == 'idref'), None)
+            if id_ref is not None:
+                id_ref = id_ref.text
+                result['stix_id_ref'] = id_ref
+
+            title = next((c for c in ttp if c.name == 'Title'), None)
+            if title is not None:
+                title = title.text
+                result['indicator'] = title
+
+        description = next((c for c in ttp if c.name == 'Description'), None)
+        if description is not None:
+            description = description.text
+            result['description'] = description
+
+        short_description = next((c for c in ttp if c.name == 'Short_Description'), None)
+        if short_description is not None:
+            short_description = short_description.text
+            result['short_description'] = short_description
+
+        return result
+
+
+    def interval_in_sec(val):
+        """Translates interval string to seconds int"""
+        if val is None:
+            return None
+        if isinstance(val, int):
+            return val
+        else:
+            range_split = val.split()
+            if len(range_split) != 2:
+                raise ValueError(
+                    'Interval must be "number date_range_unit", examples: (2 hours, 4 minutes,6 months, 1 day.')
+            number = int(range_split[0])
+            range_unit = range_split[1].lower()
+            if range_unit not in ['minute', 'minutes', 'hour', 'hours', 'day', 'days']:
+                raise ValueError('The unit of Interval is invalid. Must be minutes, hours or days')
+
+        multipliers = {
+            'minute': 60,
+            'hour': 3600,
+            'day': 86400,
+        }
+        for m, m_value in multipliers.items():
+            if m in range_unit:
+                return number * m_value
+
+        return None
+
+
+    def create_relationships(indicator):
+        results = []
+
+        for relationship in indicator.get('relationships', {}):
+            if relationship.get('type') == 'Malware':
+                name = 'indicator-of'
+                relationship_type = 'Malware'
+            else:
+                name = 'related-to'
+                relationship_type = 'Attack Pattern'
+
+            entity_relationship = EntityRelationship(name=name,
+                                                     entity_a=indicator.get('value'),
+                                                     entity_a_type=indicator.get('type'),
+                                                     entity_b=relationship.get('indicator'),
+                                                     entity_b_type=relationship_type)
+            results.append(entity_relationship.to_indicator())
+
+        return results
+
+
+    def test_module(client, *_):
+        try:
+            all_collections = client.get_all_collections(is_raise_error=True)
+        except ConnectionError:
+            all_collections = [client.collection]
+
+        if client.collection not in all_collections:
+            return_error(f'Collection could not be found at this time. Here is a list of all accessible collections:'
+                         f' {str(all_collections)}')
+
+        client._discover_poll_service()
+        return 'ok', {}, {}
+
+
+    def fetch_indicators_command(client):
+        indicators = []
+
+        # Create the indicators from the observables
+        iterator = client.build_iterator(date_to_timestamp(datetime.now()))
+        for item in iterator:
+            if indicator := item.get('indicator'):
+                item['value'] = indicator
+                indicator_obj = {
+                    'value': indicator,
+                    'type': item.get('type'),
+                    'title': item.get('stix_title'),
+                    'description': item.get('stix_description'),
+                    'stixindicatorname': item.get('stix_indicator_name'),
+                    'stixindicatordescription': item.get('stix_indicator_description'),
+                    'confidence': item.get('confidence'),
+                }
+
+                fields: Dict[str, str] = {}
+                for key, value in indicator_obj.items():
+                    if key in client.tags:
+                        fields[key] = value
+                indicator_obj['fields'] = fields
+
+                if item.get('relationships'):
+                    indicator_obj['relationships'] = create_relationships(item)
+
+                if client.tlp_color:
+                    indicator_obj['fields']['trafficlightprotocol'] = client.tlp_color
+
+                indicator_obj['rawJSON'] = item
+
+                indicators.append(indicator_obj)
+
+        # Create the indicators from the ttps
+        ttps = client.ttps
+        for item in ttps.values():
+            if indicator := item.get('indicator'):
+                item['value'] = indicator
+                indicator_obj = {
+                    'value': indicator,
+                    'type': item.get('type'),
+                    'title': item.get('title'),
+                    'description': item.get('description'),
+                    'shortdescription': item.get('short_description'),
+                    'stixindicatordescription': item.get('ttp_description'),
+                    'stixttptitle': item.get('stix_ttp_title'),
+                }
+
+                if item.get('type') == 'Malware':
+                    indicator_obj['score'] = ThreatIntel.ObjectsScore.MALWARE
+                    indicator_obj['stixmalwaretypes'] = item.get('malware_type', '').lower().replace(' ', '-')
+                else:
+                    indicator_obj['score'] = ThreatIntel.ObjectsScore.ATTACK_PATTERN
+
+                ttp_fields: Dict[str, str] = {}
+                for key, value in indicator_obj.items():
+                    if key in client.tags and value:
+                        ttp_fields[key] = value
+                indicator_obj['fields'] = ttp_fields
+
+                indicator_obj['rawJSON'] = item
+
+                indicators.append(indicator_obj)
+
+        return indicators
+
+
+    def get_indicators_command(client, args):
+        limit = int(args.get('limit', 10))
+        client.initial_interval = interval_in_sec(args.get('initial_interval'))
+        client.last_taxii_run = None
+        indicators_list = fetch_indicators_command(client)
+        entry_result = camelize(indicators_list[:limit])
+        hr = tableToMarkdown('Indicators', entry_result, headers=['Value', 'Type', 'Rawjson'])
+        return hr, {'TAXII.Indicator': entry_result}, indicators_list
+
+
+    def main():
+        # Write configure here
+        params = {key: value for key, value in demisto.params().items() if value is not None}
+        handle_proxy()
+        client = TAXIIClient(**params)
+        command = demisto.command()
+        demisto.info('Command being called is {command}'.format(command=command))
+        # Switch case
+        commands = {
+            'test-module': test_module,
+            'get-indicators': get_indicators_command
+        }
+        try:
+            if demisto.command() == 'fetch-indicators':
+                indicators = fetch_indicators_command(client)
+                # we submit the indicators in batches
+                for b in batch(indicators, batch_size=2000):
+                    demisto.createIndicators(b)
+                demisto.setLastRun({'time': client.last_taxii_run})
+            else:
+                readable_output, outputs, raw_response = commands[command](client, demisto.args())  # type: ignore
+                return_outputs(readable_output, outputs, raw_response)
+        except Exception as e:
+            err_msg = f'Error in {INTEGRATION_NAME} Integration [{e}]'
+            raise Exception(err_msg)
+
+
+    if __name__ in ("__builtin__", "builtins", "__main__"):
+        main()
+
+    register_module_line('TAXIIFeed', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
