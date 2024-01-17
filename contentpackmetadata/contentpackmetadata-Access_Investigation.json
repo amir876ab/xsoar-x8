@@ -1,0 +1,144 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"incidenttype",
+		"playbook",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 3,
+				"hours": 0,
+				"name": "Access",
+				"playbook": "access_investigation_-_generic",
+				"weeks": 1
+			}
+		],
+		"indicatorfield": null,
+		"integration": null,
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "Access Incident"
+			}
+		],
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook investigates an access incident by gathering user and IP information.\n\nThe playbook then interacts with the user that triggered the incident to confirm whether or not they initiated the access action.",
+				"name": "Access Investigation - Generic"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "1.2.5",
+	"definitionId": "",
+	"dependencies": {
+		"Active_Directory_Query": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.6.22",
+			"name": "Active Directory Query"
+		},
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.33",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.4.3",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.12.23",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.3.87",
+			"name": "Common Types"
+		}
+	},
+	"deprecated": false,
+	"description": "This Content Pack automates response to unauthorised access incidents and contains customer access incident views and layouts to aid investigation.",
+	"disabledMonthly": false,
+	"downloads": 5699,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "AccessInvestigation",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Active_Directory_Query/ActiveDirectoryQueryv2_image.png",
+			"name": "Active Directory Query v2"
+		}
+	],
+	"itemVersion": "1.2.5",
+	"keywords": [],
+	"legacy": true,
+	"name": "Access Investigation",
+	"packID": "AccessInvestigation",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "An unauthorised access to a cloud asset, a server or a physical endpoint can compromise an entire organization. \nAccess investigations require security teams to reconcile data from multiple sources, gather user and network data, and communicate with users and other relevant parties. Valuable time is lost shuttling between screens and executing repeatable tasks while an attack continues to manifest.\nThis Access Investigation content pack contains the ‘Access Investigation - Generic’ playbook, that automates response to an unauthorised access incident. The pack also contains the corresponding custom Access incident type to facilitate analyst investigation.\nThe Access playbook orchestrates across multiple products to extract and enrich IOCs, interact with the suspected user and calculate the incident’s severity.\n\n\n##### What does this pack do?\nThe playbooks included in this pack help you save time and automate repetitive tasks associated with Malware incidents:\n- Create an Access incident within Cortex XSOAR associated with the unauthorized access.\n- Extract and enrich user information, and retrieve the user’s manager details.\n- Extract and enrich IP information.\n- Interact with the user to gather more information regarding the suspected access.\n- Calculate the incident’s severity based on the enriched information and information received from the user.\n- Assign the investigation to an analyst.\n\nAs part of this pack, you will also get out-of-the-box Access incident type, which is easily customizable to suit the needs of your organization.\n\n_For more information, visit our  [Cortex XSOAR Developer Docs](https://xsoar.pan.dev/docs/reference/playbooks/access-investigation---generic)_\n\n![Access_Investigation_-_Generic](https://storage.googleapis.com/marketplace-dist/content/packs/AccessInvestigation/readme_images/Access_Investigation_-_Generic_4_5.png)\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Use Case"
+	],
+	"toServerVersion": "",
+	"updated": "2023-09-10T20:41:04Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6319909",
+	"videos": []
+}
