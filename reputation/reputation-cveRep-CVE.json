@@ -1,0 +1,161 @@
+{
+	"cacheVersn": 0,
+	"contextPath": "CVE(val.ID \u0026\u0026 val.ID === obj.ID)",
+	"contextValue": "ID",
+	"defaultMapping": {
+		"associations": {
+			"complex": {
+				"accessor": "Associations",
+				"filters": [],
+				"root": "CVE",
+				"transformers": [
+					{
+						"operator": "uniq"
+					}
+				]
+			}
+		},
+		"cvedescription": {
+			"complex": {
+				"accessor": "Description",
+				"filters": [],
+				"root": "CVE",
+				"transformers": [
+					{
+						"operator": "uniq"
+					}
+				]
+			}
+		},
+		"cvemodified": {
+			"complex": {
+				"accessor": "Modified",
+				"filters": [],
+				"root": "CVE",
+				"transformers": [
+					{
+						"operator": "uniq"
+					}
+				]
+			}
+		},
+		"cvss": {
+			"complex": {
+				"accessor": "CVSS",
+				"filters": [],
+				"root": "CVE",
+				"transformers": [
+					{
+						"operator": "uniq"
+					}
+				]
+			}
+		},
+		"indicatoridentification": {
+			"complex": {
+				"accessor": "ID",
+				"filters": [],
+				"root": "CVE",
+				"transformers": [
+					{
+						"operator": "toUpperCase"
+					},
+					{
+						"operator": "uniq"
+					}
+				]
+			}
+		},
+		"published": {
+			"complex": {
+				"accessor": "Published",
+				"filters": [],
+				"root": "CVE",
+				"transformers": [
+					{
+						"operator": "uniq"
+					}
+				]
+			}
+		},
+		"reportedby": {
+			"complex": {
+				"accessor": "ReportedBy",
+				"filters": [],
+				"root": "CVE",
+				"transformers": [
+					{
+						"operator": "uniq"
+					}
+				]
+			}
+		},
+		"tags": {
+			"complex": {
+				"accessor": "Tags",
+				"filters": [],
+				"root": "CVE",
+				"transformers": [
+					{
+						"operator": "uniq"
+					}
+				]
+			}
+		},
+		"threattypes": {
+			"complex": {
+				"accessor": "ThreatTypes",
+				"filters": [],
+				"root": "CVE",
+				"transformers": [
+					{
+						"operator": "uniq"
+					}
+				]
+			}
+		},
+		"trafficlightprotocol": {
+			"complex": {
+				"accessor": "TrafficLightProtocol",
+				"filters": [],
+				"root": "CVE",
+				"transformers": [
+					{
+						"operator": "uniq"
+					}
+				]
+			}
+		}
+	},
+	"definitionId": "",
+	"details": "CVE",
+	"disabled": false,
+	"enhancementScriptNames": [],
+	"excludedBrands": [],
+	"expiration": 0,
+	"file": false,
+	"fileHashesPriority": null,
+	"formatScript": "",
+	"fromServerVersion": "5.5.0",
+	"id": "cveRep",
+	"itemVersion": "3.3.97",
+	"layout": "cveRep",
+	"legacyNames": null,
+	"locked": false,
+	"manualMapping": null,
+	"mergeContext": false,
+	"packID": "CommonTypes",
+	"packName": "Common Types",
+	"packPropagationLabels": [
+		"all"
+	],
+	"propagationLabels": [],
+	"regex": "CVE-\\d{4}-\\d{4,7}",
+	"reputationCommand": "cve",
+	"reputationScriptName": "cveReputation",
+	"shouldShareComments": false,
+	"system": true,
+	"toServerVersion": "",
+	"updateAfter": 0,
+	"version": -1
+}
