@@ -1,0 +1,203 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 220c4e5b-1888-412f-824c-3a0a7a83f3ec
+inputs: []
+name: amir-test-send mail
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 652aef84-aca9-49e8-8c6f-b4ac22885615
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 652aef84-aca9-49e8-8c6f-b4ac22885615
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: 'starting test - amir - tombstone '
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: db17473a-aeb5-492e-8c66-18ec10afb428
+      iscommand: false
+      name: 'print - start test '
+      script: Print
+      type: regular
+      version: -1
+    taskid: db17473a-aeb5-492e-8c66-18ec10afb428
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 250
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      body:
+        simple: amir the big
+      subject:
+        simple: amir the big
+      to:
+        simple: amir876@gmail.com
+      using:
+        simple: Gmail_instance_2
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Send an email
+      id: 2b2f738e-fa71-4d00-8a70-687d1bf21b26
+      iscommand: true
+      name: send-mail
+      script: '|||send-mail'
+      type: regular
+      version: -1
+    taskid: 2b2f738e-fa71-4d00-8a70-687d1bf21b26
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 470
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: done
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: d86aaef2-2306-4b87-8d91-d6455cf2351d
+      iscommand: false
+      name: done
+      script: Print
+      type: regular
+      version: -1
+    taskid: d86aaef2-2306-4b87-8d91-d6455cf2351d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 700
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: not push to VC
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: e3f397fe-7e3e-430f-87ed-b239489f6774
+      iscommand: false
+      name: VC test1
+      script: Print
+      type: regular
+      version: -1
+    taskid: e3f397fe-7e3e-430f-87ed-b239489f6774
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 900
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 945,
+        "width": 390,
+        "x": 440,
+        "y": 50
+      }
+    }
+  }
