@@ -1,0 +1,136 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "This script gets the email address of the incident owner and then returns the incident owner username in Bonusly.",
+				"name": "IncOwnerToBonuslyUser",
+				"tags": [
+					"Bonusly",
+					"Utilities"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "Gets a list of bonuses based on the supplied filters.",
+						"name": "bonusly-list-bonuses"
+					},
+					{
+						"description": "Creates a Bonusly bonus.",
+						"name": "bonusly-create-bonus"
+					},
+					{
+						"description": "Gets a bonus by bonus ID.",
+						"name": "bonusly-get-bonus"
+					},
+					{
+						"description": "Updates a bonus.",
+						"name": "bonusly-update-bonus"
+					},
+					{
+						"description": "Deletes a bonus by bonus ID.",
+						"name": "bonusly-delete-bonus"
+					}
+				],
+				"description": "The Bonusly integration is used to interact with the Bonusly platform through the API. Bonusly is an employee recognition platform which enterprises use to for employee recognition.",
+				"id": "Bonusly",
+				"name": "Bonusly (Community Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "AutoGratitude is a playbook to give back a positive gratitude to security engineers and developers when they successfully complete an SLA",
+				"name": "Bonusly - AutoGratitude"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "1.0.14",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.21",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Bonus.ly is an employee recognition platform which enterprises use to for employee recognition. We're building tools to help people feel a sense of purpose and progress at work. The platform which also has an API enables employees to recognize each other by providing a point based bonus system. Bonus.ly helps your employees feel connected, engaged, and aligned is mission critical right now. Bonusly makes employee recognition easy and fun, fostering community and creating company-wide alignment. It also provides employees with positive feedback in the work that they are doing. ",
+	"disabledMonthly": false,
+	"downloads": 1186,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree"
+	],
+	"id": "Bonusly",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Bonusly/Bonusly_image.png",
+			"name": "Bonusly"
+		}
+	],
+	"itemVersion": "1.0.14",
+	"keywords": [],
+	"legacy": true,
+	"name": "Bonusly",
+	"packID": "Bonusly",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "## Overview\n\nBonus.ly is an employee recognition platform which enterprises use to for employee recognition. We're building tools to help people feel a sense of purpose and progress at work. The platform which also has an API enables employees to recognize each other by providing a point based bonus system. Bonus.ly helps your employees feel connected, engaged, and aligned is mission critical right now. Bonusly makes employee recognition easy and fun, fostering community and creating company-wide alignment. It also provides employees with positive feedback in the work that they are doing.\n\nTo utilize the example playbooks in this content package you will need a list in your XSOAR list settings similar to the following.\n\nCreate a Lookup JSON List In The Lists Section Containing XSOAR Email To Bonusly User\n\n{\n\"shrek@paloaltonetworks.com\":\"@shrek\", \n\"donkey@paloaltonetworks.com\":\"@donkey\"\n}\n\n   ",
+	"searchRank": 0,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "community",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-07-25T19:25:32Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "5866730",
+	"videos": []
+}
