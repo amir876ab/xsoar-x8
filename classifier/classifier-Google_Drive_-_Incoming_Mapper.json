@@ -1,0 +1,464 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Maps incoming Google Drive incident fields.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Google Drive-mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.2.45",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"Google Drive Activity": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Google Drive Activity Added Parents": {
+					"complex": {
+						"accessor": "addedParents",
+						"filters": [],
+						"root": "primaryActionDetail.move",
+						"transformers": [
+							{
+								"operator": "ConvertKeysToTableFieldFormat"
+							}
+						]
+					}
+				},
+				"Google Drive Activity Added Permissions": {
+					"complex": {
+						"accessor": "addedPermissions",
+						"filters": [],
+						"root": "primaryActionDetail.permissionChange",
+						"transformers": [
+							{
+								"operator": "ConvertKeysToTableFieldFormat"
+							}
+						]
+					}
+				},
+				"Google Drive Activity Assigned Current User": {
+					"complex": {
+						"accessor": "isCurrentUser",
+						"filters": [],
+						"root": "primaryActionDetail.comment.assignment.assignedUser.knownUser",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Assigned Deleted User": {
+					"complex": {
+						"accessor": "deletedUser",
+						"filters": [],
+						"root": "primaryActionDetail.comment.assignment.assignedUser",
+						"transformers": [
+							{
+								"operator": "Stringify"
+							},
+							{
+								"args": {
+									"applyIfEmpty": {
+										"isContext": false,
+										"value": {
+											"simple": "false"
+										}
+									},
+									"defaultValue": {
+										"isContext": false,
+										"value": {
+											"simple": "false"
+										}
+									}
+								},
+								"operator": "SetIfEmpty"
+							},
+							{
+								"args": {
+									"else": {
+										"isContext": false,
+										"value": {
+											"simple": "false"
+										}
+									},
+									"equals": {
+										"isContext": false,
+										"value": {
+											"simple": "{}"
+										}
+									},
+									"then": {
+										"isContext": false,
+										"value": {
+											"simple": "true"
+										}
+									}
+								},
+								"operator": "If-Then-Else"
+							}
+						]
+					}
+				},
+				"Google Drive Activity Assigned Person Name": {
+					"complex": {
+						"accessor": "personName",
+						"filters": [],
+						"root": "primaryActionDetail.comment.assignment.assignedUser.knownUser",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Assigned Unknown User": {
+					"complex": {
+						"accessor": "unknownUser",
+						"filters": [],
+						"root": "primaryActionDetail.comment.assignment.assignedUser",
+						"transformers": [
+							{
+								"operator": "Stringify"
+							},
+							{
+								"args": {
+									"applyIfEmpty": {
+										"isContext": false,
+										"value": {
+											"simple": "false"
+										}
+									},
+									"defaultValue": {
+										"isContext": false,
+										"value": {
+											"simple": "false"
+										}
+									}
+								},
+								"operator": "SetIfEmpty"
+							},
+							{
+								"args": {
+									"else": {
+										"isContext": false,
+										"value": {
+											"simple": "false"
+										}
+									},
+									"equals": {
+										"isContext": false,
+										"value": {
+											"simple": "{}"
+										}
+									},
+									"then": {
+										"isContext": false,
+										"value": {
+											"simple": "true"
+										}
+									}
+								},
+								"operator": "If-Then-Else"
+							}
+						]
+					}
+				},
+				"Google Drive Activity Assignment Subtype": {
+					"complex": {
+						"accessor": "subtype",
+						"filters": [],
+						"root": "primaryActionDetail.comment.assignment",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Copied Folder Type": {
+					"complex": {
+						"accessor": "type",
+						"filters": [],
+						"root": "primaryActionDetail.create.copy.originalObject.driveItem.driveFolder",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Copied Item Is File": {
+					"complex": {
+						"accessor": "driveFile",
+						"filters": [],
+						"root": "primaryActionDetail.create.copy.originalObject.driveItem",
+						"transformers": [
+							{
+								"operator": "Stringify"
+							},
+							{
+								"args": {
+									"applyIfEmpty": {
+										"isContext": false,
+										"value": {
+											"simple": "false"
+										}
+									},
+									"defaultValue": {
+										"isContext": false,
+										"value": {
+											"simple": "false"
+										}
+									}
+								},
+								"operator": "SetIfEmpty"
+							},
+							{
+								"args": {
+									"else": {
+										"isContext": false,
+										"value": {
+											"simple": "false"
+										}
+									},
+									"equals": {
+										"isContext": false,
+										"value": {
+											"simple": "{}"
+										}
+									},
+									"then": {
+										"isContext": false,
+										"value": {
+											"simple": "true"
+										}
+									}
+								},
+								"operator": "If-Then-Else"
+							}
+						]
+					}
+				},
+				"Google Drive Activity Copied Item Name": {
+					"complex": {
+						"accessor": "name",
+						"filters": [],
+						"root": "primaryActionDetail.create.copy.originalObject.driveItem",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Copied Item Title": {
+					"complex": {
+						"accessor": "title",
+						"filters": [],
+						"root": "primaryActionDetail.create.copy.originalObject.driveItem",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Copied Shared Drive Name": {
+					"complex": {
+						"accessor": "name",
+						"filters": [],
+						"root": "primaryActionDetail.create.copy.originalObject.drive",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Copied Shared Drive Title": {
+					"complex": {
+						"accessor": "title",
+						"filters": [],
+						"root": "primaryActionDetail.create.copy.originalObject.drive",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Created New": {
+					"complex": {
+						"accessor": "new",
+						"filters": [],
+						"root": "primaryActionDetail.create",
+						"transformers": [
+							{
+								"operator": "Stringify"
+							},
+							{
+								"args": {
+									"applyIfEmpty": {
+										"isContext": false,
+										"value": {
+											"simple": "false"
+										}
+									},
+									"defaultValue": {
+										"isContext": false,
+										"value": {
+											"simple": "false"
+										}
+									}
+								},
+								"operator": "SetIfEmpty"
+							},
+							{
+								"args": {
+									"else": {
+										"isContext": false,
+										"value": {
+											"simple": "false"
+										}
+									},
+									"equals": {
+										"isContext": false,
+										"value": {
+											"simple": "{}"
+										}
+									},
+									"then": {
+										"isContext": false,
+										"value": {
+											"simple": "true"
+										}
+									}
+								},
+								"operator": "If-Then-Else"
+							}
+						]
+					}
+				},
+				"Google Drive Activity DLP Change Type": {
+					"complex": {
+						"accessor": "type",
+						"filters": [],
+						"root": "primaryActionDetail.dlpChange",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Delete Type": {
+					"complex": {
+						"accessor": "type",
+						"filters": [],
+						"root": "primaryActionDetail.delete",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Identified As": {
+					"complex": {
+						"filters": [],
+						"root": "actors",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Mentioned Users": {
+					"complex": {
+						"accessor": "mentionedUsers",
+						"filters": [],
+						"root": "primaryActionDetail.comment",
+						"transformers": [
+							{
+								"operator": "ConvertKeysToTableFieldFormat"
+							}
+						]
+					}
+				},
+				"Google Drive Activity New Title": {
+					"complex": {
+						"accessor": "newTitle",
+						"filters": [],
+						"root": "primaryActionDetail.rename",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Old Title": {
+					"complex": {
+						"accessor": "oldTitle",
+						"filters": [],
+						"root": "primaryActionDetail.rename",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Post Subtype": {
+					"complex": {
+						"accessor": "subtype",
+						"filters": [],
+						"root": "primaryActionDetail.comment.post",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Reference Type": {
+					"complex": {
+						"accessor": "type",
+						"filters": [],
+						"root": "primaryActionDetail.reference",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Removed Parents": {
+					"complex": {
+						"accessor": "removedParents",
+						"filters": [],
+						"root": "primaryActionDetail.move",
+						"transformers": [
+							{
+								"operator": "ConvertKeysToTableFieldFormat"
+							}
+						]
+					}
+				},
+				"Google Drive Activity Removed Permissions": {
+					"complex": {
+						"accessor": "removedPermissions",
+						"filters": [],
+						"root": "primaryActionDetail.permissionChange",
+						"transformers": [
+							{
+								"operator": "ConvertKeysToTableFieldFormat"
+							}
+						]
+					}
+				},
+				"Google Drive Activity Restore Type": {
+					"complex": {
+						"accessor": "type",
+						"filters": [],
+						"root": "primaryActionDetail.restore",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Restriction Changes": {
+					"complex": {
+						"accessor": "restrictionChanges",
+						"filters": [],
+						"root": "primaryActionDetail.settingsChange",
+						"transformers": [
+							{
+								"operator": "ConvertKeysToTableFieldFormat"
+							}
+						]
+					}
+				},
+				"Google Drive Activity Suggestion Subtype": {
+					"complex": {
+						"accessor": "subtype",
+						"filters": [],
+						"root": "primaryActionDetail.comment.suggestion",
+						"transformers": []
+					}
+				},
+				"Google Drive Activity Targets": {
+					"complex": {
+						"filters": [],
+						"root": "targets",
+						"transformers": [
+							{
+								"operator": "ConvertKeysToTableFieldFormat"
+							}
+						]
+					}
+				}
+			}
+		}
+	},
+	"name": "Google Drive - Incoming Mapper",
+	"nameRaw": "Google Drive - Incoming Mapper",
+	"packID": "GoogleDrive",
+	"packName": "Google Drive",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
