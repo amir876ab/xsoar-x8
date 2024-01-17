@@ -1,0 +1,36 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "Google Drive Activity",
+	"definitionId": "",
+	"description": "Classifies Google Drive Incidents.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Google Drive",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.2.45",
+	"keyTypeMap": {
+		"Google Drive Activity": "Google Drive Activity"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Google Drive - Classifier",
+	"nameRaw": "Google Drive - Classifier",
+	"packID": "GoogleDrive",
+	"packName": "Google Drive",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": ".=\"Google Drive Activity\""
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
