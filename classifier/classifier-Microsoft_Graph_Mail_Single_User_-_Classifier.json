@@ -1,0 +1,34 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Classifies Microsoft phishing email messages.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Microsoft Graph Mail Single User",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.5.19",
+	"keyTypeMap": {
+		"graph-mail-listener": "Phishing"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Microsoft Graph Mail Single User - Classifier",
+	"nameRaw": "Microsoft Graph Mail Single User - Classifier",
+	"packID": "MicrosoftGraphMail",
+	"packName": "Microsoft Graph Mail",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
