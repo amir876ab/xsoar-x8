@@ -1,0 +1,314 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Cloud Services"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook",
+		"classifier",
+		"widget"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "Maps incoming Microsoft phishing email messages fields.",
+				"id": "Microsoft Graph Mail Single User-mapper",
+				"name": "Microsoft Graph Mail Single User - Incoming Mapper"
+			},
+			{
+				"description": "Maps incoming Microsoft Graph Mail phishing email message fields.",
+				"id": "Microsoft Graph Mail Mapper",
+				"name": "Microsoft Graph Mail Mapper"
+			},
+			{
+				"description": "Classifies Microsoft phishing email messages.",
+				"id": "Microsoft Graph Mail Single User",
+				"name": "Microsoft Graph Mail Single User - Classifier"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Cloud Services",
+				"commands": [
+					{
+						"description": "Creates a draft message in the specified user's mailbox.",
+						"name": "msgraph-mail-create-draft"
+					},
+					{
+						"description": "Replies to an email using Graph Mail Single User.",
+						"name": "reply-mail"
+					},
+					{
+						"description": "Sends an email using Microsoft Graph.",
+						"name": "send-mail"
+					},
+					{
+						"description": "The replies to the recipients of a message.",
+						"name": "msgraph-mail-reply-to"
+					},
+					{
+						"description": "Sends a draft email using Microsoft Graph.",
+						"name": "msgraph-mail-send-draft"
+					},
+					{
+						"description": "Tests connectivity of the email.",
+						"name": "msgraph-mail-test"
+					},
+					{
+						"description": "Run this command if for some reason you need to rerun the authentication process.",
+						"name": "msgraph-mail-auth-reset"
+					},
+					{
+						"description": "Gets the properties of returned emails. Typically shows partial results, use the \"page_size\" and \"pages_to_pull\" arguments to get all results.",
+						"name": "msgraph-mail-list-emails"
+					},
+					{
+						"description": "Lists all attachments of an email.",
+						"name": "msgraph-mail-list-attachments"
+					},
+					{
+						"description": "Gets an attachment from the email.",
+						"name": "msgraph-mail-get-attachment"
+					},
+					{
+						"description": "Retrieves an email message by message ID and uploads the content as an EML file.",
+						"name": "msgraph-mail-get-email-as-eml"
+					},
+					{
+						"description": "Update the status of an email to read / unread.",
+						"name": "msgraph-update-email-status"
+					},
+					{
+						"description": "Generate the login url used for Authorization code flow.",
+						"name": "msgraph-mail-generate-login-url"
+					},
+					{
+						"description": "Creates a new folder under the specified folder (parent).",
+						"name": "msgraph-mail-create-folder"
+					},
+					{
+						"description": "Moves a message to a different folder.",
+						"name": "msgraph-mail-move-email"
+					},
+					{
+						"description": "Returns the mail folder list directly under the root folder.",
+						"name": "msgraph-mail-list-folders"
+					},
+					{
+						"description": "Returns the folder list under the specified folder.",
+						"name": "msgraph-mail-list-child-folders"
+					}
+				],
+				"description": "Microsoft Graph grants Cortex XSOAR authorized access to a user's Microsoft Outlook mail data in a personal account or organization account.",
+				"id": "Microsoft Graph Mail Single User",
+				"name": "Microsoft Graph Mail Single User"
+			},
+			{
+				"category": "Cloud Services",
+				"commands": [
+					{
+						"description": "Gets the properties of returned emails. Typically shows partial results, use the \"page_size\" and \"pages_to_pull\" arguments to get all results.",
+						"name": "msgraph-mail-list-emails"
+					},
+					{
+						"description": "Returns the properties of an email.",
+						"name": "msgraph-mail-get-email"
+					},
+					{
+						"description": "Deletes an email.",
+						"name": "msgraph-mail-delete-email"
+					},
+					{
+						"description": "Lists all of the attachments of given email.",
+						"name": "msgraph-mail-list-attachments"
+					},
+					{
+						"description": "Gets an attachment from the email.",
+						"name": "msgraph-mail-get-attachment"
+					},
+					{
+						"description": "Returns the mail folder list directly under the root folder.",
+						"name": "msgraph-mail-list-folders"
+					},
+					{
+						"description": "Returns the folder list under the specified folder.",
+						"name": "msgraph-mail-list-child-folders"
+					},
+					{
+						"description": "Creates a new folder under the specified folder (parent).",
+						"name": "msgraph-mail-create-folder"
+					},
+					{
+						"description": "Updates the properties of the specified folder.",
+						"name": "msgraph-mail-update-folder"
+					},
+					{
+						"description": "Deletes the specified mail folder.",
+						"name": "msgraph-mail-delete-folder"
+					},
+					{
+						"description": "Moves a message to a different folder.",
+						"name": "msgraph-mail-move-email"
+					},
+					{
+						"description": "Retrieves an email message by message ID and uploads the content as an EML file.",
+						"name": "msgraph-mail-get-email-as-eml"
+					},
+					{
+						"description": "Creates a draft message in the specified user's mailbox.",
+						"name": "msgraph-mail-create-draft"
+					},
+					{
+						"description": "Sends an email using Microsoft Graph.",
+						"name": "send-mail"
+					},
+					{
+						"description": "The replies to the recipients of a message.",
+						"name": "msgraph-mail-reply-to"
+					},
+					{
+						"description": "Sends a draft email using Microsoft Graph.",
+						"name": "msgraph-mail-send-draft"
+					},
+					{
+						"description": "Replies to an email using Graph Mail.",
+						"name": "reply-mail"
+					},
+					{
+						"description": "Update the status of an email to read / unread.",
+						"name": "msgraph-mail-update-email-status"
+					},
+					{
+						"description": "Run this command if for some reason you need to rerun the authentication process.",
+						"name": "msgraph-mail-auth-reset"
+					}
+				],
+				"description": "Microsoft Graph lets your app get authorized access to a user's Outlook mail data in a personal or organization account.",
+				"id": "MicrosoftGraphMail",
+				"name": "O365 Outlook Mail (Using Graph API)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook retrieves the original email using the Microsoft Graph Mail integration.\nNote: You must have the necessary permissions in the Microsoft Graph Mail integration as described in the [message-get API](https://docs.microsoft.com/en-us/graph/api/message-get) and the [user-list-messages API](https://docs.microsoft.com/en-us/graph/api/user-list-messages)",
+				"name": "Get Original Email - Microsoft Graph Mail"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": [
+			{
+				"name": "API Call Results for Microsoft Graph Mail"
+			}
+		],
+		"wizard": null
+	},
+	"currentVersion": "1.5.19",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.37",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.12.34",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.87",
+			"name": "Common Types"
+		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.34",
+			"name": "Filters And Transformers"
+		},
+		"Phishing": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.5.26",
+			"name": "Phishing"
+		}
+	},
+	"deprecated": false,
+	"description": "Microsoft Graph lets your app get authorized access to a user's Outlook mail data in a personal or organization account.",
+	"disabledMonthly": false,
+	"downloads": 21830,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "MicrosoftGraphMail",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/MicrosoftGraphMail/MicrosoftGraphMailSingleUser_image.png",
+			"name": "Microsoft Graph Mail Single User"
+		},
+		{
+			"imagePath": "content/packs/MicrosoftGraphMail/MicrosoftGraphMail_image.png",
+			"name": "O365 Outlook Mail (Using Graph API)"
+		}
+	],
+	"itemVersion": "1.5.19",
+	"keywords": [],
+	"legacy": true,
+	"name": "Microsoft Graph Mail",
+	"packID": "MicrosoftGraphMail",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "O365 Outlook Mail (Using Graph API) gives you authorized access to a user's Outlook mail data enabling you to perform cybersecurity investigations, leading to rapid incident responses and threat protections against ransomware and spearfishing.\n\n## What does this pack do?\nUsing the commands in this integration, you can:\n\n- Access the properties of emails.\n- Delete an email or an email folder.\n- Access the attachments of an email.\n- Access mail folder lists.\n- Create a new mail folders.\n- Update the properties a folder.\n- Retrieve an email message\n- Create draft messages.\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-10-18T09:28:59Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6636841",
+	"videos": []
+}
