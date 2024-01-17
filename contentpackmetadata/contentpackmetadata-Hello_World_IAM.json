@@ -1,0 +1,142 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"classifier"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "Maps a User Profile data to the HelloIAMWorld user data.",
+				"id": "User Profile - HelloIAMWorld (Outgoing)",
+				"name": "User Profile - HelloIAMWorld (Outgoing)"
+			},
+			{
+				"description": "Maps a user data to a User Profile data.",
+				"id": "User Profile - HelloIAMWorld (Incoming)",
+				"name": "User Profile - HelloIAMWorld (Incoming)"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Identity and Access Management",
+				"commands": [
+					{
+						"description": "Creates a user.",
+						"name": "iam-create-user"
+					},
+					{
+						"description": "Updates an existing user with the data passed in the user-profile argument.",
+						"name": "iam-update-user"
+					},
+					{
+						"description": "Retrieves a single user resource.",
+						"name": "iam-get-user"
+					},
+					{
+						"description": "Disable an active user.",
+						"name": "iam-disable-user"
+					},
+					{
+						"description": "Retrieves a User Profile schema, which holds all of the user fields within the application. Used for outgoing-mapping through the Get Schema option.",
+						"name": "get-mapping-fields"
+					}
+				],
+				"description": "An Identity and Access Management integration template.",
+				"id": "Hello IAM World",
+				"name": "Hello World IAM"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "1.1.7",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.21",
+			"name": "Base"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.81",
+			"name": "Common Types"
+		}
+	},
+	"deprecated": false,
+	"description": "An Identity and Access Management integration template.",
+	"disabledMonthly": false,
+	"downloads": 871,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "6.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "HelloIAMWorld",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/HelloIAMWorld/HelloIAMWorld_image.png",
+			"name": "Hello World IAM"
+		}
+	],
+	"itemVersion": "1.1.7",
+	"keywords": [],
+	"legacy": true,
+	"name": "Hello World IAM",
+	"packID": "HelloIAMWorld",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "6.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Getting Started"
+	],
+	"toServerVersion": "",
+	"updated": "2023-07-25T19:39:13Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "5866730",
+	"videos": []
+}
