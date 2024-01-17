@@ -1,0 +1,109 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Gets indicators from the feed.",
+						"name": "plaintext-get-indicators"
+					}
+				],
+				"description": "Fetches indicators from a plain text feed.",
+				"id": "Plain Text Feed",
+				"name": "Plain Text Feed"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "1.1.25",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.35",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Fetches indicators from a plain text feed.",
+	"disabledMonthly": false,
+	"downloads": 4388,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.5.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "FeedPlainText",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/FeedPlainText/PlainTextFeed_image.png",
+			"name": "Plain Text Feed"
+		}
+	],
+	"itemVersion": "1.1.25",
+	"keywords": [],
+	"legacy": true,
+	"name": "Plain Text Feed",
+	"packID": "FeedPlainText",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.5.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Generic Feed",
+		"TIM",
+		"Threat Intelligence Management"
+	],
+	"toServerVersion": "",
+	"updated": "2023-09-26T19:27:03Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6429983",
+	"videos": []
+}
