@@ -1,0 +1,39 @@
+{
+	"autorun": true,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#D5A2C1",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "Specific"
+	},
+	"fromServerVersion": "",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "amit-type",
+	"itemVersion": "",
+	"layout": "a9aa0778-9d4e-4691-816f-26e5b56c7a07",
+	"locked": false,
+	"name": "amit-type",
+	"onChangeRepAlg": 0,
+	"packID": "",
+	"packName": "",
+	"playbookId": "f7b8ad51-3e55-45da-807f-3dd79281cd6e",
+	"preProcessingScript": "",
+	"propagationLabels": [
+		"all"
+	],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
