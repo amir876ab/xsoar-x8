@@ -1,0 +1,221 @@
+args:
+- description: List of device IDs.
+  isArray: true
+  name: device_ids
+  required: true
+- description: Path(s) of the file(s) to remove.
+  isArray: true
+  name: file_path
+- description: Hash(es) of the file(s) to remove.
+  isArray: true
+  name: file_hash
+- defaultValue: "No"
+  description: Whether to run the command. This is used to prevent unwanted calls
+    to the command.
+  name: approve_action
+  predefined:
+  - "Yes"
+  - "No"
+comment: This script allows removing specified files using Cortex XDR, CrowdStrike
+  and Microsoft Defender (Advanced Threat Protection).
+commonfields:
+  id: RemoveFileWrapper
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.4.9
+    packID: Malware
+    packName: Malware Core
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+engineinfo: {}
+mainengineinfo: {}
+name: RemoveFileWrapper
+outputs:
+- contextPath: PaloAltoNetworksXDR.ScriptRun.action_id
+  description: The ID of the initiated action.
+  type: Number
+- contextPath: PaloAltoNetworksXDR.ScriptRun.endpoints_count
+  description: The number of endpoints the action was initiated on.
+  type: Number
+- contextPath: CrowdStrike.Command.rm.HostID
+  description: The host ID.
+  type: String
+- contextPath: CrowdStrike.Command.rm.Error
+  description: The error message raised if the command failed.
+  type: String
+- contextPath: MicrosoftATP.MachineAction.ID
+  description: The machine action ID.
+  type: String
+- contextPath: MicrosoftATP.MachineAction.Type
+  description: The type of the action.
+  type: String
+- contextPath: MicrosoftATP.MachineAction.Scope
+  description: The scope of the action.
+  type: String
+- contextPath: MicrosoftATP.MachineAction.Requestor
+  description: The ID of the user that executed the action.
+  type: String
+- contextPath: MicrosoftATP.MachineAction.RequestorComment
+  description: The comment that was written when issuing the action.
+  type: String
+- contextPath: MicrosoftATP.MachineAction.Status
+  description: The current status of the command.
+  type: String
+- contextPath: MicrosoftATP.MachineAction.MachineID
+  description: The machine ID on which the action was executed.
+  type: String
+- contextPath: MicrosoftATP.MachineAction.ComputerDNSName
+  description: The machine DNS name on which the action was executed.
+  type: String
+- contextPath: MicrosoftATP.MachineAction.CreationDateTimeUtc
+  description: The date and time the action was created.
+  type: Date
+- contextPath: MicrosoftATP.MachineAction.LastUpdateTimeUtc
+  description: The last date and time the action status was updated.
+  type: Date
+- contextPath: MicrosoftATP.MachineAction.RelatedFileInfo.FileIdentifier
+  description: The file identifier.
+  type: String
+- contextPath: MicrosoftATP.MachineAction.RelatedFileInfo.FileIdentifierType
+  description: 'The file identifier type. Possible values: "SHA1" ,"SHA256", and "MD5".'
+  type: String
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('RemoveFileWrapper', 'start', __line__())
+  ### pack version: 1.4.9
+
+
+  ''' STANDALONE FUNCTION '''
+
+
+  def create_commands(device_ids: List[str], file_path: str, file_hash: str) -> List[CommandRunner.Command]:
+      """
+      Create a list of `Command` of the remove file command to `Cortex XDR` and `CrowdstrikeFalcon`
+
+      :param device_ids: device IDs to run on
+      :param file_path: path of the file to delete
+      :param file_hash: hash of the file to delete
+      :return: A list of `Command` for the script
+      """
+      cs_os_to_ids = get_crowdstrike_os_to_id(device_ids)
+      incident_id = demisto.incident()['id']
+
+      # creating a command object for each supported integration
+      xdr_command = CommandRunner.Command(
+          commands='xdr-run-script-delete-file',
+          args_lst={
+              'endpoint_ids': ','.join(device_ids),
+              'file_path': file_path,
+          }
+      )
+
+      falcon_command = CommandRunner.Command(
+          commands='cs-falcon-rtr-remove-file',
+          args_lst=[{
+              'host_ids': ','.join(ids),
+              'file_path': file_path, 'os': os_,
+          } for os_, ids in cs_os_to_ids.items()]
+      )
+
+      microsoft_atp_command = CommandRunner.Command(
+          commands='microsoft-atp-stop-and-quarantine-file',
+          args_lst={
+              'machine_id': ','.join(device_ids),
+              'file_hash': file_hash,
+              'comment': f'Action was taken by Cortex XSOAR - incident #{incident_id}',
+          }
+      )
+
+      path_based_commands = {xdr_command, falcon_command}
+      hash_based_commands = {microsoft_atp_command}
+
+      commands = set()
+      if file_path:
+          commands.update(path_based_commands)
+      if file_hash:
+          commands.update(hash_based_commands)
+
+      return list(commands)
+
+
+  def get_crowdstrike_os_to_id(device_ids: List[str]) -> Dict[str, Set[str]]:
+      """
+      Get the OS for each device id
+
+      :param device_ids: List of device ids
+      :return: A mapping between the OS (Windows, Linux, Mac) and the devices
+      """
+      endpoint_executor = CommandRunner.Command(brand='CrowdstrikeFalcon',
+                                                commands='endpoint',
+                                                args_lst={'id': ','.join(device_ids)})
+      endpoint_results, _ = CommandRunner.execute_commands(endpoint_executor,
+                                                           extract_contents=True)
+      os_to_ids: Dict[str, Set[str]] = {}
+      for endpoint_res in endpoint_results:
+          if not isinstance(endpoint_res.result, dict):
+              continue
+          for endpoints in endpoint_res.result.get('resources', []):
+              if not isinstance(endpoints, list):
+                  endpoints = [endpoints]
+              for endpoint in endpoints:
+                  os_ = endpoint.get('platform_name')
+                  if os_ not in os_to_ids:
+                      os_to_ids[os_] = set()
+                  os_to_ids[os_].add(endpoint.get('device_id'))
+      return os_to_ids
+
+
+  def run_remove_file(device_ids: List[str], file_path: str, file_hash: str) -> list:
+      """
+      Given arguments to the command, returns a list of results to return
+      :param device_ids: List of device ids to remove the file from
+      :param file_path: Path of the file to remove
+      :param file_hash: Hash of the file to remove (only supported on MSDE)
+      :return: list of results to return
+      :rtype: ``list``
+      """
+      command_executors = create_commands(device_ids, file_path, file_hash)
+      return CommandRunner.run_commands_with_summary(command_executors)
+
+
+  ''' MAIN FUNCTION '''
+
+
+  def main():  # pragma: no cover
+      try:
+          args = demisto.args()
+          if not argToBoolean(args.get('approve_action', False)):
+              raise ValueError('approve_action must be `yes`')
+          device_ids = argToList(args.get('device_ids'))
+          file_path = args.get('file_path', '')
+          file_hash = args.get('file_hash', '')
+          if not device_ids:
+              raise ValueError('Device id is not specified')
+          if not (file_path or file_hash):
+              raise ValueError('Neither path nor hash(es) of the file(s) to delete were specified.')
+          return_results(run_remove_file(device_ids, file_path, file_hash))
+      except Exception as e:
+          return_error(f'Failed to execute RemoveFileWrapper. Error: {str(e)}')
+
+
+  ''' ENTRY POINT '''
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('RemoveFileWrapper', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- basescript
+type: python
