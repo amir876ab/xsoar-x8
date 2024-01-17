@@ -1,0 +1,709 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: JSON Feed
+  version: -1
+configuration:
+- defaultvalue: "true"
+  display: Fetch indicators
+  name: feed
+  required: false
+  type: 8
+- additionalinfo: Indicators from this integration instance will be marked with this
+    reputation
+  defaultvalue: feedInstanceReputationNotSet
+  display: Indicator Reputation
+  name: feedReputation
+  options:
+  - None
+  - Good
+  - Suspicious
+  - Bad
+  required: false
+  type: 18
+- additionalinfo: Reliability of the source providing the intelligence data
+  defaultvalue: F - Reliability cannot be judged
+  display: Source Reliability
+  name: feedReliability
+  options:
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  type: 15
+- additionalinfo: The Traffic Light Protocol (TLP) designation to apply to indicators
+    fetched from the feed
+  display: Traffic Light Protocol Color
+  name: tlp_color
+  options:
+  - RED
+  - AMBER
+  - GREEN
+  - WHITE
+  required: false
+  type: 15
+- defaultvalue: indicatorType
+  display: ""
+  name: feedExpirationPolicy
+  options:
+  - never
+  - interval
+  - indicatorType
+  - suddenDeath
+  required: false
+  type: 17
+- defaultvalue: "20160"
+  display: ""
+  name: feedExpirationInterval
+  required: false
+  type: 1
+- defaultvalue: "240"
+  display: Feed Fetch Interval
+  name: feedFetchInterval
+  required: false
+  type: 19
+- display: URL
+  name: url
+  required: true
+  type: 0
+- additionalinfo: If selected, the indicator type will be auto detected for each indicator.
+  defaultvalue: "true"
+  display: Auto detect indicator type
+  name: auto_detect_type
+  required: false
+  type: 8
+- additionalinfo: Type of the indicator in the feed. If auto-detect is checked then
+    the value set as Indicator Type will be ignored.
+  display: Indicator Type
+  name: indicator_type
+  required: false
+  type: 0
+- display: Username
+  name: credentials
+  required: false
+  type: 9
+- additionalinfo: JMESPath expression for extracting the indicators. You can use http://jmespath.org/
+    to identify the proper expression.
+  display: JMESPath Extractor
+  name: extractor
+  required: true
+  type: 0
+- additionalinfo: The JSON attribute that holds the indicator value. Default value
+    is 'indicator'.
+  display: JSON Indicator Attribute
+  name: indicator
+  required: false
+  type: 0
+- additionalinfo: 'Send specified data in a POST request. When specified, by default
+    will add the header: ''Content-Type: application/x-www-form-urlencoded''. To specify
+    a different Content-Type (for example: application/json) use the Headers config
+    param.'
+  display: POST Data
+  name: data
+  required: false
+  type: 0
+- additionalinfo: 'Headers to add to the http request. Specify each header on a single
+    line in the format: ''Name: Value''. For example: ''User-Agent: XSOAR Feed'''
+  display: Headers
+  name: headers
+  required: false
+  type: 12
+- additionalinfo: When using a custom classifier and mapper with this feed, use this
+    option to include the indicator type in the raw json used for classification and
+    mapping.
+  display: Include indicator type for mapping
+  name: rawjson_include_indicator_type
+  required: false
+  type: 8
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- additionalinfo: When selected, the exclusion list is ignored for indicators from
+    this feed. This means that if an indicator from this feed is on the exclusion
+    list, the indicator might still be added to the system.
+  display: Bypass exclusion list
+  name: feedBypassExclusionList
+  required: false
+  type: 8
+- additionalinfo: Supports CSV values.
+  display: Tags
+  name: feedTags
+  required: false
+  type: 0
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 1.1.28
+    packID: FeedJSON
+    packName: JSON Feed
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Fetches indicators from a JSON feed.
+detaileddescription: "Fetch indicators from a JSON feed. The integration supports
+  a large amount of user configurations to support different types of JSON feeds.\n\n*
+  **URL** - URL of the feed.\n* **Auto detect indicator type** - If checked, a type
+  auto detection mechanism will take place for each indicator.\n* **Indicator Type**
+  - Type of the indicator in the feed. Relevant only if Auto detect is not checked.\n*
+  **Username + Password** - Credentials to access feeds that require basic authentication.
+  \nThese fields also support the use of API key headers. To use API key headers,
+  specify the header name and value in the following format:\n`_header:<header_name>`
+  in the **Username** field and the header value in the **Password** field.\n* **JMESPath
+  Extractor** - JMESPath expression for extracting the indicators from. You can check
+  the expression in \nthe [JMESPath site](http://jmespath.org/) to verify this expression
+  will return the following array of objects.\n* **JSON Indicator Attribute** - JSON
+  attribute whose value is the indicator. Default is 'indicator'.\n* **Headers** -
+  Headers to add to the http request. Specify each header on a single line in the
+  format: 'Name: Value'. For example: `Content-Type: application/json`. \n* **POST
+  Data** - Send specified data in a POST request. When specified, by default will
+  add the header: 'Content-Type: application/x-www-form-urlencoded'. To specify a
+  different Content-Type (for example: application/json) use the **Headers** config
+  param.\n* **Include Indicator Type for Mapping** - When using a custom classifier
+  and mapper with this feed, use this option to include the indicator type in the
+  raw json used for classification and mapping. The type will be included under the
+  key `_indicator_type`. \n\n## Step by step configuration\nAs an example, we'll be
+  looking at the IP ranges from Amazon AWS. This feed will ingest indicators of type
+  CIDR. These are the feed instance configuration parameters for our example.\n\n**URL**:
+  https://ip-ranges.amazonaws.com/ip-ranges.json\n\n**Auto detect indicator type**:
+  Checked.\n\n**Indicator Type** - Leave it empty and let the system identify the
+  indicator type.\n\n**Credentials** - This feed does not require authentication.\n\nFrom
+  a quick look at the feed in the web browser, we are going to configure the rest
+  of the parameters:\n\n**JMESPath Extractor** - prefixes[?service=='AMAZON'] This
+  means that the desired objects to extract the indicators from is\n`prefixes`, and
+  the objects will be filtered by where the field `service` is equal to `AMAZON`.\n\n**JSON
+  Indicator Attribute** - ip_prefix\n\nNow we have successfully configured an instance
+  for the IP ranges from Amazon AWS. After we enable `Fetches indicators` the instance
+  will start pulling indicators.\n\nBy clicking `Mapping` in the integration instance,
+  we can map the field names we previously configured to actual indicator fields (except
+  `value` which is the indicator value).\nWe can use `Set up a new classification
+  rule` using actual data from the feed.\n\n\n---\n[View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/json-feed)"
+display: JSON Feed
+image: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAAyCAYAAACXpx/YAAAABGdBTUEAALGPC/xhBQAABRRJREFUeAHtnG1sFEUYx5+9Fw6p9AQUahUCphJRUNT4lhi0KdGECERJwZTKR1ECwfiSABpIA2qiEfSDEIwxEsEQgy8BTQyBxCa+fEAlVo2FtPGlDdiXhKYUuba3d/z/vZuwPQ7ptne9m+k8ya8zO8/O7O3z35md3bupiDWjI+BofHZBfPa14CEQGsF5xFD3INg7gjaKtupIAlPok1onjrwl95QnJRKi2P6tz5XSzkSyu/l0NSrPBNv8N1LcNXQWeMGAuDsfG5641KWxU7prP3OefH297N/4zlaUtIP36DLFAhqfSGjYPTfjpJ+vWimr3t2QRPEu8ESGW+tNnQXOaeDfX73VebzuWcGwvx8NV+a08QI2ZgVOBz8AZfdt2hFYuGZFQALOIRTfWUBdcnZoK7AnlOOckHy644Pg/dWPRCToHIarwuPWMju2BQ6mnhJjMT4ppawkEJFDez4Jzau8LwqRj6J0qvLpmOo8ix55vGdAwyklUrOqVubPvX1Qe9PC0XBbeVl5e8vpzXDweVtLG9sCR0Li7lokrXsbpPVMw6UCRt2QnHJuFZcTbD1tbAtMzW6aJLKZL8Oy2MsYof/o0Pltn4zte3AWTU0rsgKbpmjG+Rg3RFdNvEXunTAz4zSvvHn8fIt83f37lXfUbA/jBF5+zd2yJDp4RjwUTY6cbbQCDyVQhd5ndcs+IdZSEbD3YMOvBCuw4QIbdw+uiFwnc8Zf71u2k7E2OdHb5rtesVcwTuDtN1TLotK5vuNe33NSqpre9l2v2CsYJ/CyP3fLpOAE33Hvcv/zXUeHCsYJ3J90pT1+VofYj8pntJOsUQlz4Q5iXA++yglLWbjUd0TZ688l+nzXK/YKxgl8YNbT8mjpbb7j/m1PkzzctN13vWKvYJzAfIs1e/w033Fv7u3wXUeHCsYJ3NrfJcRaKgJ2kmX4lWAFtgIXbQTi0ht38/rpYvGEJJL9eT1GnhvX+R5cL8dOLZU1X7q5WsIyKNZ9bgLtJyUp3wwq12xD5x+U5Wr56OUki8PxPeALauat2QjYCNgI2AjYCNgI2AgMOQLDXx0/5EPkdccpaH0G6AYJz5HuQJ4/rewB5zzlzHJiORvcBbjqLPO7xWtRNh2wnppcRZCvAHxk6gXWRikCXBjGhUOz0seLIuXMl2UK/kuGcYBGkX4EyseUC769Xz/Vpf2vIVXGi4H71qgCXVLT3mRtQuAfAFwNOAdgyb7wZQi/B+Ro9QVg760F9G8By0Hmb3Uo5nPgRmCtgBHI7MEH8Fk4hGJF2SW2DCUUztszuVM94EXAoZ7GHtwKfgMfAprtwak4FPzv5/gEHI4bwEuA92hl89OZI6rAs82RbJ6nnPfhV8FTQNXzuPXJmjZEc0nDSsAh+Q3wD3gR0MpSifyUTlWitr2/teWkihcLL5Q3wcV/AYANncw0gRn7j8HNYCmgwBToQfA3oHmF9G7/xQ2P8T09L46FgEO0lqajwCWeSKv7pnrUmQwfhUmAg+AFQOPw+8NALtXD09mBhD3+PPjFW5jOH0X6FXgmi0+LIgZDJ+MwexzsAY1gMWgGnYDnchg4YDc4A9YDTqC+AxxuKdhGQDsGVoBKsA10gGzGe/mv2Ry2LD8R2IBmuwBnxP+CBUAZ8z8Diko/16KwhyqbiMxHgPdU+tnOK8A7ktWlfVcjVbYTGe5fowpsmt8IUJDpgL01m3EY5zPs5fxh+P6vfrY2bZmNgI2AjcAoR+ACuq0EBSQcr3AAAAAASUVORK5CYII=
+name: JSON Feed
+script:
+  commands:
+  - arguments:
+    - defaultValue: "50"
+      description: The maximum number of results to return. The default value is 50.
+      name: limit
+    description: Gets the feed indicators.
+    name: json-get-indicators
+  dockerimage: demisto/py3-tools:1.0.0.47376
+  feed: true
+  runonce: false
+  script: |
+    register_module_line('JSON Feed', 'start', __line__())
+    ### pack version: 1.1.28
+
+
+
+
+    ### GENERATED CODE ###: from JSONFeedApiModule import *  # noqa: E402
+    # This code was inserted in place of an API module.
+    register_module_line('JSONFeedApiModule', 'start', __line__(), wrapper=-3)
+    # pylint: disable=E9010
+
+
+    ''' IMPORTS '''
+    import urllib3
+    import jmespath
+    from typing import List, Dict, Union, Optional, Callable, Tuple
+
+    # disable insecure warnings
+    urllib3.disable_warnings()
+
+
+    class Client:
+        def __init__(self, url: str = '', credentials: dict = None,
+                     feed_name_to_config: Dict[str, dict] = None, source_name: str = 'JSON',
+                     extractor: str = '', indicator: str = 'indicator',
+                     insecure: bool = False, cert_file: str = None, key_file: str = None, headers: Union[dict, str] = None,
+                     tlp_color: Optional[str] = None, data: Union[str, dict] = None, **_):
+            """
+            Implements class for miners of JSON feeds over http/https.
+            :param url: URL of the feed.
+            :param credentials: username and password used for basic authentication.
+             Can be also used as API key header and value by specifying _header in the username field.
+            :param extractor: JMESPath expression for extracting the indicators from
+            :param indicator: the JSON attribute to use as indicator. Default: indicator
+            :param source_name: feed source name
+            If None no additional attributes will be extracted.
+            :param insecure: if *False* feed HTTPS server certificate will be verified
+            Hidden parameters:
+            :param: cert_file: client certificate
+            :param: key_file: private key of the client certificate
+            :param: headers: Header parameters are optional to specify a user-agent or an api-token.
+                Support also a multiline string where each line contains a header of the format 'Name: Value'
+                Example: headers = {'user-agent': 'my-app/0.0.1'} or "Authorization: Bearer"
+                (curl -H "Authorization: Bearer " "https://api-url.com/api/v1/iocs?first_seen_since=2016-1-1")
+            :param tlp_color: Traffic Light Protocol color.
+            :param data: Data to post. If not specified will do a GET request. May also be passed as dict as
+                supported by requests. If passed as a string will set content-type to
+                application/x-www-form-urlencoded if not specified in the headers.
+
+             Example:
+                Example feed config:
+                'AMAZON': {
+                    'url': 'https://ip-ranges.amazonaws.com/ip-ranges.json',
+                    'extractor': "prefixes[?service=='AMAZON']",
+                    'indicator': 'ip_prefix',
+                }
+            """
+
+            self.source_name = source_name or 'JSON'
+            if feed_name_to_config:
+                self.feed_name_to_config = feed_name_to_config
+            else:
+                self.feed_name_to_config = {
+                    self.source_name: {
+                        'url': url,
+                        'indicator': indicator or 'indicator',
+                        'extractor': extractor or '@',
+                    }}
+
+            # Request related attributes
+            self.url = url
+            self.verify = not insecure
+            self.auth: Optional[tuple[str, str]] = None
+            self.headers = self.parse_headers(headers)
+
+            if credentials:
+                username = credentials.get('identifier', '')
+                if username.startswith('_header:'):
+                    header_name = username.split(':')[1]
+                    header_value = credentials.get('password', '')
+                    self.headers[header_name] = header_value
+                else:
+                    password = credentials.get('password', '')
+                    if username is not None and password is not None:
+                        self.auth = (username, password)
+
+            self.cert = (cert_file, key_file) if cert_file and key_file else None
+            self.tlp_color = tlp_color
+            self.post_data = data
+
+            if isinstance(self.post_data, str):
+                content_type_header = 'Content-Type'
+                if content_type_header.lower() not in [k.lower() for k in self.headers.keys()]:
+                    self.headers[content_type_header] = 'application/x-www-form-urlencoded'
+
+        @staticmethod
+        def parse_headers(headers: Optional[Union[dict, str]]) -> dict:
+            """Parse headers if passed as a string. Support a multiline string where each line contains a header
+            of the format 'Name: Value'
+
+            Args:
+                headers (Optional[Union[dict, str]]): either dict or string to parse
+
+            Returns:
+                dict: returns a headers dict or None
+            """
+            if not headers:
+                return {}
+            if isinstance(headers, str):
+                res = {}
+                for line in headers.splitlines():
+                    if line.strip():  # ignore empty lines
+                        key_val = line.split(':', 1)
+                        res[key_val[0].strip()] = key_val[1].strip()
+                return res
+            else:
+                return headers
+
+        def build_iterator(self, feed: dict, feed_name: str, **kwargs) -> Tuple[List, bool]:
+            url = feed.get('url', self.url)
+
+            if is_demisto_version_ge('6.5.0'):
+                prefix_feed_name = get_formatted_feed_name(feed_name)  # Support for AWS feed
+
+                # Set the If-None-Match and If-Modified-Since headers
+                # if we have etag or last_modified values in the context, with server version higher than 6.5.0.
+                last_run = demisto.getLastRun()
+                etag = last_run.get(prefix_feed_name, {}).get('etag') or last_run.get(feed_name, {}).get('etag')
+                last_modified = last_run.get(prefix_feed_name, {}).get('last_modified') or last_run.get(feed_name, {}).get('last_modified')  # noqa: E501
+
+                if etag:
+                    self.headers['If-None-Match'] = etag
+
+                if last_modified:
+                    self.headers['If-Modified-Since'] = last_modified
+
+            result = []
+            if not self.post_data:
+                r = requests.get(
+                    url=url,
+                    verify=self.verify,
+                    auth=self.auth,
+                    cert=self.cert,
+                    headers=self.headers,
+                    **kwargs
+                )
+            else:
+                r = requests.post(
+                    url=url,
+                    data=self.post_data,
+                    verify=self.verify,
+                    auth=self.auth,
+                    cert=self.cert,
+                    headers=self.headers,
+                    **kwargs
+                )
+
+            try:
+                r.raise_for_status()
+                if r.content:
+                    demisto.debug(f'JSON: found content for {feed_name}')
+                    data = r.json()
+                    result = jmespath.search(expression=feed.get('extractor'), data=data)
+
+            except ValueError as VE:
+                raise ValueError(f'Could not parse returned data to Json. \n\nError massage: {VE}')
+            if is_demisto_version_ge('6.5.0'):
+                return result, get_no_update_value(r, feed_name)
+            return result, True
+
+
+    def get_no_update_value(response: requests.Response, feed_name: str) -> bool:
+        """
+        detect if the feed response has been modified according to the headers etag and last_modified.
+        For more information, see this:
+        https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Last-Modified
+        https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag
+        Args:
+            response: (requests.Response) The feed response.
+            feed_name: (str) the name of the feed.
+        Returns:
+            boolean with the value for noUpdate argument.
+            The value should be False if the response was modified.
+        """
+        # HTTP status code 304 (Not Modified) set noUpdate to True.
+        if response.status_code == 304:
+            demisto.debug('No new indicators fetched, createIndicators will be executed with noUpdate=True.')
+            return True
+
+        etag = response.headers.get('ETag')
+        last_modified = response.headers.get('Last-Modified')
+
+        if not etag and not last_modified:
+            demisto.debug('Last-Modified and Etag headers are not exists,'
+                          'createIndicators will be executed with noUpdate=False.')
+            return False
+
+        last_run = demisto.getLastRun()
+        last_run[feed_name] = {
+            'last_modified': last_modified,
+            'etag': etag
+        }
+        demisto.setLastRun(last_run)
+        demisto.debug(f'JSON: The new last run is: {last_run}')
+        demisto.debug('New indicators fetched - the Last-Modified value has been updated,'
+                      ' createIndicators will be executed with noUpdate=False.')
+        return False
+
+
+    def get_formatted_feed_name(feed_name: str):
+        """support for AWS Feed config name, that contains $$ in the name.
+            example: AMAZON$$CIDR
+        Args:
+            feed_name (str): The feed config name
+        """
+        prefix_feed_name = ''
+        if '$$' in feed_name:
+            prefix_feed_name = feed_name.split('$$')[0]
+            return prefix_feed_name
+
+        return feed_name
+
+
+    def test_module(client: Client, limit) -> str:
+        for feed_name, feed in client.feed_name_to_config.items():
+            custom_build_iterator = feed.get('custom_build_iterator')
+            if custom_build_iterator:
+                custom_build_iterator(client, feed, limit)
+            else:
+                client.build_iterator(feed, feed_name)
+        return 'ok'
+
+
+    def fetch_indicators_command(client: Client, indicator_type: str, feedTags: list, auto_detect: bool,
+                                 create_relationships: bool = False, limit: int = 0, **kwargs) -> Tuple[List[dict], bool]:
+        """
+        Fetches the indicators from client.
+        :param client: Client of a JSON Feed
+        :param indicator_type: the default indicator type
+        :param feedTags: the indicator tags
+        :param auto_detect: a boolean indicates if we should automatically detect the indicator_type
+        :param limit: given only when get-indicators command is running. function will return number indicators as the limit
+        :param create_relationships: whether to add connected indicators
+        """
+        indicators: List[dict] = []
+        feeds_results = {}
+        no_update = False
+        for feed_name, feed in client.feed_name_to_config.items():
+            custom_build_iterator = feed.get('custom_build_iterator')
+            if custom_build_iterator:
+                indicators_from_feed = custom_build_iterator(client, feed, limit, **kwargs)
+                if not isinstance(indicators_from_feed, list):
+                    raise Exception("Custom function to handle with pagination must return a list type")
+                feeds_results[feed_name] = indicators_from_feed
+            else:
+                feeds_results[feed_name], no_update = client.build_iterator(feed, feed_name, **kwargs)
+
+        indicators_values: Set[str] = set()
+        indicators_values_indexes = {}
+
+        for service_name, items in feeds_results.items():
+            feed_config = client.feed_name_to_config.get(service_name, {})
+            indicator_field = str(feed_config.get('indicator') if feed_config.get('indicator') else 'indicator')
+            indicator_type = str(feed_config.get('indicator_type', indicator_type))
+            use_prefix_flat = bool(feed_config.get('flat_json_with_prefix', False))
+            mapping_function = feed_config.get('mapping_function', indicator_mapping)
+            handle_indicator_function = feed_config.get('handle_indicator_function', handle_indicator)
+            create_relationships_function = feed_config.get('create_relations_function')
+            service_name = get_formatted_feed_name(service_name)
+
+            for item in items:
+                if isinstance(item, str):
+                    item = {indicator_field: item}
+
+                indicator_value = item.get(indicator_field)
+                if indicator_value is None:
+                    continue
+                if indicator_value not in indicators_values:
+                    indicators_values_indexes[indicator_value] = len(indicators_values)
+                    indicators_values.add(indicator_value)
+                else:
+                    service = indicators[indicators_values_indexes[indicator_value]].get('rawJSON', {}).get('service', '')
+                    if service and service_name not in service.split(','):
+                        service_name += f', {service}'
+                    indicators[indicators_values_indexes[indicator_value]]['rawJSON']['service'] = service_name
+                    continue
+
+                indicators.extend(
+                    handle_indicator_function(client, item, feed_config, service_name, indicator_type, indicator_field,
+                                              use_prefix_flat, feedTags, auto_detect, mapping_function,
+                                              create_relationships, create_relationships_function))
+
+                if limit and len(indicators) >= limit:  # We have a limitation only when get-indicators command is
+                    # called, and then we return for each service_name "limit" of indicators
+                    break
+        return indicators, no_update
+
+
+    def indicator_mapping(mapping: Dict, indicator: Dict, attributes: Dict):
+        for map_key in mapping:
+            if map_key in attributes:
+                fields = mapping[map_key].split(".")
+                if len(fields) > 1:
+                    if indicator['fields'].get(fields[0]):
+                        indicator['fields'][fields[0]][0].update({fields[1]: attributes.get(map_key)})
+                    else:
+                        indicator['fields'][fields[0]] = [{fields[1]: attributes.get(map_key)}]
+                else:
+                    indicator['fields'][mapping[map_key]] = attributes.get(map_key)  # type: ignore
+
+
+    def handle_indicator(client: Client, item: Dict, feed_config: Dict, service_name: str,
+                         indicator_type: str, indicator_field: str, use_prefix_flat: bool,
+                         feedTags: list, auto_detect: bool, mapping_function: Callable = indicator_mapping,
+                         create_relationships: bool = False, relationships_func: Callable = None) -> List[dict]:
+        indicator_list = []
+        mapping = feed_config.get('mapping')
+        take_value_from_flatten = False
+        indicator_value = item.get(indicator_field)
+        if not indicator_value:
+            take_value_from_flatten = True
+        current_indicator_type = determine_indicator_type(indicator_type, auto_detect, indicator_value)
+
+        if not current_indicator_type:
+            demisto.debug(f'Could not determine indicator type for value: {indicator_value} from field: {indicator_field}.'
+                          f' Skipping item: {item}')
+            return []
+
+        indicator = {
+            'type': current_indicator_type,
+            'fields': {
+                'tags': feedTags,
+            }
+        }
+
+        if client.tlp_color:
+            indicator['fields']['trafficlightprotocol'] = client.tlp_color
+
+        attributes = {'source_name': service_name, 'type': current_indicator_type}
+        attributes.update(extract_all_fields_from_indicator(item, indicator_field,
+                                                            flat_with_prefix=use_prefix_flat))
+
+        if take_value_from_flatten:
+            indicator_value = attributes.get(indicator_field)
+        indicator['value'] = indicator_value
+        attributes['value'] = indicator_value
+
+        if mapping:
+            mapping_function(mapping, indicator, attributes)
+
+        if create_relationships and relationships_func and feed_config.get('relation_name'):
+            indicator['relationships'] = relationships_func(feed_config, mapping, attributes)
+
+        if feed_config.get('rawjson_include_indicator_type'):
+            item['_indicator_type'] = current_indicator_type
+
+        indicator['rawJSON'] = item
+
+        indicator_list.append(indicator)
+
+        return indicator_list
+
+
+    def determine_indicator_type(indicator_type, auto_detect, value):
+        """
+        Detect the indicator type of the given value.
+        Args:
+            indicator_type: (str) Given indicator type.
+            auto_detect: (bool) True whether auto detection of the indicator type is wanted.
+            value: (str) The value which we'd like to get indicator type of.
+        Returns:
+            Str which stands for the indicator type after detection.
+        """
+        if auto_detect:
+            indicator_type = auto_detect_indicator_type(value)
+        return indicator_type
+
+
+    def extract_all_fields_from_indicator(indicator: Dict, indicator_key: str, flat_with_prefix: bool = False) -> Dict:
+        """Flattens the JSON object to create one dictionary of values
+        Args:
+            indicator(dict): JSON object that holds indicator full data.
+            indicator_key(str): The key that holds the indicator value.
+            flat_with_prefix(bool): Indicates whether should add the inner json path as part of the keys in the flatten json
+        Returns:
+            dict. A dictionary of the fields in the JSON object.
+        """
+        fields = {}  # type: dict
+
+        def insert_value_to_fields(key, value):
+            if key in fields:
+                if not isinstance(fields[key], list):
+                    fields[key] = [fields[key]]
+                fields[key].append(value)
+            else:
+                fields[key] = value
+
+        def extract(json_element, prefix_field="", use_prefix=False):
+            if isinstance(json_element, dict):
+                for key, value in json_element.items():
+                    if value and isinstance(value, dict):
+                        if use_prefix:
+                            extract(value, prefix_field=f"{prefix_field}_{key}" if prefix_field else key,
+                                    use_prefix=use_prefix)
+                        else:
+                            extract(value)
+                    elif key != indicator_key:
+                        if use_prefix:
+                            insert_value_to_fields(f"{prefix_field}_{key}" if prefix_field else key, value)
+                        else:
+                            insert_value_to_fields(key, value)
+            elif json_element and indicator_key not in json_element:
+                for key, value in json_element:
+                    insert_value_to_fields(key, value)
+
+        extract(indicator, use_prefix=flat_with_prefix)
+
+        return fields
+
+
+    def feed_main(params, feed_name, prefix):
+        handle_proxy()
+        client = Client(**params)
+        indicator_type = params.get('indicator_type')
+        auto_detect = params.get('auto_detect_type')
+        feedTags = argToList(params.get('feedTags'))
+        limit = int(demisto.args().get('limit', 10))
+        command = demisto.command()
+        if prefix and not prefix.endswith('-'):
+            prefix += '-'
+        if command != 'fetch-indicators':
+            demisto.info(f'Command being called is {demisto.command()}')
+        try:
+            if command == 'test-module':
+                return_results(test_module(client, limit))
+
+            elif command == 'fetch-indicators':
+                create_relationships = params.get('create_relationships')
+                indicators, no_update = fetch_indicators_command(client, indicator_type, feedTags, auto_detect,
+                                                                 create_relationships)
+
+                # check if the version is higher than 6.5.0 so we can use noUpdate parameter
+                if is_demisto_version_ge('6.5.0'):
+                    if not indicators:
+                        demisto.createIndicators(indicators, noUpdate=no_update)
+                    else:
+                        for b in batch(indicators, batch_size=2000):
+                            demisto.createIndicators(b, noUpdate=no_update)
+
+                else:
+                    # call createIndicators without noUpdate arg
+                    if not indicators:
+                        demisto.createIndicators(indicators)
+                    else:
+                        for b in batch(indicators, batch_size=2000):
+                            demisto.createIndicators(b)
+
+            elif command == f'{prefix}get-indicators':
+                # dummy command for testing
+                create_relationships = params.get('create_relationships')
+                indicators, _ = fetch_indicators_command(client, indicator_type, feedTags, auto_detect, create_relationships, limit)
+                hr = tableToMarkdown('Indicators', indicators, headers=['value', 'type', 'rawJSON'])
+                return_results(CommandResults(readable_output=hr, raw_response=indicators))
+
+        except Exception as err:
+            err_msg = f'Error in {feed_name} integration [{err}]'
+            return_error(err_msg)
+
+    register_module_line('JSONFeedApiModule', 'end', __line__(), wrapper=1)
+    ### END GENERATED CODE ###
+
+
+    def main():
+        params = {k: v for k, v in demisto.params().items() if v is not None}
+
+        params['feed_name_to_config'] = {
+            params.get('url'): {
+                'url': params.get('url'),
+                'extractor': params.get('extractor'),
+                'indicator': params.get('indicator', 'indicator'),
+                'rawjson_include_indicator_type': params.get('rawjson_include_indicator_type'),
+            }
+        }
+        auto_detect = params.get('auto_detect_type')
+        indicator_type = params.get('indicator_type')
+        if demisto.command() == 'test-module':  # only fail when doing "Test" to avoid breaking an existing feed
+            if auto_detect and indicator_type:
+                return_error(f'Indicator Type (value: {indicator_type}) should not be set if "Auto detect indicator type" '
+                             'is checked. Either use Auto Detect or set manually the Indicator Type.')
+
+        if not auto_detect:
+            if not indicator_type:
+                return_error('Indicator Type cannot be empty when Auto Detect Indicator Type is unchecked')
+            params['feed_name_to_config'].get(params.get('url'))['indicator_type'] = indicator_type
+
+        feed_main(params, 'JSON Feed', 'json')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('JSON Feed', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
