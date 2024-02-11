@@ -100,11 +100,11 @@
 			"width": 150
 		},
 		{
-			"displayName": "persik_grid_date2",
+			"displayName": "persik_grid_date",
 			"fieldCalcScript": "",
 			"isDefault": true,
 			"isReadOnly": false,
-			"key": "persik_grid_date2",
+			"key": "persik_grid_date",
 			"orgType": "",
 			"required": false,
 			"script": "",
