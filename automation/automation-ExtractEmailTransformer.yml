@@ -10,8 +10,8 @@ commonfields:
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
-    fromServerVersion: 6.1.0
-    itemVersion: 1.2.29
+    fromServerVersion: 6.11.0
+    itemVersion: 1.2.54
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -19,43 +19,37 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
 engineinfo: {}
 mainengineinfo: {}
 name: ExtractEmailTransformer
-nativeimage:
-- "8.3"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
-script: |
-  register_module_line('ExtractEmailTransformer', 'start', __line__())
-  ### pack version: 1.2.29
+script: |+
+  // pack version: 1.2.54
+  function extract(values) {
+      // Extracts email addresses from a list of values.
+      // values: Array of strings.
 
+      const listResults = [];
 
+      for (const val of values) {
+          listResults.push(...((val || '').toLowerCase().match(emailRegex) || []));
+      }
 
+      return listResults;
+  }
 
-  def main():
-      try:
-          return_results(extract(argToList(demisto.args().get('value'))))
-      except Exception as error:
-          return_error(str(error), error)
+  try {
+      const values = argToList(args.value);
+      const results = extract(values);
+      return results;
+  } catch (error) {
+      throw 'Error occurred while running the script:\n' + error;
+  }
 
-
-  def extract(values: list[str]) -> list[str]:
-      list_results = []
-      for val in values:
-          list_results.extend(re.findall(emailRegex, (val or '').lower()))
-      return list_results
-
-
-  if __name__ in ('__main__', '__builtin__', 'builtins'):
-      main()
-
-  register_module_line('ExtractEmailTransformer', 'end', __line__())
 scripttarget: 0
-subtype: python3
 system: true
 tags:
 - transformer
-type: python
+type: javascript
