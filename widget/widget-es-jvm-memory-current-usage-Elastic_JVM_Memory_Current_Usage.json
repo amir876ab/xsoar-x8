@@ -21,7 +21,7 @@
 	"fromServerVersion": "5.5.0",
 	"id": "es-jvm-memory-current-usage",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Elastic JVM Memory Current Usage",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
