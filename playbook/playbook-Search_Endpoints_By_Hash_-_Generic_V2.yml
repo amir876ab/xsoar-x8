@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -74,8 +74,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 480,
-          "y": 0
+          "x": 410,
+          "y": 10
         }
       }
   "5":
@@ -238,7 +238,7 @@ tasks:
               complex:
                 accessor: MD5Hash
                 root: inputs
-          operator: isExists
+          operator: isNotEmpty
       label: "yes"
     continueonerrortype: ""
     id: "11"
@@ -409,6 +409,10 @@ tasks:
       - "12"
     note: false
     quietmode: 0
+    scriptarguments:
+      Hash:
+        complex:
+          root: inputs.MD5Hash
     separatecontext: true
     skipunavailable: true
     task:
@@ -480,10 +484,10 @@ view: |-
     },
     "paper": {
       "dimensions": {
-        "height": 875,
+        "height": 865,
         "width": 1970,
         "x": -460,
-        "y": 0
+        "y": 10
       }
     }
   }
