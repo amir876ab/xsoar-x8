@@ -20,7 +20,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.29
+    itemVersion: 1.2.54
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -28,63 +28,67 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: SetIfEmpty
-nativeimage:
-- "8.3"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  register_module_line('SetIfEmpty', 'start', __line__())
-  ### pack version: 1.2.29
+  // pack version: 1.2.54
+  function toBoolean(value) {
+      if (typeof (value) === 'string') {
+          if (['yes', 'true'].indexOf(value.toLowerCase()) != -1) {
+              return true;
+          } else if (['no', 'false'].indexOf(value.toLowerCase()) != -1) {
+              return false;
+          }
+          throw 'Argument does not contain a valid boolean-like value';
+      }
+      return value ? true : false;
+  }
+
+  function isValueEmpty(value) {
+      if (Array.isArray(value) && value.length === 1) {
+          value = value[0];
+      }
+
+      const valueIsStringNull = typeof value === 'string' && (value.toLowerCase() === 'none' || value.toLowerCase() === 'null' || value === '');
+
+      return value === null || (Array.isArray(value) && value.length === 0) || (value.constructor == Object && Object.keys(value).length === 0) || valueIsStringNull;
+  }
 
 
-  from distutils.util import strtobool
+  function getValueToSet(value) {
+      const applyIfEmpty = toBoolean(args.applyIfEmpty);
+
+      if (value === null || (applyIfEmpty && isValueEmpty(value))) {
+          value = args.defaultValue;
+      }
+
+      if (value === null) {
+          return [];
+      } else
+          return value;
+  }
 
 
-  def get_value_to_set(args):
-      value = args.get('value')
-      apply_if_empty = strtobool(args.get('applyIfEmpty', 'false'))
-
-      if value is None or (apply_if_empty and is_value_empty(value)):
-          value = args.get('defaultValue')
-
-      if value is None:
-          return []
-      elif isinstance(value, list):
-          for i, item in enumerate(value):
-              value[i] = encode_string_results(item)
-
-          return value
-      else:
-          return encode_string_results(value)
+  function main() {
+      let value = args.value;
+      return getValueToSet(value);
+  }
 
 
-  def is_value_empty(value):
-      if hasattr(value, '__iter__') and len(value) == 1 and not isinstance(value, dict):
-          value = value[0]
-
-      value_is_string_null = isinstance(value, str) and value.lower() in ["none", "null", ""]  # type: ignore
-      return value is None or (hasattr(value, '__iter__') and len(value) == 0) or value_is_string_null
-
-
-  def main(args):
-      demisto.results(get_value_to_set(args))
-
-
-  if __name__ in ('builtins', '__builtin__'):
-      main(demisto.args())
-
-  register_module_line('SetIfEmpty', 'end', __line__())
+  try {
+      return main();
+  } catch (error) {
+      throw 'Error occurred while running the script:\n' + error;
+  }
 scripttarget: 0
-subtype: python3
 system: true
 tags:
 - transformer
 - general
 - entirelist
-type: python
+type: javascript
