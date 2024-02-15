@@ -1,6 +1,7 @@
 args:
 - default: true
   description: The key to set in context.
+  isArray: true
   name: key
   required: true
 - description: The value of the key to set in context. The value is usually a DQ expression.
@@ -8,6 +9,7 @@ args:
   isArray: true
   name: value
 - auto: PREDEFINED
+  defaultValue: "true"
   description: Whether to append the new context key to the existing context key.
     If "false", then the existing context key will be overwritten with the new context
     key.
@@ -43,7 +45,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -51,67 +53,71 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: SetAndHandleEmpty
-nativeimage:
-- "8.3"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  register_module_line('SetAndHandleEmpty', 'start', __line__())
-  ### pack version: 1.12.20
+  // pack version: 1.13.22
+  function getValue(value, stringify = false) {
+      if (stringify) {
+          if (value === null || value === undefined) {
+              return '';
+          }
+          return String(value);
+      } else if (!value || !(typeof value === 'string')) {
+          return value;
+      } else {
+          try {
+              return JSON.parse(value);
+          } catch (error) {
+              return value;
+          }
+      }
+  }
 
+  function main() {
+      const keys = argToList(args.key);
+      let value = args.value;
+      const force = args.force === 'true';
+      value = getValue(value, args.stringify === 'true');
 
-  from typing import Text
+      let results = [];
+      for (let i = 0; i < keys.length; i++) {
+          let humanReadable = '';
+          let contextEntry = {};
 
+          if (value || force) {
+              humanReadable = `Key ${keys[i]} set`;
+              contextEntry = { [keys[i]]: value };
+          } else {
+              humanReadable = 'value is None';
+          }
 
-  def get_value(value, stringify=False):
-      if stringify:
-          if value is None:
-              return ''
-          return str(value)
-      elif not value or not isinstance(value, (Text, bytes, bytearray)):
-          return value
-      else:
-          try:
-              return json.loads(value)
-          except (json.decoder.JSONDecodeError, TypeError):
-              return value
+          if (args.append === 'false' && Object.keys(contextEntry).length > 0) {
+              executeCommand('DeleteContext', { key: keys[i], subplaybook: 'auto' });
+          }
+          results.push({
+              Type: entryTypes.note,
+              EntryContext: contextEntry,
+              ContentsFormat: formats.json,
+              Contents: humanReadable,
+              HumanReadable: humanReadable
+          });
+      };
+      return results;
+  }
 
-
-  def main():
-      args = demisto.args()
-      value = args.get('value')
-      key = args.get('key')
-      force = args.get('force') == 'true'
-      value = get_value(value, args.get('stringify') == 'true')
-      if value or force:
-          human_readable = f'Key {key} set'
-          context_entry = {key: value}
-      else:
-          human_readable = 'value is None'
-          context_entry = {}
-
-      if args.get('append') == 'false' and context_entry:
-          demisto.executeCommand('DeleteContext', {'key': key, 'subplaybook': 'auto'})
-
-      return_results(CommandResults(
-          readable_output=human_readable,
-          outputs=context_entry,
-      ))
-
-
-  if __name__ in ('__builtin__', 'builtins'):
-      main()
-
-  register_module_line('SetAndHandleEmpty', 'end', __line__())
+  try {
+      return main();
+  } catch (error) {
+      throw 'Error occurred while running the script:\n' + error;
+  }
 scripttarget: 0
-subtype: python3
 system: true
 tags:
 - Utility
-type: python
+type: javascript
