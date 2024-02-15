@@ -14,7 +14,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -35,7 +35,7 @@ pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  // pack version: 1.12.20
+  // pack version: 1.13.22
   entryIds = (Array.isArray(args.entryId)) ? args.entryId : [args.entryId];
   for(var entryIdx=0; entryIdx < entryIds.length; ++entryIdx) {
       res = executeCommand("getEntry", {"id":entryIds[entryIdx]});
