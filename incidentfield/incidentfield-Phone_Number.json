@@ -23,7 +23,7 @@
 	"id": "incident_phonenumber",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Phone Number",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Phone Number",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
