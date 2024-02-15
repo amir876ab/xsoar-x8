@@ -23,7 +23,7 @@
 	"id": "incident_registryhive",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Registry Hive",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Registry Hive",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
