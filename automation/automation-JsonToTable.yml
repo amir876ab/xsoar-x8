@@ -11,7 +11,7 @@ args:
 - description: Try transforming complex JSON automatically.
   name: is_auto_json_transform
 - description: 'Transformation JSON from value to strings. The syntax is: `{"header_key":
-    {"keys": [<item1>, ...], "is_nested": true/false}}` '
+    {"keys": [<item1>, ...], "is_nested": true/false}}`.'
   name: json_transform_properties
 comment: Accepts a json object and returns a markdown.
 commonfields:
@@ -21,7 +21,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.2.29
+    itemVersion: 1.2.54
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -29,19 +29,20 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: JsonToTable
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('JsonToTable', 'start', __line__())
-  ### pack version: 1.2.29
+  ### pack version: 1.2.54
 
 
   import json
@@ -65,7 +66,11 @@ script: |
               json_transformers[header_key] = JsonTransformer(**values)
       markdown = tableToMarkdown(title, value, headers=headers, json_transform_mapping=json_transformers,
                                  is_auto_json_transform=is_auto_json_transform)
-      return_results(markdown)
+
+      return_results(CommandResults(
+          readable_output=markdown,
+          raw_response=markdown,
+      ))
 
 
   def get_value_from_str(value: Any):
