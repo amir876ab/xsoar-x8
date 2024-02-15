@@ -106,7 +106,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.1.14
+    itemVersion: 2.1.18
     packID: AutoFocus
     packName: AutoFocus by Palo Alto Networks
     packPropagationLabels:
@@ -141,12 +141,10 @@ script:
     name: autofocus-daily-get-indicators
   dockerimage: demisto/python3:3.10.1.25933
   feed: true
-  nativeimage:
-  - "8.3"
   runonce: false
   script: |
     register_module_line('AutoFocus Daily Feed', 'start', __line__())
-    ### pack version: 2.1.14
+    ### pack version: 2.1.18
 
     # IMPORTS
     from typing import List, Tuple, Optional
