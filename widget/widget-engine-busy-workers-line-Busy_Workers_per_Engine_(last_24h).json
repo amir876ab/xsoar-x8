@@ -21,7 +21,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "engine-busy-workers-line",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Busy Workers per Engine (last 24h)",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
