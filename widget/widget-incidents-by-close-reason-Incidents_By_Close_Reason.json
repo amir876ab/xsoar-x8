@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "incidents-by-close-reason",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Incidents By Close Reason",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
