@@ -51,7 +51,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.6.10
+    itemVersion: 2.6.15
     packID: VirusTotal
     packName: VirusTotal
     packPropagationLabels:
@@ -1578,12 +1578,10 @@ script:
       type: Number
   dockerimage: demisto/python3:3.10.12.63474
   isfetch: true
-  nativeimage:
-  - "8.3"
   runonce: false
   script: |
     register_module_line('VirusTotal - Premium (API v3)', 'start', __line__())
-    ### pack version: 2.6.10
+    ### pack version: 2.6.15
     """
     VirusTotal V3 - Premium API
     Difference: https://developers.virustotal.com/v3.0/reference#public-vs-premium-api
