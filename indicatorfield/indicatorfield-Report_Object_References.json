@@ -39,7 +39,7 @@
 	"id": "indicator_reportobjectreferences",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Report Object References",
@@ -53,7 +53,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Report Object References",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
