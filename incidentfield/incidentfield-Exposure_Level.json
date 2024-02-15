@@ -25,7 +25,7 @@
 	"id": "incident_exposurelevel",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Exposure Level",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Exposure Level",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
