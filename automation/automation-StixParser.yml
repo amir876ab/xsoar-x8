@@ -14,7 +14,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.32.31
+    itemVersion: 1.33.18
     packID: Base
     packName: Base
     packPropagationLabels:
@@ -22,7 +22,7 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/taxii:1.0.0.48109
+dockerimage: demisto/taxii:1.0.0.84046
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
@@ -42,7 +42,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('StixParser', 'start', __line__())
-  ### pack version: 1.32.31
+  ### pack version: 1.33.18
 
 
   import copy
@@ -209,7 +209,6 @@ script: |
 
       @staticmethod
       def get_indicator_publication(indicator: Dict[str, Any]):
-
           """
           Build publications grid field from the indicator external_references field
 
@@ -1299,31 +1298,26 @@ script: |
 
           hashes = props.find_all('Hash')
           for h in hashes:
-              htype = h.find('Type')
-              if htype is None:
-                  continue
-              htype = htype.string.lower()
-              if htype not in ['md5', 'sha1', 'sha256', 'ssdeep']:
-                  continue
-
               value = h.find('Simple_Hash_Value')
               if value is None:
                   continue
               value = value.string.lower()
               value_list = value.split('##comma##')
               for v in value_list:
-                  result.append({
-                      'indicator': v.strip(),
-                      'htype': htype,
-                      'type': 'File'
-                  })
+                  v = v.strip()
+                  if type := detect_file_indicator_type(v):
+                      result.append({
+                          'indicator': v,
+                          'htype': type,
+                          'type': 'File'
+                      })
 
           for r in result:
               for r2 in result:
                   if r['htype'] == r2['htype']:
                       continue
 
-                  r['stix_file_{}'.format(r2['htype'])] = r2['indicator']
+                  r[f"stix_file_{r2['htype']}"] = r2['indicator']
 
               r.update(bprops)
 
@@ -1697,7 +1691,6 @@ script: |
                   observables = parse_stix(temp.name)
           else:
               observables = parse_stix(file_path)
-
       json_data = json.dumps(observables)
       return_results(json_data)
 
