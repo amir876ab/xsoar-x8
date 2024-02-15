@@ -23,7 +23,7 @@
 	"id": "incident_timetoassignment",
 	"ipVersion": "",
 	"isReadOnly": true,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Time to Assignment",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Time to Assignment",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
