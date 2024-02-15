@@ -25,7 +25,7 @@
 	"id": "incident_contactname",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.12.20",
+	"itemVersion": "1.13.22",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Contact Name",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Contact Name",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
