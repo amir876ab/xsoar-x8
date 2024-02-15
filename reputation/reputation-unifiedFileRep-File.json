@@ -413,7 +413,7 @@
 	"formatScript": "",
 	"fromServerVersion": "5.5.0",
 	"id": "unifiedFileRep",
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"layout": "unifiedFileRep1",
 	"legacyNames": null,
 	"locked": false,
@@ -424,6 +424,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "\\b[a-fA-F\\d]{32}\\b|\\b[a-fA-F\\d]{40}\\b|\\b[a-fA-F\\d]{64}\\b|\\b[a-fA-F\\d]{128}\\b",
 	"reputationCommand": "file",
 	"reputationScriptName": "",
