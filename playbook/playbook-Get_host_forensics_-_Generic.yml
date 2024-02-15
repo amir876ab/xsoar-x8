@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -11,7 +11,7 @@ contentitemexportablefields:
     propagationLabels: []
     toServerVersion: ""
 description: "This playbook retrieves forensics from hosts for the following integrations:\n
-  - Illusive Networks \n - Microsoft Defender For Endpoint"
+  - Illusive Networks \n - Microsoft Defender For Endpoint."
 id: Get host forensics - Generic
 inputs:
 - description: 'If using the Illusive Networks integration to retrieve additional
@@ -38,7 +38,35 @@ inputs:
   required: false
   value: {}
 name: Get host forensics - Generic
-outputs: []
+outputs:
+- contextPath: MicrosoftATP
+  description: An object containing the machine action details.
+  type: unknown
+- contextPath: MicrosoftATP.MachineAction
+  description: Microsoft Defender For Endpoint machine action details.
+  type: unknown
+- contextPath: Illusive.Forensics.Evidence
+  description: An object containing evidence from Illusive Networks.
+  type: unknown
+- contextPath: Illusive.Forensics.Evidence.details
+  description: The forensics evidence details.
+- contextPath: Illusive.Forensics.Evidence.eventId
+  description: The event ID.
+- contextPath: Illusive.Forensics.Evidence.id
+  description: The forensics evidence ID.
+- contextPath: Illusive.Forensics.Evidence.source
+  description: The evidence source.
+- contextPath: Illusive.Forensics.Evidence.starred
+  description: Whether the forensics evidence has been starred.
+- contextPath: Illusive.Forensics.Evidence.time
+  description: 'Date and time of the forensics evidence. '
+- contextPath: Illusive.Forensics.Evidence.title
+  description: The forensics evidence description.
+- contextPath: Illusive.Forensics
+  description: Ab object containing the Incident ID in Illusive Networks.
+  type: unknown
+- contextPath: Illusive.Forensics.IncidentId
+  description: The incident ID.
 starttaskid: "0"
 system: true
 tasks:
