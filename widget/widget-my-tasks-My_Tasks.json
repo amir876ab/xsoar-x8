@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "my-tasks",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "My Tasks",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
