@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "late-tasks",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Late Tasks by User",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
