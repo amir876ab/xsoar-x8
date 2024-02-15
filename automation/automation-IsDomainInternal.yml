@@ -20,7 +20,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -35,6 +35,7 @@ mainengineinfo: {}
 name: IsDomainInternal
 nativeimage:
 - "8.3"
+- "8.4"
 outputs:
 - contextPath: Domain.Name
   description: The domain name that was checked for being internal/external.
@@ -49,7 +50,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('IsDomainInternal', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
 
