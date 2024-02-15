@@ -10,7 +10,7 @@
 	"incidentSamples": null,
 	"indicatorSamples": null,
 	"instanceIds": null,
-	"itemVersion": "1.2.22",
+	"itemVersion": "3.0.5",
 	"keyTypeMap": {
 		"Hello World Alert": "Hello World Alert"
 	},
@@ -22,6 +22,9 @@
 	"packID": "HelloWorld",
 	"packName": "HelloWorld",
 	"packPropagationLabels": [
+		"all"
+	],
+	"propagationLabels": [
 		"all"
 	],
 	"sourceClassifierId": "",
