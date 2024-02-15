@@ -2,7 +2,7 @@ args:
 - description: The array to sort.
   isArray: true
   name: value
-- description: Comma-separated list of ordering-keys specifying a sorting hierarchy
+- description: Comma-separated list of ordering-keys specifying a sorting hierarchy.
   isArray: true
   name: keys
 - description: Comma-separated list of keys to sort in descending order. '*' is the
@@ -18,7 +18,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.8.0
-    itemVersion: 1.2.29
+    itemVersion: 1.2.54
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -26,19 +26,20 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: SortBy
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('SortBy', 'start', __line__())
-  ### pack version: 1.2.29
+  ### pack version: 1.2.54
 
 
   import json
@@ -104,6 +105,7 @@ script: |
       That allows you to sort values even if them have different types of values.
       The key given by Key.get() can be used for list.sort().
       """
+
       def __init__(self, value: Any, path: Optional[str]) -> None:
           """
           Initialize the key.
