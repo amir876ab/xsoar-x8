@@ -7,7 +7,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -15,19 +15,20 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.74666
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: cvss_color
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('cvss_color', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
   import math
@@ -72,8 +73,8 @@ script: |
 
 
   def main():
-      indicator = demisto.callingContext.get('args', '').get('indicator', '')
-      cvss = indicator.get('CustomFields', '').get('cvssscore', '')
+      indicator = demisto.callingContext.get('args', {}).get('indicator', {})
+      cvss = indicator.get('CustomFields', {}).get('cvssscore', '')
       theme = demisto.callingContext.get('context', 'light').get('User', 'light').get('theme', 'light')
       cvss = 0 if not cvss else float(cvss)
 
