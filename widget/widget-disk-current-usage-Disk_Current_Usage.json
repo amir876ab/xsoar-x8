@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "disk-current-usage",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Disk Current Usage",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
