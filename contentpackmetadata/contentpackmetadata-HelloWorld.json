@@ -28,20 +28,25 @@
 		],
 		"classifier": [
 			{
-				"description": "Maps incoming Hello World alert fields.",
-				"id": "HelloWorld-mapper",
-				"name": "Hello World - Incoming Mapper"
-			},
-			{
 				"description": "Classifies Hello World alerts.",
 				"id": "HelloWorld",
 				"name": "Hello World - Classification"
+			},
+			{
+				"description": "Maps incoming Hello World alert fields.",
+				"id": "HelloWorld-mapper",
+				"name": "Hello World - Incoming Mapper"
 			}
 		],
 		"dashboard": null,
 		"genericfield": null,
 		"generictype": null,
 		"incidentfield": [
+			{
+				"description": "",
+				"name": "HelloWorld SaaS",
+				"type": "shortText"
+			},
 			{
 				"description": "",
 				"name": "Hello World ID",
@@ -86,40 +91,20 @@
 				"category": "Utilities",
 				"commands": [
 					{
-						"description": "Hello command - prints hello to anyone.",
-						"name": "helloworld-say-hello"
-					},
-					{
-						"description": "Search HelloWorld Alerts.",
-						"name": "helloworld-search-alerts"
-					},
-					{
-						"description": "Retrieve alert extra data by ID.",
-						"name": "helloworld-get-alert"
-					},
-					{
-						"description": "Update the status for an alert.",
-						"name": "helloworld-update-alert-status"
-					},
-					{
-						"description": "Return IP information and reputation",
+						"description": "Return IP information and reputation.",
 						"name": "ip"
 					},
 					{
-						"description": "Returns Domain information and reputation.",
-						"name": "domain"
+						"description": "Lists the example alerts as it would be fetched from the API.",
+						"name": "helloworld-alert-list"
 					},
 					{
-						"description": "Start scan on an asset.",
-						"name": "helloworld-scan-start"
+						"description": "Example of creating a new item in the API.",
+						"name": "helloworld-alert-note-create"
 					},
 					{
-						"description": "Retrieve scan status for one or more scan IDs.",
-						"name": "helloworld-scan-status"
-					},
-					{
-						"description": "Retrieve scan status in Context or as a File (default) for a Scan.",
-						"name": "helloworld-scan-results"
+						"description": "Hello command - prints hello to anyone.",
+						"name": "helloworld-say-hello"
 					}
 				],
 				"description": "This is the Hello World integration for getting started.",
@@ -136,7 +121,7 @@
 		"list": null,
 		"playbook": [
 			{
-				"description": "This Playbook simulates a vulnerability scan using the \"HelloWorld\" sample integration. It's used to demonstrate how to use the GenericPolling mechanism to run jobs that take several seconds or minutes to complete. It is designed to be used as a subplaybook, but you can also use it as a standalone playbook, by providing the ${Endpoint.Hostname} input in the Context.\n\nOther inputs include the report output format (JSON context or File attached), and the Interval/Timeouts to use for polling the scan status until it's complete.",
+				"description": "Deprecated. No available replacement.",
 				"name": "HelloWorld Scan"
 			},
 			{
@@ -150,34 +135,41 @@
 		"wizard": null
 	},
 	"created": "2020-09-23T17:36:09Z",
-	"currentVersion": "1.2.22",
+	"currentVersion": "3.0.5",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.32.23",
+			"minVersion": "1.33.18",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.3.85",
+			"minVersion": "2.6.0",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.12.10",
+			"minVersion": "1.13.21",
 			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.99",
+			"name": "Common Types"
 		}
 	},
 	"deprecated": false,
 	"description": "This is the Hello World integration for getting started.",
-	"downloads": 16108,
+	"downloads": 21338,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -196,7 +188,7 @@
 			"name": "HelloWorld Feed"
 		}
 	],
-	"itemVersion": "1.2.22",
+	"itemVersion": "3.0.5",
 	"keywords": [],
 	"legacy": true,
 	"modules": [],
@@ -222,13 +214,13 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Getting Started",
-		"TIM"
+		"TIM",
+		"Getting Started"
 	],
 	"toServerVersion": "",
-	"updated": "2023-08-06T09:19:26Z",
+	"updated": "2024-01-17T10:27:31Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "5969979",
+	"versionInfo": "767481",
 	"videos": []
 }
