@@ -25,7 +25,7 @@
 	"id": "indicator_implementationlanguages",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Implementation Languages",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Implementation Languages",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
