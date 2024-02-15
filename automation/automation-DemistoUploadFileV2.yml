@@ -1,13 +1,13 @@
 args:
-- description: File entry ID
+- description: File entry ID.
   name: entryID
   predefined:
   - ""
   required: true
-- description: Incident ID to upload the file to
+- description: Incident ID to upload the file to.
   name: incidentID
   required: true
-- description: Request body
+- description: Request body.
   name: body
 - auto: PREDEFINED
   defaultValue: war room entry
@@ -16,7 +16,7 @@ args:
     - Available options are:
     - `war room entry`: the file will be uploaded as war room entry.
     - `incident attachment`: the file will be uploaded as incident attachment.
-    - default are `war room entry`
+    - default are `war room entry`.
   name: target
   predefined:
   - war room entry
@@ -29,7 +29,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.3.35
+    itemVersion: 1.3.43
     packID: DemistoRESTAPI
     packName: Cortex REST API
     packPropagationLabels:
@@ -39,21 +39,19 @@ contentitemexportablefields:
     toServerVersion: ""
 dependson:
   must:
-  - demisto-api-multipart
+  - core-api-multipart
 deprecated: true
-dockerimage: demisto/python3:3.10.6.33415
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: DemistoUploadFileV2
-nativeimage:
-- "8.3"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('DemistoUploadFileV2', 'start', __line__())
-  ### pack version: 1.3.35
+  ### pack version: 1.3.43
   from typing import Tuple
 
 
@@ -61,7 +59,7 @@ script: |
 
   def upload_file(incident_id: str, entry_id: str, body: str = '', as_incident_attachment: bool = True):
       service_name = 'incident' if as_incident_attachment else 'entry'
-      return demisto.executeCommand("demisto-api-multipart",
+      return demisto.executeCommand("core-api-multipart",
                                     {"uri": f'{service_name}/upload/{incident_id}', "entryID": entry_id, "body": body})
 
 
