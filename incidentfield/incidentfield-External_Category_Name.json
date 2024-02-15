@@ -23,7 +23,7 @@
 	"id": "incident_externalcategoryname",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "External Category Name",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "External Category Name",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
