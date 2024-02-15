@@ -23,7 +23,7 @@
 	"id": "incident_sourceexternalips",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Source External IPs",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Source External IPs",
 	"propagationLabels": [
 		"all"
 	],
