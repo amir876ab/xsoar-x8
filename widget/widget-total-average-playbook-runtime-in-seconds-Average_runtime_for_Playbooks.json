@@ -21,7 +21,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "total-average-playbook-runtime-in-seconds",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Average runtime for Playbooks",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
