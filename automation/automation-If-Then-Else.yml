@@ -94,7 +94,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.29
+    itemVersion: 1.2.54
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -110,7 +110,7 @@ pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  // pack version: 1.2.29
+  // pack version: 1.2.54
 
   function convertValue(args, type, value) {
       if (type === undefined || type === null || type == "raw") {
