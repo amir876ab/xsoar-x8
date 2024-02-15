@@ -25,7 +25,7 @@
 	"id": "incident_helloworldstatus",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.2.22",
+	"itemVersion": "3.0.5",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Hello World Status",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Hello World Status",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
