@@ -34,7 +34,6 @@
 		"AWS Security Hub Finding",
 		"Prisma Cloud - VM Alert Prioritization",
 		"Rapid7 ThreatCommand Alert",
-		"Prisma Cloud - VM Alert Prioritization",
 		"FreshworksFreshservice Ticket",
 		"FreshworksFreshservice Release Request",
 		"FreshworksFreshservice Problem Request",
@@ -61,7 +60,7 @@
 	"id": "incident_lastupdatetime",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Last Update Time",
@@ -75,7 +74,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Last Update Time",
 	"propagationLabels": [
 		"all"
 	],
