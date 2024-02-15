@@ -1,17 +1,17 @@
 args:
-- description: 'Docker image full name with version: For example: demisto/python:2.7.15.155'
+- description: 'Docker image full name with version: For example: demisto/python:2.7.15.155.'
   name: input
   required: true
 - auto: PREDEFINED
   defaultValue: "yes"
-  description: Use system proxy settings
+  description: Use system proxy settings.
   name: use_system_proxy
   predefined:
   - "yes"
   - "no"
 - auto: PREDEFINED
   defaultValue: "no"
-  description: Trust any certificate (not secure)
+  description: Trust any certificate (not secure).
   name: trust_any_certificate
   predefined:
   - "yes"
@@ -26,7 +26,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.32.31
+    itemVersion: 1.33.18
     packID: Base
     packName: Base
     packPropagationLabels:
@@ -34,19 +34,17 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.66339
+dockerimage: demisto/python3:3.10.13.78623
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: CheckDockerImageAvailable
-nativeimage:
-- "8.3"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('CheckDockerImageAvailable', 'start', __line__())
-  ### pack version: 1.32.31
+  ### pack version: 1.33.18
 
 
   import requests
