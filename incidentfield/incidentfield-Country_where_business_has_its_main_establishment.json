@@ -25,7 +25,7 @@
 	"id": "incident_countrywherebusinesshasitsmainestablishment",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.12.20",
+	"itemVersion": "1.13.22",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Country where business has its main establishment",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Country where business has its main establishment",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
