@@ -44,7 +44,7 @@ configuration:
   type: 15
 - additionalinfo: The number of times to try when getting a Rate Limit response.
   advanced: true
-  defaultvalue: "3"
+  defaultvalue: "0"
   display: Rate Limit Retry Count
   name: rate_limit_retry_count
   required: false
@@ -71,7 +71,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.5.1
+    itemVersion: 1.5.7
     packID: Whois
     packName: Whois
     packPropagationLabels:
@@ -117,7 +117,8 @@ script:
       predefined:
       - "true"
       - "false"
-    description: Provides data enrichment for domains.
+    description: Provides data enrichment for domains using free resources. Availability
+      of those services may be limited.
     name: whois
     outputs:
     - contextPath: DBotScore.Score
@@ -190,10 +191,10 @@ script:
       description: The organization of the domain administrator.
       type: string
     - contextPath: Domain.Whois.Administrator.postalcode
-      description: The postal code of the domain administrator
+      description: The postal code of the domain administrator.
       type: string
     - contextPath: Domain.Whois.Administrator.street
-      description: The street of the domain admin
+      description: The street of the domain admin.
       type: string
     - contextPath: Domain.Whois.Administrator.phone
       description: The phone number of the domain administrator.
@@ -344,10 +345,10 @@ script:
       description: The organization of the domain administrator.
       type: string
     - contextPath: Domain.Whois.Administrator.postalcode
-      description: The postal code of the domain administrator
+      description: The postal code of the domain administrator.
       type: string
     - contextPath: Domain.Whois.Administrator.street
-      description: The street of the domain admin
+      description: The street of the domain admin.
       type: string
     - contextPath: Domain.Whois.Administrator.phone
       description: The phone number of the domain administrator.
@@ -490,7 +491,7 @@ script:
       isArray: true
       name: ip
       required: true
-    - defaultValue: "3"
+    - defaultValue: "0"
       description: The number of times to try when getting a Rate Limit response.
       name: rate_limit_retry_count
     - defaultValue: "120"
@@ -498,7 +499,7 @@ script:
         Limit response.
       name: rate_limit_wait_seconds
     - defaultValue: "false"
-      description: Whether Rate Limit errors should be supressed or not.
+      description: Whether Rate Limit errors should be suppressed or not.
       name: rate_limit_errors_suppressed
     description: Provides data enrichment for ips.
     name: ip
@@ -517,7 +518,7 @@ script:
       description: ASN allocation date in ISO 8601 format.
       type: Date
     - contextPath: Whois.IP.asn_description
-      description: The ASN description
+      description: The ASN description.
       type: string
     - contextPath: Whois.IP.asn_registry
       description: ASN assigned regional internet registry.
@@ -581,10 +582,10 @@ script:
       description: The RIR classification of a registered network.
       type: string
     - contextPath: Whois.IP.query
-      description: The IP address
+      description: The IP address.
       type: string
     - contextPath: IP.Address
-      description: IP address
+      description: IP address.
       type: string
     - contextPath: IP.ASN
       description: 'The autonomous system name for the IP address, for example: "AS8948".'
@@ -599,7 +600,7 @@ script:
       description: Indicators that are associated with the IP.
       type: string
     - contextPath: IP.feed_related_indicators.type
-      description: The type of the indicators that are associated with the IP
+      description: The type of the indicators that are associated with the IP.
       type: string
     - contextPath: DBotScore.Indicator
       description: The indicator that was tested.
@@ -616,13 +617,11 @@ script:
     - contextPath: DBotScore.Reliability
       description: Reliability of the source providing the intelligence data.
       type: String
-  dockerimage: demisto/ippysocks-py3:1.0.0.72626
-  nativeimage:
-  - "8.3"
+  dockerimage: demisto/ippysocks-py3:1.0.0.83815
   runonce: false
   script: |
     register_module_line('Whois', 'start', __line__())
-    ### pack version: 1.5.1
+    ### pack version: 1.5.7
 
 
 
@@ -635,9 +634,10 @@ script:
     import urllib
 
 
-    RATE_LIMIT_RETRY_COUNT_DEFAULT: int = 3
+    RATE_LIMIT_RETRY_COUNT_DEFAULT: int = 0
     RATE_LIMIT_WAIT_SECONDS_DEFAULT: int = 120
     RATE_LIMIT_ERRORS_SUPPRESSEDL_DEFAULT: bool = False
+    IS_SYNC_MODE = argToBoolean(demisto.args().get("syncMode", False))
 
     # flake8: noqa
 
@@ -8283,12 +8283,7 @@ script:
         # nic.ir, individual  - this is a nasty one.
         "nic-hdl:\s+(?P<handle>.+)\norg:\s+(?P<organization>.+)\n(?:e-mail:\s+(?P<email>.+)\n)?(?:address:\s+(?P<street1>.+?)(?:,+ (?P<street2>.+?)(?:,+ (?P<street3>.+?)(?:,+ (?P<street4>.+?)(?:,+ (?P<street5>.+?)(?:,+ (?P<street6>.+?)(?:,+ (?P<street7>.+?))?)?)?)?)?)?, (?P<city>.+), (?P<state>.+), (?P<country>.+)\n)?(?:phone:\s+(?P<phone>.+)\n)?(?:fax-no:\s+(?P<fax>.+)\n)?",
         # nic.ir, organization
-        "nic-hdl:\s*(?P<handle>.+)\ntype:\s*(?P<type>.+)\ncontact:\s*(?P<name>.+)\n(?:.+\n)*?(?:address:\s*(?P<street1>.+)\naddress:\s*(?P<street2>.+)\naddress:\s*(?P<street3>.+)\naddress:\s*(?P<country>.+)\n)?(?:phone:\s*(?P<phone>.+)\n)?(?:fax-no:\s*(?P<fax>.+)\n)?(?:.+\n)*?(?:e-mail:\s*(?P<email>.+)\n)?(?:.+\n)*?changed:\s*(?P<changedate>.*}).*\n",
-        # AFNIC madness without country field
-        "nic-hdl:\s*(?P<handle>.+)\ntype:\s*(?P<type>.+)\ncontact:\s*(?P<name>.+)\n(?:.+\n)*?(?:address:\s*(?P<street1>.+)\n)?(?:address:\s*(?P<street2>.+)\n)?(?:address:\s*(?P<street3>.+)\n)?(?:phone:\s*(?P<phone>.+)\n)?(?:fax-no:\s*(?P<fax>.+)\n)?(?:.+\n)*?(?:e-mail:\s*(?P<email>.+)\n)?(?:.+\n)*?changed:\s*(?P<changedate>.*).*\n",
-        # AFNIC madness any country -at all-
-        "nic-hdl:\s*(?P<handle>.+)\ntype:\s*(?P<type>.+)\ncontact:\s*(?P<name>.+)\n(?:.+\n)*?(?:address:\s*(?P<street1>.+)\n)?(?:address:\s*(?P<street2>.+)\n)?(?:address:\s*(?P<street3>.+)\n)?(?:address:\s*(?P<street4>.+)\n)?country:\s*(?P<country>.+)\n(?:phone:\s*(?P<phone>.+)\n)?(?:fax-no:\s*(?P<fax>.+)\n)?(?:.+\n)*?(?:e-mail:\s*(?P<email>.+)\n)?(?:.+\n)*?changed:\s*(?P<changedate>.+).*\n",
-        # AFNIC madness with country field
+        "nic-hdl:[ ]*(?P<handle>.*?)\ntype:[ ]*(?P<type>.*)\ncontact:[ ]*(?P<name>.*?)\n(?:.*\n)*?(?:(?:address:[ ]*(?P<street1>.*?)\n)(?:address:[ ]*(?P<street2>.*?)\n)?(?:address:[ ]*(?P<street3>.*)\n)?(?:address:[ ]*(?P<street4>.*)\n)?(?:country:[ ]*(?P<country>.*?)\n)?)(?:phone:[ ]*(?P<phone>.*?)\n)?(?:fax-no:[ ]*(?P<fax>.*?)\n)?(?:.*\n)*?(?:e-mail:[ ]*(?P<email>.*?)\n)?registrar:[ ]*(?P<registrar>.*?)\n(?:.*?\n)*?(?:changed:[ ]*(?P<changedate>.*?)\n)?"
     ]
 
     organization_regexes = (
@@ -9157,8 +9152,14 @@ script:
         """
 
         ips = demisto.args().get('ip', '1.1.1.1')
-        rate_limit_retry_count: int = int(get_param_or_arg('rate_limit_retry_count',
-                                          'rate_limit_retry_count') or RATE_LIMIT_RETRY_COUNT_DEFAULT)
+        rate_limit_retry_count: int = (
+            RATE_LIMIT_RETRY_COUNT_DEFAULT
+            if IS_SYNC_MODE
+            else int(
+                get_param_or_arg('rate_limit_retry_count', 'rate_limit_retry_count')
+                or RATE_LIMIT_RETRY_COUNT_DEFAULT
+            )
+        )
         rate_limit_wait_seconds: int = int(get_param_or_arg('rate_limit_wait_seconds',
                                            'rate_limit_wait_seconds') or RATE_LIMIT_WAIT_SECONDS_DEFAULT)
         rate_limit_errors_suppressed: bool = bool(get_param_or_arg(
