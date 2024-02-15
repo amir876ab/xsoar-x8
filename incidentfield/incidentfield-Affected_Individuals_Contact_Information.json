@@ -69,7 +69,7 @@
 	"id": "incident_affectedindividualscontactinformation",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.12.20",
+	"itemVersion": "1.13.22",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Affected Individuals Contact Information",
@@ -83,7 +83,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Affected Individuals Contact Information",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
