@@ -27,7 +27,7 @@
 	"id": "indicator_indicatoridentification",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Indicator Identification",
@@ -41,7 +41,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Indicator Identification",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
