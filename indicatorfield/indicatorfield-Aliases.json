@@ -31,7 +31,7 @@
 	"id": "indicator_aliases",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Aliases",
@@ -45,7 +45,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Aliases",
 	"propagationLabels": [
 		"all"
 	],
