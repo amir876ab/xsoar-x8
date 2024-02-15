@@ -160,6 +160,16 @@ configuration:
   required: false
   section: Connect
   type: 16
+- additionalinfo: |-
+    The maximum number of attempts to try and pull results for each log type from a job that was created by its query. Each attempt takes around 1 second. Increasing this value is useful in case there are many logs to pull from a given log type.
+    Note: When increasing this number, in case fetching more than 4 logs types together, it is recommended to split different log types for different integration instances
+  advanced: true
+  defaultvalue: "10"
+  display: Log type max number of job pulling attempts
+  name: fetch_job_polling_max_num_attempts
+  required: false
+  section: Collect
+  type: 0
 - additionalinfo: "Traffic Log Type query example: (addr.src in {source}) and (addr.dst
     in {destination}) and (action eq {action}).\nIn case of multiple devices, for
     the sake of speed it is recommended to narrow the query to a specific device.
@@ -253,7 +263,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.1.4
+    itemVersion: 2.1.19
     packID: PAN-OS
     packName: PAN-OS by Palo Alto Networks
     packPropagationLabels:
@@ -264,7 +274,7 @@ contentitemexportablefields:
 defaultclassifier: Panorama Classifier
 defaultmapperin: Panorama Mapper
 description: Manage Palo Alto Networks Firewall and Panorama. Use this pack to manage
-  Prisma Access through Panorama. For more information, see the Panorama documentation
+  Prisma Access through Panorama. For more information, see the Panorama documentation.
 detaileddescription: "The integration uses the Panorama XML API.\nTo obtain an API
   Key, run the following REST command and copy the key:\nhttps://[PanoramaIP]/api/?type=keygen&user=[user]&password=[password]\n\nFor
   more information, visit the [Palo Alto Networks documentation](https://docs.paloaltonetworks.com/panorama).\n\n---\nYou
@@ -334,7 +344,7 @@ script:
     - description: The XML structure that defines the command. Used for operation
         commands.
       name: cmd
-    - description: The command to run. For example, command =<show><arp><entry name='all'/></arp></show>
+    - description: The command to run. For example, command =<show><arp><entry name='all'/></arp></show>.
       name: command
     - description: The specified destination.
       name: dst
@@ -352,9 +362,9 @@ script:
     - description: The type of move operation (for example, where=after, where=before,
         where=top, where=bottom).
       name: where
-    - description: The time period. For example, period=last-24-hrs
+    - description: The time period. For example, period=last-24-hrs.
       name: period
-    - description: The xpath location. For example, xpath=/config/predefined/application/entry[@name='hotmail']
+    - description: The xpath location. For example, xpath=/config/predefined/application/entry[@name='hotmail'].
       name: xpath
     - description: The PCAP ID included in the threat log.
       name: pcap-id
@@ -645,9 +655,9 @@ script:
       name: description
     - description: The FQDN of the new address.
       name: fqdn
-    - description: The IP Netmask of the new address. For example, 10.10.10.10/24
+    - description: The IP Netmask of the new address. For example, 10.10.10.10/24.
       name: ip_netmask
-    - description: The IP range of the new address IP. For example, 10.10.10.0-10.10.10.255
+    - description: The IP range of the new address IP. For example, 10.10.10.0-10.10.10.255.
       name: ip_range
     - description: The device group for which to return addresses (Panorama instances).
       name: device-group
@@ -774,7 +784,7 @@ script:
       - dynamic
       - static
       required: true
-    - description: The dynamic address group match. For example "1.1.1.1 or 2.2.2.2"
+    - description: The dynamic address group match. For example "1.1.1.1 or 2.2.2.2".
       name: match
     - description: The static address group list of addresses.
       isArray: true
@@ -991,7 +1001,8 @@ script:
       isArray: true
       name: tags
     deprecated: true
-    description: Creates a service.
+    description: |
+      Creates a service. Note: overrides the service if it already exists.
     name: panorama-create-service
     outputs:
     - contextPath: Panorama.Services.Name
@@ -1895,7 +1906,7 @@ script:
       description: The blocked direction.
       type: string
     - contextPath: Panorama.SecurityRule.Target
-      description: The target firewall (Panorama instances)
+      description: The target firewall (Panorama instances).
       type: string
     - contextPath: Panorama.SecurityRule.LogForwarding
       description: The log forwarding profile (Panorama instances).
@@ -2106,7 +2117,7 @@ script:
       description: The job ID details.
       type: string
     - contextPath: Panorama.Commit.Warnings
-      description: The job ID warnings
+      description: The job ID warnings.
       type: String
   - arguments:
     - description: The job ID to check.
@@ -2143,7 +2154,7 @@ script:
       required: true
     - description: The serial number of the firewall to download the PCAP from.
       name: serialNumber
-    - description: The
+    - description: The.
       name: from
     - description: The new name for the PCAP file after downloading. If this argument
         is not specified, the file name is the PCAP file name set in the firewall.
@@ -3776,7 +3787,7 @@ script:
       description: The name of the user interface.
       type: String
     - contextPath: Panorama.UserInterfaces.Zone
-      description: The zone to which the interface is connected
+      description: The zone to which the interface is connected.
       type: String
     - contextPath: Panorama.UserInterfaces.EnableUserIdentification
       description: Whether user identification is enabled.
@@ -3938,7 +3949,7 @@ script:
         operation commands (op type command). Can be retrieved from the PAN-OS web
         UI debugger or enabling debugging via the CLI using `debug cli on`.
       name: cmd
-    - description: The command to run. For example, command =<show><arp><entry name='all'/></arp></show>
+    - description: The command to run. For example, command =<show><arp><entry name='all'/></arp></show>.
       name: command
     - description: The specified destination.
       name: dst
@@ -3957,7 +3968,7 @@ script:
     - description: The type of move operation (for example, where=after, where=before,
         where=top, where=bottom).
       name: where
-    - description: The time period, for example period=last-24-hrs
+    - description: The time period, for example period=last-24-hrs.
       name: period
     - description: xpath location. xpath defines the location of the object. For example,
         xpath=/config/predefined/application/entry[@name='hotmail']. Documentation
@@ -4001,8 +4012,13 @@ script:
       name: vsys
     - description: The device group in which to run the command.
       name: device-group
-    - description: Return raw XML
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Return raw XML.
       name: is_xml
+      predefined:
+      - "false"
+      - "true"
     description: Runs any command supported in the API.
     name: pan-os
   - arguments:
@@ -4242,11 +4258,11 @@ script:
       name: description
     - description: The FQDN of the new address.
       name: fqdn
-    - description: The IP netmask of the new address. For example, 10.10.10.10/24
+    - description: The IP netmask of the new address. For example, 10.10.10.10/24.
       name: ip_netmask
-    - description: The IP range of the new address IP. For example, 10.10.10.0-10.10.10.255
+    - description: The IP range of the new address IP. For example, 10.10.10.0-10.10.10.255.
       name: ip_range
-    - description: The IP wildcard of the new address. For example, 10.20.1.0/0.0.248.255
+    - description: The IP wildcard of the new address. For example, 10.20.1.0/0.0.248.255.
       name: ip_wildcard
     - description: The device group for which to return addresses (Panorama instances).
       name: device-group
@@ -4351,7 +4367,7 @@ script:
       required: true
     - description: The device group for which to return addresses (Panorama instances).
       name: device-group
-    description: Gets details for the specified address group
+    description: Gets details for the specified address group.
     name: pan-os-get-address-group
     outputs:
     - contextPath: Panorama.AddressGroups.Name
@@ -4386,7 +4402,7 @@ script:
       - dynamic
       - static
       required: true
-    - description: The dynamic address group match. For example "1.1.1.1 or 2.2.2.2"
+    - description: The dynamic address group match. For example "1.1.1.1 or 2.2.2.2".
       name: match
     - description: The static address group list of addresses.
       isArray: true
@@ -5156,7 +5172,7 @@ script:
     - description: The device group for which to return addresses for the EDL (Panorama
         instances).
       name: device-group
-    description: Returns information for an external dynamic list
+    description: Returns information for an external dynamic list.
     name: pan-os-get-edl
     outputs:
     - contextPath: Panorama.EDL.Name
@@ -5293,12 +5309,12 @@ script:
   - arguments:
     - description: The serial number of the device.
       name: target
-    description: Pull the running config file
+    description: Pull the running config file.
     name: pan-os-get-running-config
   - arguments:
     - description: The serial number of the device.
       name: target
-    description: Pull the merged config file
+    description: Pull the merged config file.
     name: pan-os-get-merged-config
   - arguments:
     - description: The name of the EDL.
@@ -5796,7 +5812,7 @@ script:
       description: The job ID details.
       type: string
     - contextPath: Panorama.Commit.Warnings
-      description: The job ID warnings
+      description: The job ID warnings.
       type: String
   - arguments:
     - description: The job ID to check.
@@ -5818,7 +5834,7 @@ script:
       description: The job ID details.
       type: string
     - contextPath: Panorama.Push.Warnings
-      description: The job ID warnings
+      description: The job ID warnings.
       type: String
   - arguments:
     - auto: PREDEFINED
@@ -6327,6 +6343,15 @@ script:
     - deprecated: true
       description: whether to hide the polling result (automatically filled by polling).
       name: hide_polling_output
+    - auto: PREDEFINED
+      defaultValue: "no"
+      description: Whether to show only `after-change-preview`, and `before-change-preview`,
+        or get full data for it.  The full data are under the fields `after-change-detail`,
+        and `before-change-detail`.
+      name: show-detail
+      predefined:
+      - "yes"
+      - "no"
     description: The query logs in Panorama.
     name: pan-os-query-logs
     outputs:
@@ -8155,7 +8180,7 @@ script:
     name: pan-os-platform-get-bgp-peers
     outputs:
     - contextPath: PANOS.ShowBGPPeers.Summary.hostid
-      description: The host ID
+      description: The host ID.
       type: String
     - contextPath: PANOS.ShowBGPPeers.Summary.peer
       description: The name of the Border Gateway Protocol (BGP) peer.
@@ -8194,7 +8219,7 @@ script:
       description: The total accepted routes from the peer.
       type: String
     - contextPath: PANOS.ShowBGPPeers.Result.incoming_rejected
-      description: The total rejected routes from peer
+      description: The total rejected routes from peer.
       type: String
     - contextPath: PANOS.ShowBGPPeers.Result.policy_rejected
       description: The total routes rejected by the peer by policy.
@@ -8351,7 +8376,7 @@ script:
     name: pan-os-platform-reboot
     outputs:
     - contextPath: PANOS.RestartStatus.Summary.hostid
-      description: The host ID
+      description: The host ID.
       type: String
     - contextPath: PANOS.RestartStatus.Summary.started
       description: Whether the download process started.
@@ -8751,7 +8776,7 @@ script:
     name: pan-os-hygiene-fix-security-zone-log-settings
     outputs:
     - contextPath: PANOS.ConfigurationHygieneFix.hostid
-      description: The host ID
+      description: The host ID.
       type: String
     - contextPath: PANOS.ConfigurationHygieneFix.container_name
       description: What parent container (DG, Template, VSYS) this object belongs
@@ -9284,7 +9309,7 @@ script:
       description: The filter interface(s).
       type: Unknown
     - contextPath: Panorama.RedistributionProfile.FilterType
-      description: The filter type(s)
+      description: The filter type(s).
       type: Unknown
     - contextPath: Panorama.RedistributionProfile.FilterDestination
       description: The filter destination(s).
@@ -9699,7 +9724,7 @@ script:
       description: The list of the applications that the application-group has.
       type: Unknown
     - contextPath: Panorama.ApplicationGroup.Members
-      description: The number of the application that are part of the application-group
+      description: The number of the application that are part of the application-group.
       type: Number
   - arguments:
     - description: The name for the application-group to be created with.
@@ -9756,7 +9781,7 @@ script:
       description: The list of the applications that the application-group has.
       type: Unknown
     - contextPath: Panorama.ApplicationGroup.Members
-      description: The number of the applications that are part of the application-group
+      description: The number of the applications that are part of the application-group.
       type: Number
   - arguments:
     - description: The name of the application-group to delete. Can be retrieved from
@@ -9766,7 +9791,7 @@ script:
     - description: The device-group in which the application-group is part of. Only
         for a Panorama instance.
       name: device-group
-    description: Deletes an application-group
+    description: Deletes an application-group.
     name: pan-os-delete-application-group
   - arguments:
     - auto: PREDEFINED
@@ -9851,14 +9876,28 @@ script:
     - contextPath: Panorama.DeviceGroupNames
       description: The list of device groups.
       type: string
-  dockerimage: demisto/pan-os-python:1.0.0.72295
+  - arguments:
+    - defaultValue: "30"
+      description: The polling interval (in seconds).
+      name: interval_in_seconds
+    - defaultValue: "1200"
+      description: The polling timeout (in seconds).
+      name: timeout
+    - description: The job ID to use when polling.
+      hidden: true
+      name: job_id
+    description: Exports a tech support file (TSF).
+    name: pan-os-export-tech-support-file
+    polling: true
+  dockerimage: demisto/pan-os-python:1.0.0.85910
   isfetch: true
   nativeimage:
   - "8.3"
+  - "8.4"
   runonce: false
   script: |
     register_module_line('Panorama', 'start', __line__())
-    ### pack version: 2.1.4
+    ### pack version: 2.1.19
 
 
     from collections import defaultdict
@@ -9893,7 +9932,7 @@ script:
     import re
     import requests
     import urllib3
-    from urllib.parse import urlparse, quote
+    from urllib.parse import urlparse
 
     # disable insecure warnings
     urllib3.disable_warnings()
@@ -10030,7 +10069,7 @@ script:
         'questionable',
         'real-estate',
         'recreation-and-hobbies',
-        'reference-and-research    ',
+        'reference-and-research',
         'religion',
         'search-engines',
         'sex-education',
@@ -10144,7 +10183,7 @@ script:
 
 
     def http_request(uri: str, method: str, headers: dict = {},
-                     body: dict = {}, params: dict = {}, files: dict | None = None, is_pcap: bool = False,
+                     body: dict = {}, params: dict = {}, files: dict | None = None, is_file: bool = False,
                      is_xml: bool = False) -> Any:
         """
         Makes an API call with the given arguments
@@ -10164,7 +10203,7 @@ script:
                 'Request Failed. with status: ' + str(result.status_code) + '. Reason is: ' + str(result.reason))
 
         # if pcap download
-        if is_pcap:
+        if is_file:
             return result
         if is_xml:
             return result.text
@@ -10277,7 +10316,13 @@ script:
                 dictionary[key] = dictionary[key]['#text']
             elif isinstance(dictionary[key], list) and isinstance(dictionary[key][0], dict) \
                     and dictionary[key][0].get('#text'):
-                dictionary[key] = [text.get('#text') for text in dictionary[key]]
+                temp_list = []
+                for text in dictionary[key]:
+                    if isinstance(text, dict):
+                        temp_list.append(text.get('#text'))
+                    elif isinstance(text, str):
+                        temp_list.append(text)
+                dictionary[key] = temp_list
 
         for value in dictionary.values():
             if isinstance(value, dict):
@@ -10693,6 +10738,103 @@ script:
         )
 
 
+    def start_tsf_export():
+        """
+        Start export of tech support file (TSF) from PAN-OS:
+        https://docs.paloaltonetworks.com/pan-os/11-0/pan-os-panorama-api/pan-os-xml-api-request-types/export-files-api/export-technical-support-data
+        """
+        params = {
+            'type': 'export',
+            'category': 'tech-support',
+            'key': API_KEY
+        }
+        result = http_request(
+            URL,
+            'GET',
+            params=params
+        )
+        return result
+
+
+    def get_tsf_export_status(job_id: str):
+        """
+        Get status of TSF export.
+        """
+        params = {
+            'type': 'export',
+            'category': 'tech-support',
+            'action': 'status',
+            'job-id': job_id,
+            'key': API_KEY
+        }
+        result = http_request(
+            URL,
+            'GET',
+            params=params
+        )
+        return result
+
+
+    def download_tsf(job_id: str):
+        """
+        Download an exported TSF.
+        """
+        params = {
+            'type': 'export',
+            'category': 'tech-support',
+            'action': 'get',
+            'job-id': job_id,
+            'key': API_KEY
+        }
+        result = http_request(
+            URL,
+            'GET',
+            params=params,
+            is_file=True
+        )
+        return fileResult("tech_support_file.tar.gz", result.content)
+
+
+    @polling_function(
+        name=demisto.command(),
+        interval=arg_to_number(demisto.args().get('interval_in_seconds', 30)),
+        timeout=arg_to_number(demisto.args().get('timeout', 1200)),
+        requires_polling_arg=False
+    )
+    def export_tsf_command(args: dict):
+        """
+        Export a TSF from PAN-OS.
+        """
+        if job_id := args.get('job_id'):
+            job_status = dict_safe_get(
+                get_tsf_export_status(job_id),
+                ['response', 'result', 'job', 'status']
+            )
+            return PollResult(
+                response=download_tsf(job_id),
+                continue_to_poll=job_status != 'FIN',  # continue polling if job isn't done
+            )
+        else:  # either no polling is required or this is the first run
+            result = start_tsf_export()
+            job_id = dict_safe_get(result, ['response', 'result', 'job'])
+
+            if not job_id:
+                raise DemistoException("Failed to start tech support file export.")
+
+            return PollResult(
+                response=download_tsf(job_id),
+                continue_to_poll=True,
+                args_for_next_run={
+                    'job_id': job_id,
+                    'interval_in_seconds': arg_to_number(args.get('interval_in_seconds')),
+                    'timeout': arg_to_number(args.get('timeout'))
+                },
+                partial_result=CommandResults(
+                    readable_output=f'Waiting for tech support file export with job ID {job_id} to finish...'
+                )
+            )
+
+
     def device_group_test():
         """
         Test module for the Device group specified
@@ -10748,23 +10890,25 @@ script:
         Executes a command
         """
         params = {}
+
         for arg in args.keys():
             params[arg] = args[arg]
+
+        is_xml = argToBoolean(params.get("is_xml", "false"))
         params['key'] = API_KEY
 
         result = http_request(
             URL,
             'POST',
-            body=params
+            body=params,
+            is_xml=is_xml
         )
 
-        return_results({
-            'Type': entryTypes['note'],
-            'ContentsFormat': formats['json'],
-            'Contents': result,
-            'ReadableContentsFormat': formats['text'],
-            'HumanReadable': 'Command was executed successfully.',
-        })
+        return_results(CommandResults(
+            outputs_prefix='Panorama.Command',
+            outputs=result,
+            readable_output='Command was executed successfully.'
+        ))
 
 
     @logger
@@ -12941,7 +13085,10 @@ script:
                     dbot_score=dbot_score,
                     category=url_dbot_score_category
                 )
-                readable_output = err_readable_output or tableToMarkdown('URL', url_obj.to_context())
+                readable_output = err_readable_output or tableToMarkdown(
+                    'URL', url_obj.to_context(),
+                    headerTransform=lambda x: x.partition('(')[0]
+                )
                 command_results.append(CommandResults(
                     indicator=url_obj,
                     readable_output=readable_output
@@ -13997,7 +14144,7 @@ script:
         elif serial_number:
             params['target'] = serial_number
 
-        result = http_request(URL, 'GET', params=params, is_pcap=True)
+        result = http_request(URL, 'GET', params=params, is_file=True)
         json_result = json.loads(xml2json(result.text))['response']
         if json_result['@status'] != 'success':
             raise Exception('Request to get list of Pcaps Failed.\nStatus code: ' + str(
@@ -14105,7 +14252,7 @@ script:
         if not file_name:
             file_name = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')
 
-        result = http_request(URL, 'GET', params=params, is_pcap=True)
+        result = http_request(URL, 'GET', params=params, is_file=True)
 
         # due to pcap file size limitation in the product. For more details, please see the documentation.
         if result.headers['Content-Type'] != 'application/octet-stream':
@@ -15150,8 +15297,8 @@ script:
 
     @logger
     def panorama_query_logs(log_type: str, number_of_logs: str, query: str, address_src: str, address_dst: str, ip_: str,
-                            zone_src: str, zone_dst: str, time_generated: str, time_generated_after: str,  action: str,
-                            port_dst: str, rule: str, url: str, filedigest: str):
+                            zone_src: str, zone_dst: str, time_generated: str, time_generated_after: str, action: str,
+                            port_dst: str, rule: str, url: str, filedigest: str, show_detail: str = 'no'):
         params = {
             'type': 'log',
             'log-type': log_type,
@@ -15174,6 +15321,9 @@ script:
                                                port_dst, rule, url, filedigest, time_generated_after)
         if number_of_logs:
             params['nlogs'] = number_of_logs
+
+        if show_detail:
+            params['show-detail'] = show_detail
 
         result = http_request(
             URL,
@@ -15211,6 +15361,8 @@ script:
         job_id = args.get('query_log_job_id')
         illegal_chars = {'@', '#'}
         ignored_keys = {'entry'}
+        # The API refers to any value other than 'yes' as 'no'.
+        show_detail = args.get('show-detail', 'no') or 'no'
 
         if not job_id:
             if query and (address_src or address_dst or zone_src or zone_dst
@@ -15221,7 +15373,7 @@ script:
                 panorama_query_logs(
                     log_type, number_of_logs, query, address_src, address_dst, ip_,
                     zone_src, zone_dst, time_generated, time_generated_after, action,
-                    port_dst, rule, url, filedigest
+                    port_dst, rule, url, filedigest, show_detail
                 ),
                 illegal_chars=illegal_chars,
                 ignored_keys=ignored_keys
@@ -15241,6 +15393,7 @@ script:
             }
 
             command_results = CommandResults(
+                raw_response=result.raw,
                 outputs_prefix='Panorama.Monitor',
                 outputs_key_field='JobID',
                 outputs=query_logs_output,
@@ -19519,8 +19672,8 @@ script:
         """
         serial: str
         connected: str
-        hostname: str
         last_commit_all_state_tpl: str
+        hostname: str = ""
         name: str = ""
 
         _output_prefix = OUTPUT_PREFIX + "TemplateStackOp"
@@ -23415,11 +23568,12 @@ script:
         return response.get('response', {}).get('result', {}).get('job')
 
 
-    def get_query_entries_by_id_request(job_id: str) -> Dict[str, Any]:
+    def get_query_entries_by_id_request(job_id: str, fetch_job_polling_max_num_attempts: int) -> Dict[str, Any]:
         """get the entries of a particular Job ID.
 
         Args:
             job_id (int): ID of a query job
+            fetch_job_polling_max_num_attempts (int): The maximal number of attempts to try and pull results.
 
         Returns:
             Dict[str,Any]: a dictionary of the raw entries linked to the Job ID
@@ -23427,7 +23581,7 @@ script:
         params = assign_params(key=API_KEY, type='log', action='get', job_id=job_id)
 
         # if the job has not finished, wait for 1 second and try again (until success or max retries)
-        for try_num in range(1, GET_LOG_JOB_ID_MAX_RETRIES + 1):
+        for try_num in range(1, fetch_job_polling_max_num_attempts + 1):
             response = http_request(URL, 'GET', params=params)
             status = response.get('response', {}).get('result', {}).get('job', {}).get('status', '')
             demisto.debug(f'Job ID {job_id}, response status: {status}')
@@ -23443,16 +23597,17 @@ script:
         return {}
 
 
-    def get_query_entries(log_type: str, query: str, max_fetch: int) -> List[Dict[Any, Any]]:
+    def get_query_entries(log_type: str, query: str, max_fetch: int, fetch_job_polling_max_num_attempts: int) -> List[Dict[Any, Any]]:
         """get query entries according to a specific query.
 
         Args:
             log_type (str): query log type
             query (str): query for the fetch
             max_fetch (int): maximum number of entries to fetch
+            fetch_job_polling_max_num_attempts (int): The maximal number of attempts to try and pull results from a job.
 
         Returns:
-            List[Dict[Any,Any]]): a list of raw entries for the the specified query
+            List[Dict[Any,Any]]): a list of raw entries for the specified query
         """
         entries = []
         # first http request: send request with query, valid response will contain a job id.
@@ -23460,7 +23615,7 @@ script:
         demisto.debug(f'{job_id=}')
 
         # second http request: send request with job id, valid response will contain a dictionary of entries.
-        query_entries = get_query_entries_by_id_request(job_id)
+        query_entries = get_query_entries_by_id_request(job_id, fetch_job_polling_max_num_attempts)
 
         # extract all entries from response
         if result := query_entries.get('response', {}).get('result', {}).get('log', {}).get('logs', {}).get('entry'):
@@ -23579,15 +23734,16 @@ script:
         return max_fetch_dict
 
 
-    def fetch_incidents_request(queries_dict: Optional[Dict[str, str]],
-                                max_fetch_dict: Dict, fetch_start_datetime_dict: Dict[str, datetime]) -> Dict[
-            str, List[Dict[str, Any]]]:
+    def fetch_incidents_request(queries_dict: Optional[Dict[str, str]], max_fetch_dict: Dict,
+                                fetch_start_datetime_dict: Dict[str, datetime],
+                                fetch_job_polling_max_num_attempts: int) -> Dict[str, List[Dict[str, Any]]]:
         """get raw entires of incidents according to provided queries, log types and max_fetch parameters.
 
         Args:
             queries_dict (Optional[Dict[str, str]]): chosen log type queries dictionaries
             max_fetch_dict (Dict): max incidents per fetch parameter per log type dictionary
             fetch_start_datetime_dict (Dict[str,datetime]): updated last fetch time per log type dictionary
+            fetch_job_polling_max_num_attempts (int): The maximal number of attempts to try and pull results for each log type
 
         Returns:
             Dict[str, List[Dict[str,Any]]]: a dictionary of all fetched raw incidents entries
@@ -23599,7 +23755,7 @@ script:
                 fetch_start_time = fetch_start_datetime_dict.get(log_type)
                 if fetch_start_time:
                     query = add_time_filter_to_query_parameter(query, fetch_start_time)
-                entries[log_type] = get_query_entries(log_type, query, max_fetch)
+                entries[log_type] = get_query_entries(log_type, query, max_fetch, fetch_job_polling_max_num_attempts)
         return entries
 
 
@@ -23752,7 +23908,8 @@ script:
 
 
     def fetch_incidents(last_run: dict, first_fetch: str, queries_dict: Optional[Dict[str, str]],
-                        max_fetch_dict: Dict) -> Tuple[Dict[str, str], Dict[str, str], List[Dict[str, list]]]:
+                        max_fetch_dict: Dict,
+                        fetch_job_polling_max_num_attempts: int) -> Tuple[Dict[str, str], Dict[str, str], List[Dict[str, list]]]:
         """run one cycle of fetch incidents.
 
         Args:
@@ -23760,6 +23917,7 @@ script:
             first_fetch (str): first time to fetch from (First fetch timestamp parameter)
             queries_dict (Optional[Dict[str, str]]): queries per log type dictionary
             max_fetch_dict (Dict): max incidents per fetch parameter per log type dictionary
+            fetch_job_polling_max_num_attempts (int): The maximal number of attempts to try and pull results for each log type
 
         Returns:
             (Dict[str, str], Dict[str,str], List[Dict[str, list]]): last fetch per log type dictionary, last unique id per log type dictionary, parsed incidents tuple
@@ -23772,7 +23930,8 @@ script:
         fetch_start_datetime_dict = get_fetch_start_datetime_dict(last_fetch_dict, first_fetch, queries_dict)
         demisto.debug(f'updated last fetch per log type: {fetch_start_datetime_dict=}.')
 
-        incident_entries_dict = fetch_incidents_request(queries_dict, max_fetch_dict, fetch_start_datetime_dict)
+        incident_entries_dict = fetch_incidents_request(queries_dict, max_fetch_dict, fetch_start_datetime_dict,
+                                                        fetch_job_polling_max_num_attempts)
         demisto.debug('raw incident entries fetching has completed.')
 
         # remove duplicated incidents from incident_entries_dict
@@ -23821,6 +23980,9 @@ script:
             handle_proxy()
 
             if command == 'test-module':
+                # Log the API version
+                if is_debug_mode():
+                    demisto.debug(f'PAN-OS Version (debug-mode): {get_pan_os_version()}')
                 panorama_test(params)
 
             # Fetch incidents
@@ -23829,11 +23991,13 @@ script:
                 first_fetch = params.get('first_fetch') or FETCH_DEFAULT_TIME
                 configured_max_fetch = arg_to_number(params.get('max_fetch')) or MAX_INCIDENTS_TO_FETCH
                 queries_dict = log_types_queries_to_dict(params)
+                fetch_job_polling_max_num_attempts = arg_to_number(params.get(
+                    'fetch_job_polling_max_num_attempts')) or GET_LOG_JOB_ID_MAX_RETRIES
                 max_fetch_dict = last_run.get('max_fetch_dict') or create_max_fetch_dict(
                     queries_dict=queries_dict, configured_max_fetch=configured_max_fetch)
 
                 last_fetch_dict, last_id_dict, incident_entries_list = fetch_incidents(
-                    last_run, first_fetch, queries_dict, max_fetch_dict)
+                    last_run, first_fetch, queries_dict, max_fetch_dict, fetch_job_polling_max_num_attempts)
                 next_max_fetch_dict = update_max_fetch_dict(configured_max_fetch=configured_max_fetch,
                                                             max_fetch_dict=max_fetch_dict,
                                                             last_fetch_dict=last_fetch_dict)
@@ -24527,6 +24691,8 @@ script:
                 return_results(pan_os_delete_tag_command(args))
             elif command == 'pan-os-list-device-groups':
                 return_results(list_device_groups_names())
+            elif command == 'pan-os-export-tech-support-file':
+                return_results(export_tsf_command(args))
             else:
                 raise NotImplementedError(f'Command {command} is not implemented.')
         except Exception as err:
