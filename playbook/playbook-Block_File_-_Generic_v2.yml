@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -13,7 +13,7 @@ contentitemexportablefields:
 description: "This playbook is used to block files from running on endpoints. \nThis
   playbook supports the following integrations:\n- Palo Alto Networks Traps\n- Palo
   Alto Networks Cortex XDR\n- Cybereason\n- Carbon Black Enterprise Response\n- Cylance
-  Protect v2\n"
+  Protect v2\n- Crowdstrike Falcon\n- Microsoft Defender for Endpoint."
 id: Block File - Generic v2
 inputs:
 - description: The MD5 hash of the file you want to block.
@@ -41,11 +41,11 @@ inputs:
 name: Block File - Generic v2
 outputs:
 - contextPath: CbResponse.BlockedHashes.LastBlock.Time
-  description: Last block time
+  description: Last block time.
 - contextPath: CbResponse.BlockedHashes.LastBlock.Hostname
-  description: Last block hostname
+  description: Last block hostname.
 - contextPath: CbResponse.BlockedHashes.LastBlock.CbSensorID
-  description: Last block sensor ID
+  description: Last block sensor ID.
 starttaskid: "0"
 system: true
 tasks:
@@ -61,6 +61,8 @@ tasks:
       - "10"
       - "11"
       - "12"
+      - "17"
+      - "18"
     note: false
     quietmode: 0
     separatecontext: false
@@ -463,6 +465,188 @@ tasks:
       {
         "position": {
           "x": 1340,
+          "y": 330
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b6a4a1eb-e837-400c-890a-aa72fdd866d2
+      iscommand: false
+      name: CrowdStrike Falcon
+      type: title
+      version: -1
+    taskid: b6a4a1eb-e837-400c-890a-aa72fdd866d2
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1760,
+          "y": 195
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c463f54e-7a18-4dba-804f-acf83e449259
+      iscommand: false
+      name: Microsoft Defender For Endpoint
+      type: title
+      version: -1
+    taskid: c463f54e-7a18-4dba-804f-acf83e449259
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -380,
+          "y": 195
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Hash:
+        complex:
+          root: inputs.Hash
+          transformers:
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: inputs.MD5
+            operator: append
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: inputs.SHA256
+            operator: append
+          - operator: uniq
+      'Severity ':
+        simple: medium
+    separatecontext: true
+    skipunavailable: true
+    task:
+      brand: ""
+      description: "This playbook receives an MD5 or a SHA256 hash and adds it to
+        the block list in CrowdStrike Falcon. \nThe playbook uses the integration
+        \"CrowdStrike Falcon\"."
+      id: 07c049da-5bbf-4804-8b51-3b58463ce5be
+      iscommand: false
+      name: CrowdStrike Falcon - Block File
+      playbookName: CrowdStrike Falcon - Block File
+      type: playbook
+      version: -1
+    taskid: 07c049da-5bbf-4804-8b51-3b58463ce5be
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1760,
+          "y": 330
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      GenerateAlert:
+        simple: "true"
+      Hash:
+        complex:
+          root: inputs.Hash
+          transformers:
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: inputs.MD5
+            operator: append
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: inputs.SHA256
+            operator: append
+          - operator: uniq
+      IndicatorDescription:
+        simple: Added by Cortex XSOAR
+      IndicatorTitle:
+        simple: Added by Cortex XSOAR
+    separatecontext: true
+    skipunavailable: true
+    task:
+      brand: ""
+      description: "This playbook receives an MD5 or a SHA256 hash and adds it to
+        the block list in Microsoft Defender for Endpoint. \nThe playbook uses the
+        integration \"Microsoft Defender for Endpoint\"."
+      id: 56668cf3-d5c5-424d-85ff-43b568a0d538
+      iscommand: false
+      name: MDE - Block File
+      playbookName: MDE - Block File
+      type: playbook
+      version: -1
+    taskid: 56668cf3-d5c5-424d-85ff-43b568a0d538
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -380,
           "y": 340
         }
       }
@@ -473,8 +657,8 @@ view: |-
     "paper": {
       "dimensions": {
         "height": 530,
-        "width": 1670,
-        "x": 50,
+        "width": 2520,
+        "x": -380,
         "y": 50
       }
     }
