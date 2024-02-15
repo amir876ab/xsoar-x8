@@ -25,7 +25,7 @@
 	"id": "incident_fileaccessdate",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "File Access Date",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "File Access Date",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
