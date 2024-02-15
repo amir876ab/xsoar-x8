@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.1.33
+    itemVersion: 2.1.39
     packID: Palo_Alto_Networks_WildFire
     packName: WildFire by Palo Alto Networks
     packPropagationLabels:
@@ -10,13 +10,8 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-description: |-
-  Detonate one or more files using the Wildfire integration. This playbook
-  returns relevant reports to the War Room and file reputations to the context data.
-  The detonation supports the following file types -
-  APK, JAR, DOC, DOCX, RTF, XLS, XLSX, PPT, PPTX, OOXML, PE32, PE, PDF, DMG, PKG, RAR, 7Z, JS, ELF, HTA, LNK, VBS, PS1, PERL, PYTHON, SHELL.
-
-  Note: Base64 encoded files are currently not supported
+deprecated: true
+description: Deprecated. Use WildFire - Detonate file v2 instead.
 id: WildFire - Detonate file
 inputs:
 - description: File object of the file to detonate. The file is taken from the context.
@@ -56,7 +51,7 @@ outputs:
   description: The file type, e.g. "PE".
   type: string
 - contextPath: File.Size
-  description: The file size
+  description: The file size.
   type: number
 - contextPath: File.MD5
   description: The MD5 hash of the file.
