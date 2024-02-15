@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "ba01f493-c293-4da1-8ddf-ebba4d922f50",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Top 10 File Indicators in Related Incidents",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
