@@ -1,7 +1,7 @@
 args:
-- description: Incident object
+- description: Incident object.
   name: incident
-- description: Field definition object
+- description: Field definition object.
   name: field
 comment: When you apply this script to an incident field, that incident field is hidden
   for new incidents, and it displays in edit mode.
@@ -12,7 +12,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -20,19 +20,20 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: hideFieldsOnNewIncident
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('hideFieldsOnNewIncident', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
 
