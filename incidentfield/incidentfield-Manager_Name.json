@@ -34,7 +34,7 @@
 	"id": "incident_managername",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Manager Name",
@@ -48,7 +48,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Manager Name",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
