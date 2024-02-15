@@ -13,7 +13,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -27,12 +27,13 @@ mainengineinfo: {}
 name: RemoveKeyFromList
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('RemoveKeyFromList', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
   """RemoveKeyFromList
