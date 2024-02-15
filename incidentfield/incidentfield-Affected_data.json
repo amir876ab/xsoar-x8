@@ -25,7 +25,7 @@
 	"id": "incident_affecteddata",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.12.20",
+	"itemVersion": "1.13.22",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Affected data",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Affected data",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
