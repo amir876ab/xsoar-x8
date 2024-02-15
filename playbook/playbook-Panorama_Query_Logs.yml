@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.2.0
-    itemVersion: 2.1.4
+    itemVersion: 2.1.19
     packID: PAN-OS
     packName: PAN-OS by Palo Alto Networks
     packPropagationLabels:
