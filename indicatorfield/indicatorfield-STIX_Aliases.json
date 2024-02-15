@@ -28,7 +28,7 @@
 	"id": "indicator_stixaliases",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "STIX Aliases",
@@ -42,7 +42,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "STIX Aliases",
 	"propagationLabels": [
 		"all"
 	],
