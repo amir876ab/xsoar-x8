@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -63,7 +63,7 @@ inputs:
   playbookInputQuery: null
   required: false
   value: {}
-- description: Whether to execute the user remediation flow automatically.
+- description: Whether to execute the access key remediation flow automatically.
   key: autoAccessKeyRemediation
   playbookInputQuery: null
   required: false
