@@ -33,7 +33,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -48,6 +48,7 @@ mainengineinfo: {}
 name: HTTPListRedirects
 nativeimage:
 - "8.3"
+- "8.4"
 outputs:
 - contextPath: URL.Data
   description: The URL redirects from the given URL
@@ -56,7 +57,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('HTTPListRedirects', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
   import requests
@@ -94,7 +95,7 @@ script: |
       if use_system_proxy == 'false':
           env_variables = ['HTTP_PROXY', 'HTTPS_PROXY', 'http_proxy', 'https_proxy']
           for env_var in env_variables:
-              if(env_var in os.environ):
+              if (env_var in os.environ):
                   del os.environ[env_var]
 
 
