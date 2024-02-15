@@ -21,7 +21,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "remediation-sla-by-status",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Remediation SLA by Status",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
