@@ -15,10 +15,10 @@ args:
 - description: The comma separated flags for pattern matching in regex. "dotall" (s),
     "multiline" (m), "ignorecase" (i) and "unicode" (u) are supported.
   name: flags
-comment: "Extraction of elements which are contained in all the subgroups of the match
-  to the pattern.\nFor example, extracting from the string \"The quick brown fox\"
-  the object `{\"article\":\"The\",\"noun\":quick\"}`\n(See arguments descriptions
-  for more details) "
+comment: |-
+  Extraction of elements which are contained in all the subgroups of the match to the pattern.
+  For example, extracting from the string "The quick brown fox" the object `{"article":"The","noun":quick"}`
+  (See arguments descriptions for more details).
 commonfields:
   id: RegexGroups
   version: -1
@@ -26,7 +26,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.29
+    itemVersion: 1.2.54
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -34,25 +34,25 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.78960
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: RegexGroups
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('RegexGroups', 'start', __line__())
-  ### pack version: 1.2.29
+  ### pack version: 1.2.54
 
 
 
 
-  def main():
-      args = demisto.args()
+  def get_regex_matches(args):
       match_target = args['value']
       capture_groups = args.get('groups')
       dict_keys = args.get('keys')
@@ -69,7 +69,6 @@ script: |
           else:
               raise ValueError(f'Unknown flag: {flag}')
       regex_pattern = re.compile(r'{}'.format(args['regex']), regex_flags)
-
       if capture_groups:
           capture_groups = capture_groups.split(',')
           # Validating groups input to be integers
@@ -96,9 +95,22 @@ script: |
               raise ValueError('Error: Number of keys does not match number of items')
           else:
               dict_matches = dict(zip(dict_keys, matches))
-              demisto.results(dict_matches)
-      else:
-          demisto.results(matches)
+              return dict_matches
+      return matches
+
+
+  def main():
+      matches: str | list = []
+      args = demisto.args()
+      try:
+          matches = get_regex_matches(args)
+      except Exception as e:
+          demisto.error(f'Error in RegexGroups script: {str(e)}')
+      finally:
+          # empty list is not supported
+          if not matches:
+              matches = ''
+          return_results(matches)
 
 
   if __name__ in ('__builtin__', 'builtins'):
