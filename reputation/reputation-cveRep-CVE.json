@@ -138,7 +138,7 @@
 	"formatScript": "",
 	"fromServerVersion": "5.5.0",
 	"id": "cveRep",
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"layout": "cveRep",
 	"legacyNames": null,
 	"locked": false,
@@ -309,6 +309,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "CVE-\\d{4}-\\d{4,7}",
 	"reputationCommand": "cve",
 	"reputationScriptName": "cveReputationV2",
