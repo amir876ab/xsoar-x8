@@ -14,10 +14,31 @@
 	"contentItems": {
 		"automation": [
 			{
+				"description": "Deprecated. No available replacement.",
+				"name": "DemistoLinkIncidents",
+				"tags": [
+					"DemistoAPI"
+				]
+			},
+			{
 				"description": "Deprecated. Use DemistoUploadFile instead.",
 				"name": "DemistoUploadFile",
 				"tags": [
 					"DemistoAPI"
+				]
+			},
+			{
+				"description": "Create a new list.",
+				"name": "DemistoCreateList",
+				"tags": [
+					"DemistoAPI"
+				]
+			},
+			{
+				"description": "Get all tasks for specific incident by the given state.",
+				"name": "GetIncidentTasksByState",
+				"tags": [
+					"Utility"
 				]
 			},
 			{
@@ -28,15 +49,15 @@
 				]
 			},
 			{
-				"description": "Deprecated. Use the *DemistoUploadFileV2* script instead. Copies a file from this incident to the specified incident. The file is uploaded as an attachment to the specified incident’s Summary page, and recorded as an entry in the War Room.",
-				"name": "DemistoUploadFileToIncident",
+				"description": "Creates markdown tables based on information from the GetTasksWithSection command.",
+				"name": "SetIRProceduresMarkdown",
 				"tags": [
-					"DemistoAPI"
+					"dynamic-section"
 				]
 			},
 			{
 				"description": "Deprecated. No available replacement.",
-				"name": "DemistoLeaveAllInvestigations",
+				"name": "DemistoLogsBundle",
 				"tags": [
 					"DemistoAPI"
 				]
@@ -50,28 +71,7 @@
 			},
 			{
 				"description": "Deprecated. No available replacement.",
-				"name": "DemistoLinkIncidents",
-				"tags": [
-					"DemistoAPI"
-				]
-			},
-			{
-				"description": "Deprecated. No available replacement.",
-				"name": "DemistoLogsBundle",
-				"tags": [
-					"DemistoAPI"
-				]
-			},
-			{
-				"description": "Deprecated. No available replacement.",
 				"name": "DemistoSendInvite",
-				"tags": [
-					"DemistoAPI"
-				]
-			},
-			{
-				"description": "Create a new list",
-				"name": "DemistoCreateList",
 				"tags": [
 					"DemistoAPI"
 				]
@@ -84,10 +84,10 @@
 				]
 			},
 			{
-				"description": "Get all tasks for specific incident by the given state.",
-				"name": "GetIncidentTasksByState",
+				"description": "Deprecated. No available replacement.",
+				"name": "DemistoLeaveAllInvestigations",
 				"tags": [
-					"Utility"
+					"DemistoAPI"
 				]
 			},
 			{
@@ -98,10 +98,10 @@
 				]
 			},
 			{
-				"description": "Creates markdown tables based on information from the GetTasksWithSection command.",
-				"name": "SetIRProceduresMarkdown",
+				"description": "Deprecated. Use the *DemistoUploadFileV2* script instead. Copies a file from this incident to the specified incident. The file is uploaded as an attachment to the specified incident’s Summary page, and recorded as an entry in the War Room.",
+				"name": "DemistoUploadFileToIncident",
 				"tags": [
-					"dynamic-section"
+					"DemistoAPI"
 				]
 			}
 		],
@@ -117,84 +117,84 @@
 				"category": "Utilities",
 				"commands": [
 					{
-						"description": "send HTTP POST request.",
-						"name": "demisto-api-post"
-					},
-					{
-						"description": "send HTTP GET requests.",
-						"name": "demisto-api-get"
-					},
-					{
-						"description": "send HTTP PUT request.",
-						"name": "demisto-api-put"
-					},
-					{
-						"description": "send HTTP DELETE request.",
-						"name": "demisto-api-delete"
-					},
-					{
-						"description": "Download files from Demisto server.",
-						"name": "demisto-api-download"
-					},
-					{
-						"description": "Send HTTP Multipart request to upload files to Demisto server.",
-						"name": "demisto-api-multipart"
-					},
-					{
-						"description": "Delete Demisto incidents.",
-						"name": "demisto-delete-incidents"
-					},
-					{
-						"description": "Upload packs to Demisto server from url or the marketplace.",
-						"name": "demisto-api-install-packs"
-					},
-					{
-						"description": "send HTTP POST request.",
-						"name": "core-api-post"
-					},
-					{
-						"description": "send HTTP GET requests.",
-						"name": "core-api-get"
-					},
-					{
-						"description": "send HTTP PUT request.",
-						"name": "core-api-put"
-					},
-					{
-						"description": "send HTTP DELETE request.",
-						"name": "core-api-delete"
-					},
-					{
-						"description": "Download files from Core server.",
-						"name": "core-api-download"
-					},
-					{
-						"description": "Send HTTP Multipart request to upload files to Core server.",
-						"name": "core-api-multipart"
-					},
-					{
-						"description": "Delete Core incidents.",
-						"name": "core-delete-incidents"
-					},
-					{
-						"description": "Upload packs to the core server from the URL or marketplace.",
-						"name": "core-api-install-packs"
-					},
-					{
-						"description": "Upload to the incident a file that the user provided according to the entry_id or the content of the file.",
-						"name": "core-api-file-upload"
-					},
-					{
 						"description": "Delete a file from Cortex XSOAR by entry_id.",
 						"name": "core-api-file-delete"
+					},
+					{
+						"description": "Deprecated. Use core-api-install-packs instead.",
+						"name": "demisto-api-install-packs"
 					},
 					{
 						"description": "Delete the attachment from the incident and from the Cortex XSOAR server.",
 						"name": "core-api-file-attachment-delete"
 					},
 					{
+						"description": "send HTTP GET requests.",
+						"name": "core-api-get"
+					},
+					{
+						"description": "Deprecated. Use core-api-download instead.",
+						"name": "demisto-api-download"
+					},
+					{
+						"description": "send HTTP DELETE request.",
+						"name": "core-api-delete"
+					},
+					{
+						"description": "Deprecated. Use core-api-put instead.",
+						"name": "demisto-api-put"
+					},
+					{
+						"description": "Deprecated. Use core-api-multipart instead.",
+						"name": "demisto-api-multipart"
+					},
+					{
+						"description": "send HTTP POST request.",
+						"name": "core-api-post"
+					},
+					{
+						"description": "Deprecated. Use core-api-delete instead.",
+						"name": "demisto-api-delete"
+					},
+					{
+						"description": "Upload packs to the core server from the URL or marketplace.",
+						"name": "core-api-install-packs"
+					},
+					{
+						"description": "Deprecated. Use core-delete-incidents instead.",
+						"name": "demisto-delete-incidents"
+					},
+					{
 						"description": "Check if the file exists in Cortex XSOAR by entry_id.",
 						"name": "core-api-file-check"
+					},
+					{
+						"description": "Send HTTP Multipart request to upload files to Core server.",
+						"name": "core-api-multipart"
+					},
+					{
+						"description": "Upload to the incident a file that the user provided according to the entry_id or the content of the file.",
+						"name": "core-api-file-upload"
+					},
+					{
+						"description": "Download files from Core server.",
+						"name": "core-api-download"
+					},
+					{
+						"description": "send HTTP PUT request.",
+						"name": "core-api-put"
+					},
+					{
+						"description": "Delete Core incidents.",
+						"name": "core-delete-incidents"
+					},
+					{
+						"description": "Deprecated. Use core-api-get instead.",
+						"name": "demisto-api-get"
+					},
+					{
+						"description": "Deprecated. Use core-api-post instead.",
+						"name": "demisto-api-post"
 					}
 				],
 				"description": "Use Core REST APIs.",
@@ -209,12 +209,12 @@
 						"name": "demisto-api-post"
 					},
 					{
-						"description": "send HTTP GET requests",
-						"name": "demisto-api-get"
+						"description": "Delete Demisto incidents",
+						"name": "demisto-delete-incidents"
 					},
 					{
-						"description": "send HTTP PUT request",
-						"name": "demisto-api-put"
+						"description": "send HTTP GET requests",
+						"name": "demisto-api-get"
 					},
 					{
 						"description": "send HTTP DELETE request",
@@ -225,16 +225,16 @@
 						"name": "demisto-api-download"
 					},
 					{
-						"description": "Send HTTP Multipart request to upload files to Demisto server",
-						"name": "demisto-api-multipart"
-					},
-					{
-						"description": "Delete Demisto incidents",
-						"name": "demisto-delete-incidents"
+						"description": "send HTTP PUT request",
+						"name": "demisto-api-put"
 					},
 					{
 						"description": "Upload packs to Demisto server from url or the marketplace.",
 						"name": "demisto-api-install-packs"
+					},
+					{
+						"description": "Send HTTP Multipart request to upload files to Demisto server",
+						"name": "demisto-api-multipart"
 					}
 				],
 				"description": "Deprecated. Use Core REST API instead.",
@@ -251,20 +251,20 @@
 		"wizard": null
 	},
 	"created": "2020-07-15T08:20:12Z",
-	"currentVersion": "1.3.35",
+	"currentVersion": "1.3.43",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.32.30",
+			"minVersion": "1.33.5",
 			"name": "Base"
 		}
 	},
 	"deprecated": false,
 	"description": "Use Demisto REST APIs",
-	"downloads": 47146,
+	"downloads": 53753,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -285,7 +285,7 @@
 			"name": "Demisto REST API (Deprecated)"
 		}
 	],
-	"itemVersion": "1.3.35",
+	"itemVersion": "1.3.43",
 	"keywords": [
 		"Demisto REST API",
 		"Core REST API"
@@ -312,11 +312,13 @@
 		"email": "",
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
-	"tags": [],
+	"tags": [
+		"Trending"
+	],
 	"toServerVersion": "",
-	"updated": "2023-09-06T19:25:42Z",
+	"updated": "2023-12-20T20:22:48Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "6253250",
+	"versionInfo": "7220184",
 	"videos": []
 }
