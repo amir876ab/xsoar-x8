@@ -27,7 +27,7 @@
 	"id": "incident_errorcode",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Error Code",
@@ -41,7 +41,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Error Code",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
