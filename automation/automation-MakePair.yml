@@ -1,26 +1,26 @@
 args:
-- description: The array1
+- description: The array1.
   isArray: true
   name: value
-- description: The key or path to get values from the array1 (value)
+- description: The key or path to get values from the array1 (value).
   name: array1_key
-- description: The array2
+- description: The array2.
   isArray: true
   name: array2
-- description: The key or path to get values from the array2
+- description: The key or path to get values from the array2.
   name: array2_key
 - description: The key name in the output dictionary to which each of element of the
-    array1 are given
+    array1 are given.
   name: output_name1
   required: true
 - description: The key name in the output dictionary to which each of element of the
-    array2 are given
+    array2 are given.
   name: output_name2
   required: true
 - auto: PREDEFINED
   defaultValue: shorter
   description: How to deal with different size lists. (Choose from shorter, longer,
-    array1, or array2)
+    array1, or array2).
   name: determine_output_length_by
   predefined:
   - shorter
@@ -46,7 +46,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.8.0
-    itemVersion: 1.2.29
+    itemVersion: 1.2.54
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -54,19 +54,20 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: MakePair
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('MakePair', 'start', __line__())
-  ### pack version: 1.2.29
+  ### pack version: 1.2.54
 
 
   from itertools import zip_longest
