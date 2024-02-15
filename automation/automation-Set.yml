@@ -31,7 +31,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -47,7 +47,7 @@ pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  // pack version: 1.12.20
+  // pack version: 1.13.22
   var ec = {};
   var value;
   try {
@@ -58,12 +58,24 @@ script: |
               value = JSON.stringify(args.value)
           }
       } else {
-          value = JSON.parse(args.value);
+          if (!isNaN(args.value)) {
+              // This means that the value is a number
+              if (args.value.includes('.')) {
+                  // It is a decimal number
+                  value = JSON.parse(args.value);
+              }
+              else {
+                  // If the number is large
+                  value = BigInt(args.value);
+              }
+          }
+          else {
+              value = JSON.parse(args.value);
+          }
       }
-  } catch(err) {
+  } catch (err) {
       value = args.value;
   }
-
   ec[args.key] = value;
   var result = {
       Type: entryTypes.note,
@@ -77,7 +89,7 @@ script: |
   } else {
       result.EntryContext = ec;
   }
-
+  logDebug(`Setting ${JSON.stringify(result)}`)
   return result;
 scripttarget: 0
 system: true
