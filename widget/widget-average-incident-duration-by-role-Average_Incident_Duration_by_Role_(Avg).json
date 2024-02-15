@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "average-incident-duration-by-role",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Average Incident Duration by Role (Avg)",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
