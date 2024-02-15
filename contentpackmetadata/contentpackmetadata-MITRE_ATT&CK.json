@@ -39,20 +39,20 @@
 				"category": "Data Enrichment \u0026 Threat Intelligence",
 				"commands": [
 					{
-						"description": "Retrieves a limited number of indicators.",
-						"name": "mitre-get-indicators"
+						"description": "Looks up the reputation of the indicator.",
+						"name": "attack-pattern"
 					},
 					{
 						"description": "Shows the feed names and IDs from TAXII.",
 						"name": "mitre-show-feeds"
 					},
 					{
-						"description": "Looks up the reputation of the indicator.",
-						"name": "attack-pattern"
-					},
-					{
 						"description": "Gets the Attack Pattern value from the Attack Pattern ID.",
 						"name": "mitre-get-indicator-name"
+					},
+					{
+						"description": "Retrieves a limited number of indicators.",
+						"name": "mitre-get-indicators"
 					}
 				],
 				"description": "Use the MITRE ATT\u0026CK® feed to fetch MITRE’s Adversarial Tactics, Techniques, and Common Knowledge (ATT\u0026CK®) content. MITRE ATT\u0026CK is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations. The ATT\u0026CK knowledge base is used as a foundation for the development of specific threat models and methodologies in the private sector, in government, and in the cybersecurity product and service community.",
@@ -74,27 +74,27 @@
 		"wizard": null
 	},
 	"created": "2021-05-27T10:56:30Z",
-	"currentVersion": "1.1.22",
+	"currentVersion": "1.1.27",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.32.30",
+			"minVersion": "1.33.18",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.12.20",
+			"minVersion": "1.13.22",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "Fetches indicators from MITRE ATT\u0026CK.",
-	"downloads": 28156,
+	"downloads": 35008,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -111,7 +111,7 @@
 			"name": "MITRE ATT\u0026CK"
 		}
 	],
-	"itemVersion": "1.1.22",
+	"itemVersion": "1.1.27",
 	"keywords": [
 		"MITRE",
 		"Feed",
@@ -142,12 +142,14 @@
 	},
 	"tags": [
 		"TIM",
+		"Plug \u0026 Fetch",
+		"Free Feed",
 		"Threat Intelligence Management"
 	],
 	"toServerVersion": "",
-	"updated": "2023-09-05T09:26:59Z",
+	"updated": "2024-01-18T10:24:09Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "6238121",
+	"versionInfo": "769959",
 	"videos": []
 }
