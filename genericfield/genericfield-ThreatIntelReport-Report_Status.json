@@ -23,7 +23,7 @@
 	"id": "generic_ThreatIntelReport_reportstatus",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.0.10",
+	"itemVersion": "1.0.11",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Report Status",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Report Status",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
