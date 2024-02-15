@@ -2,13 +2,13 @@ args:
 - description: 'Input date or time in a format that is supported by the dateparser.parse()
     function as outlined here- https://dateparser.readthedocs.io/en/latest/#popular-formats.
     For example: ''2020-01-01'' or ''1999/02/03 12:01:59''. (Default is the current
-    time)'
+    time).'
   name: value
 - description: The time zone (e.g. -0400, +09:00) or time string to extract a time
-    zone
+    zone.
   name: time_zone
 - auto: PREDEFINED
-  description: The name of a key to choose which time component to return
+  description: The name of a key to choose which time component to return.
   name: key
   predefined:
   - year
@@ -88,7 +88,7 @@ comment: |-
   - h:m:s
   - H:m:s
   - hh:mm:ss
-  - HH:mm:ss
+  - HH:mm:ss.
 commonfields:
   id: TimeComponents
   version: -1
@@ -96,7 +96,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.2.29
+    itemVersion: 1.2.54
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -104,19 +104,20 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: TimeComponents
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('TimeComponents', 'start', __line__())
-  ### pack version: 1.2.29
+  ### pack version: 1.2.54
 
 
   import re
