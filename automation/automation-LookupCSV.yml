@@ -26,7 +26,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -41,6 +41,7 @@ mainengineinfo: {}
 name: LookupCSV
 nativeimage:
 - "8.3"
+- "8.4"
 outputs:
 - contextPath: LookupCSV.result
   description: List of result objects; either a list of dicts (with header_row) or
@@ -54,7 +55,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('LookupCSV', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
   """
   Given a CSV file in the War Room by entry ID, searches based on column and value.
   If the column is not present, simply parse the CSV into a list of lists or list of dicts (if header row supplied).
