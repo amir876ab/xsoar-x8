@@ -60,7 +60,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.32.31
+    itemVersion: 1.33.18
     packID: Base
     packName: Base
     packPropagationLabels:
@@ -72,8 +72,6 @@ dockerimage: demisto/python3:3.10.12.66339
 engineinfo: {}
 mainengineinfo: {}
 name: GetIncidentsByQuery
-nativeimage:
-- "8.3"
 outputs:
 - contextPath: GetIncidentsByQuery.Filename
   description: The output file name.
@@ -86,7 +84,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('GetIncidentsByQuery', 'start', __line__())
-  ### pack version: 1.32.31
+  ### pack version: 1.33.18
 
 
   import pickle
