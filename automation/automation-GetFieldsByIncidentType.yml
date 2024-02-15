@@ -43,7 +43,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -53,20 +53,21 @@ contentitemexportablefields:
     toServerVersion: ""
 dependson:
   must:
-  - '|||demisto-api-get'
-dockerimage: demisto/python3:3.10.12.63474
+  - '|||core-api-get'
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: GetFieldsByIncidentType
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('GetFieldsByIncidentType', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
   from pprint import pformat
@@ -74,7 +75,7 @@ script: |
 
   def main():
       # get incident fields
-      res = demisto.executeCommand('demisto-api-get', {'uri': '/incidentfields'})
+      res = demisto.executeCommand('core-api-get', {'uri': '/incidentfields'})
       if is_error(res):
           return_error(res[0]['Contents'])
 
