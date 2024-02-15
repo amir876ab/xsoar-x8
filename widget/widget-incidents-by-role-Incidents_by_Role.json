@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "incidents-by-role",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Incidents by Role",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
