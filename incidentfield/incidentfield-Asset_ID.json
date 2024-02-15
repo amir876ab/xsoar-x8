@@ -29,7 +29,7 @@
 	"id": "incident_assetid",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Asset ID",
@@ -43,7 +43,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Asset ID",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
