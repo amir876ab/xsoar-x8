@@ -1,8 +1,8 @@
 args:
-- description: The array to deduplicate
+- description: The array to deduplicate.
   isArray: true
   name: value
-- description: Comma-separated list of keys to identify a value
+- description: Comma-separated list of keys to identify a value.
   isArray: true
   name: keys
 comment: This transformer will remove elements of the array that contain an identical
@@ -14,7 +14,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.8.0
-    itemVersion: 1.2.29
+    itemVersion: 1.2.54
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -22,19 +22,20 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: DedupBy
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('DedupBy', 'start', __line__())
-  ### pack version: 1.2.29
+  ### pack version: 1.2.54
 
 
   from typing import Any, List, Union
@@ -97,6 +98,7 @@ script: |
       The custom key object class, which enables you to compare any types of data even in different types.
       This can be used for keys of dict.
       """
+
       def __init__(self, value: Any, path: Optional[str] = None) -> None:
           """
           Initialize the key.
