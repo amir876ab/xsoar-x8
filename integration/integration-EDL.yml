@@ -13,7 +13,6 @@ configuration:
 - additionalinfo: The query to run to update the indicators list. To view expected
     results, run the following command from the Cortex XSOAR CLI `!findIndicators
     query=<your query>`. An empty value may load unwanted indicators.
-  advanced: true
   display: Indicator Query
   name: indicators_query
   required: false
@@ -60,22 +59,31 @@ configuration:
   required: false
   section: Collect
   type: 0
-- additionalinfo: |-
-    Runs the service on this port from within Cortex XSOAR. Requires a unique port for each long-running integration instance. Do not use the same port for multiple instances.
-    Note: If you click the test button more than once, a failure may occur mistakenly indicating that the port is already in use.
+- additionalinfo: "Runs the service on this port from within Cortex XSOAR. Requires
+    a unique port for each long-running integration instance. Do not use the same
+    port for multiple instances.\nNote: If you click the test button more than once,
+    a failure may occur mistakenly indicating that the port is already in use. (For
+    Cortex XSOAR 8 and Cortex XSIAM) If you do not enter a Listen Port, an unused
+    port for the EDL will automatically be generated when the instance is saved. However,
+    if using an engine, you must enter a Listen Port.                     "
   display: Listen Port
   name: longRunningPort
   required: false
   section: Connect
   type: 0
-- additionalinfo: For use with HTTPS - the certificate that the service should use.
+- additionalinfo: (For Cortex XSOAR 6.x) For use with HTTPS - the certificate that
+    the service should use. (For Cortex XSOAR 8 and Cortex XSIAM) Custom certificates
+    are not supported.
   advanced: true
   display: Certificate (Required for HTTPS)
   name: certificate
   required: false
   section: Connect
   type: 12
-- additionalinfo: For use with HTTPS - the private key that the service should use.
+- additionalinfo: (For Cortex XSOAR 6.x) For use with HTTPS - the private key that
+    the service should use.  <br> (For Cortex XSOAR 8 and Cortex XSIAM) When using
+    an engine, configure a private API key. Not supported on the Cortex XSOAR​​ 8
+    or Cortex XSIAM server.
   advanced: true
   display: Private Key (Required for HTTPS)
   name: key
@@ -83,7 +91,8 @@ configuration:
   section: Connect
   type: 14
 - additionalinfo: Uses basic authentication for accessing the list. If empty, no authentication
-    is enforced.
+    is enforced. (For Cortex XSOAR 8 and Cortex XSIAM) Optional for engines, otherwise
+    mandatory.
   display: Username
   name: credentials
   required: false
@@ -119,6 +128,15 @@ configuration:
   defaultvalue: "false"
   display: Truncate URL length
   name: url_truncate
+  required: false
+  section: Collect
+  type: 8
+- additionalinfo: If selected, it will force the list to contain only ASCII chars
+    (non-ASCII URLs will be dropped).
+  advanced: true
+  defaultvalue: "false"
+  display: Enforce ASCII only
+  name: enforce_ascii
   required: false
   section: Collect
   type: 8
@@ -177,6 +195,13 @@ configuration:
   required: false
   section: Collect
   type: 8
+- additionalinfo: When set to true and the certificate and private key are provided,
+    the HSTS header is added to all requests.
+  defaultvalue: "false"
+  display: Add HSTS header
+  name: hsts_header
+  required: false
+  type: 8
 - additionalinfo: For use with McAfee Web Gateway format - set the indicator list
     type.
   advanced: true
@@ -215,7 +240,6 @@ configuration:
   type: 0
 - additionalinfo: If selected, CSV format appears in a textual webpage instead of
     initiating a file download.
-  advanced: true
   display: Show CSV format as Text
   name: csv_text
   required: false
@@ -263,10 +287,12 @@ configuration:
   required: false
   section: Connect
   type: 0
-- additionalinfo: This parameter will be deprecated from September 2023. Make sure
-    to adjust your default queries accordingly..
+- additionalinfo: 'When enabled, the integration queries the server using full queries
+    (overwrites the "Exported Fields" parameter). Advanced configuration to be used
+    only if instructed by Cortex XSOAR Support, or you have encountered log errors
+    in the form of: msgpack: invalid code.'
   advanced: true
-  display: 'Advanced: Use Legacy Queries (Deprecated)'
+  display: 'Advanced: Use Legacy Queries'
   name: use_legacy_query
   required: false
   section: Collect
@@ -279,7 +305,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 3.2.8
+    itemVersion: 3.2.17
     packID: EDL
     packName: Generic Export Indicators Service
     packPropagationLabels:
@@ -291,28 +317,36 @@ description: Use the Generic Export Indicators Service integration to provide an
   with a list of indicators as a service for the system indicators.
 detaileddescription: |-
   ## How to Access the Generic Export Indicators Service
-  Use one of the following methods to access the Generic Export Indicators Service to make sure your indicators are exported properly.
+
   If you have several Generic Export Indicators Service integration instances, make sure to use **different listening ports** to separate the outbound feeds.
   Note: After a successful configuration of an instance, if the 'test button' is clicked again, it may result in a failure due to an incorrect assumption that the port is already in use. Nevertheless, it is important to highlight that despite this issue, the instance will continue to function correctly.
 
+
+
+
+
+
   ### Access the Generic Export Indicators Service by URL and Port (HTTP)
-  In a web browser, go to **http://<cortex-xsoar-server-address>:<listen_port>**.
 
   **Note**: For security purposes, Cortex XSOAR recommends that you use HTTPS when accessing the indicator service through the URL and port. To do so, you must provide a certificate and private key, in the respective fields. In addition, make sure to provide credentials that must be used to connect to the integration instance.
-  ### Access the Generic Export Indicators Service by Instance Name (HTTPS)
 
-  **Note**: By default, the route to access the Generic Export Indicators Service by instance name will be open without security hardening and might expose you to network risks. Cortex XSOAR recommends that you use the service with a username and password. Click **Switch to username and password** and provide the credentials that must be used to access the service.
+  **Note**: Do not set `username` and `password` in the integration instance if you are running the integration via the hosted instance. The `username` and `password` fields are for usage when running the integration via an on-prem engine.
 
-  **Note**: For Cortex XSOAR version greater or equal to 8, if no `Listen Port` param was given and the test button was clicked, the test will run with the default port 1111. After pressing `save & exit` a new available port will be assigned to the `Listen Port` parameter automatically.
-  For a Cortex XSOAR version lower than 8, the `Listen Port` parameter is required.
+  **Note**: If no `Listen Port` param was given and the test button was clicked, the test will run with the default port 1111. After pressing `save & exit` a new free port will be assigned to the `Listen Port` parameter automatically.
 
-  To access the Generic Export Indicators Service by instance name, make sure *Instance execute external* is enabled.
+  **Note**: The External Dynamic List is not accessible via web browsers and you will receive an unauthorized error if accessing the External Dynamic List via a browser.
 
-  1. In Cortex XSOAR, go to **Settings > About > Troubleshooting**.
-  2. In the **Server Configuration** section, verify that the `instance.execute.external.<instance_name>` key is set to `true`. If this key does not exist, click **+ Add Server Configuration** and add the `instance.execute.external.<instance_name>` and set the value to `true`. See [this documentation](https://xsoar.pan.dev/docs/reference/articles/long-running-invoke) for further information.
-  3. In a web browser, go to `https://<cortex-xsoar-address>/instance/execute/<instance_name>/`.
+  **Note**: When using an instance that is running on an engine, you can access only with the `Listen Port`. Go to **http://<cortex-xsoar-server-address>:<listen_port>**.
 
-     In Multi Tenant environments, go to `https://<cortex-xsoar-address>/acc-<account name>/instance/execute/<instance_name>/`
+  1. To access the **Generic Export Indicators Service** by instance name, set up the **username** and **password** values in the **External Dynamic List Integration** page (**Settings & info** > **SETTINGS** > **Long Running Integrations**).
+  2. You can access the External Dynamic List at the following url: `https://edl-<cortex-xsoar-address>/xsoar/instance/execute/<instance-name>`.
+  3. For example to test via curl with an instance with instance name: `EDL_instance_1`, XSOAR address `my-xsoar-subdomain.us.paloaltonetworks.com` and credentials test/password:
+  ```
+  curl -v -u test:password https://edl-my-xsoar-subdomain.us.paloaltonetworks.com/xsoar/instance/execute/EDL_instance_1
+  ```
+
+
+
 
   #### Note:
   When using more than one server in High Availability (HA) mode, the External Dynamic List (EDL) should be configured to listen on a route, not on a port.
@@ -329,7 +363,7 @@ detaileddescription: |-
   | argument | Description | Example |
   | --- | --- | --- |
   | **n** | The maximum number of entries in the output. If no value is provided, will use the value specified in the *List Size* parameter configured in the instance configuration. | https://{cortex-xsoar_instance}/instance/execute/{ExportIndicators_instance_name}?n=50 |
-  | **s** | The starting entry index from which to export the indicators. | https://{cortex-xsoar_instance}/instance/execute/{ExportIndicators_instance_name}?s=10&n=50 |
+  | **s** | The starting entry index from which to export the indicators when index 0 is the first position. | https://{cortex-xsoar_instance}/instance/execute/{ExportIndicators_instance_name}?s=10&n=50 |
   | **v** | The output format. Supports `PAN-OS (text)`, `CSV`, `JSON`, `mwg` and `proxysg` (alias: `bluecoat`). | https://{cortex-xsoar_instance}/instance/execute/{ExportIndicators_instance_name}?v=json |
   | **q** | The query used to retrieve indicators from the system. If you are using this argument, no more than 100,000 can be exported through the EDL. | https://{cortex-xsoar_instance}/instance/execute/{ExportIndicators_instance_name}?q="type:ip and sourceBrand:my_source" |
   | **t** | Only with `mwg` format. The type indicated on the top of the exported list. Supports: string, applcontrol, dimension, category, ip, mediatype, number and regex. | https://{cortex-xsoar_instance}/instance/execute/{ExportIndicators_instance_name}?v=mwg&t=ip |
@@ -348,6 +382,7 @@ detaileddescription: |-
   - If constantly using different queries for the same EDL instance through the *q* inline argument, it is recommended to use different instances of the EDL (one for each query), and set each one with a default query for better performance.
   - When using the *q* inline argument, the number of exported indicators is limited to 100,000 due to performance reasons. To export more than 100,000 indicators, create a new instance of the integration with the desired Indicator Query and List Size.
 
+
   ---
   [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/edl)
 display: Generic Export Indicators Service
@@ -358,7 +393,7 @@ script:
   - arguments:
     - description: The query to run to update the indicators list. To view expected
         results, run the following command from the Cortex XSOAR CLI `!findIndicators
-        query=<your query>`
+        query=<your query>`.
       name: query
     - auto: PREDEFINED
       defaultValue: PAN-OS (text)
@@ -374,7 +409,8 @@ script:
     - description: Maximum number of items in the list.
       name: edl_size
     - defaultValue: "0"
-      description: The starting entry index from which to export the indicators.
+      description: The starting entry index from which to export the indicators when
+        index 0 is the first position.
       name: offset
     - auto: PREDEFINED
       defaultValue: string
@@ -466,7 +502,8 @@ script:
     - description: Maximum number of items in the list.
       name: edl_size
     - defaultValue: "0"
-      description: The starting entry index from which to export the indicators.
+      description: The starting entry index from which to export the indicators when
+        index 0 is the first position.
       name: offset
     - auto: PREDEFINED
       defaultValue: string
@@ -538,13 +575,13 @@ script:
       - "True"
     description: Updates values stored in the List (only available On-Demand).
     name: export-indicators-list-update
-  dockerimage: demisto/flask-nginx:1.0.0.69390
+  dockerimage: demisto/flask-nginx:1.0.0.83461
   longRunning: true
   longRunningPort: true
   runonce: false
   script: |
     register_module_line('EDL', 'start', __line__())
-    ### pack version: 3.2.8
+    ### pack version: 3.2.17
 
 
     import tempfile
@@ -823,6 +860,7 @@ script:
                 and the number of original indicators received from the server before formatting (int).
         """
         limit = request_args.offset + request_args.limit
+        offset = request_args.offset
         indicator_searcher = IndicatorsSearcher(
             filter_fields=request_args.fields_to_present,
             query=request_args.query,
@@ -844,6 +882,8 @@ script:
                 # continue searching iocs if 1) iocs was truncated or 2) got all available iocs
                 if count + 1 > limit:
                     break
+                elif count < offset:
+                    continue
                 elif line not in iocs_set:
                     iocs_set.add(line)
                     formatted_indicators += line
@@ -1245,6 +1285,7 @@ script:
             1) if drop_invalids, drop invalids (has invalid chars)
             2) if port_stripping, strip ports
         """
+        enforce_ascii = argToBoolean(demisto.params().get('enforce_ascii', False))
         ipv4_formatted_indicators = set()
         ipv6_formatted_indicators = set()
         iocs.seek(0)
@@ -1255,6 +1296,11 @@ script:
             indicator = ioc.get('value')
             if not indicator:
                 continue
+            if enforce_ascii:
+                try:
+                    indicator.encode('ascii')
+                except UnicodeEncodeError:
+                    continue
             ioc_type = ioc.get('indicator_type')
 
             if ioc_type not in [FeedIndicatorType.IP, FeedIndicatorType.IPv6,
@@ -1852,7 +1898,7 @@ script:
 
         proxy_cache_key $scheme$proxy_host$request_uri$extra_cache_key;
         $proxy_set_range_header
-
+        $extra_headers
         # Static test file
         location = /nginx-test {
             alias /var/lib/nginx/html/index.html;
@@ -1863,6 +1909,7 @@ script:
         location / {
             proxy_pass http://localhost:$serverport/;
             add_header X-Proxy-Cache $upstream_cache_status;
+            $extra_headers
             # allow bypassing the cache with an arg of nocache=1 ie http://server:7000/?nocache=1
             proxy_cache_bypass $arg_nocache;
             proxy_read_timeout $timeout;
@@ -1892,10 +1939,8 @@ script:
         certificate: str = params.get('certificate', '')
         private_key: str = params.get('key', '')
         timeout: str = params.get('timeout') or '3600'
-        ssl = ''
-        sslcerts = ''
+        ssl, extra_headers, sslcerts, proxy_set_range_header = '', '', '', ''
         serverport = port + 1
-        proxy_set_range_header = ''
         extra_cache_keys = []
         if (certificate and not private_key) or (private_key and not certificate):
             raise DemistoException('If using HTTPS connection, both certificate and private key should be provided.')
@@ -1907,6 +1952,8 @@ script:
                 f.write(private_key)
             ssl = 'ssl'  # to be included in the listen directive
             sslcerts = NGINX_SSL_CERTS
+            if argToBoolean(params.get("hsts_header", False)):
+                extra_headers = 'add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;'
         credentials = params.get('credentials') or {}
         if credentials.get('identifier'):
             extra_cache_keys.append("$http_authorization")
@@ -1919,7 +1966,8 @@ script:
         extra_cache_keys_str = ''.join(extra_cache_keys)
         server_conf = Template(template_str).safe_substitute(port=port, serverport=serverport, ssl=ssl,
                                                              sslcerts=sslcerts, extra_cache_key=extra_cache_keys_str,
-                                                             proxy_set_range_header=proxy_set_range_header, timeout=timeout)
+                                                             proxy_set_range_header=proxy_set_range_header, timeout=timeout,
+                                                             extra_headers=extra_headers)
         with open(file_path, mode='wt+') as f:
             f.write(server_conf)
 
