@@ -18,7 +18,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -39,7 +39,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('ExtractHTMLTables', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
   from bs4 import BeautifulSoup
 
@@ -80,7 +80,7 @@ script: |
           if len(table) > 0:
               tables.append(table)
       if len(tables) > 0:
-          return({
+          return ({
               'Type': entryTypes['note'],
               'Contents': 'Found {} tables in HTML.'.format(len(tables)),
               'ContentsFormat': formats['text'],
