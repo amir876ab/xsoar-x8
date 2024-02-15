@@ -26,7 +26,7 @@
 	"id": "incident_medianotification",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.12.20",
+	"itemVersion": "1.13.22",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Media Notification",
@@ -40,7 +40,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Media Notification",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
