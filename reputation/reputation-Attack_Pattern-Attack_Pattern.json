@@ -14,7 +14,7 @@
 	"formatScript": "ExtractAttackPattern",
 	"fromServerVersion": "6.2.0",
 	"id": "Attack Pattern",
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"layout": "STIX Attack Pattern",
 	"legacyNames": [
 		"STIX Attack Pattern"
@@ -52,6 +52,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "\\bT\\d{4}(?:\\.\\d{3})?\\b",
 	"reputationCommand": "",
 	"reputationScriptName": "",
