@@ -26,7 +26,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.29
+    itemVersion: 1.2.54
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -41,12 +41,13 @@ mainengineinfo: {}
 name: Cut
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('Cut', 'start', __line__())
-  ### pack version: 1.2.29
+  ### pack version: 1.2.54
 
 
 
