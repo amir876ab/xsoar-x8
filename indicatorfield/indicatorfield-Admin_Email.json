@@ -27,7 +27,7 @@
 	"id": "indicator_adminemail",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Admin Email",
@@ -41,7 +41,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Admin Email",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
