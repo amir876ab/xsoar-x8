@@ -99,7 +99,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.2.22
+    itemVersion: 3.0.5
     packID: HelloWorld
     packName: HelloWorld
     packPropagationLabels:
@@ -136,10 +136,11 @@ script:
   feed: true
   nativeimage:
   - "8.3"
+  - "8.4"
   runonce: false
   script: |
     register_module_line('HelloWorld Feed', 'start', __line__())
-    ### pack version: 1.2.22
+    ### pack version: 3.0.5
 
 
     """HelloWorld Feed Integration for Cortex XSOAR (aka Demisto)
