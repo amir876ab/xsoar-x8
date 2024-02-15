@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -18,15 +18,20 @@ description: |-
   - Email authenticity
   - Current incident severity
   - Microsoft Headers
+  - Risky users (XDR)
+  - Risky hosts (XDR).
 id: Calculate Severity - Generic v2
 inputs:
-- description: 'Array of all indicators associated with the incident. '
-  key: DBotScore
+- description: 'Array of all indicator values associated with the incident. '
+  key: DBotScoreIndicators
   playbookInputQuery: null
   required: false
   value:
     complex:
+      accessor: Indicator
       root: DBotScore
+      transformers:
+      - operator: uniq
 - description: CSV of usernames of critical users.
   key: CriticalUsers
   playbookInputQuery: null
@@ -82,6 +87,44 @@ inputs:
   required: false
   value:
     simple: ${Email.MicrosoftHeadersSeverityCheck}
+- description: An object of risky users and their corresponding scores, as outputted
+    by the "xdr-list-risky-users" command.
+  key: XDRRiskyUsers
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: RiskyUser
+      root: PaloAltoNetworksXDR
+      transformers:
+      - operator: uniq
+- description: An object of risky hosts and their corresponding scores, as outputted
+    by the "xdr-list-risky-hosts" command.
+  key: XDRRiskyHosts
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: RiskyHost
+      root: PaloAltoNetworksXDR
+      transformers:
+      - operator: uniq
+- description: The highest score (number) that was given to a DBotScore indicator.
+  key: DBotScoreMaxScore
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: Score
+      root: DBotScore
+      transformers:
+      - args:
+          descending:
+            value:
+              simple: "true"
+        operator: sort
+      - operator: uniq
+      - operator: FirstArrayElement
 name: Calculate Severity - Generic v2
 outputs:
 - contextPath: CriticalAssets
@@ -110,22 +153,23 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "19"
       - "18"
       - "24"
       - "16"
       - "27"
+      - "28"
+      - "29"
     note: false
     quietmode: 0
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      id: d3a3d290-90e0-4101-8f6c-aaa23bcc3e1c
+      id: 04b74656-7f4c-43a2-83fb-b011ea67ddad
       iscommand: false
       name: ""
       version: -1
-    taskid: d3a3d290-90e0-4101-8f6c-aaa23bcc3e1c
+    taskid: 04b74656-7f4c-43a2-83fb-b011ea67ddad
     timertriggers: []
     type: start
     view: |-
@@ -155,13 +199,13 @@ tasks:
     task:
       brand: Builtin
       description: Sets the incident severity to "Low".
-      id: cf430274-2565-4433-8dfe-a25a621b0a7c
+      id: 7545aa84-84de-4d25-8267-a4869df37f20
       iscommand: true
       name: Set incident severity to "Low"
       script: Builtin|||setIncident
       type: regular
       version: -1
-    taskid: cf430274-2565-4433-8dfe-a25a621b0a7c
+    taskid: 7545aa84-84de-4d25-8267-a4869df37f20
     timertriggers: []
     type: regular
     view: |-
@@ -191,13 +235,13 @@ tasks:
     task:
       brand: Builtin
       description: Sets the incident severity to "Medium".
-      id: 4def42ba-2984-40f3-83c0-ec484edc3b97
+      id: e85a5537-be94-4bdf-80c5-ecf7578a3bf4
       iscommand: true
       name: Set incident severity to "Medium"
       script: Builtin|||setIncident
       type: regular
       version: -1
-    taskid: 4def42ba-2984-40f3-83c0-ec484edc3b97
+    taskid: e85a5537-be94-4bdf-80c5-ecf7578a3bf4
     timertriggers: []
     type: regular
     view: |-
@@ -227,13 +271,13 @@ tasks:
     task:
       brand: Builtin
       description: Sets the incident severity to "High".
-      id: 132c16ae-fb69-4752-8f79-77923b14ca8c
+      id: 4bfe9fb2-b2fe-45fb-86ce-929ee39db485
       iscommand: true
       name: Set incident severity to "High"
       script: Builtin|||setIncident
       type: regular
       version: -1
-    taskid: 132c16ae-fb69-4752-8f79-77923b14ca8c
+    taskid: 4bfe9fb2-b2fe-45fb-86ce-929ee39db485
     timertriggers: []
     type: regular
     view: |-
@@ -255,12 +299,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 8ee3e05c-0da8-405d-8bb8-a2d7bbf7789f
+      id: 38bc2f72-5d8d-4de9-87bd-8661322de56f
       iscommand: false
       name: Done
       type: title
       version: -1
-    taskid: 8ee3e05c-0da8-405d-8bb8-a2d7bbf7789f
+    taskid: 38bc2f72-5d8d-4de9-87bd-8661322de56f
     timertriggers: []
     type: title
     view: |-
@@ -290,13 +334,13 @@ tasks:
     task:
       brand: Builtin
       description: Sets the incident severity to "Critical".
-      id: c7b36df3-1ae7-4b18-819f-9b85d96c4858
+      id: f8efdce3-590d-400b-8c57-2c759dd30b56
       iscommand: true
       name: Set incident severity to "Critical"
       script: Builtin|||setIncident
       type: regular
       version: -1
-    taskid: c7b36df3-1ae7-4b18-819f-9b85d96c4858
+    taskid: f8efdce3-590d-400b-8c57-2c759dd30b56
     timertriggers: []
     type: regular
     view: |-
@@ -359,7 +403,7 @@ tasks:
                       value:
                         simple: "4"
                 root: Severities
-          operator: isExists
+          operator: isNotEmpty
       label: Critical
     - condition:
       - - left:
@@ -411,8 +455,26 @@ tasks:
                     right:
                       value:
                         simple: "3"
+                  - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: Severities.XDRUserSeverity
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: High
+                  - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: Severities.XDRHostSeverity
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: High
                 root: Severities
-          operator: isExists
+          operator: isNotEmpty
       label: High
     - condition:
       - - ignorecase: true
@@ -464,8 +526,26 @@ tasks:
                     right:
                       value:
                         simple: "2"
+                  - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: Severities.XDRUserSeverity
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Medium
+                  - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: Severities.XDRHostSeverity
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Medium
                 root: Severities
-          operator: isExists
+          operator: isNotEmpty
       label: Medium
     - condition:
       - - left:
@@ -517,8 +597,26 @@ tasks:
                     right:
                       value:
                         simple: "1"
+                  - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: Severities.XDRUserSeverity
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Low
+                  - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: Severities.XDRHostSeverity
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Low
                 root: Severities
-          operator: isExists
+          operator: isNotEmpty
       label: Low
     continueonerrortype: ""
     id: "15"
@@ -544,12 +642,12 @@ tasks:
       brand: ""
       description: Determines the severity level based on the highest result of all
         severity calculations.
-      id: be9c8f44-63bb-4ba0-873b-2168cdb2ab06
+      id: b8bbb253-9e4b-406f-8253-31c2440b2338
       iscommand: false
       name: Determine incident severity
       type: condition
       version: -1
-    taskid: be9c8f44-63bb-4ba0-873b-2168cdb2ab06
+    taskid: b8bbb253-9e4b-406f-8253-31c2440b2338
     timertriggers: []
     type: condition
     view: |-
@@ -585,13 +683,13 @@ tasks:
     task:
       brand: ""
       description: Sets the current severity of the incident in the context.
-      id: 740266f8-5732-4285-81a1-d19dbea15988
+      id: f1f90aa7-e463-4206-8f96-13c6ff993ffa
       iscommand: false
       name: Get current incident severity
       script: Set
       type: regular
       version: -1
-    taskid: 740266f8-5732-4285-81a1-d19dbea15988
+    taskid: f1f90aa7-e463-4206-8f96-13c6ff993ffa
     timertriggers: []
     type: regular
     view: |-
@@ -650,61 +748,19 @@ tasks:
       description: |-
         Determines if a critical asset is associated with the investigation. The playbook returns a severity level of "Critical" if at least one critical asset is associated with the investigation.
         Critical assets refer to: users, user groups, endpoints and endpoint groups.
-      id: 29bad58f-8797-49ff-8681-68363fc8e9a5
+      id: 760f0822-6ee2-4c47-8ef3-82b9a87f8c00
       iscommand: false
       name: Calculate Severity - Critical Assets v2
       playbookId: Calculate Severity - Critical Assets v2
       type: playbook
       version: -1
-    taskid: 29bad58f-8797-49ff-8681-68363fc8e9a5
+    taskid: 760f0822-6ee2-4c47-8ef3-82b9a87f8c00
     timertriggers: []
     type: playbook
     view: |-
       {
         "position": {
           "x": 450,
-          "y": 200
-        }
-      }
-  "19":
-    continueonerrortype: ""
-    id: "19"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    loop:
-      exitCondition: ""
-      iscommand: false
-      max: 0
-      wait: 1
-    nexttasks:
-      '#none#':
-      - "15"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      DBotScore:
-        complex:
-          root: inputs.DBotScore
-    separatecontext: true
-    skipunavailable: false
-    task:
-      brand: ""
-      description: Calculates the incident severity level according to the highest
-        indicator DBotScore.
-      id: b20ff842-f44e-4314-8d7a-ce51e1d69c16
-      iscommand: false
-      name: Calculate Severity By Highest DBotScore
-      playbookId: Calculate Severity By Highest DBotScore
-      type: playbook
-      version: -1
-    taskid: b20ff842-f44e-4314-8d7a-ce51e1d69c16
-    timertriggers: []
-    type: playbook
-    view: |-
-      {
-        "position": {
-          "x": 1370,
           "y": 200
         }
       }
@@ -734,13 +790,13 @@ tasks:
       brand: ""
       description: Calculates a severity according to the verdict coming from the
         CheckEmailAuthenticity script.
-      id: 1a13e3e0-18fb-4c0f-8866-9d56b0df1017
+      id: 86c4ba1f-fddb-4f6b-8712-c5b0fc6bb55a
       iscommand: false
       name: Calculate Severity By Email Authenticity
       playbookName: Calculate Severity By Email Authenticity
       type: playbook
       version: -1
-    taskid: 1a13e3e0-18fb-4c0f-8866-9d56b0df1017
+    taskid: 86c4ba1f-fddb-4f6b-8712-c5b0fc6bb55a
     timertriggers: []
     type: playbook
     view: |-
@@ -770,13 +826,13 @@ tasks:
     task:
       brand: Builtin
       description: Sets the incident severity to "Unknown".
-      id: e042ddb9-d13d-492a-8ac4-95edfbf9a927
+      id: 6f297d0f-4a63-4183-8414-75d3de056b23
       iscommand: true
       name: Set incident severity level to "Unknown"
       script: Builtin|||setIncident
       type: regular
       version: -1
-    taskid: e042ddb9-d13d-492a-8ac4-95edfbf9a927
+    taskid: 6f297d0f-4a63-4183-8414-75d3de056b23
     timertriggers: []
     type: regular
     view: |-
@@ -801,20 +857,21 @@ tasks:
       key:
         simple: Severities.MicrosoftHeadersSeverityCheck
       value:
-        simple: ${inputs.MicrosoftHeadersSeverityCheck}
+        complex:
+          root: inputs.MicrosoftHeadersSeverityCheck
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: Calculates the severity after processing the PCL, BCL and PCL values
         inside Microsoft headers. If no value is entered, nothing is returned.
-      id: ec346f9c-5097-4f41-81f7-2fa0243a7a2c
+      id: 2b705d3f-b982-4480-806a-42ab6f3026be
       iscommand: false
       name: Set Microsoft Headers Severity Check
       script: Set
       type: regular
       version: -1
-    taskid: ec346f9c-5097-4f41-81f7-2fa0243a7a2c
+    taskid: 2b705d3f-b982-4480-806a-42ab6f3026be
     timertriggers: []
     type: regular
     view: |-
@@ -851,18 +908,116 @@ tasks:
       brand: ""
       description: This task verifies that the playbook input "MicrosoftHeadersSeverityCheck"
         is not empty.
-      id: a69eaf95-968e-4032-8bfd-206412ffc322
+      id: 6e24dd7e-cb39-474c-87e1-8a94d2e42577
       iscommand: false
       name: Check if MicrosoftHeadersSeverityCheck is not empty
       type: condition
       version: -1
-    taskid: a69eaf95-968e-4032-8bfd-206412ffc322
+    taskid: 6e24dd7e-cb39-474c-87e1-8a94d2e42577
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
           "x": 1840,
+          "y": 200
+        }
+      }
+  "28":
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      XDRRiskyHosts:
+        complex:
+          root: inputs.XDRRiskyHosts
+      XDRRiskyUsers:
+        complex:
+          root: inputs.XDRRiskyUsers
+    separatecontext: true
+    skipunavailable: true
+    task:
+      brand: ""
+      id: b771e4bf-bbac-4d17-8a2d-e042e64cf9ec
+      iscommand: false
+      name: Calculate Severity - Cortex XDR Risky Assets
+      playbookName: Calculate Severity - Cortex XDR Risky Assets
+      type: playbook
+      version: -1
+    taskid: b771e4bf-bbac-4d17-8a2d-e042e64cf9ec
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -450,
+          "y": 200
+        }
+      }
+  "29":
+    continueonerrortype: ""
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      DBotScoreIndicators:
+        complex:
+          root: inputs.DBotScoreIndicators
+          transformers:
+          - operator: uniq
+      DBotScoreMaxScore:
+        complex:
+          root: inputs.DBotScoreMaxScore
+          transformers:
+          - args:
+              descending:
+                value:
+                  simple: "true"
+            operator: sort
+          - operator: uniq
+          - operator: FirstArrayElement
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Calculates the incident severity level according to the highest
+        DBotScore.
+      id: 92cbfafa-4642-43ae-8756-56081a975704
+      iscommand: false
+      name: Calculate Severity By Highest DBotScore
+      playbookId: Calculate Severity By Highest DBotScore
+      type: playbook
+      version: -1
+    taskid: 92cbfafa-4642-43ae-8756-56081a975704
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1360,
           "y": 200
         }
       }
@@ -880,8 +1035,8 @@ view: |-
     "paper": {
       "dimensions": {
         "height": 1115,
-        "width": 2350,
-        "x": -20,
+        "width": 2780,
+        "x": -450,
         "y": 50
       }
     }
