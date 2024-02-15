@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -83,7 +83,8 @@ tasks:
           left:
             iscontext: true
             value:
-              simple: inputs.AuthenticateEmail
+              complex:
+                root: inputs.AuthenticateEmail
           operator: isEqualString
           right:
             value:
@@ -94,7 +95,7 @@ tasks:
               complex:
                 accessor: HeadersMap
                 root: Email
-          operator: isExists
+          operator: isNotEmpty
       label: "yes"
     continueonerrortype: ""
     id: "1"
@@ -189,7 +190,6 @@ tasks:
       iscommand: false
       name: Authenticate email
       script: CheckEmailAuthenticity
-      scriptName: CheckEmailAuthenticity
       type: regular
       version: -1
     taskid: 09550a3e-968f-410f-8da9-a42da68c2bb7
@@ -311,10 +311,12 @@ tasks:
   "6":
     conditions:
     - condition:
-      - - left:
+      - - ignorecase: true
+          left:
             iscontext: true
             value:
-              simple: inputs.CheckMicrosoftHeaders
+              complex:
+                root: inputs.CheckMicrosoftHeaders
           operator: isEqualString
           right:
             value:
