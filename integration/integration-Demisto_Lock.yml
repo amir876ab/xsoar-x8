@@ -23,7 +23,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.0.6
+    itemVersion: 1.0.7
     packID: DemistoLocking
     packName: Cortex Lock
     packPropagationLabels:
@@ -72,7 +72,7 @@ script:
     name: demisto-lock-release-all
   runonce: false
   script: |
-    // pack version: 1.0.6
+    // pack version: 1.0.7
     function guid() {
       function s4() {
         return Math.floor((1 + Math.random()) * 0x10000)
