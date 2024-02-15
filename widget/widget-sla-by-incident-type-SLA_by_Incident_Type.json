@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "sla-by-incident-type",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "SLA by Incident Type",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
