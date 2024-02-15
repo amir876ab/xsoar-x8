@@ -26,7 +26,7 @@
 	"id": "generic_ThreatIntelReport_targeting",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.0.10",
+	"itemVersion": "1.0.11",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Targeting",
@@ -40,7 +40,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Targeting",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
