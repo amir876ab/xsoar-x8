@@ -1,6 +1,7 @@
 args:
 - default: true
   description: The list to apply the transformer to.
+  isArray: true
   name: value
   required: true
 - description: The attribute in the collection items to check equality against `equalTo`.
@@ -25,7 +26,7 @@ comment: "Return all items from the list where their given 'field' attribute is 
   - value=[{ \"name\": \"192.1,0.82\", \"type\": \"IP\" }, { \"name\": \"myFile.txt\",
   \"type\": \"File\" }, { \"name\": \"172.0.0.2\", \"type\": \"IP\" }]\n - field='type'\n
   - equalTo='IP'\n - getField='name' \n\nWill return all items names where field 'type'
-  equals 'IP' - ['192.1,0.82', '172.0.0.2']"
+  equals 'IP' - ['192.1,0.82', '172.0.0.2']."
 commonfields:
   id: WhereFieldEquals
   version: -1
@@ -33,7 +34,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.2.29
+    itemVersion: 1.2.54
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -41,70 +42,70 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: WhereFieldEquals
-nativeimage:
-- "8.3"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  register_module_line('WhereFieldEquals', 'start', __line__())
-  ### pack version: 1.2.29
+  // pack version: 1.2.54
+  function toBoolean(value) {
+      if (typeof(value) === 'string') {
+          if (['yes', 'true'].indexOf(value.toLowerCase()) != -1) {
+              return true;
+          } else if (['no', 'false'].indexOf(value.toLowerCase()) != -1) {
+              return false;
+          }
+          throw 'Argument does not contain a valid boolean-like value';
+      }
+      return value ? true : false;
+  }
 
 
+  function whereFieldEquals() {
+      // Handles the operation of finding a list of objects where the given field is present under the specified location.
 
+      const valuesToSearch = argToList(args.value);
+      const field = args.field;
+      const equalTo = args.equalTo;
+      const getField = args.getField;
 
-  def where_field_equals(args):
-      """
-      Handles the operation of finding a list of objects where the given field is present under the
-      specified location.
-      :param args: dictionary containing the Demisto arguments object.
-      :return: hr_string as a human readable string. entry_context as a dictionary containing the
-      results.
-      """
-      values_to_search = argToList(args.get('value'))
-      field = args.get('field')
-      equal_to = args.get('equalTo')
-      get_field = args.get('getField')
+      const foundMatches = [];
+      for (const dictItem of valuesToSearch) {
+          if (typeof dictItem === 'object' && dictItem[field] === equalTo) {
+              if (getField) {
+                  const value = dictItem[getField];
+                  if (value) {
+                      foundMatches.push(value);
+                  }
+              } else {
+                  foundMatches.push(dictItem);
+              }
+          }
+      }
 
-      found_matches = []
-      for dict_item in values_to_search:
-          if isinstance(dict_item, dict) and dict_item.get(field) == equal_to:
-              if get_field:
-                  value = dict_item.get(get_field)
-                  if value:
-                      found_matches.append(value)
-              else:
-                  found_matches.append(dict_item)
+      if (foundMatches.length === 1) {
+          return foundMatches[0];
+      }
 
-      if len(found_matches) == 1:
-          return found_matches[0]
+      if (toBoolean(args.stringify || 'true')) {
+          return JSON.stringify(foundMatches);
+      } else {
+          return foundMatches;
+      }
+  }
 
-      if argToBoolean(args.get('stringify', 'true')):
-          return json.dumps(found_matches, separators=(',', ':'), ensure_ascii=False)
-      else:
-          return found_matches
-
-
-  def main():
-      args = demisto.args()
-      demisto.results(where_field_equals(args))
-
-
-  # python2 uses __builtin__ python3 uses builtins
-  if __name__ == "__builtin__" or __name__ == "builtins":
-      main()
-
-  register_module_line('WhereFieldEquals', 'end', __line__())
+  try {
+      return whereFieldEquals();
+  } catch (error) {
+      throw 'Error occurred while running the script:\n' + error;
+  }
 scripttarget: 0
-subtype: python3
 system: true
 tags:
 - transformer
 - general
 - entirelist
-type: python
+type: javascript
