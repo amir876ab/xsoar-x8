@@ -25,7 +25,7 @@
 	"id": "incident_postalcode",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.12.20",
+	"itemVersion": "1.13.22",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Postal Code",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Postal Code",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
