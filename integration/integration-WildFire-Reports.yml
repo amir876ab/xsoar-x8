@@ -37,7 +37,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.1.33
+    itemVersion: 2.1.39
     packID: Palo_Alto_Networks_WildFire
     packName: WildFire by Palo Alto Networks
     packPropagationLabels:
@@ -70,12 +70,10 @@ script:
     description: Retrieves results for a file hash using WildFire.
     name: internal-wildfire-get-report
   dockerimage: demisto/python3:3.10.12.68714
-  nativeimage:
-  - "8.3"
   runonce: false
   script: |
     register_module_line('WildFire-Reports', 'start', __line__())
-    ### pack version: 2.1.33
+    ### pack version: 2.1.39
 
     import urllib3
     # Disable insecure warnings
