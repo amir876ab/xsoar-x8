@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -255,6 +255,8 @@ tasks:
                 value:
                   simple: "60"
             operator: multiply
+          - operator: round
+          - operator: Stringify
     separatecontext: false
     skipunavailable: false
     task:
