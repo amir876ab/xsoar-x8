@@ -23,7 +23,7 @@
 	"id": "incident_usersid",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "User SID",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "User SID",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
