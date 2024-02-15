@@ -23,7 +23,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -31,41 +31,42 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: ExtractIndicatorsFromTextFile
 nativeimage:
 - "8.3"
+- "8.4"
 outputs:
 - contextPath: Domain.Name
-  description: Extracted domains
+  description: Extracted domains.
   type: string
 - contextPath: Account.Email.Address
-  description: Extracted emails
+  description: Extracted emails.
   type: string
 - contextPath: File.MD5
-  description: Extracted MD5
+  description: Extracted MD5.
   type: string
 - contextPath: File.SHA1
-  description: Extracted SHA1
+  description: Extracted SHA1.
   type: string
 - contextPath: File.SHA256
-  description: Extracted SHA256
+  description: Extracted SHA256.
   type: string
 - contextPath: IP.Address
-  description: Extracted IPs
+  description: Extracted IPs.
   type: string
 - contextPath: URL.Data
-  description: Extracted URLs
+  description: Extracted URLs.
   type: string
 pswd: ""
 runas: DBotRole
 runonce: false
 script: |
   register_module_line('ExtractIndicatorsFromTextFile', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
 
