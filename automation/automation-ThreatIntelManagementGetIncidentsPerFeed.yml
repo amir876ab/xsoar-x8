@@ -11,7 +11,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.1.5
+    itemVersion: 1.1.7
     packID: ThreatIntelligenceManagement
     packName: Threat Intelligence Management
     packPropagationLabels:
@@ -23,14 +23,12 @@ dockerimage: demisto/python3:3.10.12.63474
 engineinfo: {}
 mainengineinfo: {}
 name: ThreatIntelManagementGetIncidentsPerFeed
-nativeimage:
-- "8.3"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('ThreatIntelManagementGetIncidentsPerFeed', 'start', __line__())
-  ### pack version: 1.1.5
+  ### pack version: 1.1.7
 
 
 
