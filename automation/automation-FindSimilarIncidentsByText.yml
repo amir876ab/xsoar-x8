@@ -57,7 +57,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.32.31
+    itemVersion: 1.33.18
     packID: Base
     packName: Base
     packPropagationLabels:
@@ -71,8 +71,6 @@ enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: FindSimilarIncidentsByText
-nativeimage:
-- "8.3"
 outputs:
 - contextPath: similarIncident.rawId
   description: Similar incident ID.
@@ -91,7 +89,7 @@ runas: DBotWeakRole
 runonce: true
 script: |
   register_module_line('FindSimilarIncidentsByText', 'start', __line__())
-  ### pack version: 1.32.31
+  ### pack version: 1.33.18
   # type: ignore
   import dateutil.parser
   from sklearn.feature_extraction.text import TfidfVectorizer
