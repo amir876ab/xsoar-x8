@@ -92,7 +92,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.6.10
+    itemVersion: 2.6.15
     packID: VirusTotal
     packName: VirusTotal
     packPropagationLabels:
@@ -126,7 +126,7 @@ script:
     - defaultValue: "40"
       description: The maximum number of results to return.
       name: limit
-    - description: VT Retrohunt job's ID
+    - description: VT Retrohunt job's ID.
       name: job_id
     description: Gets the matches from a given retrohunt job's id or the latest by
       default.
@@ -134,14 +134,12 @@ script:
   - arguments: []
     description: This command will reset your fetch history.
     name: vt-retrohunt-reset-fetch-indicators
-  dockerimage: demisto/python3:3.10.12.66339
+  dockerimage: demisto/python3:3.10.13.84405
   feed: true
-  nativeimage:
-  - "8.3"
   runonce: false
   script: |
     register_module_line('VirusTotal Retrohunt Feed', 'start', __line__())
-    ### pack version: 2.6.10
+    ### pack version: 2.6.15
 
 
     import urllib3
