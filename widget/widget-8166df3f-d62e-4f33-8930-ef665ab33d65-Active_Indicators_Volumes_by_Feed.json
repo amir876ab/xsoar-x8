@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "8166df3f-d62e-4f33-8930-ef665ab33d65",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Active Indicators Volumes by Feed",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
