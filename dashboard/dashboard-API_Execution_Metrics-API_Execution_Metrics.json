@@ -8,7 +8,7 @@
 	"hideSearch": false,
 	"id": "API Execution Metrics",
 	"isCommon": true,
-	"itemVersion": "1.3.6",
+	"itemVersion": "1.3.8",
 	"layout": [
 		{
 			"forceRange": false,
@@ -115,6 +115,7 @@
 				],
 				"query": "type:integration and metricType:",
 				"shouldCommit": false,
+				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -171,6 +172,7 @@
 				],
 				"query": "type:integration and apiResponseType:QuotaError",
 				"shouldCommit": false,
+				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -281,6 +283,7 @@
 				"query": "type:integration and instance:\"VirusTotal (API v3)_instance_1\" or \"VirusTotal (API v3)_instance_1_copy\"",
 				"sequenceNumber": 409396,
 				"shouldCommit": false,
+				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -423,6 +426,7 @@
 				"query": "type:integration and command:domain or command:url or command:ip or command:file",
 				"shouldCommit": true,
 				"size": 5,
+				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -548,6 +552,7 @@
 				"query": "type:integration and instance:\"urlscan.io_instance_1\"",
 				"sequenceNumber": 409396,
 				"shouldCommit": true,
+				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -656,6 +661,7 @@
 				],
 				"query": "type:integration and instance:\"Microsoft Defender Advanced Threat Protection_instance_1\"",
 				"shouldCommit": false,
+				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -764,6 +770,7 @@
 				],
 				"query": "type:integration and instance:\"MicrosoftGraphMail_instance_1\"",
 				"shouldCommit": false,
+				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -902,6 +909,7 @@
 				"propagationLabels": [],
 				"query": "type:integration and instance:\"JoeSecurityV2_instance_1\"",
 				"shouldCommit": false,
+				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -1014,6 +1022,7 @@
 				"propagationLabels": [],
 				"query": "type:integration and instance:\"rapid7_threat_command_instance_1\" or \"rapid7_threat_command_instance_1_copy\"",
 				"shouldCommit": false,
+				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -1022,6 +1031,115 @@
 			},
 			"x": 0,
 			"y": 8
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "9e8acc20-8d3a-11ee-a736-df621984533b",
+			"id": "9e8acc20-8d3a-11ee-a736-df621984533b",
+			"reflectDimensions": true,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "metrics",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "hours",
+						"byTo": "days",
+						"field": "",
+						"fromValue": 3,
+						"toValue": 0
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "API Call Results for Email Hippo",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2022-10-30T12:01:15.237569307+02:00",
+				"name": "API Call Results for Email Hippo",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"customGroupBy": [
+						null,
+						{
+							" Success": {
+								"conditions": [
+									[
+										{
+											"field": "apiResponseType",
+											"operator": "isEqualCaseString",
+											"right": "Successful",
+											"type": "string"
+										}
+									]
+								],
+								"name": " Success"
+							},
+							"General Error": {
+								"conditions": [
+									[
+										{
+											"field": "apiResponseType",
+											"operator": "isEqualCaseString",
+											"right": "GeneralError",
+											"type": "string"
+										}
+									]
+								],
+								"name": "General Error"
+							},
+							"Quota Error": {
+								"conditions": [
+									[
+										{
+											"field": "apiResponseType",
+											"operator": "isEqualCaseString",
+											"right": "QuotaError",
+											"type": "string"
+										}
+									]
+								],
+								"name": "Quota Error"
+							}
+						}
+					],
+					"groupBy": [
+						"modified(h)",
+						"apiResponseType"
+					],
+					"keys": [
+						"sum|totalAPICalls"
+					],
+					"referenceLine": {},
+					"timeFrame": "hours",
+					"valuesFormat": "abbreviated",
+					"xAxisLabel": "Time",
+					"yAxisLabel": "Request Counts"
+				},
+				"prevName": "API Call Results for Email Hippo",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:integration and instance:\"Email Hippo_instance_1\"",
+				"shouldCommit": false,
+				"sizeInBytes": 0,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "line"
+			},
+			"x": 8,
+			"y": 9
 		}
 	],
 	"locked": false,
