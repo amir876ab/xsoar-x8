@@ -18,16 +18,19 @@
 				"name": "Threat Intelligence Feeds"
 			},
 			{
-				"name": "Cost Optimization Instances"
+				"name": "Incidents"
 			},
 			{
 				"name": "Troubleshooting Instances"
 			},
 			{
-				"name": "Troubleshooting Playbooks"
+				"name": "My Threat Landscape"
 			},
 			{
-				"name": "Incidents"
+				"name": "SLA"
+			},
+			{
+				"name": "API Execution Metrics"
 			},
 			{
 				"name": "My Dashboard"
@@ -36,13 +39,10 @@
 				"name": "Cost Optimization Playbooks"
 			},
 			{
-				"name": "API Execution Metrics"
+				"name": "Cost Optimization Instances"
 			},
 			{
-				"name": "SLA"
-			},
-			{
-				"name": "My Threat Landscape"
+				"name": "Troubleshooting Playbooks"
 			}
 		],
 		"genericfield": null,
@@ -60,27 +60,27 @@
 		"wizard": null
 	},
 	"created": "2020-11-09T18:44:34Z",
-	"currentVersion": "1.3.6",
+	"currentVersion": "1.3.8",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.32.24",
+			"minVersion": "1.33.5",
 			"name": "Base"
 		},
 		"CommonWidgets": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.2.28",
+			"minVersion": "1.2.40",
 			"name": "Common Widgets"
 		}
 	},
 	"deprecated": false,
 	"description": "Frequently used dashboards pack.",
-	"downloads": 12989,
+	"downloads": 16107,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -92,7 +92,7 @@
 	"id": "CommonDashboards",
 	"installMessage": "",
 	"integrations": [],
-	"itemVersion": "1.3.6",
+	"itemVersion": "1.3.8",
 	"keywords": [],
 	"legacy": true,
 	"modules": [],
@@ -118,9 +118,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-08-06T09:26:19Z",
+	"updated": "2023-12-18T20:23:21Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "5969979",
+	"versionInfo": "7199151",
 	"videos": []
 }
