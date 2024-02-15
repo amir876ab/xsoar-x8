@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.1.1
+    itemVersion: 1.1.2
     packID: TIM_SIEM
     packName: TIM - SIEM Integration
     packPropagationLabels:
