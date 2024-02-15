@@ -22,7 +22,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -30,7 +30,7 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/ssdeep:1.0.0.23743
+dockerimage: demisto/ssdeep:1.0.0.82649
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
@@ -48,7 +48,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('SSDeepSimilarity', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
   import traceback
