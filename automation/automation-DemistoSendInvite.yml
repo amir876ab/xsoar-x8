@@ -1,9 +1,9 @@
 args:
 - default: true
-  description: Email of user being invited
+  description: Email of user being invited.
   name: email
   required: true
-- description: Roles of invited user
+- description: Roles of invited user.
   name: roles
   required: true
 comment: Deprecated. No available replacement.
@@ -14,7 +14,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.3.35
+    itemVersion: 1.3.43
     packID: DemistoRESTAPI
     packName: Cortex REST API
     packPropagationLabels:
@@ -24,8 +24,8 @@ contentitemexportablefields:
     toServerVersion: ""
 dependson:
   must:
-  - demisto-api-post
-  - demisto-api-get
+  - core-api-post
+  - core-api-get
 deprecated: true
 enabled: true
 engineinfo: {}
@@ -35,8 +35,8 @@ pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  // pack version: 1.3.35
-  var res = executeCommand('demisto-api-get', {uri: '/roles'});
+  // pack version: 1.3.43
+  var res = executeCommand('core-api-get', {uri: '/roles'});
   if (isError(res[0])) {
       throw res[0].Contents;
   }
@@ -58,7 +58,7 @@ script: |
       roles: roleIDs
   };
 
-  res = executeCommand('demisto-api-post', {uri: '/invite', body: body});
+  res = executeCommand('core-api-post', {uri: '/invite', body: body});
   if (isError(res[0])) {
       throw res[0].Contents;
   }
