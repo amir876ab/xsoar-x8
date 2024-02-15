@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "5139168e-f555-442c-84a6-ee98aac55c1e",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Malicious/Suspicious Indicators in Incidents",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
