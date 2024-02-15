@@ -25,7 +25,7 @@
 	"id": "indicator_surname",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Surname",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Surname",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
