@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "mean-time-to-resolution-occurred",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Mean Time to Resolution (Occurred)",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
