@@ -12,7 +12,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -20,19 +20,20 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.80593
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: ExtractEmailV2
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('ExtractEmailV2', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
 
@@ -83,10 +84,7 @@ script: |
           Boolean: True if it's not a common file extension
 
       """
-      if email_address.split(".")[-1] not in COMMON_FILE_EXT:
-          return True
-      else:
-          return False
+      return email_address.split(".")[-1] not in COMMON_FILE_EXT
 
 
   def refang_email(email_address: str) -> str:
@@ -126,24 +124,30 @@ script: |
   def main():
       list_results = []
 
-      emails = argToList(demisto.args().get('input'))
+      try:
+          emails = argToList(demisto.args().get('input'))
 
-      clean_emails = [extract_email(address) for address in emails]
+          clean_emails = [extract_email(address) for address in emails]
 
-      list_results = [refang_email(email_address) for email_address in clean_emails]
+          list_results = [refang_email(email_address) for email_address in clean_emails]
 
-      output = [
-          {
-              'Type': entryTypes['note'],
-              'ContentsFormat': formats['json'],
-              'Contents': [email_address] if email_address else [],
-              'EntryContext': {'Email': email_address} if email_address else {},
-          } for email_address in list_results]
+          output = [
+              {
+                  'Type': entryTypes['note'],
+                  'ContentsFormat': formats['json'],
+                  'Contents': [email_address] if email_address else [],
+                  'EntryContext': {'Email': email_address} if email_address else {},
+              } for email_address in list_results]
 
-      if output:
-          return_results(output)
-      else:
-          return_results('')
+          if output:
+              return_results(output)
+          else:
+              return_results('')
+
+      except Exception as e:
+          return_error(
+              f'Failed to execute the automation. Error: \n{str(e)}'
+          )
 
 
   if __name__ in ('__main__', 'builtin', 'builtins'):
