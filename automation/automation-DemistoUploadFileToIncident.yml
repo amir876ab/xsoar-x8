@@ -1,10 +1,10 @@
 args:
-- description: ID of incident to upload to
+- description: ID of incident to upload to.
   name: incident_id
   required: true
-- description: Entry ID of file to upload
+- description: Entry ID of file to upload.
   name: entryID
-- description: Request body
+- description: Request body.
   name: body
 comment: Deprecated. Use the *DemistoUploadFileV2* script instead. Copies a file from
   this incident to the specified incident. The file is uploaded as an attachment to
@@ -16,7 +16,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.3.35
+    itemVersion: 1.3.43
     packID: DemistoRESTAPI
     packName: Cortex REST API
     packPropagationLabels:
@@ -26,9 +26,9 @@ contentitemexportablefields:
     toServerVersion: ""
 dependson:
   must:
-  - demisto-api-multipart
+  - core-api-multipart
 deprecated: true
-dockerimage: demisto/python:2.7.18.24066
+dockerimage: demisto/python:2.7.18.76921
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
@@ -42,7 +42,7 @@ script: |-
   entry_id = args.get('entryID')
   body = args.get('body', None)
 
-  response = demisto.executeCommand("demisto-api-multipart", {"uri":"incident/upload/{}".format(incident_id),"entryID":entry_id,"body":body})[0]
+  response = demisto.executeCommand("core-api-multipart", {"uri":"incident/upload/{}".format(incident_id),"entryID":entry_id,"body":body})[0]
   if isError(response):
       demisto.results({ "Type" : entryTypes["error"], "ContentsFormat" : formats["text"], "Contents" : "There was an issue uploading file.  Check API key and input arguments."})
   else:
