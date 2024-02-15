@@ -58,20 +58,20 @@
 		"wizard": null
 	},
 	"created": "2020-06-30T20:27:10Z",
-	"currentVersion": "1.2.25",
+	"currentVersion": "1.2.28",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.32.30",
+			"minVersion": "1.32.40",
 			"name": "Base"
 		}
 	},
 	"deprecated": false,
 	"description": "Converts URLs, PDF files, and emails to an image file or PDF file.",
-	"downloads": 44212,
+	"downloads": 47650,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -88,7 +88,7 @@
 			"name": "Rasterize"
 		}
 	],
-	"itemVersion": "1.2.25",
+	"itemVersion": "1.2.28",
 	"keywords": [],
 	"legacy": true,
 	"modules": [],
@@ -113,13 +113,11 @@
 		"email": "",
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
-	"tags": [
-		"Trending"
-	],
+	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-09-04T09:22:30Z",
+	"updated": "2023-10-25T19:28:40Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "6230967",
+	"versionInfo": "6704012",
 	"videos": []
 }
