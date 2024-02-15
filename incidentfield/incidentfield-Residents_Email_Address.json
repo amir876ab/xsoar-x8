@@ -43,7 +43,7 @@
 	"id": "incident_residentsemailaddress",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.12.20",
+	"itemVersion": "1.13.22",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Residents Email Address",
@@ -57,7 +57,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Residents Email Address",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
