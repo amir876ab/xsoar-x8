@@ -1,11 +1,11 @@
 args:
-- description: Value to check
+- description: Value to check.
   name: value
   required: true
-- description: Lower date range
+- description: Lower date range.
   name: begin_date
   required: true
-- description: Upper date range
+- description: Upper date range.
   name: end_date
   required: true
 comment: Whether value is within a date range.
@@ -16,7 +16,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.29
+    itemVersion: 1.2.54
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -24,13 +24,14 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: BetweenDates
 nativeimage:
 - "8.3"
+- "8.4"
 outputs:
 - contextPath: BetweenDates.result
   description: Whether the input hour is between the given hours.
@@ -49,7 +50,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('BetweenDates', 'start', __line__())
-  ### pack version: 1.2.29
+  ### pack version: 1.2.54
 
 
   import dateparser
