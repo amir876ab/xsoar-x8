@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "most-active-users",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Most Active Users",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
