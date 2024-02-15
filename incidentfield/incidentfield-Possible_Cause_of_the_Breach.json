@@ -25,7 +25,7 @@
 	"id": "incident_possiblecauseofthebreach",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.12.20",
+	"itemVersion": "1.13.22",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Possible Cause of the Breach",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Possible Cause of the Breach",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
