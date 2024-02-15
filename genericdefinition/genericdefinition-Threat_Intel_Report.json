@@ -4,7 +4,7 @@
 	"definitionId": "",
 	"fromServerVersion": "6.5.0",
 	"id": "ThreatIntelReport",
-	"itemVersion": "1.0.10",
+	"itemVersion": "1.0.11",
 	"locked": false,
 	"name": "Threat Intel Report",
 	"packID": "ThreatIntelReports",
