@@ -6,7 +6,7 @@
 	"disabled": false,
 	"fromServerVersion": "6.5.0",
 	"id": "ThreatIntelReport_Threat Actor",
-	"itemVersion": "1.0.10",
+	"itemVersion": "1.0.11",
 	"layout": "Threat Actor Report",
 	"locked": false,
 	"name": "Threat Actor",
