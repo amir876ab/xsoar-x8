@@ -1,7 +1,7 @@
 args:
-- description: The old value of the changed field
+- description: The old value of the changed field.
   name: old
-- description: The new value of the changed field
+- description: The new value of the changed field.
   name: new
 comment: Stops the "Time To Assign" timer if the owner of the incident was changed.
 commonfields:
@@ -11,7 +11,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -19,19 +19,20 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: StopTimeToAssignOnOwnerChange
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('StopTimeToAssignOnOwnerChange', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
 
