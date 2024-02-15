@@ -23,7 +23,7 @@
 	"id": "indicator_creationdate",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Creation Date",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Creation Date",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
