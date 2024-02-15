@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -38,6 +38,12 @@ inputs:
     Tag to assign Domain to the External Dynamic List.
     sub-playbook: Block Domain - External Dynamic List
   key: Tag
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: "The UTC expiration date and time of the suspicious object, for example:
+    2020-01-25T09:00:00Z.\nProducts: \nTrend Micro Apex One\nProofpoint Threat Response"
+  key: Expiration
   playbookInputQuery: null
   required: false
   value: {}
@@ -254,6 +260,9 @@ tasks:
       Domain:
         complex:
           root: inputs.Domain
+      Expiration:
+        complex:
+          root: inputs.Expiration
     separatecontext: true
     skipunavailable: true
     task:
@@ -300,6 +309,9 @@ tasks:
       DomainBlackListID:
         complex:
           root: inputs.DomainBlackListID
+      Expiration:
+        complex:
+          root: inputs.Expiration
     separatecontext: true
     skipunavailable: true
     task:
