@@ -39,7 +39,7 @@
 	"id": "indicator_paths",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Paths",
@@ -53,7 +53,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Paths",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
