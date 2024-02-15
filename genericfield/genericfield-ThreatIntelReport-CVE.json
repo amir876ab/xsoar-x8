@@ -25,7 +25,7 @@
 	"id": "generic_ThreatIntelReport_cve",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.0.10",
+	"itemVersion": "1.0.11",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "CVE",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "CVE",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
