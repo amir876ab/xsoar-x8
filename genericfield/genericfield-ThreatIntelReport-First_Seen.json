@@ -23,7 +23,7 @@
 	"id": "generic_ThreatIntelReport_firstseen",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.0.10",
+	"itemVersion": "1.0.11",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "First Seen",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "First Seen",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
