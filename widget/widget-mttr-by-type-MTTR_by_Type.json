@@ -21,7 +21,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "mttr-by-type",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "MTTR by Type",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
