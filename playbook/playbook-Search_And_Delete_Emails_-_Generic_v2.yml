@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.1.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -266,7 +266,7 @@ tasks:
       {
         "position": {
           "x": -380,
-          "y": 1320
+          "y": 1325
         }
       }
   "4":
@@ -277,7 +277,8 @@ tasks:
             value:
               complex:
                 filters:
-                - - left:
+                - - ignorecase: true
+                    left:
                       iscontext: true
                       value:
                         simple: modules.brand
@@ -285,7 +286,8 @@ tasks:
                     right:
                       value:
                         simple: EWS v2
-                - - left:
+                - - ignorecase: true
+                    left:
                       iscontext: true
                       value:
                         simple: modules.state
@@ -295,12 +297,15 @@ tasks:
                         simple: active
                 root: modules
           operator: isNotEmpty
+          right:
+            value: {}
       - - left:
             iscontext: true
             value:
               complex:
                 filters:
-                - - left:
+                - - ignorecase: true
+                    left:
                       iscontext: true
                       value:
                         simple: modules.brand
@@ -308,7 +313,17 @@ tasks:
                     right:
                       value:
                         simple: SecurityAndCompliance
-                - - left:
+                  - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: SecurityAndComplianceV2
+                - - ignorecase: true
+                    left:
                       iscontext: true
                       value:
                         simple: modules.state
@@ -318,7 +333,8 @@ tasks:
                         simple: active
                 root: modules
           operator: isNotEmpty
-      - - left:
+      - - ignorecase: true
+          left:
             iscontext: true
             value:
               complex:
@@ -334,7 +350,8 @@ tasks:
             value:
               complex:
                 filters:
-                - - left:
+                - - ignorecase: true
+                    left:
                       iscontext: true
                       value:
                         simple: modules.brand
@@ -342,7 +359,17 @@ tasks:
                     right:
                       value:
                         simple: SecurityAndCompliance
-                - - left:
+                  - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: SecurityAndComplianceV2
+                - - ignorecase: true
+                    left:
                       iscontext: true
                       value:
                         simple: modules.state
@@ -357,7 +384,8 @@ tasks:
             value:
               complex:
                 filters:
-                - - left:
+                - - ignorecase: true
+                    left:
                       iscontext: true
                       value:
                         simple: modules.brand
@@ -365,7 +393,8 @@ tasks:
                     right:
                       value:
                         simple: EWS v2
-                - - left:
+                - - ignorecase: true
+                    left:
                       iscontext: true
                       value:
                         simple: modules.state
@@ -375,7 +404,8 @@ tasks:
                         simple: active
                 root: modules
           operator: isEmpty
-      - - left:
+      - - ignorecase: true
+          left:
             iscontext: true
             value:
               complex:
@@ -391,7 +421,8 @@ tasks:
             value:
               complex:
                 filters:
-                - - left:
+                - - ignorecase: true
+                    left:
                       iscontext: true
                       value:
                         simple: modules.brand
@@ -399,7 +430,8 @@ tasks:
                     right:
                       value:
                         simple: EWS v2
-                - - left:
+                - - ignorecase: true
+                    left:
                       iscontext: true
                       value:
                         simple: modules.state
@@ -414,7 +446,8 @@ tasks:
             value:
               complex:
                 filters:
-                - - left:
+                - - ignorecase: true
+                    left:
                       iscontext: true
                       value:
                         simple: modules.brand
@@ -422,6 +455,15 @@ tasks:
                     right:
                       value:
                         simple: SecurityAndCompliance
+                  - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: SecurityAndComplianceV2
                 - - left:
                       iscontext: true
                       value:
@@ -432,7 +474,8 @@ tasks:
                         simple: active
                 root: modules
           operator: isNotEmpty
-      - - left:
+      - - ignorecase: true
+          left:
             iscontext: true
             value:
               complex:
@@ -448,7 +491,8 @@ tasks:
             value:
               complex:
                 filters:
-                - - left:
+                - - ignorecase: true
+                    left:
                       iscontext: true
                       value:
                         simple: modules.brand
@@ -456,7 +500,8 @@ tasks:
                     right:
                       value:
                         simple: EWS v2
-                - - left:
+                - - ignorecase: true
+                    left:
                       iscontext: true
                       value:
                         simple: modules.state
@@ -471,7 +516,8 @@ tasks:
             value:
               complex:
                 filters:
-                - - left:
+                - - ignorecase: true
+                    left:
                       iscontext: true
                       value:
                         simple: modules.brand
@@ -479,7 +525,17 @@ tasks:
                     right:
                       value:
                         simple: SecurityAndCompliance
-                - - left:
+                  - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: SecurityAndComplianceV2
+                - - ignorecase: true
+                    left:
                       iscontext: true
                       value:
                         simple: modules.state
@@ -489,7 +545,8 @@ tasks:
                         simple: active
                 root: modules
           operator: isEmpty
-      - - left:
+      - - ignorecase: true
+          left:
             iscontext: true
             value:
               complex:
@@ -524,7 +581,7 @@ tasks:
                       value:
                         simple: active
                 root: modules
-          operator: isExists
+          operator: isNotEmpty
       - - ignorecase: true
           left:
             iscontext: true
@@ -561,8 +618,9 @@ tasks:
                       value:
                         simple: active
                 root: modules
-          operator: isExists
-      - - left:
+          operator: isNotEmpty
+      - - ignorecase: true
+          left:
             iscontext: true
             value:
               complex:
