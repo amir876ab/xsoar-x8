@@ -25,7 +25,7 @@
 	"id": "incident_sizenumberofemployees",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.12.20",
+	"itemVersion": "1.13.22",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Size - number of employees",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Size - number of employees",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
