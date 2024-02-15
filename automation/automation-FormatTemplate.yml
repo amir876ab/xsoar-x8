@@ -39,7 +39,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.2.29
+    itemVersion: 1.2.54
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -54,12 +54,13 @@ mainengineinfo: {}
 name: FormatTemplate
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('FormatTemplate', 'start', __line__())
-  ### pack version: 1.2.29
+  ### pack version: 1.2.54
 
 
   from typing import Any, Callable, Dict, Optional, Tuple
