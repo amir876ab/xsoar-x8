@@ -14,7 +14,7 @@
 	"formatScript": "",
 	"fromServerVersion": "5.5.0",
 	"id": "Infrastructure",
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"layout": "Infrastructure",
 	"legacyNames": null,
 	"locked": false,
@@ -41,6 +41,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "",
 	"reputationCommand": "",
 	"reputationScriptName": "",
