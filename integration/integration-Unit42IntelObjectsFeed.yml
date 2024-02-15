@@ -113,7 +113,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.0.13
+    itemVersion: 1.0.18
     packID: Unit42Intel
     packName: Unit 42 Intel
     packPropagationLabels:
@@ -150,14 +150,12 @@ script:
       name: limit
     description: Gets indicators from the feed.
     name: unit42intel-objects-feed-get-indicators
-  dockerimage: demisto/python3:3.10.13.72123
+  dockerimage: demisto/python3:3.10.13.84405
   feed: true
-  nativeimage:
-  - "8.3"
   runonce: false
   script: |
     register_module_line('Unit42IntelObjectsFeed', 'start', __line__())
-    ### pack version: 1.0.13
+    ### pack version: 1.0.18
 
 
     from typing import Dict, List, Optional
