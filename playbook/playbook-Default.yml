@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 8.2.0
-    itemVersion: 2.0.4
+    itemVersion: 2.0.6
     packID: DefaultPlaybook
     packName: Default
     packPropagationLabels:
@@ -183,7 +183,7 @@ tasks:
       '#none#':
       - "39"
     note: false
-    quietmode: 0
+    quietmode: 1
     scriptarguments:
       CloseSimilar:
         simple: "0.9"
@@ -194,7 +194,7 @@ tasks:
       handleSimilar:
         simple: Link and Close
       limit:
-        simple: "200"
+        simple: "50"
       method:
         simple: Fields and Indicators
       minimunIncidentSimilarity:
@@ -212,15 +212,15 @@ tasks:
       description: "This playbook identifies duplicate incidents using the Cortex
         XSOAR machine learning method (script).\nIn this playbook, you can choose
         fields and/or indicators to be compared against other incidents in the Cortex
-        XSOAR database. \n\nNote: To identify similar incidents you must *must* properly
+        XSOAR database. \n\nNote: To identify similar incidents you *must* properly
         define the playbook inputs. "
-      id: b3b54419-b6ae-4a40-8f3a-795efebcbf4a
+      id: fb0915f8-f8f9-4601-84d0-2be77350b333
       iscommand: false
       name: Dedup - Generic v4
       playbookId: Dedup - Generic v4
       type: playbook
       version: -1
-    taskid: b3b54419-b6ae-4a40-8f3a-795efebcbf4a
+    taskid: fb0915f8-f8f9-4601-84d0-2be77350b333
     timertriggers:
     - action: start
       fieldname: incidentduration
@@ -238,11 +238,24 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
     nexttasks:
       '#none#':
-      - "27"
+      - "38"
     note: false
     quietmode: 0
+    scriptarguments:
+      Decode:
+        simple: "False"
+      File:
+        complex:
+          root: File
+          transformers:
+          - operator: uniq
     separatecontext: true
     skipunavailable: false
     task:
@@ -261,20 +274,27 @@ tasks:
         - XLS
         - XLSX
         - XML
-      id: 83d9fa5d-80d2-499e-8004-39d00bf76cdd
+        - XLSM
+        - DOCM
+        - PPTM
+        - DOTM
+        - XLSB
+        - DOT
+        - PPSM
+      id: 88b1ac49-acbd-49c4-8089-096d4c10464f
       iscommand: false
       name: Extract Indicators From File - Generic v2
       playbookId: Extract Indicators From File - Generic v2
       type: playbook
       version: -1
-    taskid: 83d9fa5d-80d2-499e-8004-39d00bf76cdd
+    taskid: 88b1ac49-acbd-49c4-8089-096d4c10464f
     timertriggers: []
     type: playbook
     view: |-
       {
         "position": {
           "x": 52.5,
-          "y": 1935
+          "y": 1415
         }
       }
   "16":
@@ -315,7 +335,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "38"
+      - "30"
     note: false
     quietmode: 0
     separatecontext: false
@@ -358,21 +378,41 @@ tasks:
         complex:
           accessor: EntryID
           root: File
+          transformers:
+          - operator: uniq
       File:
         complex:
           root: File
+          transformers:
+          - operator: uniq
     separatecontext: true
     skipunavailable: false
     task:
       brand: ""
-      description: Detonate file through active integrations that support file detonation
-      id: 0d98b90c-a980-4664-81fd-6771e1475389
+      description: |-
+        Detonate files through one or more active integrations that support file detonation.
+        Supported integrations:
+        - SecneurX Analysis
+        - ANY.RUN
+        - McAfee Advanced Threat Defense
+        - WildFire
+        - Lastline
+        - Cuckoo Sandbox
+        - Cisco Secure Malware Analytics (ThreatGrid)
+        - JoeSecurity
+        - CrowdStrike Falcon Sandbox
+        - FireEye AX
+        - VMRay Analyzer
+        - Polygon
+        - CrowdStrike Falcon Intelligence Sandbox
+        - OPSWAT Filescan.
+      id: 06b8582f-0e6d-4a94-812a-812cf8e2be15
       iscommand: false
       name: Detonate File - Generic
       playbookId: Detonate File - Generic
       type: playbook
       version: -1
-    taskid: 0d98b90c-a980-4664-81fd-6771e1475389
+    taskid: 06b8582f-0e6d-4a94-812a-812cf8e2be15
     timertriggers: []
     type: playbook
     view: |-
@@ -440,7 +480,7 @@ tasks:
       {
         "position": {
           "x": 52.5,
-          "y": 1785
+          "y": 1265
         }
       }
   "34":
@@ -449,30 +489,54 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
     nexttasks:
       '#none#':
       - "63"
     note: false
     quietmode: 0
+    scriptarguments:
+      MD5Hash:
+        complex:
+          accessor: MD5
+          root: File
+          transformers:
+          - operator: uniq
+      SHA1Hash:
+        complex:
+          accessor: SHA1
+          root: File
+          transformers:
+          - operator: uniq
+      SHA256Hash:
+        complex:
+          accessor: SHA256
+          root: File
+          transformers:
+          - operator: uniq
     separatecontext: true
     skipunavailable: false
     task:
       brand: ""
-      description: Hunt using available tools.
-      id: d1e33868-bfd2-4818-821a-6d0c9cd7485a
+      description: Hunt using available tools
+      id: 8afa51db-69e8-4a4a-8924-76738464bd13
       iscommand: false
       name: Search Endpoints By Hash - Generic V2
       playbookId: Search Endpoints By Hash - Generic V2
       type: playbook
       version: -1
-    taskid: d1e33868-bfd2-4818-821a-6d0c9cd7485a
+    taskid: 8afa51db-69e8-4a4a-8924-76738464bd13
     timertriggers: []
     type: playbook
     view: |-
       {
         "position": {
           "x": 52.5,
-          "y": 1410
+          "y": 1730
         }
       }
   "35":
@@ -563,7 +627,7 @@ tasks:
       {
         "position": {
           "x": 52.5,
-          "y": 1260
+          "y": 1580
         }
       }
   "39":
@@ -936,9 +1000,10 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "30"
+      - "27"
     note: false
     quietmode: 0
+    reputationcalc: 1
     scriptarguments:
       detectedendpoints:
         complex:
@@ -950,27 +1015,25 @@ tasks:
                 value:
                   simple: ', '
             operator: join
-      selectedindicators:
-        simple: Select indicators
     separatecontext: false
     skipunavailable: false
     task:
       brand: Builtin
       description: commands.local.cmd.set.incident
-      id: bc18e52d-e000-42bc-8a4d-cd0667fc957e
+      id: e79379fc-90e1-4a85-8c51-a1103f1e8fba
       iscommand: true
       name: Save found endpoints in layout
       script: Builtin|||setIncident
       type: regular
       version: -1
-    taskid: bc18e52d-e000-42bc-8a4d-cd0667fc957e
+    taskid: e79379fc-90e1-4a85-8c51-a1103f1e8fba
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": 52.5,
-          "y": 1580
+          "y": 1900
         }
       }
   "65":
@@ -979,23 +1042,93 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
     nexttasks:
       '#none#':
       - "62"
     note: false
     quietmode: 0
+    scriptarguments:
+      CVE:
+        complex:
+          accessor: ID
+          root: CVE
+          transformers:
+          - operator: uniq
+      Domain:
+        complex:
+          accessor: Name
+          root: Domain
+          transformers:
+          - operator: uniq
+      Email:
+        complex:
+          accessor: Email.Address
+          root: Account
+          transformers:
+          - operator: uniq
+      Hostname:
+        complex:
+          accessor: Hostname
+          root: Endpoint
+          transformers:
+          - operator: uniq
+      IP:
+        complex:
+          accessor: Address
+          root: IP
+          transformers:
+          - operator: uniq
+      MD5:
+        complex:
+          accessor: MD5
+          root: File
+          transformers:
+          - operator: uniq
+      ResolveIP:
+        simple: "False"
+      SHA1:
+        complex:
+          accessor: SHA1
+          root: File
+          transformers:
+          - operator: uniq
+      SHA256:
+        complex:
+          accessor: SHA256
+          root: File
+          transformers:
+          - operator: uniq
+      URL:
+        complex:
+          accessor: Data
+          root: URL
+          transformers:
+          - operator: uniq
+      URLSSLVerification:
+        simple: "False"
+      Username:
+        complex:
+          accessor: Username
+          root: Account
+          transformers:
+          - operator: uniq
     separatecontext: true
     skipunavailable: false
     task:
       brand: ""
       description: Enrich entities using one or more integrations.
-      id: 71c5646b-afb0-461f-86b7-c811bd2d5a3f
+      id: c8c2df88-1b9f-4151-8a82-cfcde86d3436
       iscommand: false
       name: Entity Enrichment - Generic v3
       playbookId: Entity Enrichment - Generic v3
       type: playbook
       version: -1
-    taskid: 71c5646b-afb0-461f-86b7-c811bd2d5a3f
+    taskid: c8c2df88-1b9f-4151-8a82-cfcde86d3436
     timertriggers: []
     type: playbook
     view: |-
@@ -1058,36 +1191,46 @@ tasks:
         complex:
           accessor: agentid
           root: incident
+          transformers:
+          - operator: uniq
       FilePath:
         complex:
           accessor: filepath
           root: incident
+          transformers:
+          - operator: uniq
       Hostname:
         complex:
           accessor: sourcehostname
           root: incident
+          transformers:
+          - operator: uniq
       MD5:
         complex:
           accessor: MD5
           root: File
+          transformers:
+          - operator: uniq
       SHA256:
         complex:
           accessor: SHA256
           root: File
+          transformers:
+          - operator: uniq
       UnzipFile:
         simple: "True"
     separatecontext: true
     skipunavailable: false
     task:
       brand: ""
-      description: Retrieve files from endpoints by the file hash or the file path.
-      id: 153f8c88-6fc3-446c-8fb8-822e1cdcf129
+      description: Retrieves files from endpoints by the file hash or the file path.
+      id: ef072633-b4ea-4cc0-80bf-f452112a5b76
       iscommand: false
       name: Get File Sample - Generic
       playbookId: Get File Sample - Generic
       type: playbook
       version: -1
-    taskid: 153f8c88-6fc3-446c-8fb8-822e1cdcf129
+    taskid: ef072633-b4ea-4cc0-80bf-f452112a5b76
     timertriggers: []
     type: playbook
     view: |-
@@ -1112,19 +1255,19 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: f2dc11c0-1587-4d62-8c8a-6616dc910ac0
+      id: 8074a2c5-6a6c-401f-839a-5d9bf600addf
       iscommand: false
       name: Detonate URL - Generic v1.5
       playbookId: Detonate URL - Generic v1.5
       type: playbook
       version: -1
-    taskid: f2dc11c0-1587-4d62-8c8a-6616dc910ac0
+    taskid: 8074a2c5-6a6c-401f-839a-5d9bf600addf
     timertriggers: []
     type: playbook
     view: |-
       {
         "position": {
-          "x": 280,
+          "x": 312.5,
           "y": 2270
         }
       }
