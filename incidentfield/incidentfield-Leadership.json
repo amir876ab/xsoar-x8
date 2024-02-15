@@ -30,7 +30,7 @@
 	"id": "incident_leadership",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Leadership",
@@ -44,7 +44,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Leadership",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
