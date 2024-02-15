@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -10,7 +10,7 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-description: |+
+description: |-
   This playbook blocks malicious indicators using all integrations that are enabled, using the following sub-playbooks:
 
   - Block URL - Generic v2
@@ -18,8 +18,7 @@ description: |+
   - Block IP - Generic v3
   - Block File - Generic v2
   - Block Email - Generic v2
-  - Block Domain - Generic v2
-
+  - Block Domain - Generic v2.
 id: Block Indicators - Generic v3
 inputs:
 - description: 'An array of malicious IPs to block. Enter a comma-separated list of
@@ -347,7 +346,8 @@ inputs:
   key: Tag
   playbookInputQuery: null
   required: false
-  value: {}
+  value:
+    simple: Blocked Indicator In Systems
 - description: |-
     This input determines whether Palo Alto Networks Panorama or Firewall Dynamic Address Groups are used.
     Specify the Dynamic Address Group tag name for IPs list handling.
@@ -457,13 +457,13 @@ outputs:
 - contextPath: CheckpointFWRule.Hits
   description: Rule hits count.
 - contextPath: PanoramaRule.Direction
-  description: Direction of the Panorama rule. Can be 'to','from', 'both'
+  description: Direction of the Panorama rule. Can be 'to','from', 'both'.
   type: string
 - contextPath: PanoramaRule.IP
-  description: The IP the Panorama rule blocks
+  description: The IP the Panorama rule blocks.
   type: string
 - contextPath: PanoramaRule.Name
-  description: Name of the Panorama rule
+  description: Name of the Panorama rule.
   type: string
 - contextPath: CheckpointFWRule.Data.Name
   description: Rule data object name.
@@ -482,11 +482,11 @@ outputs:
 - contextPath: CheckpointFWRule.Hits.Level
   description: Level of rule hits.
 - contextPath: CheckpointFWRule.Hits.Percentage
-  description: Percentage of rule hits
+  description: Percentage of rule hits.
 - contextPath: CheckpointFWRule.Hits.Value
   description: Value of rule hits.
 - contextPath: IndicatorsToBlock
-  description: Selected indicators to block
+  description: Selected indicators to block.
   type: unknown
 starttaskid: "0"
 system: true
@@ -499,7 +499,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "20"
+      - "27"
     note: false
     quietmode: 0
     separatecontext: false
@@ -517,7 +517,7 @@ tasks:
       {
         "position": {
           "x": 1125,
-          "y": -630
+          "y": -870
         }
       }
   "2":
@@ -1303,11 +1303,17 @@ tasks:
             operator: append
           - operator: uniq
           - args:
-              applyIfEmpty: {}
+              applyIfEmpty:
+                value:
+                  simple: "false"
               defaultValue:
                 value:
                   simple: No indicators to block
             operator: SetIfEmpty
+          - args:
+              empty_values: {}
+              remove_keys: {}
+            operator: RemoveEmpty
     separatecontext: false
     skipunavailable: false
     task:
@@ -1392,11 +1398,17 @@ tasks:
             operator: append
           - operator: uniq
           - args:
-              applyIfEmpty: {}
+              applyIfEmpty:
+                value:
+                  simple: "false"
               defaultValue:
                 value:
                   simple: No indicators to block
             operator: SetIfEmpty
+          - args:
+              empty_values: {}
+              remove_keys: {}
+            operator: RemoveEmpty
     separatecontext: false
     skipunavailable: false
     task:
@@ -1642,16 +1654,128 @@ tasks:
           "y": 650
         }
       }
+  "27":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.IP
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.URL
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.Username
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.MD5
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.SHA256
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.FilesToBlock
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.DomainToBlock
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.EmailToBlock
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "27"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "28"
+      "yes":
+      - "20"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4b64da5f-53b9-4fdd-8e65-5a133c6700d6
+      iscommand: false
+      name: Are there indicators to block?
+      type: condition
+      version: -1
+    taskid: 4b64da5f-53b9-4fdd-8e65-5a133c6700d6
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1125,
+          "y": -700
+        }
+      }
+  "28":
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f0a6c388-3821-4ad0-8720-6660caa31997
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: f0a6c388-3821-4ad0-8720-6660caa31997
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1590,
+          "y": -500
+        }
+      }
 version: -1
 view: |-
   {
-    "linkLabelsPosition": {},
+    "linkLabelsPosition": {
+      "27_20_yes": 0.4
+    },
     "paper": {
       "dimensions": {
-        "height": 1700,
+        "height": 1940,
         "width": 2530,
         "x": 50,
-        "y": -630
+        "y": -870
       }
     }
   }
