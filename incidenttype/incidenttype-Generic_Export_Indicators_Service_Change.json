@@ -17,7 +17,7 @@
 	"hours": 0,
 	"hoursR": 0,
 	"id": "Generic Export Indicators Service Change",
-	"itemVersion": "3.2.8",
+	"itemVersion": "3.2.17",
 	"layout": "EDL Change Layout",
 	"locked": false,
 	"name": "Generic Export Indicators Service Change",
