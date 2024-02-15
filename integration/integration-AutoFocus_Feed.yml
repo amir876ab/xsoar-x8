@@ -130,7 +130,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.1.14
+    itemVersion: 2.1.18
     packID: AutoFocus
     packName: AutoFocus by Palo Alto Networks
     packPropagationLabels:
@@ -166,14 +166,12 @@ script:
       name: offset
     description: Gets the indicators from AutoFocus.
     name: autofocus-get-indicators
-  dockerimage: demisto/python3:3.10.12.68714
+  dockerimage: demisto/python3:3.10.13.83255
   feed: true
-  nativeimage:
-  - "8.3"
   runonce: false
   script: |
     register_module_line('AutoFocus Feed', 'start', __line__())
-    ### pack version: 2.1.14
+    ### pack version: 2.1.18
 
 
 
