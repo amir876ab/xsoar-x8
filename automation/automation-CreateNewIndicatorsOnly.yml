@@ -1,5 +1,5 @@
 args:
-- description: The indicator values
+- description: The indicator values.
   isArray: true
   name: indicator_values
 - auto: PREDEFINED
@@ -51,7 +51,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -59,13 +59,14 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.68300
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: CreateNewIndicatorsOnly
 nativeimage:
 - "8.3"
+- "8.4"
 outputs:
 - contextPath: CreateNewIndicatorsOnly.ID
   description: The indicator ID.
@@ -88,7 +89,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('CreateNewIndicatorsOnly', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
   from typing import Any
