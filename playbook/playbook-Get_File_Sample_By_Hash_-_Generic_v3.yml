@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -13,7 +13,8 @@ contentitemexportablefields:
 description: |-
   This playbook returns a file sample correlating to a hash in the War Room using the following sub-playbooks:
   - Get binary file by MD5 hash from Carbon Black telemetry data - VMware Carbon Black EDR v2.
-  - Get the threat (file) attached to a specific SHA256 hash - Cylance Protect v2.
+  - Get the threat (file) associated with a specific SHA256 hash - Cylance Protect v2.
+  - Get the file associated with a specific MD5 or SHA256 hash - Code42.
 id: Get File Sample By Hash - Generic v3
 inputs:
 - description: The MD5 hash value for the file to retrieve.
@@ -146,20 +147,23 @@ tasks:
     quietmode: 0
     scriptarguments:
       SHA256:
-        simple: ${inputs.SHA256}
+        complex:
+          root: inputs.SHA256
+          transformers:
+          - operator: uniq
     separatecontext: true
     skipunavailable: true
     task:
       brand: ""
       description: This playbook returns a file sample to the War Room given the file's
-        SHA256 hash, using the Cylance Protect v2 integration.
-      id: 5ff18884-2925-4b5a-8a1c-be0b0cfe4ac2
+        SHA256 hash, using Cylance Protect v2 integration.
+      id: e912d085-264f-42f7-8a0f-b5aa82b96072
       iscommand: false
       name: Get File Sample By Hash - Cylance Protect v2
       playbookName: Get File Sample By Hash - Cylance Protect v2
       type: playbook
       version: -1
-    taskid: 5ff18884-2925-4b5a-8a1c-be0b0cfe4ac2
+    taskid: e912d085-264f-42f7-8a0f-b5aa82b96072
     timertriggers: []
     type: playbook
     view: |-
@@ -189,19 +193,21 @@ tasks:
       MD5:
         complex:
           root: inputs.MD5
+          transformers:
+          - operator: uniq
     separatecontext: true
     skipunavailable: true
     task:
       brand: ""
       description: This playbook retrieves a binary file by its MD5 hash from the
         Carbon Black telemetry data.
-      id: 3ec72fe1-247c-4230-8f59-4259ecdca49a
+      id: 1ac553d1-5315-4391-8875-63c8ca4e9fa2
       iscommand: false
       name: Get the binary file from Carbon Black by its MD5 hash
       playbookName: Get the binary file from Carbon Black by its MD5 hash
       type: playbook
       version: -1
-    taskid: 3ec72fe1-247c-4230-8f59-4259ecdca49a
+    taskid: 1ac553d1-5315-4391-8875-63c8ca4e9fa2
     timertriggers: []
     type: playbook
     view: |-
