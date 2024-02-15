@@ -36,7 +36,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.1.0
-    itemVersion: 1.32.31
+    itemVersion: 1.33.18
     packID: Base
     packName: Base
     packPropagationLabels:
@@ -49,14 +49,12 @@ enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: DrawRelatedIncidentsCanvas
-nativeimage:
-- "8.3"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('DrawRelatedIncidentsCanvas', 'start', __line__())
-  ### pack version: 1.32.31
+  ### pack version: 1.33.18
 
 
 
