@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -22,11 +22,7 @@ inputs:
   key: InternalDomains
   playbookInputQuery: null
   required: false
-  value:
-    complex:
-      root: inputs.InternalDomains
-      transformers:
-      - operator: uniq
+  value: {}
 - description: The email addresses to enrich.
   key: Email
   playbookInputQuery: null
@@ -42,21 +38,12 @@ inputs:
   key: Domain
   playbookInputQuery: null
   required: false
-  value:
-    complex:
-      filters:
-      - - left:
-            iscontext: true
-            value:
-              simple: inputs.Domain
-          operator: isNotEmpty
-      root: inputs.Domain
-      transformers:
-      - operator: uniq
+  value: {}
 - description: |-
     Define if you would like to use the !email command.
     Note: This input should be used whenever there is no auto-extract enabled in the investigation flow.
     Possible values: True / False.
+    The default value is false.
   key: UseReputationCommand
   playbookInputQuery: null
   required: true
@@ -79,6 +66,131 @@ outputs:
 - contextPath: DBotScore
   description: The DBotScore object.
   type: unknown
+- contextPath: Account.Email.Username
+  description: The Email account username
+  type: string
+- contextPath: Account.Email.Domain
+  description: The Email account domain
+  type: string
+- contextPath: ActiveDirectory.Users.dn
+  description: The user distinguished name.
+- contextPath: ActiveDirectory.Users.displayName
+  description: The user display name.
+- contextPath: ActiveDirectory.Users.name
+  description: The user common name.
+- contextPath: ActiveDirectory.Users.sAMAccountName
+  description: The user sAMAccountName.
+- contextPath: ActiveDirectory.Users.userAccountControl
+  description: The user account control flag.
+- contextPath: ActiveDirectory.Users.manager
+  description: The manager of the user.
+- contextPath: ActiveDirectory.Users.memberOf
+  description: Groups in which the user is a member.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.SCRIPT
+  description: Whether the login script is run. Works for *Windows Server 2012 R2*.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.ACCOUNTDISABLE
+  description: Whether the user account is disabled. Works for *Windows Server 2012
+    R2*.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.HOMEDIR_REQUIRED
+  description: Whether the home folder is required. Works for *Windows Server 2012
+    R2*.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.LOCKOUT
+  description: Whether the user is locked out. Works for *Windows Server 2012 R2*.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.PASSWD_NOTREQD
+  description: Whether the password is required. Works for *Windows Server 2012 R2*.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.PASSWD_CANT_CHANGE
+  description: Whether the user can change the password. Works for *Windows Server
+    2012 R2*.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.ENCRYPTED_TEXT_PWD_ALLOWED
+  description: Whether the user can send an encrypted password. Works for *Windows
+    Server 2012 R2*.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.TEMP_DUPLICATE_ACCOUNT
+  description: Whether this is an account for users whose primary account is in another
+    domain. Works for *Windows Server 2012 R2*.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.NORMAL_ACCOUNT
+  description: Whether this is a default account type that represents a typical user.
+    Works for *Windows Server 2012 R2*.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.INTERDOMAIN_TRUST_ACCOUNT
+  description: Whether the account is permitted to trust a system domain that trusts
+    other domains. Works for *Windows Server 2012 R2*.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.WORKSTATION_TRUST_ACCOUNT
+  description: Whether this is a computer account for a computer running Microsoft
+    Windows NT 4.0 Workstation, Microsoft Windows NT 4.0 Server, Microsoft Windows
+    2000 Professional, or Windows 2000 Server and is a member of this domain.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.SERVER_TRUST_ACCOUNT
+  description: Whether this is a computer account for a domain controller that is
+    a member of this domain. Works for *Windows Server 2012 R2*.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.DONT_EXPIRE_PASSWORD
+  description: Whether to never expire the password on the account.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.MNS_LOGON_ACCOUNT
+  description: Whether this is an MNS login account.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.SMARTCARD_REQUIRED
+  description: Whether to force the user to log in by using a smart card.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.TRUSTED_FOR_DELEGATION
+  description: Whether the service account (the user or computer account) under which
+    a service runs is trusted for Kerberos delegation.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.NOT_DELEGATED
+  description: Whether the security context of the user isn't delegated to a service
+    even if the service account is set as trusted for Kerberos delegation.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.USE_DES_KEY_ONLY
+  description: Whether to restrict this principal to use only Data Encryption Standard
+    (DES) encryption types for keys.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.DONT_REQ_PREAUTH
+  description: Whether this account require Kerberos pre-authentication for logging
+    on.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.PASSWORD_EXPIRED
+  description: Whether the user password expired.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.TRUSTED_TO_AUTH_FOR_DELEGATION
+  description: Whether the account is enabled for delegation.
+- contextPath: ActiveDirectory.Users.userAccountControlFields.PARTIAL_SECRETS_ACCOUNT
+  description: Whether the account is a read-only domain controller (RODC).
+- contextPath: ActiveDirectory.UsersPageCookie
+  description: An opaque string received in a paged search, used for requesting subsequent
+    entries.
+- contextPath: Account.DisplayName
+  description: The user display name.
+- contextPath: Account.Groups
+  description: Groups for which the user is a member.
+- contextPath: Account.Manager
+  description: The user manager.
+- contextPath: Account.ID
+  description: The user distinguished name.
+- contextPath: Account.Username
+  description: The user samAccountName.
+- contextPath: Account.Email
+  description: The user email address.
+- contextPath: ActiveDirectory.Users.mail
+  description: The user email address.
+- contextPath: Account.Email.Address
+  description: The Email account full address
+  type: string
+- contextPath: Account.Email.Distance
+  description: The email address distance compare to the domains in query.
+  type: number
+- contextPath: DBotScore.Indicator
+  description: The Indicator.
+  type: string
+- contextPath: DBotScore.Type
+  description: The Indicator Type.
+  type: string
+- contextPath: DBotScore.Vendor
+  description: The DBot score vendor.
+  type: string
+- contextPath: DBotScore.Score
+  description: The DBot score.
+  type: number
+- contextPath: DBotScore.Reliability
+  description: The actual score.
+- contextPath: Email.Relationships.EntityA
+  description: The source of the relationship.
+- contextPath: Email.Relationships.EntityB
+  description: The destination of the relationship.
+- contextPath: Email.Relationships.Relationship
+  description: The name of the relationship.
+- contextPath: Email.Relationships.EntityAType
+  description: The type of the source of the relationship.
+- contextPath: Email.Relationships.EntityBType
+  description: The type of the destination of the relationship.
 starttaskid: "0"
 system: true
 tasks:
@@ -108,7 +220,7 @@ tasks:
       {
         "position": {
           "x": 497.5,
-          "y": 50
+          "y": 120
         }
       }
   "4":
@@ -137,19 +249,13 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 387.5,
-          "y": 1390
+          "x": 497.5,
+          "y": 1310
         }
       }
   "5":
     conditions:
     - condition:
-      - - ignorecase: true
-          left:
-            iscontext: true
-            value:
-              simple: inputs.Email
-          operator: isExists
       - - left:
             iscontext: true
             value:
@@ -174,19 +280,19 @@ tasks:
       brand: ""
       description: Determines whether the playbook's input contains at least one email
         address.
-      id: ad5dcc8d-aedc-4f17-8e45-cdf57fc8eb8c
+      id: dce4e3b8-0986-4a8c-8436-0602977d9f8c
       iscommand: false
       name: Are there email addresses to check?
       type: condition
       version: -1
-    taskid: ad5dcc8d-aedc-4f17-8e45-cdf57fc8eb8c
+    taskid: dce4e3b8-0986-4a8c-8436-0602977d9f8c
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
           "x": 497.5,
-          "y": 200
+          "y": 250
         }
       }
   "9":
@@ -227,20 +333,20 @@ tasks:
         attribute determines whether the email address is an internal or external
         email address, according to the domains that were passed as arguments to this
         playbook.
-      id: 9c9335fc-12d0-45eb-887e-41f83a6cfae9
+      id: 41284223-6f2e-44de-82a4-c8e096a3cdc4
       iscommand: false
       name: Classify email addresses as internal or external
       script: IsEmailAddressInternal
       type: regular
       version: -1
-    taskid: 9c9335fc-12d0-45eb-887e-41f83a6cfae9
+    taskid: 41284223-6f2e-44de-82a4-c8e096a3cdc4
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": 497.5,
-          "y": 400
+          "y": 450
         }
       }
   "10":
@@ -269,8 +375,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 172.5,
-          "y": 785
+          "x": 102.5,
+          "y": 790
         }
       }
   "11":
@@ -300,8 +406,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 840.5,
-          "y": 785
+          "x": 910,
+          "y": 790
         }
       }
   "12":
@@ -351,8 +457,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 172.5,
-          "y": 1175
+          "x": 102.5,
+          "y": 1135
         }
       }
   "13":
@@ -403,8 +509,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 840.5,
-          "y": 580
+          "x": 910,
+          "y": 620
         }
       }
   "14":
@@ -443,20 +549,20 @@ tasks:
       brand: ""
       description: Checks whether there are email addresses with a NetworkType attribute
         value of "Internal".
-      id: 88f0cd9d-90b3-4fdd-8822-1ff788168d00
+      id: 4bb4197a-cd13-41a6-8882-b8e6c51312c3
       iscommand: false
       name: Are there any internal email addresses?
       script: Exists
       type: condition
       version: -1
-    taskid: 88f0cd9d-90b3-4fdd-8822-1ff788168d00
+    taskid: 4bb4197a-cd13-41a6-8882-b8e6c51312c3
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
-          "x": 172.5,
-          "y": 580
+          "x": 102.5,
+          "y": 620
         }
       }
   "15":
@@ -527,8 +633,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 600.5,
-          "y": 1175
+          "x": 710.5,
+          "y": 1135
         }
       }
   "17":
@@ -574,20 +680,20 @@ tasks:
       brand: ""
       description: Checks if there's an active instance of the Active Directory Query
         v2 integration enabled.
-      id: df11530c-169c-4a9c-8e37-e9ce934a0c8a
+      id: bc59d675-c18d-44ac-878f-bdc8dc7c578e
       iscommand: false
       name: Is Active Directory Query v2 enabled?
       script: Exists
       type: condition
       version: -1
-    taskid: df11530c-169c-4a9c-8e37-e9ce934a0c8a
+    taskid: bc59d675-c18d-44ac-878f-bdc8dc7c578e
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
-          "x": 172.5,
-          "y": 940
+          "x": 102.5,
+          "y": 930
         }
       }
   "18":
@@ -632,8 +738,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 600.5,
-          "y": 940
+          "x": 710.5,
+          "y": 930
         }
       }
   "20":
@@ -662,8 +768,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -380,
-          "y": 785
+          "x": -220,
+          "y": 465
         }
       }
   "21":
@@ -708,8 +814,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1080,
-          "y": 940
+          "x": 1110,
+          "y": 930
         }
       }
   "22":
@@ -726,26 +832,39 @@ tasks:
     scriptarguments:
       email:
         complex:
-          root: inputs.Email
+          accessor: Address
+          filters:
+          - - ignorecase: true
+              left:
+                iscontext: true
+                value:
+                  simple: Account.Email.NetworkType
+              operator: isEqualString
+              right:
+                value:
+                  simple: External
+          root: Account.Email
+          transformers:
+          - operator: uniq
     separatecontext: false
     skipunavailable: true
     task:
       brand: ""
       description: Checks if an email address was compromised.
-      id: 2ac494e5-1a7e-474d-880f-1e1ab655f3ae
+      id: 156ef5ee-88a6-4fd7-8636-b6e9c678f5e3
       iscommand: true
       name: Check Reputation
       script: '|||email'
       type: regular
       version: -1
-    taskid: 2ac494e5-1a7e-474d-880f-1e1ab655f3ae
+    taskid: 156ef5ee-88a6-4fd7-8636-b6e9c678f5e3
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
-          "x": 1080,
-          "y": 1160
+          "x": 1120,
+          "y": 1135
         }
       }
 version: -1
@@ -753,19 +872,20 @@ view: |-
   {
     "linkLabelsPosition": {
       "13_11_yes": 0.64,
-      "13_4_#default#": 0.16,
+      "13_4_#default#": 0.25,
       "14_10_yes": 0.65,
       "14_4_#default#": 0.17,
-      "17_4_#default#": 0.23,
-      "18_4_#default#": 0.23,
+      "17_4_#default#": 0.55,
+      "18_4_#default#": 0.25,
+      "21_4_#default#": 0.13,
       "5_20_#default#": 0.35
     },
     "paper": {
       "dimensions": {
-        "height": 1405,
-        "width": 1840,
-        "x": -380,
-        "y": 50
+        "height": 1255,
+        "width": 1720,
+        "x": -220,
+        "y": 120
       }
     }
   }
