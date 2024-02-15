@@ -25,7 +25,7 @@
 	"id": "incident_dpoemailaddress",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.12.20",
+	"itemVersion": "1.13.22",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "DPO E-mail Address",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "DPO E-mail Address",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
