@@ -25,7 +25,7 @@
 	"id": "incident_isthedatasubjecttodpia",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.12.20",
+	"itemVersion": "1.13.22",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Is the Data Subject to DPIA",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Is the Data Subject to DPIA",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
