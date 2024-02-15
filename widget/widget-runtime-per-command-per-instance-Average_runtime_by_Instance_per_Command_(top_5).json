@@ -21,7 +21,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "runtime-per-command-per-instance",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Average runtime by Instance per Command (top 5)",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
