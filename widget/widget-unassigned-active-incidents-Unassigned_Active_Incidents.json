@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "unassigned-active-incidents",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Unassigned Active Incidents",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
