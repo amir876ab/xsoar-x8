@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -13,13 +13,32 @@ contentitemexportablefields:
 description: Calculates the incident severity level according to the highest DBotScore.
 id: Calculate Severity By Highest DBotScore
 inputs:
-- description: 'Array of all indicators associated with the incident. '
-  key: DBotScore
+- description: 'Array of all DBotScore indicator values associated with the incident. '
+  key: DBotScoreIndicators
   playbookInputQuery: null
   required: false
   value:
     complex:
+      accessor: Indicator
       root: DBotScore
+      transformers:
+      - operator: uniq
+- description: The highest score that was given to a DBotScore indicator.
+  key: DBotScoreMaxScore
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: Score
+      root: DBotScore
+      transformers:
+      - args:
+          descending:
+            value:
+              simple: "true"
+        operator: sort
+      - operator: uniq
+      - operator: FirstArrayElement
 name: Calculate Severity By Highest DBotScore
 outputs:
 - contextPath: Severities.DBotScoreSeverity
@@ -82,47 +101,7 @@ tasks:
       {
         "position": {
           "x": 240,
-          "y": 975
-        }
-      }
-  "22":
-    continueonerrortype: ""
-    id: "22"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      '#none#':
-      - "31"
-    note: false
-    quietmode: 0
-    reputationcalc: 1
-    scriptarguments:
-      key:
-        simple: DBotScore
-      value:
-        complex:
-          root: inputs.DBotScore
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      description: |
-        Sets the DBotScore into context.
-      id: c33bfc3b-3bfd-4b09-8fef-d7c299ddbcab
-      iscommand: false
-      name: Set DBotScore from inputs
-      script: Set
-      type: regular
-      version: -1
-    taskid: c33bfc3b-3bfd-4b09-8fef-d7c299ddbcab
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 592.5,
-          "y": 290
+          "y": 855
         }
       }
   "23":
@@ -132,10 +111,8 @@ tasks:
             iscontext: true
             value:
               complex:
-                root: inputs.DBotScore
-          operator: isExists
-          right:
-            value: {}
+                root: inputs.DBotScoreIndicators
+          operator: isNotEmpty
       label: "yes"
     continueonerrortype: ""
     id: "23"
@@ -146,7 +123,7 @@ tasks:
       '#default#':
       - "24"
       "yes":
-      - "22"
+      - "31"
     note: false
     quietmode: 0
     separatecontext: false
@@ -154,12 +131,12 @@ tasks:
     task:
       brand: ""
       description: Checks if there is a "DBotScore" in the playbook input.
-      id: 0cc4278a-6b22-4ea9-834f-3ed21c346499
+      id: 2166ae1b-bafb-478b-81f9-c68b98651a63
       iscommand: false
       name: Is there a DBotScore in inputs?
       type: condition
       version: -1
-    taskid: 0cc4278a-6b22-4ea9-834f-3ed21c346499
+    taskid: 2166ae1b-bafb-478b-81f9-c68b98651a63
     timertriggers: []
     type: condition
     view: |-
@@ -217,9 +194,7 @@ tasks:
                       value:
                         simple: "3"
                 root: DBotScoreCache
-          operator: isExists
-          right:
-            value: {}
+          operator: isNotEmpty
         - left:
             iscontext: true
             value:
@@ -228,13 +203,13 @@ tasks:
                 - - left:
                       iscontext: true
                       value:
-                        simple: DBotScore.Score
+                        simple: inputs.DBotScoreMaxScore
                     operator: isEqualString
                     right:
                       value:
                         simple: "3"
-                root: DBotScore.Score
-          operator: isExists
+                root: inputs.DBotScoreMaxScore
+          operator: isNotEmpty
       label: High
     - condition:
       - - left:
@@ -251,7 +226,7 @@ tasks:
                       value:
                         simple: "2"
                 root: DBotScoreCache.Score
-          operator: isExists
+          operator: isNotEmpty
         - left:
             iscontext: true
             value:
@@ -260,13 +235,13 @@ tasks:
                 - - left:
                       iscontext: true
                       value:
-                        simple: DBotScore.Score
+                        simple: inputs.DBotScoreMaxScore
                     operator: isEqualString
                     right:
                       value:
                         simple: "2"
-                root: DBotScore.Score
-          operator: isExists
+                root: inputs.DBotScoreMaxScore
+          operator: isNotEmpty
       label: Medium
     - condition:
       - - left:
@@ -283,7 +258,7 @@ tasks:
                       value:
                         simple: "1"
                 root: DBotScoreCache.Score
-          operator: isExists
+          operator: isNotEmpty
         - left:
             iscontext: true
             value:
@@ -292,13 +267,13 @@ tasks:
                 - - left:
                       iscontext: true
                       value:
-                        simple: DBotScore.Score
+                        simple: inputs.DBotScoreMaxScore
                     operator: isEqualString
                     right:
                       value:
                         simple: "1"
-                root: DBotScore.Score
-          operator: isExists
+                root: inputs.DBotScoreMaxScore
+          operator: isNotEmpty
       label: Low
     continueonerrortype: ""
     id: "25"
@@ -326,19 +301,19 @@ tasks:
         1 = Low
         2 = Medium
         3 = High
-      id: 7082757c-758b-4cda-803e-526f85f26a68
+      id: e66f1b7a-bf4c-4b8c-8995-ba249d9f7600
       iscommand: false
       name: Evaluate severity based on DBotScore of indicators
       type: condition
       version: -1
-    taskid: 7082757c-758b-4cda-803e-526f85f26a68
+    taskid: e66f1b7a-bf4c-4b8c-8995-ba249d9f7600
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
           "x": 592.5,
-          "y": 610
+          "y": 490
         }
       }
   "27":
@@ -377,7 +352,7 @@ tasks:
       {
         "position": {
           "x": 990,
-          "y": 805
+          "y": 685
         }
       }
   "28":
@@ -416,7 +391,7 @@ tasks:
       {
         "position": {
           "x": 592.5,
-          "y": 805
+          "y": 685
         }
       }
   "29":
@@ -455,7 +430,7 @@ tasks:
       {
         "position": {
           "x": 190,
-          "y": 805
+          "y": 685
         }
       }
   "30":
@@ -495,7 +470,7 @@ tasks:
       {
         "position": {
           "x": -210,
-          "y": 805
+          "y": 685
         }
       }
   "31":
@@ -512,34 +487,34 @@ tasks:
     scriptarguments:
       value:
         complex:
-          accessor: Indicator
-          root: DBotScore
+          root: inputs.DBotScoreIndicators
+          transformers:
+          - operator: uniq
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: Get the overall score for the indicator as calculated by DBot.
-      id: b894e09e-1a9a-4c62-80df-f1b53961c7c9
+      id: 508c21c3-4362-4dd9-84a7-9efd305c0fef
       iscommand: false
       name: Get DBotScore from XSOAR
       script: GetIndicatorDBotScoreFromCache
       type: regular
       version: -1
-    taskid: b894e09e-1a9a-4c62-80df-f1b53961c7c9
+    taskid: 508c21c3-4362-4dd9-84a7-9efd305c0fef
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": 592.5,
-          "y": 450
+          "y": 310
         }
       }
 version: -1
 view: |-
   {
     "linkLabelsPosition": {
-      "23_22_yes": 0.31,
       "23_24_#default#": 0.24,
       "25_27_High": 0.82,
       "25_28_Medium": 0.76,
@@ -548,7 +523,7 @@ view: |-
     },
     "paper": {
       "dimensions": {
-        "height": 1050,
+        "height": 930,
         "width": 1580,
         "x": -210,
         "y": -10
