@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.5.0",
 	"id": "e086debd-715c-4f4f-8c3a-a584b12e1252",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "MTTR by Severity",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
