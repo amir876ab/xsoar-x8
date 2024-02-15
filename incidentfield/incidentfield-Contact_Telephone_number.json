@@ -25,7 +25,7 @@
 	"id": "incident_contacttelephonenumber",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.12.20",
+	"itemVersion": "1.13.22",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Contact Telephone number",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Contact Telephone number",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
