@@ -17,7 +17,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -25,19 +25,20 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/office-utils:2.0.0.49835
+dockerimage: demisto/office-utils:2.0.0.78144
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: ExtractIndicatorsFromWordFile
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotRole
 runonce: false
 script: |
   register_module_line('ExtractIndicatorsFromWordFile', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
 
