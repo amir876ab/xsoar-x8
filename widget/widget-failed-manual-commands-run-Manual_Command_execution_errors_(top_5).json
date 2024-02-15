@@ -21,7 +21,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "failed-manual-commands-run",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Manual Command execution errors (top 5)",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
