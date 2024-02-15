@@ -14,7 +14,7 @@
 	"formatScript": "",
 	"fromServerVersion": "5.5.0",
 	"id": "Intrusion Set",
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"layout": "Intrusion Set",
 	"legacyNames": null,
 	"locked": false,
@@ -47,6 +47,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "",
 	"reputationCommand": "",
 	"reputationScriptName": "",
