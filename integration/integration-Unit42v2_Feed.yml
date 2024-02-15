@@ -102,7 +102,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.0.35
+    itemVersion: 1.0.44
     packID: FeedUnit42v2
     packName: Unit 42 ATOMs Feed
     packPropagationLabels:
@@ -135,14 +135,12 @@ script:
       - attack-pattern
     description: Retrieves a limited number of the indicators.
     name: unit42-get-indicators
-  dockerimage: demisto/taxii2:1.0.0.72332
+  dockerimage: demisto/taxii2:1.0.0.84787
   feed: true
-  nativeimage:
-  - "8.3"
   runonce: false
   script: |
     register_module_line('Unit42v2 Feed', 'start', __line__())
-    ### pack version: 1.0.35
+    ### pack version: 1.0.44
 
     from taxii2client.common import TokenAuth
     from taxii2client.v20 import Server, as_pages
