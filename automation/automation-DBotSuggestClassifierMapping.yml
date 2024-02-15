@@ -19,7 +19,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.32.31
+    itemVersion: 1.33.18
     packID: Base
     packName: Base
     packPropagationLabels:
@@ -32,14 +32,12 @@ dockerimage: demisto/python3:3.10.1.26972
 engineinfo: {}
 mainengineinfo: {}
 name: DBotSuggestClassifierMapping
-nativeimage:
-- "8.3"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('DBotSuggestClassifierMapping', 'start', __line__())
-  ### pack version: 1.32.31
+  ### pack version: 1.33.18
 
 
   import itertools
