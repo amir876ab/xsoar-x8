@@ -23,7 +23,7 @@
 	"id": "incident_agentsid",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Agents ID",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Agents ID",
 	"propagationLabels": [
 		"all"
 	],
