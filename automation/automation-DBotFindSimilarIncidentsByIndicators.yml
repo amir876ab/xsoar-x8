@@ -5,8 +5,8 @@ args:
   predefined:
   - ""
 - defaultValue: "150"
-  description: 'The maximum number of incidents that an indicator can be associated
-    with to be retained. This helps to filter out indicators that appear in many incidents '
+  description: The maximum number of incidents that an indicator can be associated
+    with to be retained. This helps to filter out indicators that appear in many incidents.
   name: maxIncidentsInIndicatorsForWhiteList
 - defaultValue: "1"
   description: The minimum number of indicators related to the incident required before
@@ -29,7 +29,7 @@ args:
   description: The maximum number of incidents to display.
   name: maxIncidentsToDisplay
 - defaultValue: type, created, name
-  description: Fields to add in the table of incident
+  description: Fields to add in the table of incident.
   name: fieldsIncidentToDisplay
 - defaultValue: 1 month ago
   description: The start date by which we retrieve information on incidents.
@@ -45,7 +45,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.32.31
+    itemVersion: 1.33.18
     packID: Base
     packName: Base
     packPropagationLabels:
@@ -53,7 +53,7 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/ml:1.0.0.72705
+dockerimage: demisto/ml:1.0.0.83711
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
@@ -63,7 +63,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('DBotFindSimilarIncidentsByIndicators', 'start', __line__())
-  ### pack version: 1.32.31
+  ### pack version: 1.33.18
 
 
 
@@ -248,7 +248,7 @@ script: |
       :param incident_id: incident id
       :return:
       """
-      query = 'incident.id:%s' % incident_id
+      query = 'investigationIDs:%s' % incident_id
       res = demisto.executeCommand("findIndicators", {'query': query})
       if is_error(res):
           get_error(res)
@@ -619,7 +619,7 @@ script: |
       }
       if tag is not None:
           return_entry["Tags"] = [tag]
-      return CommandResults(outputs=return_entry)
+      return return_entry
 
 
   def main():
