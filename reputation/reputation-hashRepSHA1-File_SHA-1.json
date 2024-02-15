@@ -16,7 +16,7 @@
 	"formatScript": "",
 	"fromServerVersion": "5.0.0",
 	"id": "hashRepSHA1",
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"layout": "",
 	"legacyNames": null,
 	"locked": false,
@@ -27,6 +27,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "\\b[a-fA-F\\d]{40}\\b",
 	"reputationCommand": "file",
 	"reputationScriptName": "",
