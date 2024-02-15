@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -113,6 +113,7 @@ tasks:
       - "2"
     note: false
     quietmode: 0
+    reputationcalc: 1
     scriptarguments:
       additionalPollingCommandArgNames:
         simple: ${inputs.AdditionalPollingCommandArgNames}
@@ -137,13 +138,13 @@ tasks:
     task:
       brand: ""
       description: Schedule Polling Task
-      id: c202a667-b138-4635-819f-56a7396cc7f8
+      id: 35c115cc-f926-48db-895a-c10a1dada76e
       iscommand: false
       name: Schedule Polling Task
       script: ScheduleGenericPolling
       type: regular
       version: -1
-    taskid: c202a667-b138-4635-819f-56a7396cc7f8
+    taskid: 35c115cc-f926-48db-895a-c10a1dada76e
     timertriggers: []
     type: regular
     view: |-
@@ -165,20 +166,20 @@ tasks:
       "YES":
       - "5"
     note: false
-    quietmode: 0
+    quietmode: 1
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: This task will complete automatically when polling is complete.
-      id: 156abdbe-586e-4241-8ae6-364fe3d9d76a
+      id: 154b9a55-3d7c-412e-804c-c838cf7431c0
       iscommand: false
       name: Waiting for polling to complete (Automated Task)
       tags:
       - polling
       type: condition
       version: -1
-    taskid: 156abdbe-586e-4241-8ae6-364fe3d9d76a
+    taskid: 154b9a55-3d7c-412e-804c-c838cf7431c0
     timertriggers: []
     type: condition
     view: |-
@@ -199,6 +200,7 @@ tasks:
       - "1"
     note: false
     quietmode: 0
+    reputationcalc: 1
     scriptarguments:
       additionalPollingCommandArgNames:
         simple: ${inputs.AdditionalPollingCommandArgNames}
@@ -215,13 +217,13 @@ tasks:
     task:
       brand: ""
       description: RunPollingCommand
-      id: bc152ecc-4c23-4296-844a-d21b32be0ec3
+      id: aaa21aff-02c5-4930-81fc-c8f8e9085884
       iscommand: false
       name: RunPollingCommand
       script: RunPollingCommand
       type: regular
       version: -1
-    taskid: bc152ecc-4c23-4296-844a-d21b32be0ec3
+    taskid: aaa21aff-02c5-4930-81fc-c8f8e9085884
     timertriggers: []
     type: regular
     view: |-
@@ -267,6 +269,7 @@ tasks:
     isoversize: false
     note: false
     quietmode: 0
+    reputationcalc: 1
     scriptarguments:
       message:
         simple: GenericPollingScheduledTask encountered an error.
@@ -275,13 +278,13 @@ tasks:
     task:
       brand: ""
       description: Scheduled Task Failed
-      id: 62b13486-ae6a-49c1-8988-16765f35f1cc
+      id: db74b973-dc4a-499c-8d63-8df213685a1d
       iscommand: false
       name: Scheduled Task Failed
       script: PrintErrorEntry
       type: regular
       version: -1
-    taskid: 62b13486-ae6a-49c1-8988-16765f35f1cc
+    taskid: db74b973-dc4a-499c-8d63-8df213685a1d
     timertriggers: []
     type: regular
     view: |-
