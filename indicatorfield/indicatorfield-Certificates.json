@@ -78,7 +78,7 @@
 	"id": "indicator_certificates",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Certificates",
@@ -92,7 +92,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Certificates",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
