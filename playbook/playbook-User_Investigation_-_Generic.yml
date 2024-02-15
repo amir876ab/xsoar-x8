@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -19,7 +19,7 @@ description: |-
   -QRadar
   -Azure Log Analytics
   -PAN-OS
-  -XDR By Palo Alto Networks
+  -XDR / Core By Palo Alto Networks.
 id: User Investigation - Generic
 inputs:
 - description: Splunk's index name in which to search. Default is "*" - All.
@@ -84,7 +84,8 @@ inputs:
   key: XDRUsernameField
   playbookInputQuery: null
   required: false
-  value: {}
+  value:
+    simple: actor_effective_username
 - description: 'The Search Time for the QRadar search query. for example:  Last 1
     days'
   key: QRadarSearchTime
@@ -145,7 +146,7 @@ outputs:
   description: The result of the Azure Log Analytics search.
   type: unknown
 - contextPath: QRadar.Search.Result
-  description: 'The result of the QRadar search '
+  description: The result of the QRadar search.
 - contextPath: Splunk.Result
   description: The results of the Splunk search. The results are a JSON array, in
     which each item is a Splunk event.
@@ -263,19 +264,19 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 85e91ccb-1565-48a5-8f56-e745b4b3d5a2
+      id: 73c894c8-fd7a-4ea0-8eba-dbfd2db37bcf
       iscommand: false
       name: Done
       type: title
       version: -1
-    taskid: 85e91ccb-1565-48a5-8f56-e745b4b3d5a2
+    taskid: 73c894c8-fd7a-4ea0-8eba-dbfd2db37bcf
     timertriggers: []
     type: title
     view: |-
       {
         "position": {
-          "x": 710,
-          "y": 1820
+          "x": 720,
+          "y": 1840
         }
       }
   "31":
@@ -304,7 +305,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1600,
+          "x": 2070,
           "y": 400
         }
       }
@@ -367,7 +368,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1600,
+          "x": 2070,
           "y": 530
         }
       }
@@ -387,27 +388,27 @@ tasks:
       log-type:
         simple: threat
       query:
-        simple: (user.src eq ${inputs.Username}) or (user.dst eq ${inputs.Username})
-          and (time_generated in last-24-hrs)
+        simple: (user.src eq ${SplitUsername}) or (user.dst eq ${SplitUsername}) and
+          (time_generated in last-24-hrs)
     separatecontext: false
     skipunavailable: true
     task:
       brand: ""
       description: The query logs in Panorama.
-      id: 66eaa232-f160-4fc8-8788-163874940a58
+      id: ea25e12c-7774-410a-8af8-77c6320c30ab
       iscommand: true
       name: PAN-OS query logs
       script: '|||pan-os-query-logs'
       type: regular
       version: -1
-    taskid: 66eaa232-f160-4fc8-8788-163874940a58
+    taskid: ea25e12c-7774-410a-8af8-77c6320c30ab
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
-          "x": 1600,
-          "y": 1050
+          "x": 2070,
+          "y": 1090
         }
       }
   "34":
@@ -448,8 +449,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1600,
-          "y": 1625
+          "x": 2070,
+          "y": 1665
         }
       }
   "35":
@@ -486,8 +487,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1600,
-          "y": 1215
+          "x": 2070,
+          "y": 1255
         }
       }
   "43":
@@ -498,7 +499,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "33"
+      - "87"
     note: false
     quietmode: 0
     separatecontext: false
@@ -516,8 +517,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1600,
-          "y": 920
+          "x": 2070,
+          "y": 800
         }
       }
   "45":
@@ -529,25 +530,26 @@ tasks:
     nexttasks:
       '#none#':
       - "72"
+      - "84"
     note: false
     quietmode: 0
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      id: 0c346c23-69f5-4e9c-8350-2ab4c133f5fe
+      id: 0506de8c-0534-4fae-8513-3c734bb4c00a
       iscommand: false
-      name: Related alerts from XDR
+      name: Related alerts from XDR / Core
       type: title
       version: -1
-    taskid: 0c346c23-69f5-4e9c-8350-2ab4c133f5fe
+    taskid: 0506de8c-0534-4fae-8513-3c734bb4c00a
     timertriggers: []
     type: title
     view: |-
       {
         "position": {
-          "x": 1060,
-          "y": 400
+          "x": 1270,
+          "y": 410
         }
       }
   "48":
@@ -638,7 +640,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1600,
+          "x": 2070,
           "y": 170
         }
       }
@@ -729,8 +731,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1600,
-          "y": 1390
+          "x": 2070,
+          "y": 1430
         }
       }
   "68":
@@ -782,6 +784,14 @@ tasks:
       entityID:
         complex:
           root: inputs.Username
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: \
+            operator: split
+          - operator: LastArrayElement
+          - operator: uniq
       timeRange:
         simple: 2 hours
     separatecontext: true
@@ -791,19 +801,19 @@ tasks:
       description: |-
         This playbook is part of the Cortex XDR by Palo Alto Networks’ pack. This playbook searches alerts related to specific entities from Cortex XDR, on a given timeframe, based on MITRE tactics.
         Note: The playbook's inputs enable manipulating the execution flow. Read the input descriptions for details.
-      id: 135dfff8-d76c-41c5-8a38-6891f2d98256
+      id: 83835468-5432-4baa-8656-cfd7c05fecbe
       iscommand: false
       name: Cortex XDR - Get entity alerts by MITRE tactics
       playbookName: Cortex XDR - Get entity alerts by MITRE tactics
       type: playbook
       version: -1
-    taskid: 135dfff8-d76c-41c5-8a38-6891f2d98256
+    taskid: 83835468-5432-4baa-8656-cfd7c05fecbe
     timertriggers: []
     type: playbook
     view: |-
       {
         "position": {
-          "x": 1060,
+          "x": 1050,
           "y": 930
         }
       }
@@ -873,8 +883,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1060,
-          "y": 530
+          "x": 1050,
+          "y": 550
         }
       }
   "73":
@@ -1089,7 +1099,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1060,
+          "x": 1050,
           "y": 800
         }
       }
@@ -1281,6 +1291,239 @@ tasks:
           "y": 725
         }
       }
+  "84":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                accessor: state
+                filters:
+                - - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Cortex Core - IR
+                root: modules
+          operator: isEqualString
+          right:
+            value:
+              simple: active
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.XDRUsernameField
+          operator: isNotEmpty
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.Username
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "84"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "28"
+      "yes":
+      - "85"
+    note: false
+    quietmode: 2
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if Cortex XDR integration is enabled and the user name is
+        defined.
+      id: 3a2b054d-f7b4-4576-8d76-2bc32cf07f96
+      iscommand: false
+      name: Is Cortex Core integration enabled and user name is defined?
+      type: condition
+      version: -1
+    taskid: 3a2b054d-f7b4-4576-8d76-2bc32cf07f96
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1490,
+          "y": 550
+        }
+      }
+  "85":
+    continueonerrortype: ""
+    id: "85"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "86"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0adef6b2-c579-4948-8bbc-73f122ed38c6
+      iscommand: false
+      name: Cortex Core
+      type: title
+      version: -1
+    taskid: 0adef6b2-c579-4948-8bbc-73f122ed38c6
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1490,
+          "y": 800
+        }
+      }
+  "86":
+    continueonerrortype: ""
+    id: "86"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "28"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      EntityID:
+        complex:
+          root: inputs.Username
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: \
+            operator: split
+          - operator: LastArrayElement
+          - operator: uniq
+      EntityType:
+        complex:
+          root: inputs.XDRUsernameField
+      HuntCnCTechniques:
+        simple: "True"
+      HuntCollectionTechniques:
+        simple: "True"
+      HuntCredentialAccessTechniques:
+        simple: "True"
+      HuntDefenseEvasionTechniques:
+        simple: "True"
+      HuntDiscoveryTechniques:
+        simple: "True"
+      HuntExecutionTechniques:
+        simple: "True"
+      HuntImpactTechniques:
+        simple: "True"
+      HuntInitialAccessTechniques:
+        simple: "True"
+      HuntLateralMovementTechniques:
+        simple: "True"
+      HuntPersistenceTechniques:
+        simple: "True"
+      HuntPrivilegeEscalationTechniques:
+        simple: "True"
+      HuntReconnaissanceTechniques:
+        simple: "True"
+      RunAll:
+        simple: "False"
+      timeRange:
+        simple: 2 hours
+    separatecontext: true
+    skipunavailable: true
+    task:
+      brand: ""
+      description: |-
+        This playbook searches XDR alerts related to specific entities , on a given timeframe, based on MITRE tactics.
+        Note: The playbook's inputs enable manipulating the execution flow. Read the input descriptions for details.
+      id: 30f27e02-ece5-453a-8cc3-0b62510da975
+      iscommand: false
+      name: Get entity alerts by MITRE tactics
+      playbookName: Get entity alerts by MITRE tactics
+      type: playbook
+      version: -1
+    taskid: 30f27e02-ece5-453a-8cc3-0b62510da975
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1490,
+          "y": 930
+        }
+      }
+  "87":
+    continueonerrortype: ""
+    id: "87"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "33"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: SplitUsername
+      value:
+        complex:
+          root: inputs.Username
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: \
+            operator: split
+          - operator: LastArrayElement
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Set a value in context under the key you entered. If no value is entered, the script doesn't do anything.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.10/Cortex-XSOAR-Administrator-Guide/Automations
+      id: 1fe16618-2b52-443d-891e-3705a9bd5d65
+      iscommand: false
+      name: Save split username
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: 1fe16618-2b52-443d-891e-3705a9bd5d65
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2070,
+          "y": 930
+        }
+      }
 version: -1
 view: |-
   {
@@ -1298,12 +1541,13 @@ view: |-
       "72_28_#default#": 0.1,
       "72_77_yes": 0.67,
       "74_28_#default#": 0.14,
-      "74_75_yes": 0.47
+      "74_75_yes": 0.47,
+      "84_28_#default#": 0.1
     },
     "paper": {
       "dimensions": {
-        "height": 2040,
-        "width": 2140,
+        "height": 2060,
+        "width": 2610,
         "x": -160,
         "y": -155
       }
