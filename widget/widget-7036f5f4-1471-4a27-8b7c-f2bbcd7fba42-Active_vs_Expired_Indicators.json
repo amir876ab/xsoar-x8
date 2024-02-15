@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "7036f5f4-1471-4a27-8b7c-f2bbcd7fba42",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Active vs Expired Indicators",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
