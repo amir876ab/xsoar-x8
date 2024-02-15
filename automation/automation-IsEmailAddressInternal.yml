@@ -1,9 +1,10 @@
 args:
 - default: true
-  description: The email address to check
+  description: The email address to check.
+  isArray: true
   name: email
   required: true
-- description: List of internal domains to check, comma separated
+- description: List of internal domains to check, comma separated.
   isArray: true
   name: domain
 - auto: PREDEFINED
@@ -13,7 +14,7 @@ args:
   predefined:
   - "yes"
   - "no"
-comment: Checks if the email address is part of the internal domains
+comment: Checks if the email address is part of the internal domains.
 commonfields:
   id: IsEmailAddressInternal
   version: -1
@@ -21,7 +22,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -29,86 +30,104 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: IsEmailAddressInternal
-nativeimage:
-- "8.3"
 outputs:
 - contextPath: Account.Email.Address
-  description: The Email account full address
+  description: The Email account full address.
   type: string
 - contextPath: Account.Email.Username
-  description: The Email account username
+  description: The Email account username.
   type: string
 - contextPath: Account.Email.Domain
-  description: The Email account domain
+  description: The Email account domain.
   type: string
 - contextPath: Account.Email.NetworkType
-  description: The Email account NetworkType (could be Internal/External)
+  description: The Email account NetworkType (could be Internal/External).
   type: string
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  register_module_line('IsEmailAddressInternal', 'start', __line__())
-  ### pack version: 1.12.20
-
-
-  import re
-  from distutils.util import strtobool
-
-
-  def main():
-      email = demisto.args()['email']
-      domains = [x.lower() for x in argToList(demisto.get(demisto.args(), 'domain'))]
-      include_subdomains = strtobool(demisto.getArg('include_subdomains') or 'no')
-
-      parts = email.split('@', 1)
-
-      network_type = "Unknown"
-      in_domain = "no"
-
-      if len(parts) > 1:
-          if parts[1].lower() in domains or include_subdomains and \
-                  re.match("^(.*\\.)?({})".format('|'.join([re.escape(d) for d in domains])), parts[1].lower()):
-              in_domain = "yes"
-              network_type = "Internal"
-          else:
-              network_type = "External"
-
-          email_dict = {
-              "Address": email,
-              "Domain": parts[1],
-              "Username": parts[0],
-              "NetworkType": network_type
+  // pack version: 1.13.22
+  function toBoolean(value) {
+      if (typeof (value) === 'string') {
+          if (['yes', 'true'].indexOf(value.toLowerCase()) != -1) {
+              return true;
+          } else if (['no', 'false'].indexOf(value.toLowerCase()) != -1) {
+              return false;
           }
+          throw 'Argument does not contain a valid boolean-like value';
+      }
+      return value ? true : false;
+  }
 
-          email_obj = {
-              "Account.Email(val.Address && val.Address == obj.Address)": email_dict
+
+  function escapeRegex(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+
+  function main() {
+      const emails = argToList(args.email);
+      const domains = argToList(args.domain).map(x => x.toLowerCase());
+      const includeSubdomains = toBoolean(args.include_subdomains);
+
+      let results = [];
+      for (let i = 0; i < emails.length; i++) {
+          const parts = emails[i].split('@', 2);
+
+          let networkType = 'Unknown';
+          let inDomain = 'no';
+
+          if (parts.length > 1) {
+              const domain = parts[1].toLowerCase();
+              if (domains.indexOf(domain) !== -1 || (includeSubdomains && new RegExp(`^(.*\\.)?(${domains.map(d => escapeRegex(d)).join('|')})`).test(domain))) {
+                  inDomain = 'yes';
+                  networkType = 'Internal';
+              } else {
+                  networkType = 'External';
+              }
+
+              const emailDict = {
+                  'Address': emails[i],
+                  'Domain': domain,
+                  'Username': parts[0],
+                  'NetworkType': networkType
+              };
+
+              const emailObj = {
+                  'Account.Email(val.Address && val.Address == obj.Address)': emailDict
+              };
+
+              results.push({
+                  'Type': entryTypes['note'],
+                  'ContentsFormat': formats['json'],
+                  'Contents': inDomain,
+                  'HumanReadable': inDomain,
+                  'EntryContext': emailObj
+              });
+          } else {
+              results.push({
+                  Type: entryTypes.error,
+                  ContentsFormat: formats.text,
+                  Contents: `Email address "${emails[i]}" is not valid`
+              });
           }
-          demisto.results({
-              "Type": entryTypes["note"],
-              "ContentsFormat": formats["json"],
-              "Contents": in_domain,
-              "HumanReadable": in_domain,
-              "EntryContext": email_obj
-          })
-
-      else:
-          demisto.results({"Type": entryTypes["error"], "ContentsFormat": formats["text"],
-                          "Contents": 'Email address "{0}" is not valid'})
+      }
+      return results;
+  }
 
 
-  if __name__ == "__builtin__" or __name__ == "builtins":
-      main()
-
-  register_module_line('IsEmailAddressInternal', 'end', __line__())
+  try {
+      return main();
+  } catch (error) {
+      throw 'Error occurred while running the script:\n' + error;
+  }
 scripttarget: 0
-subtype: python3
 system: true
 tags:
 - email
-type: python
+type: javascript
