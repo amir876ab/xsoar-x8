@@ -23,7 +23,7 @@
 	"id": "indicator_stixkillchainphases",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "STIX Kill Chain Phases",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "STIX Kill Chain Phases",
 	"propagationLabels": [
 		"all"
 	],
