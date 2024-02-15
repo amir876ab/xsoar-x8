@@ -35,7 +35,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -56,7 +56,7 @@ pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  // pack version: 1.12.20
+  // pack version: 1.13.22
   minScore = (args.includeSuspicious == 'yes') ? 2 : 3;
 
   // Gather malicious indicators
