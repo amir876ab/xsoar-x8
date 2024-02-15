@@ -249,7 +249,7 @@
 	"formatScript": "",
 	"fromServerVersion": "5.5.0",
 	"id": "hostRep",
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"layout": "hostRep",
 	"legacyNames": null,
 	"locked": false,
@@ -260,6 +260,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "",
 	"reputationCommand": "",
 	"reputationScriptName": "",
