@@ -14,7 +14,7 @@
 	"formatScript": "",
 	"fromServerVersion": "6.5.0",
 	"id": "ASN",
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"layout": "ASN",
 	"legacyNames": null,
 	"locked": false,
@@ -41,6 +41,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "(?i)\\b(AS[N]?[-_]?\\d{1,10})\\b",
 	"reputationCommand": "",
 	"reputationScriptName": "",
