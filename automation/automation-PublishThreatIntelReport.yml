@@ -10,7 +10,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.0.10
+    itemVersion: 1.0.11
     packID: ThreatIntelReports
     packName: Threat Intel Reports (BETA)
     packPropagationLabels:
@@ -30,7 +30,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('PublishThreatIntelReport', 'start', __line__())
-  ### pack version: 1.0.10
+  ### pack version: 1.0.11
 
 
   from datetime import datetime
