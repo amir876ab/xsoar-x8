@@ -1,5 +1,5 @@
 comment: Data output script for populating dashboard pie graph widget with the percentage
-  of incidents closed by DBot vs. incidents closed by analysts
+  of incidents closed by DBot vs. incidents closed by analysts.
 commonfields:
   id: DBotClosedIncidentsPercentage
   version: -1
@@ -7,7 +7,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -23,9 +23,9 @@ pswd: ""
 runas: DBotRole
 runonce: false
 script: |
-  // pack version: 1.12.20
+  // pack version: 1.13.22
   var res = executeCommand("getIncidents", {
-      'query': 'status:closed and investigation.users:""',
+      'query': 'status:closed and closingUser:DBot',
       'fromdate': args.from,
       'todate': args.to,
       'size': 0
