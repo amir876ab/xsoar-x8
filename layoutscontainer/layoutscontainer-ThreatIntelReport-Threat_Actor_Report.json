@@ -688,7 +688,7 @@
 	"id": "Threat Actor Report",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "1.0.10",
+	"itemVersion": "1.0.11",
 	"locked": false,
 	"mobile": null,
 	"name": "Threat Actor Report",
