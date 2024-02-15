@@ -23,7 +23,7 @@
 	"id": "generic_ThreatIntelReport_description",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.0.10",
+	"itemVersion": "1.0.11",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Description",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Description",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
