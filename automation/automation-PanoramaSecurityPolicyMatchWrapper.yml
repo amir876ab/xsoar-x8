@@ -42,7 +42,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.1.0
-    itemVersion: 2.1.4
+    itemVersion: 2.1.19
     packID: PAN-OS
     packName: PAN-OS by Palo Alto Networks
     packPropagationLabels:
@@ -50,12 +50,13 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.74666
 engineinfo: {}
 mainengineinfo: {}
 name: PanoramaSecurityPolicyMatchWrapper
 nativeimage:
 - "8.3"
+- "8.4"
 outputs:
 - contextPath: Panorama.SecurityPolicyMatch.Rules.Name
   description: The matching rule name.
@@ -83,7 +84,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('PanoramaSecurityPolicyMatchWrapper', 'start', __line__())
-  ### pack version: 2.1.4
+  ### pack version: 2.1.19
 
 
 
