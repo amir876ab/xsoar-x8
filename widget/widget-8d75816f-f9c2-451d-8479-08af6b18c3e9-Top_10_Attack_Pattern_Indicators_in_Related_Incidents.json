@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "8d75816f-f9c2-451d-8479-08af6b18c3e9",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Top 10 Attack Pattern Indicators in Related Incidents",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
