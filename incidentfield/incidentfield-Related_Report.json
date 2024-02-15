@@ -23,7 +23,7 @@
 	"id": "incident_relatedreport",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Related Report",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Related Report",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
