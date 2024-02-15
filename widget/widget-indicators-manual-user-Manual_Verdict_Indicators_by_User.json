@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "indicators-manual-user",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Manual Verdict Indicators by User",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
