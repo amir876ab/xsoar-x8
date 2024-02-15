@@ -21,7 +21,7 @@
 	"fromServerVersion": "5.5.0",
 	"id": "es-cpu-current-usage",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Elastic CPU Current Usage",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
