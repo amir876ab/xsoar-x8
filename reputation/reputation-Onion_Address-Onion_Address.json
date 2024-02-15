@@ -14,7 +14,7 @@
 	"formatScript": "",
 	"fromServerVersion": "5.0.0",
 	"id": "Onion Address",
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"layout": "domainRepUnified",
 	"legacyNames": null,
 	"locked": false,
@@ -25,6 +25,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "\\b((https?):\\/ֿֿֿֿ\\/)?([a-z2-7]{17}|[a-z2-7]{57})\\.onion\\b",
 	"reputationCommand": "",
 	"reputationScriptName": "OnionURLReputation",
