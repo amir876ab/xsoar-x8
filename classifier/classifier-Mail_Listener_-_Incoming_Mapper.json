@@ -10,10 +10,10 @@
 	"incidentSamples": null,
 	"indicatorSamples": null,
 	"instanceIds": null,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"keyTypeMap": null,
 	"locked": false,
-	"logicalVersion": 0,
+	"logicalVersion": 1,
 	"mapping": {
 		"Phishing": {
 			"dontMapEventToLabels": false,
