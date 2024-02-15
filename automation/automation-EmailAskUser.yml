@@ -1,11 +1,11 @@
 args:
 - default: true
-  description: The email of the user to ask
+  description: The email of the user to ask.
   name: email
-- description: The subject for the email
+- description: The subject for the email.
   name: subject
   required: true
-- description: The message to the user to ask
+- description: The message to the user to ask.
   name: message
   required: true
 - description: First option for a user reply. "yes" is the default.
@@ -13,51 +13,54 @@ args:
 - description: Second option for the user reply. "no" is the default.
   name: option2
 - description: A comma delimited list of additional options if you have more than
-    2
+    2.
   name: additionalOptions
 - description: Which task should we close with the reply. If none then no playbook
     tasks will be closed.
   name: task
-- description: Send mail to all users of these roles (csv list)
+- description: Send mail to all users of these roles (csv list).
   name: roles
-- description: Attachments
+- description: Attachments.
   name: attachIds
+- description: A comma-separated list of CIDs to embed attachments within the actual
+    email.
+  name: attachCIDs
 - auto: PREDEFINED
   defaultValue: text
-  description: Type of email body to send - text ot HTML
+  description: Type of email body to send - text ot HTML.
   name: bodyType
   predefined:
   - text
   - html
 - auto: PREDEFINED
   defaultValue: "false"
-  description: Indicates whether to render the email body
+  description: Indicates whether to render the email body.
   name: renderBody
   predefined:
   - "true"
   - "false"
-- description: Address of reply for html links
+- description: Address of reply for html links.
   name: replyAddress
-- description: Tag to add on email reply entries
+- description: Tag to add on email reply entries.
   name: replyEntriesTag
 - auto: PREDEFINED
   defaultValue: "false"
-  description: Indicates whether to use one-time entitlement or a persistent one
+  description: Indicates whether to use one-time entitlement or a persistent one.
   name: persistent
   predefined:
   - "true"
   - "false"
 - defaultValue: "10"
   description: Indicates how many times to try and create an entitlement in case of
-    failure
+    failure.
   name: retries
-- description: The CC email address
+- description: The CC email address.
   name: cc
-- description: The BCC email address
+- description: The BCC email address.
   name: bcc
 - defaultValue: ${currentPlaybookID}
   description: Subplaybook ID, use ${currentPlaybookID} to get it from context, `all`
-    to complete all tasks from all playbooks
+    to complete all tasks from all playbooks.
   name: playbookTaskID
 comment: Ask a user a question via email and process the reply directly into the investigation.
 commonfields:
@@ -67,7 +70,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -82,7 +85,7 @@ pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  // pack version: 1.12.20
+  // pack version: 1.13.22
   // email body type
   var bodyType = 'text';
   if (args.bodyType === 'html') {
@@ -193,7 +196,9 @@ script: |
       if (args.bcc) {
           emailArgs.bcc = args.bcc;
       }
-
+      if (args.attachCIDs) {
+          emailArgs.attachCIDs = args.attachCIDs;
+      }
        // Add additional fields from args to emailArgs
       for (const key in args) {
           if (args.hasOwnProperty(key) && !emailArgs.hasOwnProperty(key)) {
