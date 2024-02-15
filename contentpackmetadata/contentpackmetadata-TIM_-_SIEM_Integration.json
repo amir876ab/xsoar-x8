@@ -50,7 +50,7 @@
 		"wizard": null
 	},
 	"created": "2021-01-27T23:01:15Z",
-	"currentVersion": "1.1.1",
+	"currentVersion": "1.1.2",
 	"definitionId": "",
 	"dependencies": {
 		"ArcSightESM": {
@@ -64,20 +64,20 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.32.23",
+			"minVersion": "1.32.33",
 			"name": "Base"
 		},
 		"QRadar": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.4.27",
+			"minVersion": "2.4.35",
 			"name": "IBM QRadar"
 		}
 	},
 	"deprecated": false,
 	"description": "Update your SIEM with minimal fuss! This Content Pack automates the delivery of indicators to your SIEM for correlation, with minimal configuration.",
-	"downloads": 2338,
+	"downloads": 4125,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.5.0",
 	"general": [
@@ -106,7 +106,7 @@
 			"name": "ArcSight ESM v2"
 		}
 	],
-	"itemVersion": "1.1.1",
+	"itemVersion": "1.1.2",
 	"keywords": [],
 	"legacy": true,
 	"modules": [],
@@ -132,16 +132,16 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Getting Started",
 		"TIM",
-		"Use Case"
+		"Use Case",
+		"Getting Started"
 	],
 	"toServerVersion": "",
-	"updated": "2023-08-06T09:23:24Z",
+	"updated": "2023-09-14T09:45:00Z",
 	"useCases": [
 		"Threat Intelligence Management"
 	],
 	"version": -1,
-	"versionInfo": "5969979",
+	"versionInfo": "6319909",
 	"videos": []
 }
