@@ -81,7 +81,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.6.10
+    itemVersion: 2.6.15
     packID: VirusTotal
     packName: VirusTotal
     packPropagationLabels:
@@ -513,7 +513,7 @@ script:
     name: vt-comments-get
   runonce: false
   script: |
-    // pack version: 2.6.10
+    // pack version: 2.6.15
     var DBOTSCORE_KEY = "DBotScore(val.Indicator && val.Indicator === obj.Indicator && val.Vendor === obj.Vendor && val.Type === obj.Type)"
     var serverUrl = params.Server;
     if (serverUrl[serverUrl.length - 1] !== '/') {
