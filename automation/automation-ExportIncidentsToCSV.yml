@@ -9,9 +9,9 @@ args:
     be a number.
   name: fetchdays
 - description: 'Comma separated list of columns (fields) for the CSV.  (Default is:
-    id,name,type,severity,status,owner,roles,playbookId,occurred,created,modified,closed)'
+    id,name,type,severity,status,owner,roles,playbookId,occurred,created,modified,closed).'
   name: columns
-comment: This automation uses the Demisto REST API Integration to batch export Incidents
+comment: This automation uses the Core REST API Integration to batch export Incidents
   to CSV and return the resulting CSV file to the war room.
 commonfields:
   id: ExportIncidentsToCSV
@@ -20,7 +20,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -30,21 +30,22 @@ contentitemexportablefields:
     toServerVersion: ""
 dependson:
   must:
-  - demisto-api-post
-  - demisto-api-get
-dockerimage: demisto/python3:3.10.12.63474
+  - core-api-post
+  - core-api-get
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: ExportIncidentsToCSV
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('ExportIncidentsToCSV', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
 
@@ -77,12 +78,27 @@ script: |
       }
 
       # generate the file
-      res = demisto.executeCommand("demisto-api-post", {"uri": "/incident/batch/exportToCsv",
-                                                        "body": incident_body})[0]["Contents"]["response"]
+      export_to_csv_result = demisto.executeCommand(
+          "core-api-post", {"uri": "/incident/batch/exportToCsv", "body": incident_body}
+      )
+      demisto.debug(f'{export_to_csv_result=}')
+      if is_error(export_to_csv_result):
+          demisto.error(
+              f'Error {get_error(export_to_csv_result)} when trying to export incident(s) with query {incident_query} to CSV'
+          )
+
+      csv_file_name = export_to_csv_result[0]["Contents"]["response"]
 
       # download the file and return to the war room
-      file = demisto.executeCommand("demisto-api-get", {"uri": f"/incident/csv/{res}"})[0]["Contents"]["response"]
-      demisto.results(fileResult(res, file))
+      incident_csv_result = demisto.executeCommand("core-api-get", {"uri": f"/incident/csv/{csv_file_name}"})
+      demisto.debug(f'{incident_csv_result=}')
+      if is_error(incident_csv_result):
+          demisto.error(
+              f'Error {get_error(incident_csv_result)} when trying to retrieve the CSV'
+          )
+
+      file = incident_csv_result[0]["Contents"]["response"]
+      demisto.results(fileResult(csv_file_name, file))
 
 
   if __name__ in ('__main__', '__builtin__', 'builtins'):
