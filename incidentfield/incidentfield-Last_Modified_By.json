@@ -36,7 +36,7 @@
 	"id": "incident_lastmodifiedby",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Last Modified By",
@@ -50,7 +50,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Last Modified By",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
