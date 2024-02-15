@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.5.0",
 	"id": "81b585f2-c439-42de-8ad6-6a2877808f09",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Mean Time to Triage",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
