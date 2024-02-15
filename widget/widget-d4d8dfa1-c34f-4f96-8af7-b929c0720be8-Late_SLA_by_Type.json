@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.5.0",
 	"id": "d4d8dfa1-c34f-4f96-8af7-b929c0720be8",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Late SLA by Type",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
