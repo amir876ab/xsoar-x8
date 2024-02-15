@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -11,17 +11,36 @@ contentitemexportablefields:
     propagationLabels: []
     toServerVersion: ""
 description: Calculates and sets the incident severity based on the combination of
-  the current incident severity, and the severity returned from the Evaluate Severity
-  - Set By Highest DBotScore playbook.
+  the current incident severity, and the severity returned from the Calculate Severity
+  By Highest DBotScore playbook.
 id: Calculate Severity - Standard
 inputs:
-- description: A list of DBotScores of indicators.
-  key: DBotScore
+- description: A list of DBotScore indicator values.
+  key: DBotScoreIndicators
   playbookInputQuery: null
   required: false
   value:
     complex:
+      accessor: Indicator
       root: DBotScore
+      transformers:
+      - operator: uniq
+- description: The highest score (number) that was given to a DBotScore indicator.
+  key: DBotScoreMaxScore
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: Score
+      root: DBotScore
+      transformers:
+      - args:
+          descending:
+            value:
+              simple: "true"
+        operator: sort
+      - operator: uniq
+      - operator: FirstArrayElement
 name: Calculate Severity - Standard
 outputs: []
 starttaskid: "0"
@@ -36,7 +55,7 @@ tasks:
     nexttasks:
       '#none#':
       - "16"
-      - "18"
+      - "20"
     note: false
     quietmode: 0
     separatecontext: false
@@ -420,50 +439,6 @@ tasks:
           "y": 195
         }
       }
-  "18":
-    continueonerrortype: ""
-    id: "18"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    loop:
-      exitCondition: ""
-      iscommand: false
-      max: 0
-      wait: 1
-    nexttasks:
-      '#none#':
-      - "15"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      DBotScore:
-        complex:
-          root: inputs.DBotScore
-          transformers:
-          - operator: uniq
-    separatecontext: true
-    skipunavailable: false
-    task:
-      brand: ""
-      description: Calculates the incident severity level according to the indicator
-        with the highest DBotScore.
-      id: 64da7797-a618-454e-8243-37cfde94d1c5
-      iscommand: false
-      name: Evaluate Severity - Set By Highest DBotScore
-      playbookId: Calculate Severity By Highest DBotScore
-      type: playbook
-      version: -1
-    taskid: 64da7797-a618-454e-8243-37cfde94d1c5
-    timertriggers: []
-    type: playbook
-    view: |-
-      {
-        "position": {
-          "x": 620,
-          "y": 195
-        }
-      }
   "19":
     continueonerrortype: ""
     id: "19"
@@ -498,6 +473,61 @@ tasks:
         "position": {
           "x": 910,
           "y": 690
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      DBotScoreIndicators:
+        complex:
+          root: inputs.DBotScoreIndicators
+          transformers:
+          - operator: uniq
+      DBotScoreMaxScore:
+        complex:
+          root: inputs.DBotScoreMaxScore
+          transformers:
+          - args:
+              descending:
+                value:
+                  simple: "true"
+            operator: sort
+          - operator: uniq
+          - operator: FirstArrayElement
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Calculates the incident severity level according to the highest
+        DBotScore.
+      id: 0488f795-a0de-432a-848e-ccc213a40e15
+      iscommand: false
+      name: Calculate Severity By Highest DBotScore
+      playbookId: Calculate Severity By Highest DBotScore
+      type: playbook
+      version: -1
+    taskid: 0488f795-a0de-432a-848e-ccc213a40e15
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 610,
+          "y": 195
         }
       }
 version: -1
