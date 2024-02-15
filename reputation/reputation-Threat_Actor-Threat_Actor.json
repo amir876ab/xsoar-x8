@@ -14,7 +14,7 @@
 	"formatScript": "",
 	"fromServerVersion": "6.2.0",
 	"id": "Threat Actor",
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"layout": "STIX Threat Actor",
 	"legacyNames": [
 		"STIX Threat Actor"
@@ -27,6 +27,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "",
 	"reputationCommand": "",
 	"reputationScriptName": "",
