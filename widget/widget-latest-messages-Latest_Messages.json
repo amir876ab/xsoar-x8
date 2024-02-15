@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "latest-messages",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Latest Messages",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
