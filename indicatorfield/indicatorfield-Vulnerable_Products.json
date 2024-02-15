@@ -39,7 +39,7 @@
 	"id": "indicator_vulnerableproducts",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Vulnerable Products",
@@ -53,7 +53,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Vulnerable Products",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
