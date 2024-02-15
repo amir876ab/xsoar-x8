@@ -1,9 +1,10 @@
 args:
 - default: true
-  description: Integration's brand name to query
+  description: Integration's brand name to query.
+  isArray: true
   name: brandname
   required: true
-comment: Returns 'yes' if integration brand is available. Otherwise returns 'no'
+comment: Returns 'yes' if integration brand is available. Otherwise returns 'no'.
 commonfields:
   id: IsIntegrationAvailable
   version: -1
@@ -11,7 +12,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -19,53 +20,60 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
 engineinfo: {}
 mainengineinfo: {}
 name: IsIntegrationAvailable
-nativeimage:
-- "8.3"
 outputs:
 - contextPath: "yes"
-  description: if integration is available
+  description: if integration is available.
 - contextPath: "no"
-  description: if there is no instance for the given brand
+  description: if there is no instance for the given brand.
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  register_module_line('IsIntegrationAvailable', 'start', __line__())
-  ### pack version: 1.12.20
+  // pack version: 1.13.22
+  function isIntegrationAvailable(brandName, allInstances) {
+      const brandInstances = Object.keys(allInstances).filter(
+          instanceName =>
+          allInstances[instanceName].brand.toLowerCase() === brandName.toLowerCase() &&
+          allInstances[instanceName].state === 'active'
+      );
+
+      const readableOutput = brandInstances.length > 0 ? 'yes' : 'no';
+
+      return {
+          'Type': entryTypes['note'],
+          'ContentsFormat': formats['json'],
+          'Contents': readableOutput,
+          'HumanReadable': readableOutput,
+          'EntryContext': {'brandInstances': brandInstances}
+      };
+  }
 
 
+  function main() {
+      const brandNames = argToList(args.brandname);
+      const allInstances = getModules();
+
+      const results = [];
+      for (let brandName of brandNames) {
+          const result = isIntegrationAvailable(brandName, allInstances);
+          results.push(result);
+      }
+
+      return results;
+  }
 
 
-  def is_integration_available(brandName, allInstances):
-      brandInstances = [instanceName for instanceName in allInstances
-                        if allInstances[instanceName]['brand'].lower() == brandName.lower()
-                        and demisto.get(allInstances[instanceName], 'state')
-                        and allInstances[instanceName]['state'] == 'active']
-      if brandInstances:
-          demisto.setContext('brandInstances', brandInstances)
-          demisto.results('yes')
-      else:
-          demisto.results('no')
-
-
-  def main():
-      brandName = demisto.get(demisto.args(), 'brandname')
-      allInstances = demisto.getModules()
-      is_integration_available(brandName, allInstances)
-
-
-  if __name__ in ('__main__', '__builtin__', 'builtins'):  # pragma: no cover
-      main()
-
-  register_module_line('IsIntegrationAvailable', 'end', __line__())
+  try {
+      return main();
+  } catch (error) {
+      throw `Failed to execute automation. Error:\n${error}`;
+  }
 scripttarget: 0
-subtype: python3
 system: true
 tags:
 - infra
 - Condition
-type: python
+type: javascript
