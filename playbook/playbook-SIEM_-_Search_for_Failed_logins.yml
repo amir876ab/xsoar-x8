@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -16,7 +16,7 @@ description: |-
   Supported Integrations:
   -Splunk
   -QRadar
-  -Azure Log Analytics
+  -Azure Log Analytics.
 id: SIEM - Search for Failed logins
 inputs:
 - description: Splunk's index name in which to search. Default is "*" - All.
@@ -61,7 +61,7 @@ outputs:
 - contextPath: NumOfSiemFailedLogon
   description: Number of failed login from Siem.
   type: unknown
-- contextPath: QRadar.Search.Result
+- contextPath: QRadar.SearchEvents
   description: The result of the QRadar search.
 - contextPath: Splunk.Result
   description: The results of the Splunk search. The results are a JSON array, in
@@ -140,7 +140,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "4"
+      - "24"
     note: false
     quietmode: 0
     separatecontext: false
@@ -284,54 +284,6 @@ tasks:
         "position": {
           "x": -810,
           "y": 320
-        }
-      }
-  "4":
-    continueonerrortype: ""
-    id: "4"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    loop:
-      exitCondition: ""
-      iscommand: false
-      max: 0
-      wait: 1
-    nexttasks:
-      '#none#':
-      - "16"
-    note: false
-    quietmode: 2
-    scriptarguments:
-      interval:
-        simple: "1"
-      query_expression:
-        simple: select * from events WHERE LogSourceTypeName(deviceType) = 'Microsoft
-          Windows Security Event Log' and username='${inputs.Username}' and "EventID"='4771'  or
-          "EventID"='4625' and "Logon Type"='2' OR "Logon Type"='7' OR "Logon Type"='10'
-          ${inputs.QRadarSearchTime}
-      timeout:
-        simple: "600"
-    separatecontext: true
-    skipunavailable: true
-    task:
-      brand: ""
-      description: This playbook runs a QRadar query and return its results to the
-        context.
-      id: eaf023ca-5658-4d9d-887c-d65d088917d6
-      iscommand: false
-      name: Search for failed logon attempts using QRadar
-      playbookName: QRadarFullSearch
-      type: playbook
-      version: -1
-    taskid: eaf023ca-5658-4d9d-887c-d65d088917d6
-    timertriggers: []
-    type: playbook
-    view: |-
-      {
-        "position": {
-          "x": -440,
-          "y": 690
         }
       }
   "5":
@@ -512,8 +464,8 @@ tasks:
     scriptarguments:
       array:
         complex:
-          accessor: events
-          root: QRadar.Search.Result
+          accessor: Events
+          root: QRadar.SearchEvents
       contextKey:
         simple: NumOfSiemFailedLogon
       extend-context:
@@ -589,8 +541,8 @@ tasks:
             iscontext: true
             value:
               complex:
-                accessor: events
-                root: QRadar.Search.Result
+                accessor: Events
+                root: QRadar.SearchEvents
           operator: isExists
           right:
             value: {}
@@ -779,6 +731,46 @@ tasks:
         "position": {
           "x": 1370,
           "y": 1090
+        }
+      }
+  "24":
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      interval_in_seconds:
+        simple: "1"
+      query_expression:
+        simple: select * from events WHERE LogSourceTypeName(deviceType) = 'Microsoft
+          Windows Security Event Log' and username='${inputs.Username}' and "EventID"='4771'  or
+          "EventID"='4625' and "Logon Type"='2' OR "Logon Type"='7' OR "Logon Type"='10'
+          ${inputs.QRadarSearchTime}
+    separatecontext: false
+    skipunavailable: true
+    task:
+      brand: ""
+      description: Polling command to search for events of a specific offense.
+      id: f8fa6689-2d97-4d84-895d-5c923b1b6751
+      iscommand: true
+      name: Run Qradar Search
+      script: '|||qradar-search-retrieve-events'
+      type: regular
+      version: -1
+    taskid: f8fa6689-2d97-4d84-895d-5c923b1b6751
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -440,
+          "y": 690
         }
       }
 version: -1
