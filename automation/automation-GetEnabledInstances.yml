@@ -6,7 +6,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -14,13 +14,14 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: GetEnabledInstances
 nativeimage:
 - "8.3"
+- "8.4"
 outputs:
 - contextPath: EnabledInstances
   description: A list of integration instance names that are currently enabled.
@@ -29,7 +30,7 @@ runas: DBotRole
 runonce: false
 script: |
   register_module_line('GetEnabledInstances', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
 
