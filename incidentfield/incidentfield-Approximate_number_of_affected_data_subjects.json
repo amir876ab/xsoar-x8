@@ -25,7 +25,7 @@
 	"id": "incident_approximatenumberofaffecteddatasubjects",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "1.12.20",
+	"itemVersion": "1.13.22",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Approximate number of affected data subjects",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Approximate number of affected data subjects",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
