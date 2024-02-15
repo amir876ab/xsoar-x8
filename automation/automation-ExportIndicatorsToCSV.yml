@@ -8,9 +8,9 @@ args:
   description: Indicator last seen days  (default is 7).  Needs to be a number.
   name: seenDays
 - description: 'Comma separated list of columns (fields) for the CSV.  (Default is:
-    id,indicator_type,value,source,score,relatedIncCount,setBy,sourceBrands,modified)'
+    id,indicator_type,value,source,score,relatedIncCount,setBy,sourceBrands,modified).'
   name: columns
-comment: This automation uses the Demisto REST API Integration to batch export Indicators
+comment: This automation uses the Core REST API Integration to batch export Indicators
   to CSV and return the resulting CSV file to the war room.
 commonfields:
   id: ExportIndicatorsToCSV
@@ -19,7 +19,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -29,21 +29,22 @@ contentitemexportablefields:
     toServerVersion: ""
 dependson:
   must:
-  - demisto-api-post
-  - demisto-api-get
-dockerimage: demisto/python3:3.10.12.63474
+  - core-api-post
+  - core-api-get
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: ExportIndicatorsToCSV
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('ExportIndicatorsToCSV', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
 
@@ -76,11 +77,11 @@ script: |
       }
 
       # generate the file
-      res = demisto.executeCommand("demisto-api-post", {"uri": "/indicators/batch/exportToCsv",
-                                                        "body": indicator_body})[0]["Contents"]["response"]
+      res = demisto.executeCommand("core-api-post", {"uri": "/indicators/batch/exportToCsv",
+                                                     "body": indicator_body})[0]["Contents"]["response"]
 
       # download the file and return to the war room
-      file = demisto.executeCommand("demisto-api-get", {"uri": f"/indicators/csv/{res}"})[0]["Contents"]["response"]
+      file = demisto.executeCommand("core-api-get", {"uri": f"/indicators/csv/{res}"})[0]["Contents"]["response"]
       demisto.results(fileResult(res, file))
 
 
