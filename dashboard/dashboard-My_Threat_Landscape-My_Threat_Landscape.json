@@ -8,7 +8,7 @@
 	"hideSearch": false,
 	"id": "My Threat Landscape",
 	"isCommon": true,
-	"itemVersion": "1.3.6",
+	"itemVersion": "1.3.8",
 	"layout": [
 		{
 			"forceRange": false,
@@ -55,6 +55,7 @@
 				],
 				"query": "RSSWidget",
 				"shouldCommit": false,
+				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -135,6 +136,7 @@
 				"query": "type:File and (verdict:Malicious or verdict:Suspicious) and incident.id:*",
 				"shouldCommit": false,
 				"size": 10,
+				"sizeInBytes": 0,
 				"sort": [
 					{
 						"asc": false,
@@ -220,6 +222,7 @@
 				"query": "type:\"Attack Pattern\" and (verdict:Malicious or verdict:Suspicious) and incident.id:*",
 				"shouldCommit": false,
 				"size": 10,
+				"sizeInBytes": 0,
 				"sort": [
 					{
 						"asc": false,
@@ -285,6 +288,7 @@
 				],
 				"query": "(verdict:Malicious or verdict:Suspicious) and incident.id:*",
 				"shouldCommit": false,
+				"sizeInBytes": 0,
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -370,6 +374,7 @@
 				"query": "incident.id:* and expirationStatus:active and (verdict:Malicious or verdict:Suspicious or verdict:Unknown)",
 				"shouldCommit": false,
 				"size": 10,
+				"sizeInBytes": 0,
 				"sort": [
 					{
 						"asc": false,
