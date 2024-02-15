@@ -1,20 +1,20 @@
 args:
-- description: The domain to query
+- description: The domain to query.
   name: domain
   required: true
-- description: 'IP of the DNS Server to use (default: system settings)'
+- description: 'IP of the DNS Server to use (default: system settings).'
   name: server
 - auto: PREDEFINED
   defaultValue: "false"
-  description: 'Use TCP for the query (default: false)'
+  description: 'Use TCP for the query (default: false).'
   name: use_tcp
   predefined:
   - "true"
   - "false"
 - defaultValue: CNAME,NS,A,AAAA
-  description: 'Comma separated list of query types (default: CNAME,NS,A,AAAA)'
+  description: 'Comma separated list of query types (default: CNAME,NS,A,AAAA).'
   name: qtype
-comment: Returns DNS details for a domain
+comment: Returns DNS details for a domain.
 commonfields:
   id: GetDomainDNSDetails
   version: -1
@@ -22,7 +22,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -30,10 +30,12 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/dnspython:1.0.0.12410
+dockerimage: demisto/netutils:1.0.0.74582
 engineinfo: {}
 mainengineinfo: {}
 name: GetDomainDNSDetails
+nativeimage:
+- "8.4"
 outputs:
 - contextPath: DomainDNSDetails.A
   description: Domain A records.
@@ -58,18 +60,16 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('GetDomainDNSDetails', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
 
 
   from typing import (
-      Dict, Any, Optional,
-      Union, List
+      Any
   )
   import traceback
 
-  import dns.message
   import dns.resolver
   import dns.rdatatype
   import dns.rdataclass
@@ -83,7 +83,7 @@ script: |
   ''' STANDALONE FUNCTION '''
 
 
-  def make_query(resolver: dns.resolver.Resolver, qname: str, qtype: str, use_tcp: bool) -> Dict[str, Any]:
+  def make_query(resolver: dns.resolver.Resolver, qname: str, qtype: str, use_tcp: bool) -> dict[str, Any]:
       q_rdtype = dns.rdatatype.from_text(qtype)
       q_rdclass = dns.rdataclass.from_text("IN")
 
@@ -102,7 +102,7 @@ script: |
       if ans.rrset is None:
           return {}
 
-      result: Dict[str, List[str]] = {}
+      result: dict[str, list[str]] = {}
 
       result[qtype] = [
           rr.to_text()
@@ -116,9 +116,9 @@ script: |
   ''' COMMAND FUNCTION '''
 
 
-  def get_domain_dns_details_command(args: Dict[str, Any]) -> CommandResults:
-      outputs: Optional[Dict[str, Dict[str, Any]]]
-      answer: Union[str, Dict[str, Any]]
+  def get_domain_dns_details_command(args: dict[str, Any]) -> CommandResults:
+      outputs: dict[str, dict[str, Any]] | None
+      answer: str | dict[str, Any]
 
       server = args.get('server')
       use_tcp = argToBoolean(args.get('use_tcp', 'Yes'))
@@ -149,7 +149,7 @@ script: |
       }
 
       markdown = tableToMarkdown(
-          f' Domain DNS Details for {qname}',
+          f'Domain DNS Details for {qname}',
           answer,
           headers=["domain", "server"] + qtypes
       )
