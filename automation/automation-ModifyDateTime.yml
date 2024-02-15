@@ -2,7 +2,7 @@ args:
 - default: true
   description: 'Input date or time in a format that is supported by the dateparser.parse()
     function as outlined here- https://dateparser.readthedocs.io/en/latest/#popular-formats.
-    For example: ''2020-01-01'' or ''1999/02/03 12:01:59'''
+    For example: ''2020-01-01'' or ''1999/02/03 12:01:59''.'
   name: value
   required: true
 - description: 'Variation of time (for example: ''in 1 day'', or ''3 months ago'').
@@ -18,7 +18,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.29
+    itemVersion: 1.2.54
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
@@ -26,19 +26,20 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: ModifyDateTime
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('ModifyDateTime', 'start', __line__())
-  ### pack version: 1.2.29
+  ### pack version: 1.2.54
 
 
 
