@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.8.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -10,7 +10,7 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-description: |
+description: |-
   This playbook retrieves information on all of the associated user devices, based on the user's username.
   In order to get a generic output, the following information on all of the retrieved devices will be saved under the `UserDevices` context key:
   - Name
@@ -29,7 +29,7 @@ description: |
   - Cortex XDR IR
   - ServiceNow v2
   - Google Workspace (Gsuite)
-  - Active Directory Query v2
+  - Active Directory Query v2.
 id: Get User Devices by Username - Generic
 inputs:
 - description: The username of the user.
@@ -625,7 +625,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1430,
+          "x": 1980,
           "y": 1830
         }
       }
@@ -655,7 +655,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1430,
+          "x": 1980,
           "y": 530
         }
       }
@@ -692,7 +692,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1650,
+          "x": 2200,
           "y": 890
         }
       }
@@ -733,7 +733,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1430,
+          "x": 1980,
           "y": 690
         }
       }
@@ -770,7 +770,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 2100,
+          "x": 2650,
           "y": 890
         }
       }
@@ -827,7 +827,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1950,
+          "x": 2500,
           "y": 530
         }
       }
@@ -840,24 +840,25 @@ tasks:
     nexttasks:
       '#none#':
       - "14"
+      - "54"
     note: false
     quietmode: 0
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      id: fd67527c-d621-485b-8c25-ea1f16071131
+      id: 169c5e7e-5e78-4951-8ccf-b4124b0390ed
       iscommand: false
-      name: Cortex XDR
+      name: Cortex XDR / Core
       type: title
       version: -1
-    taskid: fd67527c-d621-485b-8c25-ea1f16071131
+    taskid: 169c5e7e-5e78-4951-8ccf-b4124b0390ed
     timertriggers: []
     type: title
     view: |-
       {
         "position": {
-          "x": 380,
+          "x": 640,
           "y": 530
         }
       }
@@ -997,7 +998,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 900,
+          "x": 1450,
           "y": 530
         }
       }
@@ -1037,7 +1038,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 900,
+          "x": 1450,
           "y": 690
         }
       }
@@ -1073,7 +1074,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 900,
+          "x": 1450,
           "y": 890
         }
       }
@@ -1103,7 +1104,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 910,
+          "x": 1460,
           "y": 1610
         }
       }
@@ -1783,7 +1784,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1650,
+          "x": 2200,
           "y": 1075
         }
       }
@@ -1825,7 +1826,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 2100,
+          "x": 2650,
           "y": 1075
         }
       }
@@ -1863,7 +1864,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1650,
+          "x": 2200,
           "y": 1275
         }
       }
@@ -1901,7 +1902,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 2100,
+          "x": 2650,
           "y": 1275
         }
       }
@@ -1945,7 +1946,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1650,
+          "x": 2200,
           "y": 1460
         }
       }
@@ -1989,7 +1990,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 2100,
+          "x": 2650,
           "y": 1460
         }
       }
@@ -2041,7 +2042,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1650,
+          "x": 2200,
           "y": 1630
         }
       }
@@ -2343,7 +2344,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 900,
+          "x": 1450,
           "y": 1075
         }
       }
@@ -2388,7 +2389,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 910,
+          "x": 1460,
           "y": 1260
         }
       }
@@ -2451,7 +2452,8 @@ tasks:
       value:
         simple: '${PaloAltoNetworksXDR.Endpoint={Name: val[''endpoint_name''], SerialNumber:
           '''', ID: val[''endpoint_id''], Model: val[''endpoint_type''], MACAddress:
-          '''', OS: val[''os_type''], Integration: ''Cortex XDR - IR''}}'
+          val[''mac_address''], OS: val[''os_type''], Integration: ''Cortex XDR -
+          IR''}}'
     separatecontext: false
     skipunavailable: false
     task:
@@ -2462,19 +2464,213 @@ tasks:
         This automation runs using the default Limited User role, unless you explicitly change the permissions.
         For more information, see the section about permissions here:
         https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.11/Cortex-XSOAR-Administrator-Guide/Automations
-      id: ffca4e76-501e-47d2-8ac0-66973cd15498
+      id: 69282860-ecd4-45b7-8ba3-7ff339cfe7e1
       iscommand: false
       name: Set XDREndpoints
       script: SetAndHandleEmpty
       type: regular
       version: -1
-    taskid: ffca4e76-501e-47d2-8ac0-66973cd15498
+    taskid: 69282860-ecd4-45b7-8ba3-7ff339cfe7e1
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": 380,
+          "y": 1265
+        }
+      }
+  "54":
+    continueonerrortype: ""
+    id: "54"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "55"
+      "yes":
+      - "56"
+    note: false
+    quietmode: 0
+    results:
+    - brandInstances
+    scriptarguments:
+      brandname:
+        simple: Cortex Core - IR
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if integration brand is available. Otherwise returns
+        'no'
+      id: 0eea89b2-b09a-4dae-8356-31b186e1613a
+      iscommand: false
+      name: Cortex Core IR enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: 0eea89b2-b09a-4dae-8356-31b186e1613a
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 690
+        }
+      }
+  "55":
+    continueonerrortype: ""
+    id: "55"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "27"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1b426d46-5211-4355-8bd5-dde940087cd5
+      iscommand: false
+      name: Done - Cortex Core
+      type: title
+      version: -1
+    taskid: 1b426d46-5211-4355-8bd5-dde940087cd5
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 1610
+        }
+      }
+  "56":
+    continueonerrortype: ""
+    id: "56"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "57"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      username:
+        complex:
+          root: inputs.Username
+    separatecontext: false
+    skipunavailable: true
+    task:
+      brand: ""
+      description: Gets a list of endpoints, according to the passed filters. If there
+        are no filters, all endpoints are returned. Filtering by multiple fields will
+        be concatenated using AND condition (OR is not supported). Maximum result
+        set size is 100. Offset is the zero-based number of endpoint from the start
+        of the result set (start by counting from 0).
+      id: f9afe925-5210-4714-805f-e076e97c9973
+      iscommand: true
+      name: Cortex Core - Get device details
+      script: '|||core-get-endpoints'
+      type: regular
+      version: -1
+    taskid: f9afe925-5210-4714-805f-e076e97c9973
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 890
+        }
+      }
+  "57":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Core.Endpoint.endpoint_id
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "57"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "55"
+      "yes":
+      - "58"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6d47d858-a121-415e-82d4-dd033b20222a
+      iscommand: false
+      name: Any results?
+      type: condition
+      version: -1
+    taskid: 6d47d858-a121-415e-82d4-dd033b20222a
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 1080
+        }
+      }
+  "58":
+    continueonerrortype: ""
+    id: "58"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "55"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: XDREndpoints
+      value:
+        simple: '${Core.Endpoint={Name: val[''endpoint_name''], SerialNumber: '''',
+          ID: val[''endpoint_id''], Model: val[''endpoint_type''], MACAddress: val[''mac_address''],
+          OS: val[''os_type''], Integration: ''Cortex Core - IR''}}'
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Set a value in context under the key you entered. If no value is entered, the script doesn't do anything.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.12/Cortex-XSOAR-Administrator-Guide/Automations
+      id: baa6ebfb-b39f-4b7a-80cf-89ac44b6969e
+      iscommand: false
+      name: Set XDREndpoints
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: baa6ebfb-b39f-4b7a-80cf-89ac44b6969e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 900,
           "y": 1265
         }
       }
@@ -2504,15 +2700,17 @@ view: |-
       "4_11_#default#": 0.15,
       "50_20_#default#": 0.19,
       "50_51_yes": 0.42,
-      "52_16_#default#": 0.21,
+      "52_16_#default#": 0.69,
       "52_53_yes": 0.37,
+      "54_55_no": 0.11,
+      "57_55_#default#": 0.69,
       "5_11_no": 0.42,
       "9_6_no": 0.18
     },
     "paper": {
       "dimensions": {
         "height": 2345,
-        "width": 3640,
+        "width": 4190,
         "x": -1160,
         "y": 120
       }
