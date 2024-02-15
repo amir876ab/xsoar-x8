@@ -27,7 +27,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.2.30
+    itemVersion: 1.2.45
     packID: CommonWidgets
     packName: Common Widgets
     packPropagationLabels:
@@ -35,19 +35,17 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/py3-tools:1.0.0.73055
+dockerimage: demisto/py3-tools:1.0.0.84811
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: RSSWidget
-nativeimage:
-- "8.3"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('RSSWidget', 'start', __line__())
-  ### pack version: 1.2.30
+  ### pack version: 1.2.45
 
 
   import email.utils
