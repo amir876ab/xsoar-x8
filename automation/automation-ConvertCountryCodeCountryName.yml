@@ -1,7 +1,7 @@
 args:
-- description: 'Country Code Alpha 2 (Example: US)'
+- description: 'Country Code Alpha 2 (Example: US).'
   name: country_code
-- description: Country Name
+- description: Country Name.
   name: country_name
 comment: |-
   Convert country name to country code or country code to country name.
@@ -11,7 +11,7 @@ comment: |-
   Output: { "United States" }
   Another Example:
   Input: { "country_name": "United States" }
-  Output: { "US" }
+  Output: { "US" }.
 commonfields:
   id: ConvertCountryCodeCountryName
   version: -1
@@ -19,7 +19,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -27,19 +27,20 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.83255
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: ConvertCountryCodeCountryName
 nativeimage:
 - "8.3"
+- "8.4"
 pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('ConvertCountryCodeCountryName', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
 
