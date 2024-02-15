@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.4.2
+    itemVersion: 2.6.3
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -11,14 +11,17 @@ contentitemexportablefields:
     propagationLabels: []
     toServerVersion: ""
 description: 'This playbook uploads, detonates, and analyzes files for supported sandboxes.
-  Currently supported sandboxes are Falcon Intelligence Sandbox and Wildfire. '
+  Currently supported sandboxes are Falcon Intelligence Sandbox, JoeSecurity, and
+  Wildfire. '
 id: Detonate and Analyze File - Generic
 inputs:
 - description: The details of the file to search for.
   key: File
   playbookInputQuery: null
   required: false
-  value: {}
+  value:
+    complex:
+      root: File
 name: Detonate and Analyze File - Generic
 outputs:
 - contextPath: csfalconx.resource.tags
@@ -41,16 +44,142 @@ outputs:
   type: string
 - contextPath: AttackPattern
   description: The MITRE Attack pattern information.
-  type: unknown
+  type: string
 - contextPath: MITREATTACK
   description: Full MITRE data for the attack pattern.
-  type: unknown
+  type: string
 - contextPath: DBotScore
   description: DBotScore object.
-  type: unknown
+  type: string
 - contextPath: Joe.Analysis
   description: Joe Analysis object.
-  type: unknown
+  type: string
+- contextPath: DBotScore.Vendor
+  description: The vendor used to calculate the score.
+  type: string
+- contextPath: DBotScore.Indicator
+  description: The indicator that was tested.
+  type: string
+- contextPath: DBotScore.Type
+  description: The indicator type.
+  type: string
+- contextPath: DBotScore.Score
+  description: The actual score.
+  type: string
+- contextPath: DBotScore.Malicious
+  description: DBotScore Malicious object
+  type: string
+- contextPath: DBotScore.Malicious.Vendor
+  description: The vendor used to calculate the score.
+  type: string
+- contextPath: DBotScore.Malicious.Detections
+  description: The sub analysis detection statuses
+  type: string
+- contextPath: DBotScore.Malicious.SHA1
+  description: The SHA1 of the file
+  type: string
+- contextPath: Joe.Analysis.ID
+  description: Web ID
+  type: string
+- contextPath: Joe.Analysis.Status
+  description: Analysis Status
+  type: string
+- contextPath: Joe.Analysis.Comments
+  description: Analysis Comments
+  type: string
+- contextPath: Joe.Analysis.Time
+  description: Submitted Time
+  type: date
+- contextPath: Joe.Analysis.Runs
+  description: Sub-Analysis Information
+  type: string
+- contextPath: Joe.Analysis.Result
+  description: Analysis Results
+  type: string
+- contextPath: Joe.Analysis.Errors
+  description: Raised errors during sampling
+  type: string
+- contextPath: Joe.Analysis.Systems
+  description: Analysis OS
+  type: string
+- contextPath: Joe.Analysis.MD5
+  description: MD5 of analysis sample
+  type: string
+- contextPath: Joe.Analysis.SHA1
+  description: SHA1 of analysis sample
+  type: string
+- contextPath: Joe.Analysis.SHA256
+  description: SHA256 of analysis sample
+  type: string
+- contextPath: Joe.Analysis.SampleName
+  description: Sample Data, could be a file name or URL
+  type: string
+- contextPath: InfoFile
+  description: Report file object
+  type: string
+- contextPath: InfoFile.Name
+  description: The filename.
+  type: string
+- contextPath: InfoFile.EntryID
+  description: The entry ID of the report.
+  type: string
+- contextPath: InfoFile.Size
+  description: File size.
+  type: number
+- contextPath: InfoFile.Type
+  description: File type, e.g., "PE".
+  type: string
+- contextPath: InfoFile.Info
+  description: Basic information of the file.
+  type: string
+- contextPath: InfoFile.Extension
+  description: The extension of the image file.
+  type: string
+- contextPath: File
+  description: File object
+  type: string
+- contextPath: File.Extension
+  description: File extension.
+  type: string
+- contextPath: File.MD5
+  description: The MD5 hash of the file.
+  type: string
+- contextPath: File.Name
+  description: The full file name.
+  type: string
+- contextPath: File.SHA1
+  description: The SHA1 hash of the file.
+  type: string
+- contextPath: File.SHA256
+  description: The SHA256 hash of the file.
+  type: string
+- contextPath: ExtractedIndicators
+  description: outputs.extractindicators
+  type: string
+- contextPath: AttackPattern.STIXID
+  description: The STIX ID of the Attack Pattern.
+  type: string
+- contextPath: AttackPattern.KillChainPhases
+  description: The kill chain phases of the Attack Pattern.
+  type: string
+- contextPath: AttackPattern.FirstSeenBySource
+  description: The first seen by source of the Attack Pattern.
+  type: string
+- contextPath: AttackPattern.Description
+  description: The description of the Attack Pattern.
+  type: string
+- contextPath: AttackPattern.OperatingSystemRefs
+  description: The operating system references of the Attack Pattern.
+  type: string
+- contextPath: AttackPattern.Publications
+  description: The publications of the Attack Pattern.
+  type: string
+- contextPath: AttackPattern.MITREID
+  description: The MITRE ID of the Attack Pattern.
+  type: string
+- contextPath: AttackPattern.Tags
+  description: The tags of the Attack Pattern.
+  type: string
 starttaskid: "0"
 system: true
 tasks:
@@ -80,7 +209,7 @@ tasks:
       {
         "position": {
           "x": 1590,
-          "y": 70
+          "y": 80
         }
       }
   "1":
@@ -114,27 +243,33 @@ tasks:
                   simple: '160: Windows 10,300: Linux Ubuntu 16.04,300: Linux Ubuntu
                     16.04'
             operator: MapValuesTransformer
+      EnableTor:
+        simple: "false"
+      EnvironmentID:
+        simple: '''160: Windows 10'''
       File:
-        simple: ${inputs.File}
+        complex:
+          root: inputs.File
     separatecontext: true
     skipunavailable: true
     task:
       brand: ""
-      description: Env ID - return to transformer.
-      id: 2d74acbf-eb10-4ede-8880-21e9afb7325a
+      description: This playbook uploads, detonates, and analyzes files for the CrowdStrike
+        Falcon Intelligence Sandbox.
+      id: 1efe544b-f18b-467c-8a8c-de784c146ef9
       iscommand: false
       name: CrowdStrike Falcon Intelligence Sandbox Detonate and Analyze File
       playbookName: CrowdStrike Falcon Intelligence Sandbox Detonate and Analyze File
       type: playbook
       version: -1
-    taskid: 2d74acbf-eb10-4ede-8880-21e9afb7325a
+    taskid: 1efe544b-f18b-467c-8a8c-de784c146ef9
     timertriggers: []
     type: playbook
     view: |-
       {
         "position": {
-          "x": 920,
-          "y": 580
+          "x": 1840,
+          "y": 570
         }
       }
   "2":
@@ -155,25 +290,28 @@ tasks:
     quietmode: 0
     scriptarguments:
       File:
-        simple: ${inputs.File}
+        complex:
+          root: inputs.File
     separatecontext: true
     skipunavailable: true
     task:
       brand: ""
-      id: a10b7555-36b7-444e-874c-20c10a692311
+      description: |
+        This playbook uploads, detonates, and analyzes files for the Wildfire sandbox.
+      id: 215ed959-df27-4580-8ed0-a95b3246f65d
       iscommand: false
       name: Wildfire Detonate and Analyze File
       playbookId: Wildfire Detonate and Analyze File
       type: playbook
       version: -1
-    taskid: a10b7555-36b7-444e-874c-20c10a692311
+    taskid: 215ed959-df27-4580-8ed0-a95b3246f65d
     timertriggers: []
     type: playbook
     view: |-
       {
         "position": {
-          "x": 1350,
-          "y": 580
+          "x": 2300,
+          "y": 570
         }
       }
   "3":
@@ -200,7 +338,7 @@ tasks:
       {
         "position": {
           "x": 1590,
-          "y": 1630
+          "y": 1640
         }
       }
   "4":
@@ -239,8 +377,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 920,
-          "y": 390
+          "x": 1840,
+          "y": 380
         }
       }
   "5":
@@ -323,8 +461,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1350,
-          "y": 390
+          "x": 2300,
+          "y": 380
         }
       }
   "9":
@@ -373,8 +511,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 920,
-          "y": 760
+          "x": 1840,
+          "y": 750
         }
       }
   "11":
@@ -407,29 +545,30 @@ tasks:
     quietmode: 0
     scriptarguments:
       TechniqueID:
-        simple: ${csfalconx.resource.sandbox.mitre_attacks.attack_id}
+        complex:
+          accessor: attack_id
+          root: csfalconx.resource.sandbox.mitre_attacks
     separatecontext: true
     skipunavailable: true
     task:
       brand: ""
       description: |-
-        This playbook accepts as an input MITRE technique IDs.
-        It provides the MITRE technique name and all the technique data using the MITRE integration.
-        After extracting the MITRE data, the techniques are associated with the incident.
-      id: 9392e375-e991-4914-8db3-0bf4a52f77bc
+        This playbook accepts as input MITRE techniques IDs.
+        It returns the MITRE technique name and full technique data using the MITRE integration.
+      id: 93344bc1-a4e8-4997-8879-3ecb04041bd1
       iscommand: false
       name: Mitre Attack - Extract Technique Information From ID
       playbookId: Mitre Attack - Extract Technique Information From ID
       type: playbook
       version: -1
-    taskid: 9392e375-e991-4914-8db3-0bf4a52f77bc
+    taskid: 93344bc1-a4e8-4997-8879-3ecb04041bd1
     timertriggers: []
     type: playbook
     view: |-
       {
         "position": {
-          "x": 920,
-          "y": 925
+          "x": 1840,
+          "y": 945
         }
       }
   "12":
@@ -468,8 +607,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 520,
-          "y": 390
+          "x": 1330,
+          "y": 380
         }
       }
   "14":
@@ -515,8 +654,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 70,
-          "y": 925
+          "x": 1090,
+          "y": 945
         }
       }
   "15":
@@ -561,7 +700,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 280,
+          "x": 1090,
           "y": 750
         }
       }
@@ -608,8 +747,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 500,
-          "y": 925
+          "x": 690,
+          "y": 945
         }
       }
   "17":
@@ -649,20 +788,20 @@ tasks:
     task:
       brand: ""
       description: Converts a PDF file to an image file.
-      id: 0084c14e-9249-4b06-88e8-f20622097744
+      id: 3ef64df5-ef9a-4a40-8fd8-ee5a4e3e9274
       iscommand: true
       name: Rasterize PDF
       script: '|||rasterize-pdf'
       type: regular
       version: -1
-    taskid: 0084c14e-9249-4b06-88e8-f20622097744
+    taskid: 3ef64df5-ef9a-4a40-8fd8-ee5a4e3e9274
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
-          "x": 500,
-          "y": 1450
+          "x": 690,
+          "y": 1470
         }
       }
   "18":
@@ -710,8 +849,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 70,
-          "y": 1085
+          "x": 1090,
+          "y": 1105
         }
       }
   "19":
@@ -755,8 +894,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 70,
-          "y": 1450
+          "x": 1090,
+          "y": 1470
         }
       }
   "21":
@@ -805,8 +944,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 70,
-          "y": 1250
+          "x": 1090,
+          "y": 1270
         }
       }
   "22":
@@ -857,22 +996,30 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 280,
-          "y": 580
+          "x": 1090,
+          "y": 570
         }
       }
 version: -1
 view: |-
   {
     "linkLabelsPosition": {
-      "5_3_#default#": 0.51
+      "12_3_#default#": 0.1,
+      "15_3_#default#": 0.25,
+      "21_3_#default#": 0.27,
+      "4_1_yes": 0.61,
+      "4_3_no": 0.15,
+      "5_3_#default#": 0.1,
+      "6_3_no": 0.14,
+      "9_11_yes": 0.59,
+      "9_3_#default#": 0.13
     },
     "paper": {
       "dimensions": {
         "height": 1625,
-        "width": 1900,
-        "x": 70,
-        "y": 70
+        "width": 1990,
+        "x": 690,
+        "y": 80
       }
     }
   }
