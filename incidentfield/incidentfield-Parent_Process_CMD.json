@@ -23,7 +23,7 @@
 	"id": "incident_parentprocesscmd",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Parent Process CMD",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Parent Process CMD",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
