@@ -453,7 +453,7 @@
 	"formatScript": "ExtractDomainAndFQDNFromUrlAndEmail",
 	"fromServerVersion": "5.5.0",
 	"id": "domainRepUnified",
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"layout": "domainRepUnified",
 	"legacyNames": null,
 	"locked": false,
@@ -464,6 +464,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "(?i)(?P\u003cscheme\u003e(?:http|ftp|hxxp)s?(?:://|-3A__|%3A%2F%2F))?(?:%[\\da-f][\\da-f])?(?P\u003cdomain\u003e(?:[\\p{L}\\d\\-–]+(?:\\.|\\[\\.\\]))+[\\p{L}]{2,})(@|%40)?(?:\\b| |[[:punct:]]|$)",
 	"reputationCommand": "domain",
 	"reputationScriptName": "",
