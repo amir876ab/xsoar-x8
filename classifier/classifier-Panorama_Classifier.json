@@ -10,7 +10,7 @@
 	"incidentSamples": null,
 	"indicatorSamples": null,
 	"instanceIds": null,
-	"itemVersion": "2.1.4",
+	"itemVersion": "2.1.19",
 	"keyTypeMap": {
 		"CORRELATION": "PAN-OS Correlation Log Incident",
 		"DATA": "PAN-OS Data Log Incident",
