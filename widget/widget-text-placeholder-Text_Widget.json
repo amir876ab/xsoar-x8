@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "text-placeholder",
 	"isPredefined": true,
-	"itemVersion": "1.2.30",
+	"itemVersion": "1.2.45",
 	"name": "Text Widget",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
