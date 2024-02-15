@@ -27,7 +27,7 @@
 	"id": "incident_srcos",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Src OS",
@@ -41,7 +41,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Src OS",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
