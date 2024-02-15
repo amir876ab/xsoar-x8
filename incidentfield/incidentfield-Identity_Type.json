@@ -23,7 +23,7 @@
 	"id": "incident_identitytype",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Identity Type",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Identity Type",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
