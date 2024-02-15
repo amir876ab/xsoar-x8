@@ -23,7 +23,7 @@
 	"id": "incident_deviceusername",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Device Username",
@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Device Username",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
