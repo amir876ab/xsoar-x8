@@ -25,7 +25,7 @@
 	"id": "indicator_groups",
 	"ipVersion": "",
 	"isReadOnly": false,
-	"itemVersion": "3.3.85",
+	"itemVersion": "3.3.99",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Groups",
@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Groups",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
