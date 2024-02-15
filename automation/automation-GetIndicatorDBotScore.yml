@@ -14,7 +14,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.20
+    itemVersion: 1.13.22
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -22,12 +22,13 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.12.63474
+dockerimage: demisto/python3:3.10.13.83255
 engineinfo: {}
 mainengineinfo: {}
 name: GetIndicatorDBotScore
 nativeimage:
 - "8.3"
+- "8.4"
 outputs:
 - contextPath: DBotScore.Indicator
   description: The indicator.
@@ -46,7 +47,7 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('GetIndicatorDBotScore', 'start', __line__())
-  ### pack version: 1.12.20
+  ### pack version: 1.13.22
 
 
 
