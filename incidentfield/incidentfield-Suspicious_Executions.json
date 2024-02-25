@@ -107,7 +107,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Suspicious Executions",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
