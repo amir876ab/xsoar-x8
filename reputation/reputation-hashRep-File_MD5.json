@@ -27,7 +27,6 @@
 	"packPropagationLabels": [
 		"all"
 	],
-	"propagationLabels": [],
 	"regex": "\\b[a-fA-F\\d]{32}\\b",
 	"reputationCommand": "file",
 	"reputationScriptName": "",
