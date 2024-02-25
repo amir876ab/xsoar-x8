@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Users Details",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
