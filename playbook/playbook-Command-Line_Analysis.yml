@@ -1768,6 +1768,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
+      description: Found suspicious LOLBIN execution?
       id: 3212780f-1634-43cd-8a59-39af8883e672
       iscommand: false
       name: Found suspicious LOLBIN execution?
