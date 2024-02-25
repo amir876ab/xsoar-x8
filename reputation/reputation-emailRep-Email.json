@@ -64,7 +64,6 @@
 	"packPropagationLabels": [
 		"all"
 	],
-	"propagationLabels": [],
 	"regex": "(?:(?:\\\\|\\^{3})u[a-f\\d]{4})?(?P\u003clocalpart\u003e[\\p{L}\\d.!#$%\u0026'*+/=?^_\\xe60{}~-][\\p{L}\\d.!#$%\u0026'*+/=?^_\\xe60{|}~-]{0,63})\\[?@]?(?P\u003cdomain\u003e[\\p{L}\\d-]{1,255}(?:\\[?\\.]?(?:[\\p{L}\\d-]{2,}))*(?:\\[?\\.]?(?P\u003ctld\u003e[\\p{L}]{2,})))",
 	"reputationCommand": "email",
 	"reputationScriptName": "",
