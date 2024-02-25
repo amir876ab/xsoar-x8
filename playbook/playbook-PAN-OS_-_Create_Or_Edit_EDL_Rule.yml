@@ -288,12 +288,12 @@ tasks:
     separatecontext: false
     skipunavailable: false
     task:
-      brand: ""
+      brand: Panorama
       description: Add the element in the input as the new source of the rule
       id: c206e911-4183-40d4-8b25-957d1be68dc8
       iscommand: true
       name: Add new source to the rule
-      script: '|||pan-os-edit-rule'
+      script: Panorama|||pan-os-edit-rule
       type: regular
       version: -1
     taskid: c206e911-4183-40d4-8b25-957d1be68dc8
@@ -332,12 +332,12 @@ tasks:
     separatecontext: false
     skipunavailable: false
     task:
-      brand: ""
+      brand: Panorama
       description: Add the element in the input as the new destination of the rule
       id: cf41bad0-14d7-4937-8ffc-052e1172fd71
       iscommand: true
       name: Add the new destination to the rule
-      script: '|||pan-os-edit-rule'
+      script: Panorama|||pan-os-edit-rule
       type: regular
       version: -1
     taskid: cf41bad0-14d7-4937-8ffc-052e1172fd71
