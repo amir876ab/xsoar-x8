@@ -25,7 +25,6 @@
 	"packPropagationLabels": [
 		"all"
 	],
-	"propagationLabels": [],
 	"regex": "\\b((https?):\\/ֿֿֿֿ\\/)?([a-z2-7]{17}|[a-z2-7]{57})\\.onion\\b",
 	"reputationCommand": "",
 	"reputationScriptName": "OnionURLReputation",
