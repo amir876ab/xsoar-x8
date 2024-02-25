@@ -254,13 +254,13 @@ tasks:
     separatecontext: false
     skipunavailable: false
     task:
-      brand: Rapid7 Nexpose
-      description: Returns all assets for which you have access that match the given
-        search criteria.
+      brand: ""
+      description: Search and return all assets matching specific filters. Returns
+        only assets the user has access to.
       id: 14333e5c-cb15-4a68-8445-2b05472229e1
       iscommand: true
       name: 'Search CVE with Rapid7 Nexpose '
-      script: Rapid7 Nexpose|||nexpose-search-assets
+      script: '|||nexpose-search-assets'
       tags:
       - autoCVEsearch
       type: regular
