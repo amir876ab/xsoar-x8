@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Number Of Found Related Alerts",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
