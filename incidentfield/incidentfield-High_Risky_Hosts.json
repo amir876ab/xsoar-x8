@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "High Risky Hosts",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
