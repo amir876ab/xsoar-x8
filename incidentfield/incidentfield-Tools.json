@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Tools",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
