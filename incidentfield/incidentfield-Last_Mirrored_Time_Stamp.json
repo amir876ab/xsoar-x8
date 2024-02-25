@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Last Mirrored Time Stamp",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
