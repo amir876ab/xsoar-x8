@@ -672,10 +672,10 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Checks whether the Demisto REST API integration is enabled.
+      description: Checks whether the Core REST API integration is enabled.
       id: 04d3848d-57da-47ab-827d-8950c9063c32
       iscommand: false
-      name: Is Demisto REST API enabled?
+      name: Is Core REST API enabled?
       type: condition
       version: -1
     taskid: 04d3848d-57da-47ab-827d-8950c9063c32
