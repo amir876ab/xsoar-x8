@@ -190,6 +190,7 @@ tasks:
       iscommand: false
       name: Authenticate email
       script: CheckEmailAuthenticity
+      scriptName: CheckEmailAuthenticity
       type: regular
       version: -1
     taskid: 09550a3e-968f-410f-8da9-a42da68c2bb7
