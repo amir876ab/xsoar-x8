@@ -13,7 +13,7 @@
 	"itemVersion": "3.3.99",
 	"keyTypeMap": null,
 	"locked": false,
-	"logicalVersion": 1,
+	"logicalVersion": 0,
 	"mapping": {
 		"Phishing": {
 			"dontMapEventToLabels": false,
