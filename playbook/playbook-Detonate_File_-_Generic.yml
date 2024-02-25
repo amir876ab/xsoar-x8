@@ -1586,7 +1586,7 @@ tasks:
     skipunavailable: true
     task:
       brand: ""
-      description: Detonates a File using CrowdStrike Falcon.
+      description: Detonates a File using CrowdStrike Falcon sandbox.
       id: 8febf391-f313-4539-89c1-bd4df099dc51
       iscommand: false
       name: Detonate file - CrowdStrike Falcon Sandbox v2
