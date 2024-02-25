@@ -52,7 +52,6 @@
 	"packPropagationLabels": [
 		"all"
 	],
-	"propagationLabels": [],
 	"regex": "\\bT\\d{4}(?:\\.\\d{3})?\\b",
 	"reputationCommand": "",
 	"reputationScriptName": "",
