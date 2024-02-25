@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Endpoints Details",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
