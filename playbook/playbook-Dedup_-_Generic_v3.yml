@@ -713,6 +713,7 @@ tasks:
       iscommand: false
       name: Identify Phishing duplicates using ML
       script: PhishingDedupPreprocessingRule
+      scriptName: PhishingDedupPreprocessingRule
       type: regular
       version: -1
     taskid: e69901e9-ee05-4b11-8b09-2db95aba308e
