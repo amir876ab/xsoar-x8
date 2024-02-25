@@ -433,6 +433,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
+      description: Checks if the username input is not empty.
       id: 92420939-e8b5-4eca-8e8a-ca4a185b06fb
       iscommand: false
       name: Username exists?
@@ -544,6 +545,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
+      description: Checks if the customer ID input is not empty.
       id: 642325ab-a47b-466b-8ceb-5f6b870645dc
       iscommand: false
       name: Customer ID exist?
@@ -1241,6 +1243,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
+      description: Checks if a username was found.
       id: 35f1249e-457e-4e2a-8357-d9fa3044431b
       iscommand: false
       name: User found?
@@ -1385,6 +1388,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
+      description: Checks if any user device was found.
       id: 76c960de-4232-407e-88d3-3a2b4d1e54e1
       iscommand: false
       name: Check if any device found
@@ -1569,6 +1573,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
+      description: Checks if a custom AD attribute was provided in the playbook input.
       id: 0ad9d77f-b679-45ee-894e-7830b1502627
       iscommand: false
       name: CustomADAttribute exist?
@@ -1773,6 +1778,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
+      description: Checks if any result was found.
       id: 54307288-b5f0-4a11-83ed-3744b5fe18ee
       iscommand: false
       name: Any results?
@@ -1815,6 +1821,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
+      description: Checks if any result was found.
       id: aeec665b-9c0d-4fe6-8150-d1a37cf235ba
       iscommand: false
       name: Any results?
@@ -2073,6 +2080,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
+      description: Checks if there is any result.
       id: 10f93f62-40f7-467d-89d6-1ef8c5954712
       iscommand: false
       name: Any results?
