@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Suspicious Executions Found",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
