@@ -630,7 +630,7 @@ tasks:
         'no'
       id: 692fc977-5dff-49fa-8ef9-4c0c53979786
       iscommand: false
-      name: Is SailPointIntegration Enabled?
+      name: Is SailPoint Integration Enabled?
       script: IsIntegrationAvailable
       type: condition
       version: -1
