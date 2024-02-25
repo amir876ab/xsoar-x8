@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Affected Hosts",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
