@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Command Line Verdict",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
