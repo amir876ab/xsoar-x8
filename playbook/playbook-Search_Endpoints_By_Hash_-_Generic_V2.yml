@@ -417,6 +417,7 @@ tasks:
     skipunavailable: true
     task:
       brand: ""
+      description: Hunt for malicious indicators using Carbon Black
       id: 54f36ae2-15fa-42cb-8b77-62e48c8e50c4
       iscommand: false
       name: Search Endpoints By Hash - Carbon Black Response V2
