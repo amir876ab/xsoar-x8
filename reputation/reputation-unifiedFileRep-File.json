@@ -424,7 +424,6 @@
 	"packPropagationLabels": [
 		"all"
 	],
-	"propagationLabels": [],
 	"regex": "\\b[a-fA-F\\d]{32}\\b|\\b[a-fA-F\\d]{40}\\b|\\b[a-fA-F\\d]{64}\\b|\\b[a-fA-F\\d]{128}\\b",
 	"reputationCommand": "file",
 	"reputationScriptName": "",
