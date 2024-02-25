@@ -74,7 +74,7 @@ tasks:
       id: 7a16e30b-cd8b-45ce-81cd-b19f9c603dc0
       iscommand: true
       name: Get alert details
-      script: '|||helloworld-get-alert'
+      script: '|||helloworld-alert-list'
       type: regular
       version: -1
     taskid: 7a16e30b-cd8b-45ce-81cd-b19f9c603dc0
