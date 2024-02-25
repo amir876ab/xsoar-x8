@@ -39,7 +39,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Signature Original Name",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
