@@ -37,7 +37,7 @@
 		"all"
 	],
 	"placeholder": "",
-	"pretty_name": "",
+	"pretty_name": "Affected Users",
 	"propagationLabels": [],
 	"required": false,
 	"runScriptAfterUpdate": false,
